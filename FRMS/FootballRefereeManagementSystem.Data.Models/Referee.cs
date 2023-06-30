@@ -65,7 +65,7 @@
         [Comment("The registered user related to this entity")]
         [ForeignKey(nameof(User))]
         public Guid UserId { get; set; }
-        public IdentityUser User { get; set; } = null!;
+        public ApplicationUser User { get; set; } = null!;
 
         [Comment("The number of matches appointed to this entity on current round")]
         public int CurrentlyAppointedMatchesCount { get; set; }

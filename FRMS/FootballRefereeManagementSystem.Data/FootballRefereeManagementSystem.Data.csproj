@@ -17,6 +17,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FootballRefereeManagementSystem.Common\FootballRefereeManagementSystem.Common.csproj" />
+    <ProjectReference Include="..\FootballRefereeManagementSystem.Data.Models\FootballRefereeManagementSystem.Data.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>
