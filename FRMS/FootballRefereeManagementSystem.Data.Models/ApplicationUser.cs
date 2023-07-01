@@ -1,7 +1,5 @@
 ﻿namespace FootballRefereeManagementSystem.Data.Models
 {
-    using System.ComponentModel.DataAnnotations.Schema;
-
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
 
@@ -9,7 +7,6 @@
     public class ApplicationUser : IdentityUser<Guid>
     {
         [Comment("The navigation to the referee for this user")]
-        [ForeignKey(nameof(Referee))]
         public int RefereeId { get; set; }
         public Referee Referee { get; set; } = null!;
     }

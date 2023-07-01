@@ -8,6 +8,11 @@
     [Comment("Information about a football match")]
     public class Match
     {
+        public Match()
+        {
+            this.MatchReferees = new HashSet<RefereeMatch>();
+        }
+
         [Comment("Primary key")]
         [Key]
         public int Id { get; set; }
@@ -25,10 +30,10 @@
         [Comment("Date and time the match is played")]
         public DateTime FixtureTime { get; set; }
 
-        [Comment("Referees who will officiate the match")]
-        [ForeignKey(nameof(RefereeSquad))]
-        public Guid RefereeSquadId { get; set; }
-        public RefereeSquad? RefereeSquad { get; set; }
+        //[Comment("Referees who will officiate the match")]
+        //[ForeignKey(nameof(RefereeSquad))]
+        //public Guid RefereeSquadId { get; set; }
+        //public RefereeSquad? RefereeSquad { get; set; }
 
         [Comment("Information about host team")]
         public int HomeTeamId { get; set; }
@@ -38,5 +43,7 @@
         public int SeasonId { get; set; }
         public TeamSeason TeamSeasonHomeTeam { get; set; } = null!;
         public TeamSeason TeamSeasonAwayTeam { get; set; } = null!;
+
+        public ICollection<RefereeMatch> MatchReferees { get; set; } = null!;
     }
 }

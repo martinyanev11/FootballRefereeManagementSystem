@@ -11,13 +11,11 @@
         {
             builder.HasOne(m => m.TeamSeasonHomeTeam)
                 .WithMany(ts => ts.HomeGames)
-                .HasForeignKey(m => new { m.HomeTeamId, m.SeasonId })
-                .OnDelete(DeleteBehavior.Restrict);
+                .HasForeignKey(m => new { m.HomeTeamId, m.SeasonId });
 
             builder.HasOne(m => m.TeamSeasonAwayTeam)
                 .WithMany(ts => ts.AwayGames)
-                .HasForeignKey(m => new { m.AwayTeamId, m.SeasonId })
-                .OnDelete(DeleteBehavior.Restrict);
+                .HasForeignKey(m => new { m.AwayTeamId, m.SeasonId });
         }
     }
 }
