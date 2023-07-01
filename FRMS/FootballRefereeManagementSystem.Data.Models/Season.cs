@@ -11,7 +11,7 @@
     {
         public Season()
         {
-            this.TeamsSeason = new HashSet<TeamSeason>();
+            this.SeasonTeams = new HashSet<TeamSeason>();
         }
 
         [Comment("Primary key")]
@@ -32,6 +32,6 @@
         public DateTime End { get; set; }
 
         [Comment("Collection of teams for season")]
-        public ICollection<TeamSeason> TeamsSeason { get; set; } = null!;
+        public ICollection<TeamSeason> SeasonTeams { get; set; } = null!;
     }
 }

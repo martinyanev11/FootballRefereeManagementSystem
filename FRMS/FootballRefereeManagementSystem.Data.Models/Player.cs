@@ -9,6 +9,11 @@
     [Comment("Player playing in specific team during specific season")]
     public class Player
     {
+        public Player()
+        {
+            this.PlayerTeamsSeasons = new HashSet<PlayerTeamSeason>();
+        }
+
         [Comment("Primary key")]
         [Key]
         public int Id { get; set; }
@@ -32,8 +37,6 @@
 
         // A player can play in one team during one season
         [Comment("In which team he plays during a certain season")]
-        public int TeamId { get; set; }
-        public int SeasonId { get; set; }
-        public TeamSeason TeamSeason { get; set; } = null!;
+        public ICollection<PlayerTeamSeason> PlayerTeamsSeasons { get; set; } = null!;
     }
 }

@@ -9,14 +9,14 @@
     {
         public void Configure(EntityTypeBuilder<RefereeDivision> builder)
         {
-            builder.HasKey(rd => new {rd.RefereeId, rd.DivisionId});
+            builder.HasKey(rd => new { rd.RefereeId, rd.DivisionId });
 
             builder.HasOne(rd => rd.Referee)
                 .WithMany(r => r.RefereeDivisions)
                 .HasForeignKey(rd => rd.RefereeId);
 
             builder.HasOne(rd => rd.Division)
-                .WithMany(d => d.RefereesDivision)
+                .WithMany(d => d.DivisionReferees)
                 .HasForeignKey(rd => rd.DivisionId);
         }
     }

@@ -10,7 +10,7 @@
     {
         [Comment("Primary key")]
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Comment("In what division is the match played")]
         [ForeignKey(nameof(Division))]
@@ -28,7 +28,7 @@
         [Comment("Referees who will officiate the match")]
         [ForeignKey(nameof(RefereeSquad))]
         public Guid RefereeSquadId { get; set; }
-        public RefereeSquad RefereeSquad { get; set; } = null!;
+        public RefereeSquad? RefereeSquad { get; set; }
 
         [Comment("Information about host team")]
         public int HomeTeamId { get; set; }

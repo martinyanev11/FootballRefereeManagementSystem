@@ -10,7 +10,7 @@
     {
         [Comment("The navigation to the referee for this user")]
         [ForeignKey(nameof(Referee))]
-        public Guid RefereeId { get; set; }
+        public int RefereeId { get; set; }
         public Referee Referee { get; set; } = null!;
     }
 }

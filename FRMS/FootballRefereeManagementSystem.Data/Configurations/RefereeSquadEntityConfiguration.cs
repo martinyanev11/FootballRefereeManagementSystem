@@ -9,25 +9,25 @@
     {
         public void Configure(EntityTypeBuilder<RefereeSquad> builder)
         {
-            builder.HasOne(rs => rs.Referee)
-                .WithMany(r => r.MatchHistory)
-                .HasForeignKey(rs => rs.RefereeId);
+            builder.HasOne(refsquad => refsquad.Referee)
+                .WithMany(r => r.RefereeSquads)
+                .HasForeignKey(refsquad => refsquad.RefereeId);
 
-            builder.HasOne(rs => rs.FirstAssistantReferee)
-                .WithMany(r => r.MatchHistory)
-                .HasForeignKey(rs => rs.FirstAssistantRefereeId);
+            builder.HasOne(refsquad => refsquad.FirstAssistantReferee)
+                .WithMany(r => r.RefereeSquads)
+                .HasForeignKey(refsquad => refsquad.FirstAssistantRefereeId);
 
-            builder.HasOne(rs => rs.SecondAssistantReferee)
-                .WithMany(r => r.MatchHistory)
-                .HasForeignKey(rs => rs.SecondAssistantRefereeId);
+            builder.HasOne(refsquad => refsquad.SecondAssistantReferee)
+                .WithMany(r => r.RefereeSquads)
+                .HasForeignKey(refsquad => refsquad.SecondAssistantRefereeId);
 
-            builder.HasOne(rs => rs.Delegate)
-                .WithMany(r => r.MatchHistory)
-                .HasForeignKey(rs => rs.DelegateId);
+            builder.HasOne(refsquad => refsquad.Delegate)
+                .WithMany(r => r.RefereeSquads)
+                .HasForeignKey(refsquad => refsquad.DelegateId);
 
-            builder.HasOne(rs => rs.Match)
+            builder.HasOne(refsquad => refsquad.Match)
                 .WithOne(m => m.RefereeSquad)
-                .HasForeignKey<RefereeSquad>(rs => rs.MatchId);
+                .HasForeignKey<RefereeSquad>(refsquad => refsquad.MatchId);
         }
     }
 }

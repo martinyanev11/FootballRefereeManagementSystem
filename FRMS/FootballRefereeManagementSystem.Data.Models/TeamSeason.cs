@@ -11,7 +11,7 @@
     {
         public TeamSeason()
         {
-            this.Players = new HashSet<Player>();
+            this.TeamSeasonPlayers = new HashSet<PlayerTeamSeason>();
             this.HomeGames = new HashSet<Match>();
             this.AwayGames = new HashSet<Match>();
         }
@@ -46,7 +46,7 @@
         public Manager Manager { get; set; } = null!;
 
         [Comment("Collection of all the team's players for specific season")]
-        public ICollection<Player> Players { get; set; } = null!;
+        public ICollection<PlayerTeamSeason> TeamSeasonPlayers { get; set; } = null!;
 
         [Comment("Collection of home games for specific season")]
         public ICollection<Match> HomeGames { get; set; } = null!;

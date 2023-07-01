@@ -36,13 +36,13 @@
 
             //builder.ApplyConfigurationsFromAssembly(configurationsAssembly);
 
+            //builder.ApplyConfiguration(new RefereeEntityConfiguration());
             builder.ApplyConfiguration(new DivisionEntityConfiguration());
             builder.ApplyConfiguration(new MatchEntityConfiguration());
-            builder.ApplyConfiguration(new PlayerEntityConfiguration());
             builder.ApplyConfiguration(new RefereeDivisionEntityConfiguration());
-            builder.ApplyConfiguration(new RefereeEntityConfiguration());
             builder.ApplyConfiguration(new RefereeSquadEntityConfiguration());
             builder.ApplyConfiguration(new TeamSeasonEntityConfiguration());
+            builder.ApplyConfiguration(new PlayerTeamSeasonEntityConfiguration());
 
             base.OnModelCreating(builder);
         }

@@ -16,8 +16,12 @@
                 .HasForeignKey(ts => ts.TeamId);
 
             builder.HasOne(ts => ts.Season)
-                .WithMany(s => s.TeamsSeason)
+                .WithMany(s => s.SeasonTeams)
                 .HasForeignKey(ts => ts.SeasonId);
+
+            builder.HasOne(ts => ts.Manager)
+                .WithMany(m => m.TeamsSeasons)
+                .HasForeignKey(ts => ts.ManagerId);
         }
     }
 }

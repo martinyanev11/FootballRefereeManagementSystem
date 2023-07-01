@@ -9,9 +9,10 @@
     [Comment("Manager is the one who is in charge of team")]
     public class Manager
     {
-        // The Manager does not have navigation property to TeamSeason entity
-        // because it is One-To-One relation and I won't need to access TeamSeason from manager
-        // The relation is configured in the TeamSeason entity configuration with Fluent API
+        public Manager()
+        {
+            this.TeamsSeasons = new HashSet<TeamSeason>();
+        }
 
         [Comment("Primary key")]
         [Key]
@@ -30,5 +31,8 @@
         [Comment("Age of the person represented by this entity")]
         [Required]
         public int Age { get; set; }
+
+        [Comment("Collection of teams in different seasons managed by this manager")]
+        public ICollection<TeamSeason> TeamsSeasons { get; set; } = null!;
     }
 }

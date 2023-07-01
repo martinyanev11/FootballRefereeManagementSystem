@@ -4,7 +4,6 @@
     using System.ComponentModel.DataAnnotations.Schema;
     
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.AspNetCore.Identity;
 
     using Enums;
     using static Common.EntityValidationConstants.Referee;
@@ -14,15 +13,14 @@
     {
         public Referee()
         {
-            this.Id = Guid.NewGuid();
             this.CareerStart = DateTime.UtcNow;
             this.RefereeDivisions = new HashSet<RefereeDivision>();
-            this.MatchHistory = new HashSet<RefereeSquad>();
+            this.RefereeSquads = new HashSet<RefereeSquad>();
         }
 
         [Comment("Primary key")]
         [Key]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Comment("First name of the person represented by this entity")]
         [Required]
@@ -39,12 +37,11 @@
         public int Age { get; set; }
 
         [Comment("Picture of the person represented by this entity")]
-        public string ImageUrl { get; set; } = null!;
+        public string? ImageUrl { get; set; }
 
         [Comment("Phone number of the person represented by this entity")]
         [Required]
         [MaxLength(ContactMaxLength)]
-        [Phone]
         public string Contact { get; set; } = null!;
 
         [Comment("Current role of the person represented by this entity within the organization")]
@@ -67,13 +64,16 @@
         public Guid UserId { get; set; }
         public ApplicationUser User { get; set; } = null!;
 
+        [Comment("Gives information if person is free to officiate matches for current round")]
+        public bool IsAvaliable { get; set; }
+
         [Comment("The number of matches appointed to this entity on current round")]
         public int CurrentlyAppointedMatchesCount { get; set; }
 
         [Comment("Collection of all divisions the referee is allowed to officiate")]
         public ICollection<RefereeDivision> RefereeDivisions { get; set; } = null!;
 
-        [Comment("Collection of all matches the referee officiated")]
-        public ICollection<RefereeSquad> MatchHistory { get; set; } = null!;
+        [Comment("Collection of all squads referee was part of")]
+        public ICollection<RefereeSquad> RefereeSquads { get; set; } = null!;
     }
 }

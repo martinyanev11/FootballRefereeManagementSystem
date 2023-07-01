@@ -2,9 +2,9 @@
 {
     public enum Role
     {
-        Referee,
-        AssistantReferee,
-        Delegate,
-        Administration
+        Referee = 0,
+        AssistantReferee = 1,
+        Delegate = 2,
+        Administration = 3
     }
 }
