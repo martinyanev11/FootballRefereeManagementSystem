@@ -15,7 +15,10 @@
         {
             this.CareerStart = DateTime.UtcNow;
             this.RefereeDivisions = new HashSet<RefereeDivision>();
-            this.RefereeMatches = new HashSet<RefereeMatch>();
+            this.MainRefereeSquads = new HashSet<RefereeSquad>();
+            this.FirstAssistantRefereeSquads = new HashSet<RefereeSquad>();
+            this.SecondAssistantRefereeSquads = new HashSet<RefereeSquad>();
+            this.DelegateRefereeSquads = new HashSet<RefereeSquad>();
         }
 
         [Comment("Primary key")]
@@ -73,7 +76,20 @@
         [Comment("Collection of all divisions the referee is allowed to officiate")]
         public ICollection<RefereeDivision> RefereeDivisions { get; set; } = null!;
 
-        [Comment("Collection of all matches the referee was assigned to")]
-        public ICollection<RefereeMatch> RefereeMatches { get; set; } = null!;
+        [Comment("Collection of all squads where this referee was main referee")]
+        [InverseProperty(nameof(RefereeSquad.MainReferee))]
+        public ICollection<RefereeSquad> MainRefereeSquads { get; set; } = null!;
+
+        [Comment("Collection of all squads where this referee was first assistant referee")]
+        [InverseProperty(nameof(RefereeSquad.FirstAssistantReferee))]
+        public ICollection<RefereeSquad> FirstAssistantRefereeSquads { get; set; } = null!;
+
+        [Comment("Collection of all squads where this referee was second assistant referee")]
+        [InverseProperty(nameof(RefereeSquad.SecondAssistantReferee))]
+        public ICollection<RefereeSquad> SecondAssistantRefereeSquads { get; set; } = null!;
+
+        [Comment("Collection of all squads where this referee was delegate")]
+        [InverseProperty(nameof(RefereeSquad.Delegate))]
+        public ICollection<RefereeSquad> DelegateRefereeSquads { get; set; } = null!;
     }
 }

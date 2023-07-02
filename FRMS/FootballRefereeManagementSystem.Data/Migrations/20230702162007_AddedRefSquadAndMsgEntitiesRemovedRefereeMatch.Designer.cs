@@ -4,6 +4,7 @@ using FootballRefereeManagementSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FootballRefereeManagementSystem.Data.Migrations
 {
     [DbContext(typeof(FootballRefereeManagementSystemDbContext))]
-    partial class FootballRefereeManagementSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230702162007_AddedRefSquadAndMsgEntitiesRemovedRefereeMatch")]
+    partial class AddedRefSquadAndMsgEntitiesRemovedRefereeMatch
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -111,7 +113,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Divisions", (string)null);
+                    b.ToTable("Divisions");
 
                     b.HasComment("Division represents the level of the teams playing in it");
                 });
@@ -143,7 +145,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Managers", (string)null);
+                    b.ToTable("Managers");
 
                     b.HasComment("Manager is the one who is in charge of team");
                 });
@@ -200,7 +202,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
 
                     b.HasIndex("HomeTeamId", "SeasonId");
 
-                    b.ToTable("Matches", (string)null);
+                    b.ToTable("Matches");
 
                     b.HasComment("Information about a football match");
                 });
@@ -235,7 +237,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
 
                     b.HasIndex("RefereeSquadId");
 
-                    b.ToTable("Messages", (string)null);
+                    b.ToTable("Messages");
 
                     b.HasComment("Messages the referee write in match center");
                 });
@@ -272,7 +274,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Players", (string)null);
+                    b.ToTable("Players");
 
                     b.HasComment("Player playing in specific team during specific season");
                 });
@@ -294,7 +296,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
 
                     b.HasIndex("PlayerId");
 
-                    b.ToTable("PlayerTeamSeason", (string)null);
+                    b.ToTable("PlayerTeamSeason");
 
                     b.HasComment("Player playing in a team during a season");
                 });
@@ -371,7 +373,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Referees", (string)null);
+                    b.ToTable("Referees");
 
                     b.HasComment("The main entity of the application");
                 });
@@ -394,7 +396,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
 
                     b.HasIndex("DivisionId");
 
-                    b.ToTable("RefereesDivisions", (string)null);
+                    b.ToTable("RefereesDivisions");
 
                     b.HasComment("Mapping table for Referee and Division");
                 });
@@ -439,7 +441,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
 
                     b.HasIndex("SecondAssistantRefereeId");
 
-                    b.ToTable("RefereesSquads", (string)null);
+                    b.ToTable("RefereesSquads");
 
                     b.HasComment("Every referee squad consists of 1 main ref, 2 assitants and a delegate");
                 });
@@ -469,7 +471,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Seasons", (string)null);
+                    b.ToTable("Seasons");
 
                     b.HasComment("Season is the timespan in which all matches between teams are played");
                 });
@@ -503,7 +505,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
 
                     b.HasIndex("TownId");
 
-                    b.ToTable("Teams", (string)null);
+                    b.ToTable("Teams");
 
                     b.HasComment("Team that plays matches in specific division during specific season");
                 });
@@ -546,7 +548,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
 
                     b.HasIndex("SeasonId");
 
-                    b.ToTable("TeamsSeasons", (string)null);
+                    b.ToTable("TeamsSeasons");
 
                     b.HasComment("Mapping table for team and season");
                 });
@@ -586,7 +588,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
 
                     b.HasIndex("ZoneId");
 
-                    b.ToTable("Towns", (string)null);
+                    b.ToTable("Towns");
 
                     b.HasComment("Where teams and referees are located and matches are played");
                 });
@@ -608,7 +610,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Zones", (string)null);
+                    b.ToTable("Zones");
 
                     b.HasComment("Zone that is part of region in the country");
                 });

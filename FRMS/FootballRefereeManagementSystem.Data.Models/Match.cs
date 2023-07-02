@@ -5,14 +5,11 @@
 
     using Microsoft.EntityFrameworkCore;
 
+    using static Common.EntityValidationConstants.Match;
+
     [Comment("Information about a football match")]
     public class Match
     {
-        public Match()
-        {
-            this.MatchReferees = new HashSet<RefereeMatch>();
-        }
-
         [Comment("Primary key")]
         [Key]
         public int Id { get; set; }
@@ -30,6 +27,10 @@
         [Comment("Date and time the match is played")]
         public DateTime FixtureTime { get; set; }
 
+        [Comment("The final result of the match")]
+        [MaxLength(FinalResultMaxLength)]
+        public string? FinalResult { get; set; }
+
         [Comment("Information about host team")]
         public int HomeTeamId { get; set; }
         [Comment("Information about guest team")]
@@ -39,6 +40,8 @@
         public TeamSeason HomeTeam { get; set; } = null!;
         public TeamSeason AwayTeam { get; set; } = null!;
 
-        public ICollection<RefereeMatch> MatchReferees { get; set; } = null!;
+        [Comment("The referee squad appointed to officiate the match")]
+        public Guid RefereeSquadId { get; set; }
+        public RefereeSquad RefereeSquad { get; set; } = null!;
     }
 }

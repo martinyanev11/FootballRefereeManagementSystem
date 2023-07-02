@@ -68,5 +68,16 @@
         {
             public const int DescriptionMaxLength = 7;
         }
+
+        public static class Match
+        {
+            public const int FinalResultMaxLength = 7;
+        }
+
+        public static class Message
+        {
+            public const int ContentMinLength = 1;
+            public const int ContentMaxLength = 300;
+        }
     }
 }

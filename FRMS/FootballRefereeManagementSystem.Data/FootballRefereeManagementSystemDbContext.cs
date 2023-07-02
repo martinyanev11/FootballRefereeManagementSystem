@@ -26,7 +26,8 @@
         public DbSet<TeamSeason> TeamsSeasons { get; set; } = null!;
         public DbSet<Town> Towns { get; set; } = null!;
         public DbSet<Zone> Zones { get; set; } = null!;
-        public DbSet<RefereeMatch> RefereesMatches { get; set; } = null!;
+        public DbSet<RefereeSquad> RefereesSquads { get; set; } = null!;
+        public DbSet<Message> Messages { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -35,13 +36,6 @@
                 Assembly.GetExecutingAssembly();
 
             builder.ApplyConfigurationsFromAssembly(configurationsAssembly);
-
-            //builder.ApplyConfiguration(new RefereeEntityConfiguration());
-            //builder.ApplyConfiguration(new MatchEntityConfiguration());
-            //builder.ApplyConfiguration(new RefereeDivisionEntityConfiguration());
-            //builder.ApplyConfiguration(new TeamSeasonEntityConfiguration());
-            //builder.ApplyConfiguration(new PlayerTeamSeasonEntityConfiguration());
-            //builder.ApplyConfiguration(new RefereeMatchEntityConfiguration());
 
             base.OnModelCreating(builder);
         }
