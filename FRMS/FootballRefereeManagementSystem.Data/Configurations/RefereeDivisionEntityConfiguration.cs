@@ -13,11 +13,13 @@
 
             builder.HasOne(rd => rd.Referee)
                 .WithMany(r => r.RefereeDivisions)
-                .HasForeignKey(rd => rd.RefereeId);
+                .HasForeignKey(rd => rd.RefereeId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(rd => rd.Division)
                 .WithMany(d => d.DivisionReferees)
-                .HasForeignKey(rd => rd.DivisionId);
+                .HasForeignKey(rd => rd.DivisionId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

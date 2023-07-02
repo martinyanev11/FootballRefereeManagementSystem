@@ -9,13 +9,15 @@
     {
         public void Configure(EntityTypeBuilder<Match> builder)
         {
-            builder.HasOne(m => m.TeamSeasonHomeTeam)
+            builder.HasOne(m => m.HomeTeam)
                 .WithMany(ts => ts.HomeGames)
-                .HasForeignKey(m => new { m.HomeTeamId, m.SeasonId });
+                .HasForeignKey(m => new { m.HomeTeamId, m.SeasonId })
+                .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasOne(m => m.TeamSeasonAwayTeam)
+            builder.HasOne(m => m.AwayTeam)
                 .WithMany(ts => ts.AwayGames)
-                .HasForeignKey(m => new { m.AwayTeamId, m.SeasonId });
+                .HasForeignKey(m => new { m.AwayTeamId, m.SeasonId })
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

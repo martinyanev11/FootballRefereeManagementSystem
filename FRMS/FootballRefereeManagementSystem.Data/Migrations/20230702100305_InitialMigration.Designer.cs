@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FootballRefereeManagementSystem.Data.Migrations
 {
     [DbContext(typeof(FootballRefereeManagementSystemDbContext))]
-    [Migration("20230701180308_InitialMigration")]
+    [Migration("20230702100305_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -720,13 +720,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.HasOne("FootballRefereeManagementSystem.Data.Models.Player", "Player")
                         .WithMany("PlayerTeamsSeasons")
                         .HasForeignKey("PlayerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("FootballRefereeManagementSystem.Data.Models.TeamSeason", "TeamSeason")
                         .WithMany("TeamSeasonPlayers")
                         .HasForeignKey("TeamId", "SeasonId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Player");
@@ -758,13 +758,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.HasOne("FootballRefereeManagementSystem.Data.Models.Division", "Division")
                         .WithMany("DivisionReferees")
                         .HasForeignKey("DivisionId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("FootballRefereeManagementSystem.Data.Models.Referee", "Referee")
                         .WithMany("RefereeDivisions")
                         .HasForeignKey("RefereeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Division");
@@ -777,13 +777,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.HasOne("FootballRefereeManagementSystem.Data.Models.Match", "Match")
                         .WithMany("MatchReferees")
                         .HasForeignKey("MatchId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("FootballRefereeManagementSystem.Data.Models.Referee", "Referee")
                         .WithMany("RefereeMatches")
                         .HasForeignKey("RefereeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Match");
@@ -807,25 +807,25 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.HasOne("FootballRefereeManagementSystem.Data.Models.Division", "Division")
                         .WithMany("TeamsSeasons")
                         .HasForeignKey("DivisionId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("FootballRefereeManagementSystem.Data.Models.Manager", "Manager")
                         .WithMany("TeamsSeasons")
                         .HasForeignKey("ManagerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("FootballRefereeManagementSystem.Data.Models.Season", "Season")
                         .WithMany("SeasonTeams")
                         .HasForeignKey("SeasonId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("FootballRefereeManagementSystem.Data.Models.Team", "Team")
                         .WithMany("TeamSeasons")
                         .HasForeignKey("TeamId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Division");

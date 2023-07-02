@@ -1,10 +1,10 @@
-﻿#nullable disable
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
 namespace FootballRefereeManagementSystem.Data.Migrations
 {
-    using System;
-
-    using Microsoft.EntityFrameworkCore.Migrations;
-
     public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -332,13 +332,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         column: x => x.DivisionId,
                         principalTable: "Divisions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_RefereesDivisions_Referees_RefereeId",
                         column: x => x.RefereeId,
                         principalTable: "Referees",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 },
                 comment: "Mapping table for Referee and Division");
 
@@ -362,25 +362,25 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         column: x => x.DivisionId,
                         principalTable: "Divisions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_TeamsSeasons_Managers_ManagerId",
                         column: x => x.ManagerId,
                         principalTable: "Managers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_TeamsSeasons_Seasons_SeasonId",
                         column: x => x.SeasonId,
                         principalTable: "Seasons",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_TeamsSeasons_Teams_TeamId",
                         column: x => x.TeamId,
                         principalTable: "Teams",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 },
                 comment: "Mapping table for team and season");
 
@@ -443,13 +443,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         column: x => x.PlayerId,
                         principalTable: "Players",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PlayerTeamSeason_TeamsSeasons_TeamId_SeasonId",
                         columns: x => new { x.TeamId, x.SeasonId },
                         principalTable: "TeamsSeasons",
                         principalColumns: new[] { "TeamId", "SeasonId" },
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 },
                 comment: "Player playing in a team during a season");
 
@@ -468,13 +468,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         column: x => x.MatchId,
                         principalTable: "Matches",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_RefereesMatches_Referees_RefereeId",
                         column: x => x.RefereeId,
                         principalTable: "Referees",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 },
                 comment: "Mapping table for Referee and Match");
 

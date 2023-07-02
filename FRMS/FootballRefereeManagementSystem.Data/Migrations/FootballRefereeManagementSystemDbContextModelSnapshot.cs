@@ -111,7 +111,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Divisions");
+                    b.ToTable("Divisions", (string)null);
 
                     b.HasComment("Division represents the level of the teams playing in it");
                 });
@@ -143,7 +143,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Managers");
+                    b.ToTable("Managers", (string)null);
 
                     b.HasComment("Manager is the one who is in charge of team");
                 });
@@ -191,7 +191,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
 
                     b.HasIndex("HomeTeamId", "SeasonId");
 
-                    b.ToTable("Matches");
+                    b.ToTable("Matches", (string)null);
 
                     b.HasComment("Information about a football match");
                 });
@@ -228,7 +228,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Players");
+                    b.ToTable("Players", (string)null);
 
                     b.HasComment("Player playing in specific team during specific season");
                 });
@@ -250,7 +250,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
 
                     b.HasIndex("PlayerId");
 
-                    b.ToTable("PlayerTeamSeason");
+                    b.ToTable("PlayerTeamSeason", (string)null);
 
                     b.HasComment("Player playing in a team during a season");
                 });
@@ -327,7 +327,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Referees");
+                    b.ToTable("Referees", (string)null);
 
                     b.HasComment("The main entity of the application");
                 });
@@ -350,7 +350,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
 
                     b.HasIndex("DivisionId");
 
-                    b.ToTable("RefereesDivisions");
+                    b.ToTable("RefereesDivisions", (string)null);
 
                     b.HasComment("Mapping table for Referee and Division");
                 });
@@ -369,7 +369,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
 
                     b.HasIndex("MatchId");
 
-                    b.ToTable("RefereesMatches");
+                    b.ToTable("RefereesMatches", (string)null);
 
                     b.HasComment("Mapping table for Referee and Match");
                 });
@@ -399,7 +399,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Seasons");
+                    b.ToTable("Seasons", (string)null);
 
                     b.HasComment("Season is the timespan in which all matches between teams are played");
                 });
@@ -433,7 +433,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
 
                     b.HasIndex("TownId");
 
-                    b.ToTable("Teams");
+                    b.ToTable("Teams", (string)null);
 
                     b.HasComment("Team that plays matches in specific division during specific season");
                 });
@@ -476,7 +476,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
 
                     b.HasIndex("SeasonId");
 
-                    b.ToTable("TeamsSeasons");
+                    b.ToTable("TeamsSeasons", (string)null);
 
                     b.HasComment("Mapping table for team and season");
                 });
@@ -516,7 +516,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
 
                     b.HasIndex("ZoneId");
 
-                    b.ToTable("Towns");
+                    b.ToTable("Towns", (string)null);
 
                     b.HasComment("Where teams and referees are located and matches are played");
                 });
@@ -538,7 +538,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Zones");
+                    b.ToTable("Zones", (string)null);
 
                     b.HasComment("Zone that is part of region in the country");
                 });
@@ -718,13 +718,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.HasOne("FootballRefereeManagementSystem.Data.Models.Player", "Player")
                         .WithMany("PlayerTeamsSeasons")
                         .HasForeignKey("PlayerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("FootballRefereeManagementSystem.Data.Models.TeamSeason", "TeamSeason")
                         .WithMany("TeamSeasonPlayers")
                         .HasForeignKey("TeamId", "SeasonId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Player");
@@ -756,13 +756,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.HasOne("FootballRefereeManagementSystem.Data.Models.Division", "Division")
                         .WithMany("DivisionReferees")
                         .HasForeignKey("DivisionId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("FootballRefereeManagementSystem.Data.Models.Referee", "Referee")
                         .WithMany("RefereeDivisions")
                         .HasForeignKey("RefereeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Division");
@@ -775,13 +775,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.HasOne("FootballRefereeManagementSystem.Data.Models.Match", "Match")
                         .WithMany("MatchReferees")
                         .HasForeignKey("MatchId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("FootballRefereeManagementSystem.Data.Models.Referee", "Referee")
                         .WithMany("RefereeMatches")
                         .HasForeignKey("RefereeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Match");
@@ -805,25 +805,25 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.HasOne("FootballRefereeManagementSystem.Data.Models.Division", "Division")
                         .WithMany("TeamsSeasons")
                         .HasForeignKey("DivisionId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("FootballRefereeManagementSystem.Data.Models.Manager", "Manager")
                         .WithMany("TeamsSeasons")
                         .HasForeignKey("ManagerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("FootballRefereeManagementSystem.Data.Models.Season", "Season")
                         .WithMany("SeasonTeams")
                         .HasForeignKey("SeasonId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("FootballRefereeManagementSystem.Data.Models.Team", "Team")
                         .WithMany("TeamSeasons")
                         .HasForeignKey("TeamId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Division");

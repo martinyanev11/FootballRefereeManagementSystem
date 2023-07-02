@@ -13,19 +13,23 @@
 
             builder.HasOne(ts => ts.Team)
                 .WithMany(t => t.TeamSeasons)
-                .HasForeignKey(ts => ts.TeamId);
+                .HasForeignKey(ts => ts.TeamId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(ts => ts.Season)
                 .WithMany(s => s.SeasonTeams)
-                .HasForeignKey(ts => ts.SeasonId);
+                .HasForeignKey(ts => ts.SeasonId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(ts => ts.Manager)
                 .WithMany(m => m.TeamsSeasons)
-                .HasForeignKey(ts => ts.ManagerId);
+                .HasForeignKey(ts => ts.ManagerId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(ts => ts.Division)
                 .WithMany(d => d.TeamsSeasons)
-                .HasForeignKey(ts => ts.DivisionId);
+                .HasForeignKey(ts => ts.DivisionId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

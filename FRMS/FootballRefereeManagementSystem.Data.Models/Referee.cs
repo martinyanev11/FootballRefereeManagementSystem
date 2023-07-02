@@ -16,7 +16,6 @@
             this.CareerStart = DateTime.UtcNow;
             this.RefereeDivisions = new HashSet<RefereeDivision>();
             this.RefereeMatches = new HashSet<RefereeMatch>();
-            //this.RefereeSquads = new HashSet<RefereeSquad>();
         }
 
         [Comment("Primary key")]
@@ -73,9 +72,6 @@
 
         [Comment("Collection of all divisions the referee is allowed to officiate")]
         public ICollection<RefereeDivision> RefereeDivisions { get; set; } = null!;
-
-        //[Comment("Collection of all squads referee was part of")]
-        //public ICollection<RefereeSquad> RefereeSquads { get; set; } = null!;
 
         [Comment("Collection of all matches the referee was assigned to")]
         public ICollection<RefereeMatch> RefereeMatches { get; set; } = null!;
