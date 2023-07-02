@@ -4,6 +4,7 @@ using FootballRefereeManagementSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FootballRefereeManagementSystem.Data.Migrations
 {
     [DbContext(typeof(FootballRefereeManagementSystemDbContext))]
-    partial class FootballRefereeManagementSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230702171641_ApplicationUserEntityChanges")]
+    partial class ApplicationUserEntityChanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,7 +71,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("RefereeId")
+                    b.Property<int>("RefereeId")
                         .HasColumnType("int")
                         .HasComment("The navigation to the referee for this user");
 
