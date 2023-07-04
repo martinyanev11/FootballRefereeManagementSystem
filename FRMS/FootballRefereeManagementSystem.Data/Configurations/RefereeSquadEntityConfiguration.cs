@@ -5,7 +5,7 @@
 
     using Models;
 
-    public class RefereeSquadEntityConfiguration : IEntityTypeConfiguration<RefereeSquad>
+    internal class RefereeSquadEntityConfiguration : IEntityTypeConfiguration<RefereeSquad>
     {
         public void Configure(EntityTypeBuilder<RefereeSquad> builder)
         {

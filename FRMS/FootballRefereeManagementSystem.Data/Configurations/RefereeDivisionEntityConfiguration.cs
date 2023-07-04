@@ -4,9 +4,17 @@
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
     using Models;
+    using Seeding;
 
-    public class RefereeDivisionEntityConfiguration : IEntityTypeConfiguration<RefereeDivision>
+    internal class RefereeDivisionEntityConfiguration : IEntityTypeConfiguration<RefereeDivision>
     {
+        private readonly RefereeDivisionSeeder seeder;
+
+        public RefereeDivisionEntityConfiguration()
+        {
+            this.seeder = new RefereeDivisionSeeder();
+        }
+
         public void Configure(EntityTypeBuilder<RefereeDivision> builder)
         {
             builder.HasKey(rd => new { rd.RefereeId, rd.DivisionId });
@@ -20,6 +28,8 @@
                 .WithMany(d => d.DivisionReferees)
                 .HasForeignKey(rd => rd.DivisionId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasData(this.seeder.GenerateRefereeDivisions());
         }
     }
 }

@@ -5,7 +5,7 @@
 
     using Models;
 
-    public class TeamSeasonEntityConfiguration : IEntityTypeConfiguration<TeamSeason>
+    internal class TeamSeasonEntityConfiguration : IEntityTypeConfiguration<TeamSeason>
     {
         public void Configure(EntityTypeBuilder<TeamSeason> builder)
         {
