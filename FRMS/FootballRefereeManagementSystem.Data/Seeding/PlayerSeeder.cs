@@ -20,6 +20,8 @@
                     LastName = GenerateRandomLastName(),
                     Age = GenerateRandomAge(AgeMinValue, AgeMaxValue)
                 };
+
+                players.Add(player);
             }
 
             return players;

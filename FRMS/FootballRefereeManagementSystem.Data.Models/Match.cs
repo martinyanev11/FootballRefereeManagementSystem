@@ -41,7 +41,7 @@
         public TeamSeason AwayTeam { get; set; } = null!;
 
         [Comment("The referee squad appointed to officiate the match")]
-        public Guid RefereeSquadId { get; set; }
-        public RefereeSquad RefereeSquad { get; set; } = null!;
+        public Guid? RefereeSquadId { get; set; }
+        public RefereeSquad? RefereeSquad { get; set; } = null!;
     }
 }

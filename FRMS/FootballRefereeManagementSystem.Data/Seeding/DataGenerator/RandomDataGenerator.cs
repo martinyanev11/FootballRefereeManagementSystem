@@ -45,7 +45,7 @@
         {
             Random randomPhoneNumberGenerator = new Random();
 
-            int PhoneNumberMinValue = 800000000;
+            int PhoneNumberMinValue = 874000000;
             int PhoneNumberMaxValue = 999999999;
 
             string phoneNumber = randomPhoneNumberGenerator

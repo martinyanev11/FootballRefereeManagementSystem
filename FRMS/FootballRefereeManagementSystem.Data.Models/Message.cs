@@ -20,9 +20,9 @@
         [Key]
         public Guid Id { get; set; }
 
-        [Comment("Name of the message creator")]
-        [Required]
-        public string Author { get; set; } = null!;
+        [Comment("Referee who created the message")]
+        public int AuthorId { get; set; }
+        public Referee Author { get; set; } = null!;
 
         [Comment("Time and date of creation")]
         public DateTime CreatedOn { get; set; }

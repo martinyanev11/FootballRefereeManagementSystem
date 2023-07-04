@@ -91,5 +91,8 @@
         [Comment("Collection of all squads where this referee was delegate")]
         [InverseProperty(nameof(RefereeSquad.Delegate))]
         public ICollection<RefereeSquad> DelegateRefereeSquads { get; set; } = null!;
+
+        [Comment("Messages in RefereeSquads by this Referee")]
+        public ICollection<Message> Messages { get; set; } = null!;
     }
 }

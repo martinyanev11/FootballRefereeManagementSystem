@@ -4,9 +4,17 @@
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
     using Models;
+    using Seeding;
 
     internal class PlayerTeamSeasonEntityConfiguration : IEntityTypeConfiguration<PlayerTeamSeason>
     {
+        private readonly PlayerTeamSeasonSeeder seeder;
+
+        public PlayerTeamSeasonEntityConfiguration()
+        {
+            this.seeder = new PlayerTeamSeasonSeeder();
+        }
+
         public void Configure(EntityTypeBuilder<PlayerTeamSeason> builder)
         {
             builder.HasKey(pts => new { pts.TeamId, pts.SeasonId, pts.PlayerId });
@@ -20,6 +28,8 @@
                 .WithMany(p => p.PlayerTeamsSeasons)
                 .HasForeignKey(pts => pts.PlayerId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasData(this.seeder.GeneratePlayersTeamsSeasons());
         }
     }
 }

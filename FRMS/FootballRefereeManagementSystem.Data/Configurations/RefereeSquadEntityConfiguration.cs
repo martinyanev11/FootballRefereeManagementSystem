@@ -4,9 +4,17 @@
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
     using Models;
+    using Seeding;
 
     internal class RefereeSquadEntityConfiguration : IEntityTypeConfiguration<RefereeSquad>
     {
+        private readonly RefereeSquadSeeder seeder;
+
+        public RefereeSquadEntityConfiguration()
+        {
+            this.seeder = new RefereeSquadSeeder();
+        }
+
         public void Configure(EntityTypeBuilder<RefereeSquad> builder)
         {
             builder.HasOne(rs => rs.MainReferee)
@@ -32,6 +40,8 @@
             builder.HasMany(rs => rs.Messages)
                 .WithOne(msg => msg.RefereeSquad)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasData(this.seeder.GenerateRefereeSquads());
         }
     }
 }
