@@ -20,8 +20,38 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
+                            <a class="nav-link text-white" style="font-size: 20px" asp-area="" asp-controller="News" asp-action="All">НОВИНИ</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-white" style="font-size: 20px" asp-area="" asp-controller="Match" asp-action="All">МАЧОВЕ</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" style="font-size: 20px" asp-area="" asp-controller="Home" asp-action="GameRules">ПРАВИЛА НА ИГРАТА</a>
+                        </li>
+                        @if (User.Identity?.IsAuthenticated ?? false)
+                        {
+                            if (User.IsInRole("Referee") == false)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" style="font-size: 20px" asp-area="" asp-controller="Career" asp-action="CareerInformation">КАРИЕРА</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" style="font-size: 20px" asp-area="" asp-controller="Referee" asp-action="Schedule">ГРАФИК</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" style="font-size: 20px" asp-area="" asp-controller="Referee" asp-action="All">СЪДИЙ</a>
+                                </li>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" style="font-size: 20px" asp-area="" asp-controller="Career" asp-action="Applications">КАНДИДАТУРИ</a>
+                                    </li>
+                                }
+                            }
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FootballRefereeManagementSystem.Common\FootballRefereeManagementSystem.Common.csproj" />
+    <ProjectReference Include="..\FootballRefereeManagementSystem.Data.Models\FootballRefereeManagementSystem.Data.Models.csproj" />
+    <ProjectReference Include="..\FootballRefereeManagementSystem.Data\FootballRefereeManagementSystem.Data.csproj" />
+    <ProjectReference Include="..\FootballRefereeManagementSystem.Web.ViewModels\FootballRefereeManagementSystem.Web.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Contracts\" />
+  </ItemGroup>
+
+</Project>
