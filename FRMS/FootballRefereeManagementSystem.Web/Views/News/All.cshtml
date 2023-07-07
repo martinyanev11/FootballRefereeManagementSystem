@@ -1,0 +1,44 @@
+﻿@using FootballRefereeManagementSystem.Web.ViewModels.News;
+@model IEnumerable<ArticleViewModel>
+@{
+    ViewData["Title"] = "Новини";
+}
+
+<div class="container">
+    <h1 class="mt-4">Новини</h1>
+
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="mb-3">
+            <a href="#" class="btn btn-primary">Добави новина</a>
+        </div>
+    }
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="row">
+            @foreach (var article in Model)
+            {
+                <div class="col-md-12 mb-4">
+                    <div class="card">
+                        @if (!string.IsNullOrEmpty(article.ImageUrl))
+                        {
+                            <img src="@article.ImageUrl" class="card-img-top" alt="Article Image" />
+                        }
+                        <div class="card-body">
+                            <h2 class="card-title">@article.Title</h2>
+                            <p class="card-text">Автор: @article.AuthorName</p>
+                            <p class="card-text">@article.CreatedOn</p>
+                            <p class="card-text">@article.Content</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p>Няма новини.</p>
+    }
+</div>
+    

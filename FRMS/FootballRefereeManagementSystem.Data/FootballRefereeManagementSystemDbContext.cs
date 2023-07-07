@@ -27,6 +27,8 @@
         public DbSet<Zone> Zones { get; set; } = null!;
         public DbSet<RefereeSquad> RefereesSquads { get; set; } = null!;
         public DbSet<Message> Messages { get; set; } = null!;
+        public DbSet<Article> Articles { get; set; } = null!;
+        public DbSet<Application> Applications { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

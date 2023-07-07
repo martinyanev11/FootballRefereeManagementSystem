@@ -4,6 +4,7 @@ namespace FootballRefereeManagementSystem.Web
 
     using Data;
     using Data.Models;
+    using Services.Contracts;
 
     public class Program
     {
@@ -30,6 +31,9 @@ namespace FootballRefereeManagementSystem.Web
                 .AddEntityFrameworkStores<FootballRefereeManagementSystemDbContext>();
 
             builder.Services.AddControllersWithViews();
+
+            // Add custom services
+            builder.Services.AddScoped<INewsService, NewsService>();
 
             WebApplication app = builder.Build();
 

@@ -79,5 +79,28 @@
             public const int ContentMinLength = 1;
             public const int ContentMaxLength = 300;
         }
+
+        public static class Article
+        {
+            public const int TitleMinLegnth = 3;
+            public const int TitleMaxLength = 100;
+
+            public const int ContentMinLength = 10;
+            public const int ContentMaxLength = 1500;
+
+            public const int ImageUrlMaxLength = 2048;
+        }
+
+        public static class Application
+        {
+            public const int FirstNameMinLength = 2;
+            public const int FirstNameMaxLength = 50;
+
+            public const int LastNameMinLength = 2;
+            public const int LastNameMaxLength = 50;
+
+            public const int ContactMinLength = 10;
+            public const int ContactMaxLength = 15;
+        }
     }
 }

@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\FootballRefereeManagementSystem.Common\FootballRefereeManagementSystem.Common.csproj" />
     <ProjectReference Include="..\FootballRefereeManagementSystem.Data\FootballRefereeManagementSystem.Data.csproj" />
+    <ProjectReference Include="..\FootballRefereeManagementSystem.Services\FootballRefereeManagementSystem.Services.csproj" />
     <ProjectReference Include="..\FootballRefereeManagementSystem.Web.ViewModels\FootballRefereeManagementSystem.Web.ViewModels.csproj" />
   </ItemGroup>
 

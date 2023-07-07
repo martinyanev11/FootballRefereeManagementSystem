@@ -1,0 +1,125 @@
+﻿body {
+    background-color: whitesmoke;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.centered-image {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.centered-image img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0 auto;
+    opacity: 0.95;
+}
+
+.container {
+    position: relative;
+}
+
+.centered-text {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white
+}
+
+.sub-heading {
+    position: absolute;
+    top: 35%; /* Adjust the vertical position as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    color: white; /* Set the text color to white */
+}
+
+.join-section {
+    position: absolute;
+    bottom: 100px; /* Adjust the vertical position as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.join-text {
+    color: white; /* Set the text color to white */
+    font-size: 1.5rem; /* Adjust the font size as needed */
+    margin-bottom: 80px; /* Adjust the spacing between the text and button */
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+.wrapper {
+    position: fixed;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.link_wrapper {
+    position: relative;
+}
+
+button {
+    display: block;
+    width: 250px;
+    height: 50px;
+    line-height: 50px;
+    font-weight: bold;
+    text-decoration: none;
+    background: #333;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 3px solid #333;
+    transition: all .35s;
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+    border: 3px solid transparent;
+    position: absolute;
+    transform: rotate(45deg);
+    right: 0;
+    top: 0;
+    z-index: -1;
+    transition: all .35s;
+}
+
+    .icon svg {
+        width: 30px;
+        position: absolute;
+        top: calc(50% - 15px);
+        left: calc(50% - 15px);
+        transform: rotate(-45deg);
+        fill: #1665d3;
+        transition: all .35s;
+    }
+
+button:hover {
+    width: 200px;
+    border: 3px solid #1665d3;
+    background: transparent;
+    color: #1665d3;
+}
+
+    button:hover + .icon {
+        border: 3px solid #1665d3;
+        right: -25%;
+    }
