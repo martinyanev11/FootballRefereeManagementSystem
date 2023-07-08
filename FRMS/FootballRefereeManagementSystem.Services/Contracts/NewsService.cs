@@ -22,6 +22,7 @@
             IEnumerable<ArticleViewModel> articles = await dbContext
                 .Articles
                 .AsNoTracking()
+                .OrderByDescending(a => a.CreatedOn)
                 .Select(a => new ArticleViewModel()
                 {
                     Id = a.Id,

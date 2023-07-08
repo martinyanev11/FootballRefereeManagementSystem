@@ -1,0 +1,66 @@
+﻿@using FootballRefereeManagementSystem.Web.ViewModels.Contact;
+@model ContactFormModel;
+
+@{
+    ViewData["Title"] = "Контакти";
+}
+<head>
+    <link rel="stylesheet" href="~/css/contact.css" />
+</head>
+
+<div class="container">
+    <h1 class="mb-4">Свържете се с нас</h1>
+
+    <form asp-action="SendMessage" method="post" id="contactForm">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label asp-for="FirstName" class="form-label">Име:</label>
+                <input asp-for="FirstName" class="form-control" aria-required="true" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label asp-for="LastName" class="form-label">Фамилия:</label>
+                <input asp-for="LastName" class="form-control" aria-required="true" required/>
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label asp-for="Email" class="form-label">Имейл адрес:</label>
+                <input asp-for="Email" class="form-control" aria-required="true" placeholder="примерен@gmail.com" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <label asp-for="Title" class="form-label">Тема:</label>
+                <input asp-for="Title" class="form-control" aria-required="true" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <label asp-for="Message" class="form-label">Съобщение:</label>
+                <textarea asp-for="Message" class="form-control" rows="7" style="resize: none;"></textarea>
+                <span asp-validation-for="Message" class="text-danger"></span>
+            </div>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Изпрати" onclick="showConfirmationDialog(event)" />
+    </form>
+</div>
+
+<div class="container mt-5 text-secondary">
+    <address>
+        Може да се свържете с нас като изпратите съобщение тук или директно на имейл: <a href="mailto:dummyemail@bfs-refs.com">dummyemail@bfs-refs.com</a>.
+    </address>
+</div>
+
+<div class="confirm-container" id="confirmationDialog">
+    <div>Сигурни ли сте, че искате да изпратите съобщението?</div>
+    <br>
+    <button class="btn btn-primary" onclick="submitForm(true)">Да</button>
+    <button class="btn btn-secondary" onclick="submitForm(false)">Отказ</button>
+</div>
+
+@section Scripts {
+    <script src="~/js/contact.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -5,14 +5,18 @@
 }
 
 <div class="container">
-    <h1 class="mt-4">Новини</h1>
-
-    @if (User.IsInRole("Admin"))
-    {
-        <div class="mb-3">
-            <a href="#" class="btn btn-primary">Добави новина</a>
+    <div class="row mt-2">
+        <div class="col-md-10">
+            <h1>Новини</h1>
         </div>
-    }
+
+        @if (!User.IsInRole("Admin"))
+        {
+            <div class="col-2">
+                <a class="btn btn-primary" asp-area="" asp-controller="News" asp-action="Add">Добави новина</a>
+            </div>
+        }
+    </div>
 
     @if (Model != null && Model.Any())
     {
@@ -24,6 +28,10 @@
                         @if (!string.IsNullOrEmpty(article.ImageUrl))
                         {
                             <img src="@article.ImageUrl" class="card-img-top" alt="Article Image" />
+                        }
+                        else
+                        {
+                            <img src="~/Images/Common/bfs-logo.png" width="80px" height="auto" alt="bfs">
                         }
                         <div class="card-body">
                             <h2 class="card-title">@article.Title</h2>

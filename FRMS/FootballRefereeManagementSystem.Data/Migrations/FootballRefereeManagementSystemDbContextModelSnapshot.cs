@@ -41,6 +41,11 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         .HasColumnType("nvarchar(15)")
                         .HasComment("Contact number of applicant");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasComment("Email of applicant");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -107,10 +112,6 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsApprovedForReferee")
-                        .HasColumnType("bit")
-                        .HasComment("Whether user has been approved to become referee");
-
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -167,17 +168,16 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = new Guid("ea01fe26-36c8-4daa-b1c8-8b9209e82478"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ec53bee0-751a-408d-af1f-443d99ec8ac9",
+                            ConcurrencyStamp = "3d16b9e2-8065-434a-884f-6d37eb784342",
                             Email = "referee@bfs.com",
                             EmailConfirmed = false,
-                            IsApprovedForReferee = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "REFEREE@BFS.COM",
                             NormalizedUserName = "REFEREE@BFS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAECIItxugx7kFqoVyrclgeACepGckVPb4Ipz5Q34wzaCkXKq7o1RX/LaWABysDSeHNQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECcDNtE2Ka/KyTOv3XfxMyJsDeInEQTBZa75dcl7RjPjnGu1dkzXC0iSJfMUJc/jKA==",
                             PhoneNumberConfirmed = false,
                             RefereeId = 1,
-                            SecurityStamp = "619d22d8-ddaa-49fc-be86-67f7b000abf3",
+                            SecurityStamp = "db57a249-0967-4cf8-ab10-b0268f458ebe",
                             TwoFactorEnabled = false,
                             UserName = "referee@bfs.com"
                         },
@@ -185,17 +185,16 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = new Guid("1e48bbc8-cbf0-494c-89e0-6bcccc36cc6a"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bcb1325e-64df-4aef-b71a-0ee25f67f860",
+                            ConcurrencyStamp = "4f09eff3-d21c-42d1-aa86-425388a3eed9",
                             Email = "assitant_referee1@bfs.com",
                             EmailConfirmed = false,
-                            IsApprovedForReferee = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ASSITANT_REFEREE1@BFS.COM",
                             NormalizedUserName = "ASSITANT_REFEREE1@BFS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOyHsIHkdaQ8hav9kboqKckSJsb6EqkAc5Jv7GBH6l8REfnGqRBLBzOVtJtsqWuehg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJ5qYU0C5gCJiMWrffbDcit0f8DxZe6UU0E9cOP44xf6ZHJ/R8bJo0I+AIScafuF+g==",
                             PhoneNumberConfirmed = false,
                             RefereeId = 2,
-                            SecurityStamp = "888b11ab-e72f-4273-baff-4e1e7fa83d65",
+                            SecurityStamp = "4997d948-a53a-4117-9fda-df827c3441fd",
                             TwoFactorEnabled = false,
                             UserName = "assitant_referee1@bfs.com"
                         },
@@ -203,17 +202,16 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = new Guid("065a8654-fc52-43b4-8d3d-7e90a87e2bd9"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e372c67f-563d-4fea-94eb-706f17f258ab",
+                            ConcurrencyStamp = "748d49af-dce0-438b-a627-06f6d40b6c56",
                             Email = "assitant_referee2@bfs.com",
                             EmailConfirmed = false,
-                            IsApprovedForReferee = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ASSITANT_REFEREE2@BFS.COM",
                             NormalizedUserName = "ASSITANT_REFEREE2@BFS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPRhM5+ZHrZqKJkNwRGO1TJjyp3JNtmZtJqSD0TOlecuDBju3jAwTyT1UsJHwp08jg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOM4NXyxuP6yAwM6WUGLn4duuxer1T1K/sMCOT8eTsPCyMuLkeY5mDhzRpq5vMVByg==",
                             PhoneNumberConfirmed = false,
                             RefereeId = 3,
-                            SecurityStamp = "d658793f-4429-41db-a69d-b43f4448f09f",
+                            SecurityStamp = "3b562f65-1fd5-472f-80fd-7cdf6d657447",
                             TwoFactorEnabled = false,
                             UserName = "assitant_referee2@bfs.com"
                         },
@@ -221,17 +219,16 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = new Guid("35e56d1c-a7c2-445d-9eb5-0cdaecb0ebb1"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "73c7dbec-0d50-4672-ba0f-d979d9672475",
+                            ConcurrencyStamp = "02b71297-7a70-42ea-8121-dfd05fbeef75",
                             Email = "delegate@bfs.com",
                             EmailConfirmed = false,
-                            IsApprovedForReferee = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "DELEGATE@BFS.COM",
                             NormalizedUserName = "DELEGATE@BFS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAELf1fYMlUV/+mfWiY9oGg07bGUKjiQWjiqxvEOrS9pQK2DA46Ov+qv2kBzg1r8yIcw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFNekwTndfqVLXKeeQ6Iliig4J3Mem/J6wmHG/SeWJDZcppa0avJy37CL6FZWGfAYw==",
                             PhoneNumberConfirmed = false,
                             RefereeId = 4,
-                            SecurityStamp = "5bfa747c-ecb7-4847-b3f1-f719de1e2e1e",
+                            SecurityStamp = "44937210-25d0-4cf8-803c-45db2c4c07c7",
                             TwoFactorEnabled = false,
                             UserName = "delegate@bfs.com"
                         },
@@ -239,36 +236,18 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = new Guid("d9f18631-5bdb-4b41-86f4-8d6dbe71efb6"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "edcb3322-4683-43f3-be04-3d87d8d6cd37",
+                            ConcurrencyStamp = "06a30d1b-b584-4f64-a18d-74da896007f7",
                             Email = "admin@bfs.com",
                             EmailConfirmed = false,
-                            IsApprovedForReferee = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@BFS.COM",
                             NormalizedUserName = "ADMIN@BFS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDyOGePDdHiVL3s0ypV9AZhuLZhWYabTWV2qowd9O/H3JYkcm5BgASJJs6nX7eCqaw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDlrpeh8i/or8FxEnH2AoUYoAXLhxFXh/LHD3IFVHeFP+qgaZp4KZ05o0BDZtTjpjA==",
                             PhoneNumberConfirmed = false,
                             RefereeId = 5,
-                            SecurityStamp = "3ae6505b-6e9c-48ea-a141-97382882ee62",
+                            SecurityStamp = "c1a8f37e-fc39-447f-a876-0247ba0bd5df",
                             TwoFactorEnabled = false,
                             UserName = "admin@bfs.com"
-                        },
-                        new
-                        {
-                            Id = new Guid("ed3f1887-39b0-4501-964e-a7a9d88bedb6"),
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "ae9f1d34-f30d-4571-ab86-e62657b68612",
-                            Email = "random_person@gmail.com",
-                            EmailConfirmed = false,
-                            IsApprovedForReferee = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "RANDOM_PERSON@GMAIL.COM",
-                            NormalizedUserName = "RANDOM_PERSON@GMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKchjNsxi35sF7y5UP1hjT/Pm5us1oQjw5KtzGd5SPX74SuA+ivaC+qzIbOdUY2TPA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "0b95c4c8-1389-4027-b27e-3b8fb2d7b0c3",
-                            TwoFactorEnabled = false,
-                            UserName = "random_person@gmail.com"
                         });
                 });
 
@@ -319,7 +298,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                             Id = 1,
                             AuthorId = new Guid("d9f18631-5bdb-4b41-86f4-8d6dbe71efb6"),
                             Content = "На 08.06.2023г в ОС на БФС-Плевен се проведе заседание на СТК при ОС на БФС Плевен и бяха взети следните решения:\r\n\r\nНа 04.06.2023г. в среща от 18 кръг на първенството на „Б”ОФГ-изток между отборите на ФК\"Обнова-2022\" – Обнова и ФК\"Чавдар-1920\" – Бръшляница, проведена в с.Обнова от 18ч. В 80мин. на срещата при резултат 1:0 в полза на ФК\"Обнова-2022\" е отсъден 11-метров наказателен удар в полза на ФК\"Обнова-2022\".Следва бурен протест от състезателите на ФК\"Чавдар-1920\" – Бръшляница.Нанесени са удари на гл.съдия в главата и тялото от състезатели на ФК\"Чавдар-1920\" – Бръшляница.поради създалата се обстановка при която е застрашено здравето и сигурността на длъжностните лица и няма условия футболната среща да продължи, същата е прекратена.\r\n\r\nНа основание чл.24 ал.9 от наредбата на БФС,се присъжда служебна  загуба при резултат 4:0 в полза на ФК\"Обнова-2022\".\r\n\r\nНеизрядната страна няма право да обжалва наказанието по тази алинея.",
-                            CreatedOn = new DateTime(2023, 7, 7, 9, 46, 19, 740, DateTimeKind.Utc).AddTicks(1324),
+                            CreatedOn = new DateTime(2023, 7, 8, 11, 53, 53, 960, DateTimeKind.Utc).AddTicks(3265),
                             Title = "Заседание на СТК при ОС на БФС Плевен"
                         },
                         new
@@ -327,7 +306,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                             Id = 2,
                             AuthorId = new Guid("d9f18631-5bdb-4b41-86f4-8d6dbe71efb6"),
                             Content = "В среща от 17-ти кръг от първенството на „Б” ОФГ-запад между отборите на ФК\"Мизия-1924\" – Кнежа и ФК”Спартак-1924”-Койнаре проведена на 28.05. от 18ч. в гр.Кнежа и бяха взети следните решения:За навлизане на публиката на гостите от ФК”Спартак-1924”-Койнаре на терена по  време на срещата :Наказва ФК”Спартак-1924”-Койнаре с предупреждение, лишаване от домакинство и глоба в размер на 150/сто и петдесет/лева  по чл.37 ал.1 буква „в” от ДП.",
-                            CreatedOn = new DateTime(2023, 7, 7, 9, 46, 19, 740, DateTimeKind.Utc).AddTicks(1359),
+                            CreatedOn = new DateTime(2023, 7, 8, 11, 53, 53, 960, DateTimeKind.Utc).AddTicks(3273),
                             Title = "Решение на ДК- ОС на БФС Плевен"
                         },
                         new
@@ -335,7 +314,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                             Id = 3,
                             AuthorId = new Guid("d9f18631-5bdb-4b41-86f4-8d6dbe71efb6"),
                             Content = "В среща от 15-ти кръг от първенството на „Б” ОФГ-изток между отборите на ФК\"Славия\"-Новачене и ФК\"Обнова-2022\" - Обнова проведена на14.05.от 18ч. в с.Новачене и бяха взети следните решения:Наказва Явор Руменов Димитров  от отбора на ФК\"Славия\"-Новачене за получен червен картон със ССП за 1/една/ среща по чл.22 ал.1 т.1буква „з”от ДП.Наказва Галин Пламенов Георгиев от отбора на ФК\"Обнова-2022\" - Обнова за получен червен картон със ССП за 1/една/ среща по чл.22 ал.1 т.1буква „в”от ДП.",
-                            CreatedOn = new DateTime(2023, 7, 7, 9, 46, 19, 740, DateTimeKind.Utc).AddTicks(1362),
+                            CreatedOn = new DateTime(2023, 7, 8, 11, 53, 53, 960, DateTimeKind.Utc).AddTicks(3275),
                             Title = " Решение на ДК- ОС на БФС Плевен"
                         });
                 });
@@ -424,30 +403,30 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         new
                         {
                             Id = 1,
-                            Age = 47,
-                            FirstName = "Илия",
-                            LastName = "Иванов"
+                            Age = 33,
+                            FirstName = "Димо",
+                            LastName = "Кристиянов"
                         },
                         new
                         {
                             Id = 2,
-                            Age = 31,
-                            FirstName = "Стефанос",
-                            LastName = "Ангелов"
+                            Age = 44,
+                            FirstName = "Любомир",
+                            LastName = "Робертов"
                         },
                         new
                         {
                             Id = 3,
-                            Age = 41,
-                            FirstName = "Владимир",
-                            LastName = "Велинов"
+                            Age = 59,
+                            FirstName = "Димо",
+                            LastName = "Владимиров"
                         },
                         new
                         {
                             Id = 4,
-                            Age = 48,
-                            FirstName = "Илиян",
-                            LastName = "Мартинов"
+                            Age = 55,
+                            FirstName = "Николай",
+                            LastName = "Георгиев"
                         });
                 });
 
@@ -707,310 +686,310 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         new
                         {
                             Id = 1,
-                            Age = 23,
-                            FirstName = "Христо",
-                            LastName = "Александров"
+                            Age = 14,
+                            FirstName = "Роберт",
+                            LastName = "Симеонов"
                         },
                         new
                         {
                             Id = 2,
-                            Age = 20,
-                            FirstName = "Владимир",
-                            LastName = "Любенов"
+                            Age = 31,
+                            FirstName = "Стефанос",
+                            LastName = "Ивов"
                         },
                         new
                         {
                             Id = 3,
-                            Age = 28,
-                            FirstName = "Габриел",
-                            LastName = "Антониев"
+                            Age = 39,
+                            FirstName = "Илия",
+                            LastName = "Димитров"
                         },
                         new
                         {
                             Id = 4,
-                            Age = 20,
-                            FirstName = "Максим",
-                            LastName = "Кристиянов"
+                            Age = 36,
+                            FirstName = "Емил",
+                            LastName = "Михаелов"
                         },
                         new
                         {
                             Id = 5,
-                            Age = 25,
-                            FirstName = "Максим",
-                            LastName = "Илиев"
+                            Age = 18,
+                            FirstName = "Георги",
+                            LastName = "Георгиев"
                         },
                         new
                         {
                             Id = 6,
-                            Age = 26,
-                            FirstName = "Максим",
-                            LastName = "Георгиев"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Age = 21,
-                            FirstName = "Румен",
+                            Age = 38,
+                            FirstName = "Роберт",
                             LastName = "Даниелов"
                         },
                         new
                         {
+                            Id = 7,
+                            Age = 26,
+                            FirstName = "Иван",
+                            LastName = "Стефанов"
+                        },
+                        new
+                        {
                             Id = 8,
-                            Age = 19,
-                            FirstName = "Илия",
-                            LastName = "Андреев"
+                            Age = 24,
+                            FirstName = "Андрей",
+                            LastName = "Мартинов"
                         },
                         new
                         {
                             Id = 9,
-                            Age = 17,
-                            FirstName = "Петър",
-                            LastName = "Любомиров"
+                            Age = 33,
+                            FirstName = "Димо",
+                            LastName = "Маринов"
                         },
                         new
                         {
                             Id = 10,
-                            Age = 16,
-                            FirstName = "Петър",
-                            LastName = "Стефаносов"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Age = 15,
-                            FirstName = "Виктор",
-                            LastName = "Николов"
-                        },
-                        new
-                        {
-                            Id = 12,
                             Age = 23,
-                            FirstName = "Симеон",
-                            LastName = "Радославов"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            Age = 22,
-                            FirstName = "Мартин",
-                            LastName = "Кристиянов"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            Age = 28,
-                            FirstName = "Михаел",
-                            LastName = "Стефаносов"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            Age = 14,
-                            FirstName = "Ангел",
-                            LastName = "Антонов"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            Age = 32,
-                            FirstName = "Михаил",
+                            FirstName = "Любен",
                             LastName = "Георгиев"
                         },
                         new
                         {
-                            Id = 17,
+                            Id = 11,
                             Age = 34,
-                            FirstName = "Васил",
-                            LastName = "Кристиянов"
+                            FirstName = "Симеон",
+                            LastName = "Димитров"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Age = 14,
+                            FirstName = "Антонио",
+                            LastName = "Маринов"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Age = 32,
+                            FirstName = "Иван",
+                            LastName = "Янков"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Age = 24,
+                            FirstName = "Ангел",
+                            LastName = "Янков"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Age = 37,
+                            FirstName = "Стефанос",
+                            LastName = "Емилов"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Age = 14,
+                            FirstName = "Калоян",
+                            LastName = "Янков"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Age = 17,
+                            FirstName = "Георгиос",
+                            LastName = "Ивов"
                         },
                         new
                         {
                             Id = 18,
                             Age = 34,
-                            FirstName = "Християн",
-                            LastName = "Димов"
+                            FirstName = "Ивайло",
+                            LastName = "Михайлов"
                         },
                         new
                         {
                             Id = 19,
-                            Age = 21,
-                            FirstName = "Николай",
-                            LastName = "Владимиров"
+                            Age = 39,
+                            FirstName = "Христо",
+                            LastName = "Радославов"
                         },
                         new
                         {
                             Id = 20,
-                            Age = 24,
-                            FirstName = "Янко",
-                            LastName = "Антониев"
+                            Age = 37,
+                            FirstName = "Илия",
+                            LastName = "Стефанов"
                         },
                         new
                         {
                             Id = 21,
-                            Age = 19,
-                            FirstName = "Габриел",
-                            LastName = "Ангелов"
-                        },
-                        new
-                        {
-                            Id = 22,
-                            Age = 15,
-                            FirstName = "Любомир",
-                            LastName = "Илиев"
-                        },
-                        new
-                        {
-                            Id = 23,
-                            Age = 31,
-                            FirstName = "Стефан",
-                            LastName = "Георгиев"
-                        },
-                        new
-                        {
-                            Id = 24,
-                            Age = 15,
-                            FirstName = "Ангел",
-                            LastName = "Христов"
-                        },
-                        new
-                        {
-                            Id = 25,
-                            Age = 25,
-                            FirstName = "Велин",
+                            Age = 30,
+                            FirstName = "Радослав",
                             LastName = "Стефаносов"
                         },
                         new
                         {
+                            Id = 22,
+                            Age = 37,
+                            FirstName = "Любомир",
+                            LastName = "Михаелов"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Age = 22,
+                            FirstName = "Антонио",
+                            LastName = "Руменов"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Age = 36,
+                            FirstName = "Алексей",
+                            LastName = "Николов"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Age = 23,
+                            FirstName = "Димитър",
+                            LastName = "Мартинов"
+                        },
+                        new
+                        {
                             Id = 26,
-                            Age = 31,
-                            FirstName = "Виктор",
-                            LastName = "Любомиров"
+                            Age = 29,
+                            FirstName = "Илия",
+                            LastName = "Радославов"
                         },
                         new
                         {
                             Id = 27,
-                            Age = 29,
-                            FirstName = "Стефано",
-                            LastName = "Христов"
+                            Age = 26,
+                            FirstName = "Симеон",
+                            LastName = "Антониев"
                         },
                         new
                         {
                             Id = 28,
-                            Age = 21,
-                            FirstName = "Петър",
-                            LastName = "Антониев"
+                            Age = 38,
+                            FirstName = "Мартин",
+                            LastName = "Викторов"
                         },
                         new
                         {
                             Id = 29,
                             Age = 16,
-                            FirstName = "Христо",
-                            LastName = "Димитров"
+                            FirstName = "Николай",
+                            LastName = "Любенов"
                         },
                         new
                         {
                             Id = 30,
-                            Age = 35,
-                            FirstName = "Янко",
-                            LastName = "Радославов"
-                        },
-                        new
-                        {
-                            Id = 31,
-                            Age = 32,
-                            FirstName = "Стефано",
-                            LastName = "Стефанов"
-                        },
-                        new
-                        {
-                            Id = 32,
-                            Age = 36,
-                            FirstName = "Антон",
-                            LastName = "Василев"
-                        },
-                        new
-                        {
-                            Id = 33,
-                            Age = 25,
-                            FirstName = "Роберт",
-                            LastName = "Ивов"
-                        },
-                        new
-                        {
-                            Id = 34,
-                            Age = 25,
+                            Age = 20,
                             FirstName = "Антонио",
-                            LastName = "Йорданов"
-                        },
-                        new
-                        {
-                            Id = 35,
-                            Age = 19,
-                            FirstName = "Стефано",
-                            LastName = "Руменов"
-                        },
-                        new
-                        {
-                            Id = 36,
-                            Age = 29,
-                            FirstName = "Даниел",
-                            LastName = "Иванов"
-                        },
-                        new
-                        {
-                            Id = 37,
-                            Age = 18,
-                            FirstName = "Иван",
                             LastName = "Андреев"
                         },
                         new
                         {
+                            Id = 31,
+                            Age = 36,
+                            FirstName = "Петър",
+                            LastName = "Ивов"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Age = 14,
+                            FirstName = "Янко",
+                            LastName = "Георгиев"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Age = 38,
+                            FirstName = "Михаил",
+                            LastName = "Георгиев"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Age = 26,
+                            FirstName = "Роберт",
+                            LastName = "Руменов"
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Age = 17,
+                            FirstName = "Мартин",
+                            LastName = "Михаелов"
+                        },
+                        new
+                        {
+                            Id = 36,
+                            Age = 16,
+                            FirstName = "Николай",
+                            LastName = "Радославов"
+                        },
+                        new
+                        {
+                            Id = 37,
+                            Age = 17,
+                            FirstName = "Павел",
+                            LastName = "Илиев"
+                        },
+                        new
+                        {
                             Id = 38,
-                            Age = 35,
-                            FirstName = "Антон",
-                            LastName = "Владимиров"
+                            Age = 34,
+                            FirstName = "Любен",
+                            LastName = "Христов"
                         },
                         new
                         {
                             Id = 39,
-                            Age = 14,
-                            FirstName = "Радослав",
-                            LastName = "Стефанов"
+                            Age = 35,
+                            FirstName = "Антон",
+                            LastName = "Христов"
                         },
                         new
                         {
                             Id = 40,
                             Age = 14,
                             FirstName = "Димитър",
-                            LastName = "Мартинов"
+                            LastName = "Петров"
                         },
                         new
                         {
                             Id = 41,
-                            Age = 30,
-                            FirstName = "Ивайло",
-                            LastName = "Михайлов"
+                            Age = 29,
+                            FirstName = "Петър",
+                            LastName = "Димитров"
                         },
                         new
                         {
                             Id = 42,
-                            Age = 39,
-                            FirstName = "Владимир",
-                            LastName = "Янков"
+                            Age = 35,
+                            FirstName = "Георги",
+                            LastName = "Велинов"
                         },
                         new
                         {
                             Id = 43,
-                            Age = 16,
-                            FirstName = "Янко",
-                            LastName = "Владимиров"
+                            Age = 22,
+                            FirstName = "Даниел",
+                            LastName = "Александров"
                         },
                         new
                         {
                             Id = 44,
-                            Age = 39,
-                            FirstName = "Роберт",
-                            LastName = "Любенов"
+                            Age = 17,
+                            FirstName = "Тодор",
+                            LastName = "Илиев"
                         });
                 });
 
@@ -1382,13 +1361,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         new
                         {
                             Id = 1,
-                            Age = 20,
-                            CareerStart = new DateTime(2016, 2, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Contact = "0980449165",
+                            Age = 19,
+                            CareerStart = new DateTime(2021, 7, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Contact = "0930411565",
                             CurrentlyAppointedMatchesCount = 0,
-                            FirstName = "Иво",
+                            FirstName = "Антонио",
                             IsAvaliable = true,
-                            LastName = "Алексеев",
+                            LastName = "Иванов",
                             Role = 0,
                             TotalMatchesOfficiated = 0,
                             TownId = 1,
@@ -1397,13 +1376,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         new
                         {
                             Id = 2,
-                            Age = 18,
-                            CareerStart = new DateTime(2016, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Contact = "0976905613",
+                            Age = 30,
+                            CareerStart = new DateTime(2016, 8, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Contact = "0996737720",
                             CurrentlyAppointedMatchesCount = 0,
-                            FirstName = "Марин",
+                            FirstName = "Румен",
                             IsAvaliable = true,
-                            LastName = "Михаелов",
+                            LastName = "Радославов",
                             Role = 1,
                             TotalMatchesOfficiated = 0,
                             TownId = 1,
@@ -1412,13 +1391,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         new
                         {
                             Id = 3,
-                            Age = 26,
-                            CareerStart = new DateTime(2021, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Contact = "0899547014",
+                            Age = 16,
+                            CareerStart = new DateTime(2021, 3, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Contact = "0927828260",
                             CurrentlyAppointedMatchesCount = 0,
-                            FirstName = "Роберт",
+                            FirstName = "Павел",
                             IsAvaliable = true,
-                            LastName = "Кристиянов",
+                            LastName = "Христов",
                             Role = 1,
                             TotalMatchesOfficiated = 0,
                             TownId = 1,
@@ -1427,13 +1406,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         new
                         {
                             Id = 4,
-                            Age = 42,
-                            CareerStart = new DateTime(2022, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Contact = "0947423764",
+                            Age = 31,
+                            CareerStart = new DateTime(2022, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Contact = "0912157336",
                             CurrentlyAppointedMatchesCount = 0,
-                            FirstName = "Михаел",
+                            FirstName = "Румен",
                             IsAvaliable = true,
-                            LastName = "Мартинов",
+                            LastName = "Радославов",
                             Role = 2,
                             TotalMatchesOfficiated = 0,
                             TownId = 1,
@@ -1442,13 +1421,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         new
                         {
                             Id = 5,
-                            Age = 49,
-                            CareerStart = new DateTime(2021, 12, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Contact = "0948630349",
+                            Age = 29,
+                            CareerStart = new DateTime(2023, 4, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Contact = "0946372655",
                             CurrentlyAppointedMatchesCount = 0,
-                            FirstName = "Румен",
+                            FirstName = "Тодор",
                             IsAvaliable = false,
-                            LastName = "Максимов",
+                            LastName = "Любомиров",
                             Role = 3,
                             TotalMatchesOfficiated = 0,
                             TownId = 1,

@@ -24,6 +24,10 @@
         [MaxLength(LastNameMaxLength)]
         public string LastName { get; set; } = null!;
 
+        [Comment("Email of applicant")]
+        [Required]
+        public string Email { get; set; } = null!;
+
         [Comment("Age of applicant")]
         public int Age { get; set; }
 

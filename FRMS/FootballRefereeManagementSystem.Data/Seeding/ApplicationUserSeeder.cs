@@ -22,7 +22,7 @@
                     Email = "referee@bfs.com",
                     NormalizedEmail = "REFEREE@BFS.COM",
                     SecurityStamp = Guid.NewGuid().ToString("D"),
-                    IsApprovedForReferee = true,
+                    //IsApprovedForReferee = true,
                 },
                 new ApplicationUser()
                 {
@@ -33,7 +33,7 @@
                     Email = "assitant_referee1@bfs.com",
                     NormalizedEmail = "ASSITANT_REFEREE1@BFS.COM",
                     SecurityStamp = Guid.NewGuid().ToString("D"),
-                    IsApprovedForReferee = true,
+                    //IsApprovedForReferee = true,
                 },
                 new ApplicationUser()
                 {
@@ -44,7 +44,7 @@
                     Email = "assitant_referee2@bfs.com",
                     NormalizedEmail = "ASSITANT_REFEREE2@BFS.COM",
                     SecurityStamp = Guid.NewGuid().ToString("D"),
-                    IsApprovedForReferee = true,
+                    //IsApprovedForReferee = true,
                 },
                 new ApplicationUser()
                 {
@@ -55,7 +55,7 @@
                     Email = "delegate@bfs.com",
                     NormalizedEmail = "DELEGATE@BFS.COM",
                     SecurityStamp = Guid.NewGuid().ToString("D"),
-                    IsApprovedForReferee = true,
+                    //IsApprovedForReferee = true,
                 },
                 new ApplicationUser()
                 {
@@ -66,19 +66,19 @@
                     Email = "admin@bfs.com",
                     NormalizedEmail = "ADMIN@BFS.COM",
                     SecurityStamp = Guid.NewGuid().ToString("D"),
-                    IsApprovedForReferee = true,
+                    //IsApprovedForReferee = true,
                 },
-                new ApplicationUser()
-                {
-                    Id = Guid.NewGuid(),
-                    RefereeId = null,
-                    UserName = "random_person@gmail.com",
-                    NormalizedUserName = "RANDOM_PERSON@GMAIL.COM",
-                    Email = "random_person@gmail.com",
-                    NormalizedEmail = "RANDOM_PERSON@GMAIL.COM",
-                    SecurityStamp = Guid.NewGuid().ToString("D"),
-                    IsApprovedForReferee = false,
-                }
+                //new ApplicationUser()
+                //{
+                //    Id = Guid.NewGuid(),
+                //    RefereeId = null,
+                //    UserName = "random_person@gmail.com",
+                //    NormalizedUserName = "RANDOM_PERSON@GMAIL.COM",
+                //    Email = "random_person@gmail.com",
+                //    NormalizedEmail = "RANDOM_PERSON@GMAIL.COM",
+                //    SecurityStamp = Guid.NewGuid().ToString("D"),
+                //    IsApprovedForReferee = false,
+                //}
             };
 
             // Every user will have the same password for convenience

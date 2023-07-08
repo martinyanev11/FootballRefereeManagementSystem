@@ -102,5 +102,20 @@
             public const int ContactMinLength = 10;
             public const int ContactMaxLength = 15;
         }
+
+        public static class ContactMessage
+        {
+            public const int FirstNameMinLength = 2;
+            public const int FirstNameMaxLength = 50;
+
+            public const int LastNameMinLength = 2;
+            public const int LastNameMaxLength = 50;
+
+            public const int TitleMinLength = 3;
+            public const int TitleMaxLength = 100;
+
+            public const int MessageMinLength = 10;
+            public const int MessageMaxLength = 1000;
+        }
     }
 }

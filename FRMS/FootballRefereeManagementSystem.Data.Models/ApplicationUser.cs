@@ -15,8 +15,8 @@
         public int? RefereeId { get; set; }
         public Referee? Referee { get; set; }
 
-        [Comment("Whether user has been approved to become referee")]
-        public bool IsApprovedForReferee { get; set; }
+        //[Comment("Whether user has been approved to become referee")]
+        //public bool IsApprovedForReferee { get; set; }
 
         [Comment("Any news or announcements user created")]
         public ICollection<Article> Articles { get; set; } = null!;
