@@ -1,4 +1,6 @@
-﻿namespace FootballRefereeManagementSystem.Services.Contracts
+﻿using FootballRefereeManagementSystem.Services.Contracts;
+
+namespace FootballRefereeManagementSystem.Services
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;

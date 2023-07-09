@@ -5,6 +5,7 @@ namespace FootballRefereeManagementSystem.Web
     using Data;
     using Data.Models;
     using Services.Contracts;
+    using FootballRefereeManagementSystem.Services;
 
     public class Program
     {
@@ -34,6 +35,7 @@ namespace FootballRefereeManagementSystem.Web
 
             // Add custom services
             builder.Services.AddScoped<INewsService, NewsService>();
+            builder.Services.AddScoped<ICareerService, CareerService>();
 
             WebApplication app = builder.Build();
 

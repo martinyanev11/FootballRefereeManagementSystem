@@ -9,6 +9,6 @@ function submitForm(isConfirmed) {
     confirmationDialog.style.display = "none";
 
     if (isConfirmed) {
-        document.getElementById("contactForm").submit();
+        document.getElementById("form").submit();
     }
 }

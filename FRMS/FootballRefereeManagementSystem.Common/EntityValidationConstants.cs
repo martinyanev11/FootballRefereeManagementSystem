@@ -100,7 +100,13 @@
             public const int LastNameMaxLength = 50;
 
             public const int ContactMinLength = 10;
-            public const int ContactMaxLength = 15;
+            public const int ContactMaxLength = 10;
+
+            public const int AgeMinValue = 15;
+            public const int AgeMaxValue = 65;
+
+            public const int WeightMinValue = 40;
+            public const int WeightMaxValue = 110;
         }
 
         public static class ContactMessage

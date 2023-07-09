@@ -11,6 +11,3 @@ function updateCounter() {
         setTimeout(updateCounter, 1000); // 1000 milliseconds = 1 second
     }
 }
-
-// Start the countdown timer
-updateCounter();

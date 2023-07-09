@@ -5,13 +5,13 @@
     ViewData["Title"] = "Контакти";
 }
 <head>
-    <link rel="stylesheet" href="~/css/contact.css" />
+    <link rel="stylesheet" href="~/css/confirmation-popup.css" />
 </head>
 
 <div class="container">
     <h1 class="mb-4">Свържете се с нас</h1>
 
-    <form asp-action="SendMessage" method="post" id="contactForm">
+    <form asp-action="SendMessage" method="post" id="form">
         <div class="row">
             <div class="col-md-4 mb-3">
                 <label asp-for="FirstName" class="form-label">Име:</label>
@@ -61,6 +61,6 @@
 </div>
 
 @section Scripts {
-    <script src="~/js/contact.js"></script>
+    <script src="~/js/confirmation-popup.js"></script>
     <partial name="_ValidationScriptsPartial" />
 }
