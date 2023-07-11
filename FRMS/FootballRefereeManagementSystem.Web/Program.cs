@@ -1,11 +1,14 @@
 namespace FootballRefereeManagementSystem.Web
 {
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
 
     using Data;
     using Data.Models;
     using Services.Contracts;
     using FootballRefereeManagementSystem.Services;
+    using SendGrid;
 
     public class Program
     {
@@ -17,6 +20,17 @@ namespace FootballRefereeManagementSystem.Web
             string connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<FootballRefereeManagementSystemDbContext>(options =>
                 options.UseSqlServer(connectionString));
+
+            // SendGrid API key configuration
+            IConfigurationSection sendGridApiKeyConfig = builder.Configuration.GetSection("SendGridApiKey");
+            builder.Services.Configure<SendGridClientOptions>(sendGridApiKeyConfig);
+
+
+            // Get the SendGrid API key from the configuration
+            string sendGridApiKey = builder.Configuration.GetSection("SendGridApiKey").Value;
+
+            // Configure the SendGrid client
+            builder.Services.AddSingleton<ISendGridClient>(new SendGridClient(sendGridApiKey));
 
             // Identity and SignIn settings
             builder.Services
@@ -36,6 +50,7 @@ namespace FootballRefereeManagementSystem.Web
             // Add custom services
             builder.Services.AddScoped<INewsService, NewsService>();
             builder.Services.AddScoped<ICareerService, CareerService>();
+            builder.Services.AddScoped<EmailService>();
 
             WebApplication app = builder.Build();
 
