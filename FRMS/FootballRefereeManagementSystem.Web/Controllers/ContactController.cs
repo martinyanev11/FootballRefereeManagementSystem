@@ -10,9 +10,9 @@
     [AllowAnonymous]
     public class ContactController : BaseController
     {
-        private readonly EmailService emailService;
+        private readonly IEmailService emailService;
 
-        public ContactController(EmailService emailService)
+        public ContactController(IEmailService emailService)
         {
             this.emailService = emailService;
         }
@@ -31,16 +31,15 @@
                 return View("Contact", model);
             }
 
-            // TODO: Implement email sending
-            // 1. Install the SendGrid package via NuGet
-            // 2. Configure SendGrid API credentials
-            // 3. Set up SendGrid in appsettings.Development.json
-            // 4. Create an EmailService
-            // 5. Configure Dependency Injection (DI) for the EmailService
+            // TODO: Add model properties into the message.
+            bool result = await emailService.SendEmailAsync(model.Email, model.Title, model.Message);
 
-            await emailService.SendEmailAsync(model.Email, model.Title, model.Message);
-
-            return RedirectToAction("Success", "Contact");
+            if (result)
+            {
+                return RedirectToAction("Success", "Contact");
+            }
+            
+            return BadRequest(model);
         }
 
         [HttpGet]

@@ -1,34 +1,41 @@
 ﻿namespace FootballRefereeManagementSystem.Services
 {
-    using Microsoft.Extensions.Options;
-    using SendGrid.Helpers.Mail;
     using SendGrid;
+    using SendGrid.Helpers.Mail;
 
     using Contracts;
-    using Microsoft.Extensions.Configuration;
-    using System.Text.RegularExpressions;
 
     public class EmailService : IEmailService
     {
-        private readonly IConfiguration _configuration;
-        private readonly IOptions<EmailSettings> _options;
-        public EmailService(IConfiguration configuration, IOptions<EmailSettings> options)
+        private readonly string apiKey;
+
+        public EmailService(string apiKey)
         {
-            _configuration = configuration;
-            _options = options;
+            this.apiKey = apiKey;
         }
-        public async Task SendEmailAsync(string email, string subject, string htmlMessage)
+
+        public async Task<bool> SendEmailAsync(string recipient, string subject, string content)
         {
-            string? fromEmail = _options.Value.SenderEmail;
-            string? fromName = _options.Value.SenderName;
-            string? apiKey = _options.Value.ApiKey;
-            var sendGridClient = new SendGridClient(apiKey);
-            var from = new EmailAddress(fromEmail, fromName);
-            var to = new EmailAddress(email);
-            var plainTextContent = Regex.Replace(htmlMessage, "<[^>]*>", "");
-            var msg = MailHelper.CreateSingleEmail(from, to, subject,
-            plainTextContent, htmlMessage);
-            var response = await sendGridClient.SendEmailAsync(msg);
+            SendGridClient client = new SendGridClient(apiKey);
+
+            EmailAddress fromEmail = new EmailAddress("sender", "Contact System"); // constant for test
+            EmailAddress toEmail = new EmailAddress("reciever", "Test"); // constant for test
+            string plainTextContent = content;
+            string htmlContent = "";
+
+            SendGridMessage? msg = MailHelper.CreateSingleEmail(fromEmail, toEmail, subject, plainTextContent, htmlContent);
+
+            Response? response = await client.SendEmailAsync(msg);
+
+            // Check the response status code
+            if (response.StatusCode == System.Net.HttpStatusCode.Accepted)
+            {
+                // Email sent successfully
+                return true;
+            }
+
+            // If it reached here, an error occurred while sending the email
+            return false;
         }
     }
 }

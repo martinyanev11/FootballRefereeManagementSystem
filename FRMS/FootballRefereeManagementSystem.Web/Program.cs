@@ -1,18 +1,14 @@
 namespace FootballRefereeManagementSystem.Web
 {
     using Microsoft.EntityFrameworkCore;
-
     using Microsoft.Extensions.Hosting;
-
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using SendGrid;
 
     using Data;
     using Data.Models;
     using Services;
     using Services.Contracts;
-    using SendGrid.Helpers.Mail;
 
     public class Program
     {
@@ -40,13 +36,13 @@ namespace FootballRefereeManagementSystem.Web
 
             builder.Services.AddControllersWithViews();
 
+            // SendGrid EmailService
+            string sendGridApiKey = builder.Configuration.GetValue<string>("SendGridApiKey");
+            builder.Services.AddScoped<IEmailService>(provider => new EmailService(sendGridApiKey));
+
             // Add custom services
             builder.Services.AddScoped<INewsService, NewsService>();
             builder.Services.AddScoped<ICareerService, CareerService>();
-            builder.Services.AddScoped<EmailService>();
-
-            builder.Services.Configure<EmailSettings>
-                 (options => builder.Configuration.GetSection("EmailSettings").Bind(options));
 
             WebApplication app = builder.Build();
 
