@@ -36,13 +36,10 @@ namespace FootballRefereeManagementSystem.Web
 
             builder.Services.AddControllersWithViews();
 
-            // SendGrid EmailService
-            string sendGridApiKey = builder.Configuration.GetValue<string>("SendGridApiKey");
-            builder.Services.AddScoped<IEmailService>(provider => new EmailService(sendGridApiKey));
-
             // Add custom services
             builder.Services.AddScoped<INewsService, NewsService>();
             builder.Services.AddScoped<ICareerService, CareerService>();
+            builder.Services.AddScoped<IEmailService, EmailService>();
 
             WebApplication app = builder.Build();
 

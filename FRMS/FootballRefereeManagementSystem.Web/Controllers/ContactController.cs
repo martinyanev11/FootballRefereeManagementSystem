@@ -1,11 +1,10 @@
 ﻿namespace FootballRefereeManagementSystem.Web.Controllers
 {
-    using FootballRefereeManagementSystem.Services.Contracts;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    using Services;
     using ViewModels.Contact;
+    using Services.Contracts;
 
     [AllowAnonymous]
     public class ContactController : BaseController
@@ -31,10 +30,10 @@
                 return View("Contact", model);
             }
 
-            // TODO: Add model properties into the message.
-            bool result = await emailService.SendEmailAsync(model.Email, model.Title, model.Message);
+            bool res = await emailService
+                .SendEmailToContactSystemAsync(model.FirstName, model.LastName, model.Email, model.Title, model.Message);
 
-            if (result)
+            if (res)
             {
                 return RedirectToAction("Success", "Contact");
             }
