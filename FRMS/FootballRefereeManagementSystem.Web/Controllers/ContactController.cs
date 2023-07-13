@@ -38,7 +38,8 @@
                 return RedirectToAction("Success", "Contact");
             }
             
-            return BadRequest(model);
+            // TODO: redirect to error page
+            return View("Contact", model);
         }
 
         [HttpGet]

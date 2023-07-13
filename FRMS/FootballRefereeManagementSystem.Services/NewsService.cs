@@ -24,13 +24,13 @@ namespace FootballRefereeManagementSystem.Services
             IEnumerable<ArticleViewModel> articles = await dbContext
                 .Articles
                 .AsNoTracking()
-                .OrderByDescending(a => a.CreatedOn)
+                .OrderBy(a => a.CreatedOn)
                 .Select(a => new ArticleViewModel()
                 {
                     Id = a.Id,
                     Title = a.Title,
                     Content = a.Content,
-                    CreatedOn = a.CreatedOn.ToString("dd-MM-yyyy"),
+                    CreatedOn = a.CreatedOn,
                     AuthorName = a.Author.Referee!.FirstName + " " + a.Author.Referee.LastName,
                     ImageUrl = a.ImageUrl,
                 })
