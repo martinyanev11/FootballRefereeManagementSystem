@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FootballRefereeManagementSystem.Data.Models\FootballRefereeManagementSystem.Data.Models.csproj" />
+    <ProjectReference Include="..\FootballRefereeManagementSystem.Web.ViewModels\FootballRefereeManagementSystem.Web.ViewModels.csproj" />
+  </ItemGroup>
+
 </Project>
