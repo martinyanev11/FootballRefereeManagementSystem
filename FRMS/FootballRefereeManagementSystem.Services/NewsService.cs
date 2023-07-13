@@ -9,6 +9,8 @@ namespace FootballRefereeManagementSystem.Services
 
     using Web.ViewModels.News;
     using Data;
+    using Models.Article;
+    using Data.Models;
 
     public class NewsService : INewsService
     {
@@ -17,6 +19,16 @@ namespace FootballRefereeManagementSystem.Services
         public NewsService(FootballRefereeManagementSystemDbContext dbContext)
         {
             this.dbContext = dbContext;
+        }
+
+        // TODO:
+        public Task<ArticleAllFilteredAndPagedServiceModel> AllAsync(ArticleQueryModel articleQueryModel)
+        {
+            throw new NotImplementedException();
+
+            //IQueryable<Article> articlesQuery = this.dbContext
+            //    .Articles
+            //    .AsQueryable();
         }
 
         public async Task<IEnumerable<ArticleViewModel>> GetAllArticlesAsync()
