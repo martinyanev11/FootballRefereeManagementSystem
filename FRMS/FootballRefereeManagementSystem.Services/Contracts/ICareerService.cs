@@ -5,9 +5,9 @@
     public interface ICareerService
     {
         /// <summary>
-        /// Add new Application to the database asynchronous.
+        /// Add new Application to the database.
         /// </summary>
-        /// <param name="model">Object to add.</param>
+        /// <param name="model">Application to add.</param>
         /// <returns></returns>
         Task AddApplicationAsync(ApplicationFormModel model);
     }

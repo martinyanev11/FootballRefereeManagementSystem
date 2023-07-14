@@ -1,0 +1,32 @@
+﻿@using FootballRefereeManagementSystem.Web.ViewModels.News;
+@model ArticleAddViewModel;
+
+@{
+    ViewData["Title"] = "Добави новина";
+}
+
+<div class="container">
+    <h2 class="mb-2">@ViewData["Title"]</h2>
+
+    <form asp-controller="News" asp-action="Add" method="post">
+        <div class="form-group mb-3">
+            <label asp-for="Title">Заглавие:</label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Content">Съдържание:</label>
+            <textarea asp-for="Content" class="form-control" rows="6"></textarea>
+            <span asp-validation-for="Content" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="ImageUrl">Линк на изображение:</label>
+            <input asp-for="ImageUrl" class="form-control" />
+            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Добави</button>
+    </form>
+</div>

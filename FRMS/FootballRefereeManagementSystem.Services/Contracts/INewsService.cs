@@ -8,5 +8,7 @@
         Task<IEnumerable<ArticleViewModel>> GetAllArticlesAsync();
 
         Task<ArticleAllFilteredAndPagedServiceModel> AllAsync(ArticleQueryModel articleQueryModel);
+
+        Task AddNewArticleAsync(ArticleAddViewModel modelToAdd);
     }
 }

@@ -21,6 +21,20 @@ namespace FootballRefereeManagementSystem.Services
             this.dbContext = dbContext;
         }
 
+        public async Task AddNewArticleAsync(ArticleAddViewModel modelToAdd)
+        {
+            Article article = new Article()
+            {
+                Title = modelToAdd.Title,
+                Content = modelToAdd.Content,
+                ImageUrl = modelToAdd.ImageUrl,
+                AuthorId = Guid.Parse(modelToAdd.AuthorId)
+            };
+
+            await dbContext.Articles.AddAsync(article);
+            await dbContext.SaveChangesAsync();
+        }
+
         // TODO:
         public Task<ArticleAllFilteredAndPagedServiceModel> AllAsync(ArticleQueryModel articleQueryModel)
         {
@@ -36,7 +50,7 @@ namespace FootballRefereeManagementSystem.Services
             IEnumerable<ArticleViewModel> articles = await dbContext
                 .Articles
                 .AsNoTracking()
-                .OrderBy(a => a.CreatedOn)
+                .OrderByDescending(a => a.CreatedOn)
                 .Select(a => new ArticleViewModel()
                 {
                     Id = a.Id,
