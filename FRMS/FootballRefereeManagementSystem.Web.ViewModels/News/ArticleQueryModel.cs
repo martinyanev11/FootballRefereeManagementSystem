@@ -8,7 +8,6 @@
         public ArticleQueryModel()
         {
             this.CurrentPage = DefaultPage;
-            this.ArticlesPerPage = ItemsPerPage;
             this.Years = new HashSet<string>();
             this.Articles = new HashSet<ArticleViewModel>();
         }
@@ -20,8 +19,6 @@
         public int CurrentPage { get; set; }
 
         public int TotalArticles { get; set; }
-
-        public int ArticlesPerPage { get; set; }
 
         public IEnumerable<string> Years { get; set; } = null!;
 

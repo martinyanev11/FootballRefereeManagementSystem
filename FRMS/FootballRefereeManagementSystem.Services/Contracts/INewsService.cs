@@ -5,10 +5,12 @@
 
     public interface INewsService
     {
-        Task<IEnumerable<ArticleViewModel>> GetAllArticlesAsync();
-
         Task<ArticleAllFilteredAndPagedServiceModel> AllAsync(ArticleQueryModel articleQueryModel);
 
         Task AddNewArticleAsync(ArticleAddViewModel modelToAdd);
+
+        Task<IEnumerable<string>> GetArticlesDistinctYearsAsStringAsync();
+
+        Task<int> GetArticlesCountAsync();
     }
 }

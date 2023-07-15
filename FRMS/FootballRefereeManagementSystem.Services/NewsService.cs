@@ -10,9 +10,8 @@ namespace FootballRefereeManagementSystem.Services
     using Web.ViewModels.News;
     using Data;
     using Models.Article;
-    using Data.Models;
     using Web.ViewModels.News.Enums;
-    using static FootballRefereeManagementSystem.Common.EntityValidationConstants;
+    using static Common.GeneralApplicationConstants;
 
     using Article = Data.Models.Article;
 
@@ -39,7 +38,6 @@ namespace FootballRefereeManagementSystem.Services
             await dbContext.SaveChangesAsync();
         }
 
-        // TODO:
         public async Task<ArticleAllFilteredAndPagedServiceModel> AllAsync(ArticleQueryModel queryModel)
         {
             IQueryable<Article> articlesQuery = this.dbContext
@@ -55,7 +53,7 @@ namespace FootballRefereeManagementSystem.Services
                 if (parsedSuccessfully)
                 {
                     articlesQuery = articlesQuery
-                    .Where(a => a.CreatedOn.Year == int.Parse(queryModel.Year));
+                    .Where(a => a.CreatedOn.Year == yearToFilter);
                 }
             }
 
@@ -76,9 +74,10 @@ namespace FootballRefereeManagementSystem.Services
                     break;
             }
 
+            // Pagination
             IEnumerable<ArticleViewModel> allArticles = await articlesQuery
-                .Skip((queryModel.CurrentPage - 1) * queryModel.ArticlesPerPage)
-                .Take(queryModel.ArticlesPerPage)
+                .Skip((queryModel.CurrentPage - 1) * ItemsPerPage)
+                .Take(ItemsPerPage)
                 .Select(a => new ArticleViewModel()
                 {
                     Id = a.Id,
@@ -90,40 +89,31 @@ namespace FootballRefereeManagementSystem.Services
                 })
                 .ToArrayAsync();
 
-            int totalArticles = allArticles.Count();
-            
-            IEnumerable<string> years = queryModel.Articles
-                .Select(a => a.CreatedOn.Year)
-                .Distinct()
-                .OrderByDescending(y => y)
-                .Select(x => x.ToString());
+            int totalArticles = articlesQuery.Count();
 
             return new ArticleAllFilteredAndPagedServiceModel()
             {
                 TotalArticlesCount = totalArticles,
                 Articles = allArticles,
-                Years = years
             };
         }
 
-        public async Task<IEnumerable<ArticleViewModel>> GetAllArticlesAsync()
+        public async Task<int> GetArticlesCountAsync()
         {
-            IEnumerable<ArticleViewModel> articles = await dbContext
-                .Articles
+            return await this.dbContext.Articles.CountAsync();
+        }
+
+        public async Task<IEnumerable<string>> GetArticlesDistinctYearsAsStringAsync()
+        {
+            IEnumerable<string> years = await this.dbContext.Articles
                 .AsNoTracking()
-                .OrderByDescending(a => a.CreatedOn)
-                .Select(a => new ArticleViewModel()
-                {
-                    Id = a.Id,
-                    Title = a.Title,
-                    Content = a.Content,
-                    CreatedOn = a.CreatedOn,
-                    AuthorName = a.Author.Referee!.FirstName + " " + a.Author.Referee.LastName,
-                    ImageUrl = a.ImageUrl,
-                })
+                .Select(a => a.CreatedOn.Year)
+                .Distinct()
+                .OrderByDescending(y => y)
+                .Select(y => y.ToString())
                 .ToArrayAsync();
 
-            return articles;
+            return years;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace FootballRefereeManagementSystem.Web.Controllers
 {
+    using FootballRefereeManagementSystem.Common;
     using FootballRefereeManagementSystem.Services.Models.Article;
     using FootballRefereeManagementSystem.Web.Infrastructure.Extensions;
     using Microsoft.AspNetCore.Mvc;
@@ -17,23 +18,27 @@
             this.newsService = newsService;
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> All()
-        //{
-        //    IEnumerable<ArticleViewModel> articles = await this.newsService.GetAllArticlesAsync();
-
-        //    return View(articles);
-        //}
-
         [HttpGet]
         public async Task<IActionResult> All([FromQuery]ArticleQueryModel queryModel)
         {
+            if (queryModel.CurrentPage <= 0)
+            {
+                queryModel.CurrentPage = 1;
+            }
+
+            int allArticlesCount = await this.newsService.GetArticlesCountAsync();
+            int maxPage = (int)Math.Ceiling((double)allArticlesCount / GeneralApplicationConstants.ItemsPerPage);
+            if (queryModel.CurrentPage > maxPage)
+            {
+                queryModel.CurrentPage = maxPage;
+            }
+
             ArticleAllFilteredAndPagedServiceModel serviceModel =
                 await this.newsService.AllAsync(queryModel);
 
             queryModel.Articles = serviceModel.Articles;
             queryModel.TotalArticles = serviceModel.TotalArticlesCount;
-            queryModel.Years = serviceModel.Years;
+            queryModel.Years = await this.newsService.GetArticlesDistinctYearsAsStringAsync();
 
             return View(queryModel);
         }
