@@ -17,7 +17,5 @@
         public string Content { get; set; } = null!;
 
         public string? ImageUrl { get; set; }
-
-        //public string AuthorId { get; set; } = null!;
     }
 }

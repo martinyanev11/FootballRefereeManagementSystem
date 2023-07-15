@@ -1,13 +1,11 @@
 ﻿namespace FootballRefereeManagementSystem.Web.Controllers
 {
-    using FootballRefereeManagementSystem.Common;
-    using FootballRefereeManagementSystem.Services.Models.Article;
-    using FootballRefereeManagementSystem.Web.Infrastructure.Extensions;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-    using Services.Contracts;
+    using Common;
     using ViewModels.News;
+    using Services.Contracts;
+    using Services.Models.Article;
 
     public class NewsController : BaseController
     {
@@ -51,10 +49,6 @@
         [HttpPost]
         public async Task<IActionResult> Add(ArticleFormViewModel model) 
         {
-            //string userId = this.User.GetId();
-            //model.AuthorId = userId;
-            //ModelState["AuthorId"]!.ValidationState = ModelValidationState.Valid;
-
             if (!ModelState.IsValid)
             {
                 return View(model);

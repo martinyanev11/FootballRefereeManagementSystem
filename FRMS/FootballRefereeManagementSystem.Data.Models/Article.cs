@@ -1,7 +1,6 @@
 ﻿namespace FootballRefereeManagementSystem.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
 
     using Microsoft.EntityFrameworkCore;
 
@@ -13,6 +12,7 @@
         public Article()
         {
             this.CreatedOn = DateTime.UtcNow;
+            this.IsActive = true;
         }
 
         [Comment("Primary key")]
@@ -35,9 +35,7 @@
         [MaxLength(ImageUrlMaxLength)]
         public string? ImageUrl { get; set; }
 
-        //[Comment("Author of the article")]
-        //[ForeignKey(nameof(Author))]
-        //public Guid AuthorId { get; set; }
-        //public ApplicationUser Author { get; set; } = null!;
+        [Comment("Soft delete value")]
+        public bool IsActive { get; set; }
     }
 }

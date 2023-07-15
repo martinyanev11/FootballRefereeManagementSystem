@@ -7,9 +7,9 @@ namespace FootballRefereeManagementSystem.Services
 
     using Microsoft.EntityFrameworkCore;
 
-    using Web.ViewModels.News;
     using Data;
     using Models.Article;
+    using Web.ViewModels.News;
     using Web.ViewModels.News.Enums;
     using static Common.GeneralApplicationConstants;
 
@@ -37,7 +37,6 @@ namespace FootballRefereeManagementSystem.Services
                 Title = modelToAdd.Title,
                 Content = modelToAdd.Content,
                 ImageUrl = modelToAdd.ImageUrl,
-                //AuthorId = Guid.Parse(modelToAdd.AuthorId)
             };
 
             await dbContext.Articles.AddAsync(article);
@@ -48,6 +47,7 @@ namespace FootballRefereeManagementSystem.Services
         {
             IQueryable<Article> articlesQuery = this.dbContext
                 .Articles
+                .Where(a => a.IsActive == true)
                 .AsQueryable();
 
             // Filter by selected year
@@ -90,7 +90,6 @@ namespace FootballRefereeManagementSystem.Services
                     Title = a.Title,
                     Content = a.Content,
                     CreatedOn = a.CreatedOn,
-                    //AuthorName = a.Author.Referee!.FirstName + " " + a.Author.Referee.LastName,
                     ImageUrl = a.ImageUrl,
                 })
                 .ToArrayAsync();
@@ -129,12 +128,15 @@ namespace FootballRefereeManagementSystem.Services
 
         public async Task<int> GetArticlesCountAsync()
         {
-            return await this.dbContext.Articles.CountAsync();
+            return await this.dbContext.Articles
+                .Where(a => a.IsActive == true)
+                .CountAsync();
         }
 
         public async Task<IEnumerable<string>> GetArticlesDistinctYearsAsStringAsync()
         {
             IEnumerable<string> years = await this.dbContext.Articles
+                .Where(a => a.IsActive == true)
                 .AsNoTracking()
                 .Select(a => a.CreatedOn.Year)
                 .Distinct()
