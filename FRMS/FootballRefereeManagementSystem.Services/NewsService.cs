@@ -24,14 +24,20 @@ namespace FootballRefereeManagementSystem.Services
             this.dbContext = dbContext;
         }
 
-        public async Task AddNewArticleAsync(ArticleAddViewModel modelToAdd)
+        private async Task<Article> GetArticleByIdAsync(int id)
+        {
+            return await this.dbContext.Articles
+                .FirstAsync(a => a.Id == id);
+        }
+
+        public async Task AddNewArticleAsync(ArticleFormViewModel modelToAdd)
         {
             Article article = new Article()
             {
                 Title = modelToAdd.Title,
                 Content = modelToAdd.Content,
                 ImageUrl = modelToAdd.ImageUrl,
-                AuthorId = Guid.Parse(modelToAdd.AuthorId)
+                //AuthorId = Guid.Parse(modelToAdd.AuthorId)
             };
 
             await dbContext.Articles.AddAsync(article);
@@ -84,7 +90,7 @@ namespace FootballRefereeManagementSystem.Services
                     Title = a.Title,
                     Content = a.Content,
                     CreatedOn = a.CreatedOn,
-                    AuthorName = a.Author.Referee!.FirstName + " " + a.Author.Referee.LastName,
+                    //AuthorName = a.Author.Referee!.FirstName + " " + a.Author.Referee.LastName,
                     ImageUrl = a.ImageUrl,
                 })
                 .ToArrayAsync();
@@ -95,6 +101,29 @@ namespace FootballRefereeManagementSystem.Services
             {
                 TotalArticlesCount = totalArticles,
                 Articles = allArticles,
+            };
+        }
+
+        public async Task EditArticleAsync(int id, ArticleFormViewModel model)
+        {
+            Article articleToEdit = await GetArticleByIdAsync(id);
+
+            articleToEdit.Title = model.Title;
+            articleToEdit.Content = model.Content;
+            articleToEdit.ImageUrl = model.ImageUrl;
+
+            await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task<ArticleFormViewModel> GetArticleForEditByIdAsync(int id)
+        {
+            Article articleToEdit = await GetArticleByIdAsync(id);
+
+            return new ArticleFormViewModel()
+            {
+                Title = articleToEdit.Title,
+                Content = articleToEdit.Content,
+                ImageUrl = articleToEdit.ImageUrl
             };
         }
 

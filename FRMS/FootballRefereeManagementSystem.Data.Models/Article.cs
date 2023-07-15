@@ -35,9 +35,9 @@
         [MaxLength(ImageUrlMaxLength)]
         public string? ImageUrl { get; set; }
 
-        [Comment("Author of the article")]
-        [ForeignKey(nameof(Author))]
-        public Guid AuthorId { get; set; }
-        public ApplicationUser Author { get; set; } = null!;
+        //[Comment("Author of the article")]
+        //[ForeignKey(nameof(Author))]
+        //public Guid AuthorId { get; set; }
+        //public ApplicationUser Author { get; set; } = null!;
     }
 }

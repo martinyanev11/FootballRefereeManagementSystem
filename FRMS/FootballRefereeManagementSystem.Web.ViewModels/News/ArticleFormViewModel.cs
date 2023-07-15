@@ -4,7 +4,7 @@
 
     using static Common.EntityValidationConstants.Article;
 
-    public class ArticleAddViewModel
+    public class ArticleFormViewModel
     {
         [Required(ErrorMessage = "Полето е задължително")]
         [StringLength(TitleMaxLength, MinimumLength = TitleMinLegnth,
@@ -18,6 +18,6 @@
 
         public string? ImageUrl { get; set; }
 
-        public string AuthorId { get; set; } = null!;
+        //public string AuthorId { get; set; } = null!;
     }
 }

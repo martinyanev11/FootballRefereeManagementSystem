@@ -7,10 +7,14 @@
     {
         Task<ArticleAllFilteredAndPagedServiceModel> AllAsync(ArticleQueryModel articleQueryModel);
 
-        Task AddNewArticleAsync(ArticleAddViewModel modelToAdd);
+        Task AddNewArticleAsync(ArticleFormViewModel modelToAdd);
 
         Task<IEnumerable<string>> GetArticlesDistinctYearsAsStringAsync();
 
         Task<int> GetArticlesCountAsync();
+
+        Task<ArticleFormViewModel> GetArticleForEditByIdAsync(int id);
+
+        Task EditArticleAsync(int id, ArticleFormViewModel model);
     }
 }

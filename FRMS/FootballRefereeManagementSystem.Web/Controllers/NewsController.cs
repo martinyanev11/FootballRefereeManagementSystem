@@ -49,11 +49,11 @@
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Add(ArticleAddViewModel model) 
+        public async Task<IActionResult> Add(ArticleFormViewModel model) 
         {
-            string userId = this.User.GetId();
-            model.AuthorId = userId;
-            ModelState["AuthorId"]!.ValidationState = ModelValidationState.Valid;
+            //string userId = this.User.GetId();
+            //model.AuthorId = userId;
+            //ModelState["AuthorId"]!.ValidationState = ModelValidationState.Valid;
 
             if (!ModelState.IsValid)
             {
@@ -61,6 +61,26 @@
             }
 
             await this.newsService.AddNewArticleAsync(model);
+
+            return RedirectToAction("All", "News");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            ArticleFormViewModel model = await this.newsService.GetArticleForEditByIdAsync(id);
+
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, ArticleFormViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            await this.newsService.EditArticleAsync(id, model);
 
             return RedirectToAction("All", "News");
         }

@@ -17,10 +17,10 @@
 
         public void Configure(EntityTypeBuilder<Article> builder)
         {
-            builder
-                .HasOne(a => a.Author)
-                .WithMany(user => user.Articles)
-                .OnDelete(DeleteBehavior.Restrict);
+            //builder
+            //    .HasOne(a => a.Author)
+            //    .WithMany(user => user.Articles)
+            //    .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasData(seeder.GenerateArticles());
         }

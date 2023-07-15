@@ -8,7 +8,7 @@
     {
         public ApplicationUser()
         {
-            this.Articles = new HashSet<Article>();
+            //this.Articles = new HashSet<Article>();
         }
 
         [Comment("The navigation to the referee for this user")]
@@ -18,8 +18,8 @@
         //[Comment("Whether user has been approved to become referee")]
         //public bool IsApprovedForReferee { get; set; }
 
-        [Comment("Any news or announcements user created")]
-        public ICollection<Article> Articles { get; set; } = null!;
+        //[Comment("Any news or announcements user created")]
+        //public ICollection<Article> Articles { get; set; } = null!;
 
         [Comment("Application for becoming a referee")]
         public int? ApplicationId { get; set; }
