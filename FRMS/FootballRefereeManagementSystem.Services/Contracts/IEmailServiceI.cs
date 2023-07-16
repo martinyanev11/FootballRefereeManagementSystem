@@ -3,15 +3,14 @@
     public interface IEmailService
     {
         /// <summary>
-        /// Sends <typeparamref name="SendGridMessage"/> message via pre-determined <typeparamref name="EmailAddress"/>.<br></br>
-        /// The guest message is addressed to email which is configured as reciever <typeparamref name="EmailAddress"/>.
+        /// Sends an email to the contact system using the provided information.
         /// </summary>
-        /// <param name="firstName">Message sender first name.</param>
-        /// <param name="lastName">Message sender last name.</param>
-        /// <param name="email">Message sender email address.</param>
-        /// <param name="subject">Message topic.</param>
-        /// <param name="messageContent">Message content.</param>
-        /// <returns><see langword="true"/> if the email has been delivered successfully.</returns>
+        /// <param name="firstName">The first name of the sender.</param>
+        /// <param name="lastName">The last name of the sender.</param>
+        /// <param name="email">The email address of the sender.</param>
+        /// <param name="subject">The subject of the email.</param>
+        /// <param name="messageContent">The content of the email message.</param>
+        /// <returns>A task representing the asynchronous operation that returns a <see langword="boolean"/> value indicating whether the email was sent successfully.</returns>
         Task<bool> SendEmailToContactSystemAsync(string firstName, string lastName, string email, string subject, string messageContent);
     }
 }

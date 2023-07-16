@@ -105,7 +105,7 @@ namespace FootballRefereeManagementSystem.Services
 
         public async Task EditArticleAsync(int id, ArticleFormViewModel model)
         {
-            Article articleToEdit = await GetArticleByIdAsync(id);
+            Article articleToEdit = await this.GetArticleByIdAsync(id);
 
             articleToEdit.Title = model.Title;
             articleToEdit.Content = model.Content;
@@ -116,7 +116,7 @@ namespace FootballRefereeManagementSystem.Services
 
         public async Task<ArticleFormViewModel> GetArticleForEditByIdAsync(int id)
         {
-            Article articleToEdit = await GetArticleByIdAsync(id);
+            Article articleToEdit = await this.GetArticleByIdAsync(id);
 
             return new ArticleFormViewModel()
             {
@@ -145,6 +145,14 @@ namespace FootballRefereeManagementSystem.Services
                 .ToArrayAsync();
 
             return years;
+        }
+
+        public async Task DeleteArticleAsync(int id)
+        {
+            Article articleToDelete = await this.GetArticleByIdAsync(id);
+
+            articleToDelete.IsActive = false;
+            await this.dbContext.SaveChangesAsync();
         }
     }
 }

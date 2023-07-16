@@ -15,6 +15,7 @@
         {
             this.dbContext = dbContext;
         }
+
         public async Task AddApplicationAsync(ApplicationFormModel model)
         {
             Application application = new Application()

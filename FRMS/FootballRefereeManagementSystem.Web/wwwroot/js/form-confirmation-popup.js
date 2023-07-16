@@ -1,11 +1,11 @@
 ﻿function showConfirmationDialog(event) {
     event.preventDefault();
-    var confirmationDialog = document.getElementById("confirmationDialog");
+    let confirmationDialog = document.getElementById("confirmationDialog");
     confirmationDialog.style.display = "block";
 }
 
 function submitForm(isConfirmed) {
-    var confirmationDialog = document.getElementById("confirmationDialog");
+    let confirmationDialog = document.getElementById("confirmationDialog");
     confirmationDialog.style.display = "none";
 
     if (isConfirmed) {

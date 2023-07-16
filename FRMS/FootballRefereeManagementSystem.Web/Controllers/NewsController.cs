@@ -78,5 +78,13 @@
 
             return RedirectToAction("All", "News");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await this.newsService.DeleteArticleAsync(id);
+
+            return RedirectToAction("All", "News");
+        }
     }
 }

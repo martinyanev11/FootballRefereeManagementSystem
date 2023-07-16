@@ -3,6 +3,9 @@
 @{
     ViewData["Title"] = "Новини";
 }
+<head>
+    <link rel="stylesheet" href="~/css/confirmation-popup.css" />
+</head>
 
 <div class="container">
     <h1>@ViewData["Title"]</h1>
@@ -108,7 +111,7 @@
                                 <a class="btn btn-warning" asp-area="" asp-controller="News" asp-action="Edit" asp-route-id="@article.Id">Редактирай</a>
                             </div>
                             <div>
-                                <a class="btn btn-danger" asp-area="" asp-controller="News" asp-action="Delete" asp-route-id="@article.Id">Изтрий</a>
+                                <a id="deleteAction" class="btn btn-danger" asp-area="" asp-controller="News" asp-action="Delete" asp-route-id="@article.Id" onclick="openConfirmationDialog(event)">Изтрий</a>
                             </div>
                         </div>
                     }
@@ -157,3 +160,14 @@
         </ul>
     </nav>
 </div>
+
+<div class="confirm-container" id="confirmationDialog">
+    <div class="text-danger h6">Сигурни ли сте, че искате да изтриете новината?</div>
+    <br>
+    <button class="btn btn-danger" onclick="submitForm(true)">Да</button>
+    <button class="btn btn-secondary" onclick="submitForm(false)">Отказ</button>
+</div>
+
+@section Scripts {
+    <script src="~/js/delete-confirmation-popup.js"></script>
+}

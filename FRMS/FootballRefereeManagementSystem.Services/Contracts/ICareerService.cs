@@ -1,14 +1,14 @@
 ﻿namespace FootballRefereeManagementSystem.Services.Contracts
 {
-    using FootballRefereeManagementSystem.Web.ViewModels.Career;
+    using Web.ViewModels.Career;
 
     public interface ICareerService
     {
         /// <summary>
-        /// Add new Application to the database.
+        /// Adds a new application to the database based on the provided <see cref="ApplicationFormModel"/>.
         /// </summary>
-        /// <param name="model">Application to add.</param>
-        /// <returns></returns>
+        /// <param name="model">The application form model containing the application information to add.</param>
+        /// <returns>A task representing the asynchronous operation.</returns>
         Task AddApplicationAsync(ApplicationFormModel model);
     }
 }
