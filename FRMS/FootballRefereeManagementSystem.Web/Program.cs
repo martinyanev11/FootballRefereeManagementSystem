@@ -40,6 +40,7 @@ namespace FootballRefereeManagementSystem.Web
             builder.Services.AddScoped<INewsService, NewsService>();
             builder.Services.AddScoped<ICareerService, CareerService>();
             builder.Services.AddScoped<IEmailService, EmailService>();
+            builder.Services.AddScoped<IUserService, UserService>();
 
             WebApplication app = builder.Build();
 

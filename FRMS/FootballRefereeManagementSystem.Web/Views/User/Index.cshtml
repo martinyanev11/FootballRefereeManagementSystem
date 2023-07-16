@@ -1,0 +1,46 @@
+﻿@using FootballRefereeManagementSystem.Web.ViewModels.User;
+@model ApplicationUserViewModel;
+@{
+    ViewData["Title"] = "Добре дошъл";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/confirmation-popup.css" />
+</head>
+
+<div class="container-fluid">
+    <div class="row text-center alert-primary">
+        <div class="jumbotron shadow">
+            <h1 class="display-4 mb-3">СЪДИЙСКА СИСТЕМА</h1>
+            <h4 class="mb-3">Добре дошъл в системата, @Model.FullName</h4>
+            <h6 class="h5">
+                Статус:
+                <a id="status" class="badge @(Model.IsAvaliable ? "bg-success" : "bg-danger") text-light text-decoration-none border border-1 border-dark" asp-area="" asp-controller="User" asp-action="Status" onclick="openStatusChangeDialog(event)">
+                    @(Model.IsAvaliable ? "Свободен" : "Зает")
+                </a>
+            </h6>
+            <hr class="my-4">
+            <div class="row mb-3">
+                <div class="col-6 text-end">
+                    <button type="submit" class="btn btn-primary">
+                        Предстоящи мачове <span class="badge bg-light text-danger">@Model.CurrentlyAppointedMatchesCount</span>
+                    </button>
+                </div>
+                <div class="col-6 text-start">
+                    <p>Роля: @Model.Role</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="confirm-container" id="statusChangeMenu">
+    <div class="text-dark h5">Промяна на статуса:</div>
+    <br>
+    <button class="btn btn-success" onclick="submitStatus">Свободен</button>
+    <button class="btn btn-danger" onclick="submitStatus">Зает</button>
+</div>
+
+@section Scripts {
+    <script src="~/js/status-change-popup.js"></script>
+}
