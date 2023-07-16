@@ -36,7 +36,11 @@ namespace FootballRefereeManagementSystem.Web
 
             builder.Services.AddControllersWithViews();
 
-            // Add custom services
+            // Identity services
+            //builder.Services.AddScoped<UserManager<IdentityUser>>();
+            //builder.Services.AddScoped<SignInManager<IdentityUser>>();
+
+            // Custom services
             builder.Services.AddScoped<INewsService, NewsService>();
             builder.Services.AddScoped<ICareerService, CareerService>();
             builder.Services.AddScoped<IEmailService, EmailService>();
