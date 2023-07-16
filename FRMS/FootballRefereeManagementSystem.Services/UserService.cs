@@ -7,6 +7,7 @@ namespace FootballRefereeManagementSystem.Services
     using Microsoft.EntityFrameworkCore;
 
     using Data;
+    using Data.Models;
     using Web.ViewModels.User;
 
     public class UserService : IUserService
@@ -16,6 +17,26 @@ namespace FootballRefereeManagementSystem.Services
         public UserService(FootballRefereeManagementSystemDbContext dbContext)
         {
             this.dbContext = dbContext;
+        }
+
+        public async Task ChangeStatusAsync(string userId)
+        {
+            ApplicationUser user = await this.dbContext.Users
+                .Include(u => u.Referee)
+                .Where(u => u.Id.ToString() == userId)
+                .FirstAsync();
+
+            // Check what is the current status and change it to the opposite
+            if (user!.Referee!.IsAvaliable)
+            {
+                user!.Referee!.IsAvaliable = false;
+            }
+            else
+            {
+                user!.Referee!.IsAvaliable = true;
+            }
+            
+            await this.dbContext.SaveChangesAsync();
         }
 
         public async Task<ApplicationUserViewModel> GetApplicationUserInformationAsync(string id)

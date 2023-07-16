@@ -23,8 +23,11 @@
             return View(model);
         }
 
-        public IActionResult Status()
+        public async Task<IActionResult> Status()
         {
+            string userId = User.GetId();
+            await this.userService.ChangeStatusAsync(userId);
+
             return RedirectToAction("Index", "User");
         }
     }

@@ -4,10 +4,12 @@
     confirmationDialog.style.display = "block";
 }
 
-function submitStatus() {
+function submitStatus(isConfirmed) {
     let confirmationDialog = document.getElementById("statusChangeMenu");
     confirmationDialog.style.display = "none";
 
-    let statusChangeAction = document.getElementById("status");
-    window.location.href = statusChangeAction.href;
+    if (isConfirmed) {
+        let statusChangeAction = document.getElementById("status");
+        window.location.href = statusChangeAction.href;
+    }
 }

@@ -35,10 +35,10 @@
 </div>
 
 <div class="confirm-container" id="statusChangeMenu">
-    <div class="text-dark h5">Промяна на статуса:</div>
+    <div class="text-dark h5">Искате ли да промените статуса си?</div>
     <br>
-    <button class="btn btn-success" onclick="submitStatus">Свободен</button>
-    <button class="btn btn-danger" onclick="submitStatus">Зает</button>
+    <button class="btn btn-warning" onclick="submitStatus(true)">Да</button>
+    <button class="btn btn-secondary" onclick="submitStatus(false)">Отказ</button>
 </div>
 
 @section Scripts {
