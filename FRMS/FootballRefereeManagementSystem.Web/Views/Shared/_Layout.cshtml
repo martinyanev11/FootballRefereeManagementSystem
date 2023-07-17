@@ -12,9 +12,18 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    <img src="~/Images/Common/bfs-refs-logo.png" alt="bfs-logo" style="max-width: 160px; height: auto;" />
-                </a>
+                @if (User.Identity?.IsAuthenticated ?? false)
+                {
+                    <a class="navbar-brand" asp-area="" asp-controller="User" asp-action="Index">
+                        <img src="~/Images/Common/bfs-refs-logo.png" alt="bfs-logo" style="max-width: 160px; height: auto;" />
+                    </a>
+                }
+                else
+                {
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                        <img src="~/Images/Common/bfs-refs-logo.png" alt="bfs-logo" style="max-width: 160px; height: auto;" />
+                    </a>
+                }
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

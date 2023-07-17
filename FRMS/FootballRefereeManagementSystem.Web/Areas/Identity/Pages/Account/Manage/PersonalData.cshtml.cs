@@ -9,22 +9,19 @@
     public class PersonalDataModel : PageModel
     {
         private readonly UserManager<ApplicationUser> userManager;
-        private readonly ILogger<PersonalDataModel> logger;
 
         public PersonalDataModel(
-            UserManager<ApplicationUser> userManager,
-            ILogger<PersonalDataModel> logger)
+            UserManager<ApplicationUser> userManager)
         {
             this.userManager = userManager;
-            this.logger = logger;
         }
 
         public async Task<IActionResult> OnGet()
         {
-            var user = await userManager.GetUserAsync(User);
+            ApplicationUser? user = await userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
+                return NotFound($"Потребител с ID '{userManager.GetUserId(User)}' не може да бъде намерен.");
             }
 
             return Page();

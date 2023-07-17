@@ -29,67 +29,40 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
             this.emailSender = emailSender;
         }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
+        [Display(Name = "Имейл адрес")]
         public string Email { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
-        public bool IsEmailConfirmed { get; set; }
-
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         [TempData]
         public string StatusMessage { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public class InputModel
         {
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
             [Required]
             [EmailAddress]
-            [Display(Name = "New email")]
+            [Display(Name = "Нов имейл адрес")]
             public string NewEmail { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
         {
-            var email = await userManager.GetEmailAsync(user);
+            string email = await userManager.GetEmailAsync(user);
             Email = email;
 
             Input = new InputModel
             {
                 NewEmail = email,
             };
-
-            IsEmailConfirmed = await userManager.IsEmailConfirmedAsync(user);
         }
 
         public async Task<IActionResult> OnGetAsync()
         {
-            var user = await userManager.GetUserAsync(User);
+            ApplicationUser user = await userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
+                return NotFound($"Потребител с ID '{userManager.GetUserId(User)}' не може да бъде намерен.");
             }
 
             await LoadAsync(user);
@@ -98,10 +71,10 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
 
         public async Task<IActionResult> OnPostChangeEmailAsync()
         {
-            var user = await userManager.GetUserAsync(User);
+            ApplicationUser user = await userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
+                return NotFound($"Потребител с ID '{userManager.GetUserId(User)}' не може да бъде намерен.");
             }
 
             if (!ModelState.IsValid)
@@ -110,13 +83,13 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
                 return Page();
             }
 
-            var email = await userManager.GetEmailAsync(user);
+            string email = await userManager.GetEmailAsync(user);
             if (Input.NewEmail != email)
             {
-                var userId = await userManager.GetUserIdAsync(user);
-                var code = await userManager.GenerateChangeEmailTokenAsync(user, Input.NewEmail);
+                string userId = await userManager.GetUserIdAsync(user);
+                string code = await userManager.GenerateChangeEmailTokenAsync(user, Input.NewEmail);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                var callbackUrl = Url.Page(
+                string callbackUrl = Url.Page(
                     "/Account/ConfirmEmailChange",
                     pageHandler: null,
                     values: new { area = "Identity", userId = userId, email = Input.NewEmail, code = code },
@@ -136,10 +109,10 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
 
         public async Task<IActionResult> OnPostSendVerificationEmailAsync()
         {
-            var user = await userManager.GetUserAsync(User);
+            ApplicationUser user = await userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
+                return NotFound($"Потребител с ID '{userManager.GetUserId(User)}' не може да бъде намерен.");
             }
 
             if (!ModelState.IsValid)
@@ -148,11 +121,11 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
                 return Page();
             }
 
-            var userId = await userManager.GetUserIdAsync(user);
-            var email = await userManager.GetEmailAsync(user);
-            var code = await userManager.GenerateEmailConfirmationTokenAsync(user);
+            string userId = await userManager.GetUserIdAsync(user);
+            string email = await userManager.GetEmailAsync(user);
+            string code = await userManager.GenerateEmailConfirmationTokenAsync(user);
             code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-            var callbackUrl = Url.Page(
+            string callbackUrl = Url.Page(
                 "/Account/ConfirmEmail",
                 pageHandler: null,
                 values: new { area = "Identity", userId = userId, code = code },
