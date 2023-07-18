@@ -20,6 +20,27 @@
             this.dbContext = dbContext;
         }
 
+        private string TranslateRole(string role)
+        {
+            switch (role)
+            {
+                case "Referee":
+                    role = "Главен съдия";
+                    break;
+                case "AssistantReferee":
+                    role = "Асистент съдия";
+                    break;
+                case "Delegate":
+                    role = "Делегат";
+                    break;
+                case "Administration":
+                    role = "Администрация";
+                    break;
+            }
+
+            return role;
+        }
+
         public async Task<IEnumerable<RefereeViewModel>> GetAllRefereesFilteredAsync(RefereeQueryModel queryModel)
         {
             IQueryable<Referee> refereesAsQueryable = this.dbContext
@@ -107,24 +128,52 @@
             // This is to translate the enums
             foreach (var refModel in refereeViewModels)
             {
-                switch (refModel.Role)
-                {
-                    case "Referee":
-                        refModel.Role = "Главен съдия";
-                        break;
-                    case "AssistantReferee":
-                        refModel.Role = "Асистент съдия";
-                        break;
-                    case "Delegate":
-                        refModel.Role = "Делегат";
-                        break;
-                    case "Administration":
-                        refModel.Role = "Администрация";
-                        break;
-                }
+                refModel.Role = TranslateRole(refModel.Role);
+                //switch (refModel.Role)
+                //{
+                //    case "Referee":
+                //        refModel.Role = "Главен съдия";
+                //        break;
+                //    case "AssistantReferee":
+                //        refModel.Role = "Асистент съдия";
+                //        break;
+                //    case "Delegate":
+                //        refModel.Role = "Делегат";
+                //        break;
+                //    case "Administration":
+                //        refModel.Role = "Администрация";
+                //        break;
+                //}
             }
 
             return refereeViewModels;
+        }
+
+        public async Task<RefereeDetailsViewModel> GetRefereeDetailsByIdAsync(int id)
+        {
+            RefereeDetailsViewModel viewModel = await this.dbContext.Referees
+                .Include(r => r.Town)
+                .Include(r => r.RefereeDivisions)
+                .AsNoTracking()
+                .Where(r => r.Id == id)
+                .Select(r => new RefereeDetailsViewModel()
+                {
+                    FullName = $"{r.FirstName} {r.LastName}",
+                    Age = r.Age,
+                    ImageUrl = r.ImageUrl!,
+                    Contact = r.Contact,
+                    Role = r.Role.ToString(),
+                    CareerStart = r.CareerStart,
+                    TotalMatchesOfficiated = r.TotalMatchesOfficiated,
+                    Town = r.Town.Name,
+                    DivisionsAndMatchesCount = r.RefereeDivisions
+                        .ToDictionary(rd => rd.Division.Name, rd => rd.DivisionMatchesOfficiated)
+                })
+                .FirstAsync();
+
+            viewModel.Role = TranslateRole(viewModel.Role);
+
+            return viewModel;
         }
     }
 }

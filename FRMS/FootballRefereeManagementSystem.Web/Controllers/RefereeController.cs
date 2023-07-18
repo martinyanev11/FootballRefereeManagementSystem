@@ -17,12 +17,21 @@
         [HttpGet]
         public async Task<IActionResult> All([FromQuery]RefereeQueryModel queryModel)
         {
-            IEnumerable<RefereeViewModel> filteredRefereesCollection = 
+            IEnumerable<RefereeViewModel> filteredRefereesCollection =
                 await this.refereeService.GetAllRefereesFilteredAsync(queryModel);
 
             queryModel.Referees = filteredRefereesCollection;
 
             return View(queryModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            RefereeDetailsViewModel viewModel = 
+                await this.refereeService.GetRefereeDetailsByIdAsync(id);
+
+            return PartialView("_Details", viewModel);
         }
     }
 }

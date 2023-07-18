@@ -1,0 +1,21 @@
+﻿@using FootballRefereeManagementSystem.Web.ViewModels.Referee;
+@model RefereeDetailsViewModel
+
+<div>
+    <h3>@Model.FullName</h3>
+    <p><strong>Age:</strong> @Model.Age</p>
+    <p><strong>Image URL:</strong> @Model.ImageUrl</p>
+    <p><strong>Contact:</strong> @Model.Contact</p>
+    <p><strong>Role:</strong> @Model.Role</p>
+    <p><strong>Career Start:</strong> @Model.CareerStart.ToString("dd-MM-yyyy")</p>
+    <p><strong>Total Matches Officiated:</strong> @Model.TotalMatchesOfficiated</p>
+    <p><strong>Town:</strong> @Model.Town</p>
+
+    <h4>Divisions and Matches Count:</h4>
+    <ul>
+        @foreach (var division in Model.DivisionsAndMatchesCount)
+        {
+            <li>@division.Key: @division.Value</li>
+        }
+    </ul>
+</div>
