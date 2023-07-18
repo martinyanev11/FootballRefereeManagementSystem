@@ -14,11 +14,15 @@
             this.refereeService = refereeService;
         }
 
-        public async Task<IActionResult> All()
+        [HttpGet]
+        public async Task<IActionResult> All([FromQuery]RefereeQueryModel queryModel)
         {
-            IEnumerable<RefereeViewModel> model = await this.refereeService.GetAllRefereesAsync();
+            IEnumerable<RefereeViewModel> filteredRefereesCollection = 
+                await this.refereeService.GetAllRefereesFilteredAsync(queryModel);
 
-            return View(model);
+            queryModel.Referees = filteredRefereesCollection;
+
+            return View(queryModel);
         }
     }
 }

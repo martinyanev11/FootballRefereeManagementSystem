@@ -6,6 +6,6 @@
 
     public interface IRefereeService
     {
-        Task<IEnumerable<RefereeViewModel>> GetAllRefereesAsync();
+        Task<IEnumerable<RefereeViewModel>> GetAllRefereesFilteredAsync(RefereeQueryModel queryModel);
     }
 }

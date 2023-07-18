@@ -1,5 +1,5 @@
 ﻿@using FootballRefereeManagementSystem.Web.ViewModels.Referee;
-@model IEnumerable<RefereeViewModel>
+@model RefereeQueryModel
 @{
     ViewData["Title"] = "Съдийски лист";
 }
@@ -9,49 +9,95 @@
 <hr />
 
 <div class="row">
-    <div class="col-md-2 border-end border-3 border-primary">
-        <h5 class="text-center">Сортиране:</h5>
-        <hr />
-        <div class="row mb-3">
-            <div class="col-5 offset-1">
-                <label asp-for="@ViewData["Title"]" class="dropdown-header text-end">По име:</label>
+    <form method="get" class="col-md-2 border-end border-3 border-primary">
+        <div>
+            <h5 class="text-center"><i class="bi bi-funnel-fill"></i> Сортиране:</h5>
+            <hr />
+            <div class="row mb-3">
+                <div class="col-5 offset-1">
+                    <label asp-for="NameSortingOrder" class="dropdown-header text-end">По име:</label>
+                </div>
+                <div class="form-group col-5">
+                    <select asp-for="NameSortingOrder" class="form-control">
+                        <option value="0">-</option>
+                        <option value="1">А-Я</option>
+                        <option value="2">Я-А</option>
+                    </select>
+                </div>
             </div>
-            <div class="form-group col-5">
-                <select asp-for="@ViewData["Title"]" class="form-control">
-                    <option value="0">А-Я</option>
-                    <option value="1">Я-А</option>
-                </select>
-            </div>
-        </div>
         
-        <div class="row mb-3">
-            <div class="col-5 offset-1">
-                <label asp-for="@ViewData["Title"]" class="dropdown-header text-end">По стаж:</label>
+            <div class="row mb-3">
+                <div class="col-5 offset-1">
+                    <label asp-for="ExperienceSortingOrder" class="dropdown-header text-end">По стаж:</label>
+                </div>
+                <div class="form-group col-5">
+                    <select asp-for="ExperienceSortingOrder" class="form-control">
+                        <option value="0">-</option>
+                        <option value="1">Най-нови</option>
+                        <option value="2">Най-стари</option>
+                    </select>
+                </div>
             </div>
-            <div class="form-group col-5">
-                <select asp-for="@ViewData["Title"]" class="form-control">
-                    <option value="0">Най-нови</option>
-                    <option value="1">Най-стари</option>
-                </select>
-            </div>
-        </div>
 
-        <div class="row mb-3">
-            <div class="col-5 offset-1">
-                <label asp-for="@ViewData["Title"]" class="dropdown-header text-end">По брой мачове:</label>
+            <div class="row mb-3">
+                <div class="col-5 offset-1">
+                    <label asp-for="MatchCountSortingOrder" class="dropdown-header text-end">По брой мачове:</label>
+                </div>
+                <div class="form-group col-5">
+                    <select asp-for="MatchCountSortingOrder" class="form-control">
+                        <option value="0">-</option>
+                        <option value="1">Най-малко</option>
+                        <option value="2">Най-много</option>
+                    </select>
+                </div>
             </div>
-            <div class="form-group col-5">
-                <select asp-for="@ViewData["Title"]" class="form-control">
-                    <option value="0">Най-много</option>
-                    <option value="1">Най-малко</option>
-                </select>
+            <hr />
+            <div class="row mb-1">
+                <div class="col-5 offset-1">
+                    <label asp-for="IsCheckedReferee" class="dropdown-header text-end">Главен съдия</label>
+                </div>
+                <div class="col-4 p-2 text-start">
+                    <input asp-for="IsCheckedReferee" class="form-check-input" type="checkbox" value="true">
+                </div>
+            </div>
+
+            <div class="row mb-1">
+                <div class="col-5 offset-1">
+                    <label asp-for="IsCheckedAssistantReferee" class="dropdown-header text-end">Асистент съдия</label>
+                </div>
+                <div class="col-4 p-2 text-start">
+                    <input asp-for="IsCheckedAssistantReferee" class="form-check-input" type="checkbox" value="true">
+                </div>
+            </div>
+
+            <div class="row mb-1">
+                <div class="col-5 offset-1">
+                    <label asp-for="IsCheckedDelegate" class="dropdown-header text-end">Делегат</label>
+                </div>
+                <div class="col-4 p-2 text-start">
+                    <input asp-for="IsCheckedDelegate" class="form-check-input" type="checkbox" value="true">
+                </div>
+            </div>
+
+            <div class="row mb-1">
+                <div class="col-5 offset-1">
+                    <label asp-for="IsCheckedAdministration" class="dropdown-header text-end">Администрация</label>
+                </div>
+                <div class="col-4 p-2 text-start">
+                    <input asp-for="IsCheckedAdministration" class="form-check-input" type="checkbox" value="true">
+                </div>
+            </div>
+
+            <div class="text-center mb-3">
+                <input type="submit" value="Филтрирай" class="btn btn-primary col-12" />
             </div>
         </div>
-    </div>
+    </form>
     <div class="container col-md-10">
         <table class="table table-responsive">
             <thead class="table-light">
                 <tr class="d-table-row text-center">
+                    <th scope="col">#</th>
                     <th scope="col">Име</th>
                     <th scope="col">Роля</th>
                     <th scope="col">Започнал</th>
@@ -60,9 +106,10 @@
                 </tr>
             </thead>
             <tbody class="table-group-divider">
-                @foreach (var referee in Model)
+                @foreach (var (referee, index) in Model.Referees.Select((r, i) => (r, i + 1)))
                 {
                     <tr class="d-table-row text-center text-">
+                        <td class="text-white bg-primary opacity-50">@index</td>
                         <td>@referee.FullName</td>
                         <td>@referee.Role</td>
                         <td>@($"{referee.CareerStart.ToString("dd-MM-yyyy")} г.")</td>

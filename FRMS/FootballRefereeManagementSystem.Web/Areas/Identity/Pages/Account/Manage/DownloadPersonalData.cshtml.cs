@@ -27,7 +27,7 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
 
         public async Task<IActionResult> OnPostAsync()
         {
-            ApplicationUser? user = await userManager.GetUserAsync(User);
+            ApplicationUser user = await userManager.GetUserAsync(User);
             if (user == null)
             {
                 return NotFound($"Потребител с ID '{userManager.GetUserId(User)}' не може да бъде намерен.");
