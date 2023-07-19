@@ -31,7 +31,8 @@
             RefereeDetailsViewModel viewModel = 
                 await this.refereeService.GetRefereeDetailsByIdAsync(id);
 
-            return PartialView("_Details", viewModel);
+            return View(viewModel);
+            //return PartialView("_Details", viewModel);
         }
     }
 }

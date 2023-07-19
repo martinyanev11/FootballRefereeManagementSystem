@@ -167,7 +167,9 @@
                     TotalMatchesOfficiated = r.TotalMatchesOfficiated,
                     Town = r.Town.Name,
                     DivisionsAndMatchesCount = r.RefereeDivisions
-                        .ToDictionary(rd => rd.Division.Name, rd => rd.DivisionMatchesOfficiated)
+                        .Select(rd => 
+                            new Tuple<string, int>(rd.Division.Name, rd.DivisionMatchesOfficiated))
+                        .ToHashSet()
                 })
                 .FirstAsync();
 

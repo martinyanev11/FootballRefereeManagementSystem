@@ -4,7 +4,7 @@
     {
         public RefereeDetailsViewModel()
         {
-            this.DivisionsAndMatchesCount = new Dictionary<string, int>();
+            this.DivisionsAndMatchesCount = new HashSet<Tuple<string, int>>();
         }
 
         public string FullName { get; set; } = null!;
@@ -23,6 +23,6 @@
 
         public string Town { get; set; } = null!;
 
-        public IDictionary<string, int> DivisionsAndMatchesCount { get; set; } = null!;
+        public IEnumerable<Tuple<string, int>> DivisionsAndMatchesCount { get; set; } = null!;
     }
 }

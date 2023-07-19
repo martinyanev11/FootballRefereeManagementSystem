@@ -1,5 +1,4 @@
-﻿@using FootballRefereeManagementSystem.Web.ViewModels.Referee;
-@model RefereeQueryModel
+﻿@model RefereeQueryModel
 @{
     ViewData["Title"] = "Съдийски лист";
 }
@@ -94,21 +93,21 @@
         </div>
     </form>
     <div class="container col-md-10">
-        <table class="table table-responsive">
-            <thead class="table-light">
+        <table class="table table-responsive table-hover bg-white">
+            <thead class="table-dark opacity-75">
                 <tr class="d-table-row text-center">
                     <th scope="col">#</th>
                     <th scope="col">Име</th>
                     <th scope="col">Роля</th>
                     <th scope="col">Започнал</th>
                     <th scope="col">Брой мачове</th>
-                    <th scope="col"></th>
+                    <th scope="col" class="text-start"><i class="bi bi-box-arrow-up-right"></i></th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
                 @foreach (var (referee, index) in Model.Referees.Select((r, i) => (r, i + 1)))
                 {
-                    <tr class="d-table-row text-center text-">
+                    <tr class="d-table-row text-center">
                         <td class="text-white bg-primary opacity-50">@index</td>
                         <td>@referee.FullName</td>
                         <td>@referee.Role</td>
