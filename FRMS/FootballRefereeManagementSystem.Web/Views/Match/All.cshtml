@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Мачове";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<div class="container">
+    <div class="row justify-content-center">
+        <ul class="nav nav-tabs mb-3" id="ex-with-icons" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link text-dark active" id="ex-with-icons-tab-1" data-mdb-toggle="tab" href="#ex-with-icons-tabs-1" role="tab"
+                   aria-controls="ex-with-icons-tabs-1" aria-selected="true"><i class="fas fa-futbol"></i> Мачове</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link text-dark" id="ex-with-icons-tab-2" data-mdb-toggle="tab" href="#ex-with-icons-tabs-2" role="tab"
+                   aria-controls="ex-with-icons-tabs-2" aria-selected="false"><i class="fas fa-star"></i> Класиране</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tab-content" id="ex-with-icons-content">
+        <div class="tab-pane fade show active" id="ex-with-icons-tabs-1" role="tabpanel" aria-labelledby="ex-with-icons-tab-1">
+            Таблица с мачовете.
+        </div>
+        <div class="tab-pane fade" id="ex-with-icons-tabs-2" role="tabpanel" aria-labelledby="ex-with-icons-tab-2">
+            Таблица с класирането.
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.9.0/mdb.min.js"></script>

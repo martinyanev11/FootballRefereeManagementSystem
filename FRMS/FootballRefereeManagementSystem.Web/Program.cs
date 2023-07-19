@@ -42,6 +42,7 @@ namespace FootballRefereeManagementSystem.Web
             builder.Services.AddScoped<IEmailService, EmailService>();
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IRefereeService, RefereeService>();
+            builder.Services.AddScoped<IMatchService, MatchService>();
 
             WebApplication app = builder.Build();
 
