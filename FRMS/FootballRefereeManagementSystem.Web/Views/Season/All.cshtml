@@ -1,4 +1,6 @@
-﻿@{
+﻿@using FootballRefereeManagementSystem.Web.ViewModels.Season;
+@model SeasonQueryModel
+@{
     ViewData["Title"] = "Мачове";
 }
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -19,6 +21,25 @@
     <div class="tab-content" id="ex-with-icons-content">
         <div class="tab-pane fade show active" id="ex-with-icons-tabs-1" role="tabpanel" aria-labelledby="ex-with-icons-tab-1">
             Таблица с мачовете.
+            <table>
+                <thead>
+                    <tr>
+                        <th>@Model.SeasonFilter</th>
+                        <th>@Model.DivisionFilter</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var match in Model.Matches)
+                    {
+                        <tr>
+                            <td>@match.HomeTeam</td>
+                            <td>@match.AwayTeam</td>
+                            <td>@match.FixtureTime.ToString("dd-MMM")</td>
+                            <td>@(match.FinalResult != null ? match.FinalResult : string.Empty)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
         <div class="tab-pane fade" id="ex-with-icons-tabs-2" role="tabpanel" aria-labelledby="ex-with-icons-tab-2">
             Таблица с класирането.

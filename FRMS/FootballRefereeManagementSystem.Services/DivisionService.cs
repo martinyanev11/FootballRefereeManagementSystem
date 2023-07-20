@@ -6,24 +6,24 @@
     using Contracts;
     using Data;
 
-    public class SeasonService : ISeasonService
+    public class DivisionService : IDivisionService
     {
         private readonly FootballRefereeManagementSystemDbContext dbContext;
 
-        public SeasonService(FootballRefereeManagementSystemDbContext dbContext)
+        public DivisionService(FootballRefereeManagementSystemDbContext dbContext)
         {
             this.dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<string>> GetAllSeasonsAsync()
+        public async Task<IEnumerable<string>> GetAllDivisionsAsync()
         {
-            IEnumerable<string> seasons = await this.dbContext
-                .Seasons
+            IEnumerable<string> divisions = await this.dbContext
+                .Divisions
                 .AsNoTracking()
-                .Select(s => s.Description)
+                .Select(d => d.Name)
                 .ToArrayAsync();
 
-            return seasons;
+            return divisions;
         }
     }
 }

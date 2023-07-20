@@ -9,5 +9,7 @@
         public int TeamPoints { get; set; }
 
         public int TeamPlacement { get; set; }
+
+        public int MatchesPlayed { get; set; }
     }
 }

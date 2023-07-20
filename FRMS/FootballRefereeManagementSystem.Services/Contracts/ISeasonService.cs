@@ -2,9 +2,10 @@
 {
     using Web.ViewModels.Season;
     using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     public interface ISeasonService
     {
-        Task<SeasonQueryModel> AllAsync(SeasonQueryModel queryModel);
+        Task<IEnumerable<string>> GetAllSeasonsAsync();
     }
 }
