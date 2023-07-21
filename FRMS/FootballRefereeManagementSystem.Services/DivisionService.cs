@@ -25,5 +25,18 @@
 
             return divisions;
         }
+
+        public async Task<string> GetMostOfficiatedDivisionForRefereeByIdAsync(int refereeId)
+        {
+            string mostOfficiatedDivision = await this.dbContext
+                .RefereesDivisions
+                .AsNoTracking()
+                .Where(rd => rd.RefereeId == refereeId)
+                .OrderByDescending(rd => rd.DivisionMatchesOfficiated)
+                .Select(rd => rd.Division.Name)
+                .FirstAsync();
+
+            return mostOfficiatedDivision;
+        }
     }
 }

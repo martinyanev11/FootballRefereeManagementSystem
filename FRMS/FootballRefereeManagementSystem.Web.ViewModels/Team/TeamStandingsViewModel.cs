@@ -6,6 +6,8 @@
 
         public string TeamName { get; set; } = null!;
 
+        public string TeamTownName = null!;
+
         public int TeamPoints { get; set; }
 
         public int TeamPlacement { get; set; }

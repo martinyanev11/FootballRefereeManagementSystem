@@ -11,8 +11,4 @@
     <ProjectReference Include="..\FootballRefereeManagementSystem.Web.ViewModels\FootballRefereeManagementSystem.Web.ViewModels.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Season\" />
-  </ItemGroup>
-
 </Project>

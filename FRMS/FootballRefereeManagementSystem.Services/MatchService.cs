@@ -28,10 +28,13 @@
                 {
                     MatchId = m.Id,
                     HomeTeam = m.HomeTeam.Team.Name,
+                    HomeTeamTownName = m.HomeTeam.Team.Town.Name,
                     AwayTeam = m.AwayTeam.Team.Name,
+                    AwayTeamTownName = m.AwayTeam.Team.Town.Name,
                     FixtureTime = m.FixtureTime,
                     FinalResult = m.FinalResult,
                 })
+                .OrderBy(m => m.FixtureTime)
                 .ToArrayAsync();
 
             return matches;

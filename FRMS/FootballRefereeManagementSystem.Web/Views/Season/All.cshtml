@@ -20,29 +20,65 @@
     </div>
     <div class="tab-content" id="ex-with-icons-content">
         <div class="tab-pane fade show active" id="ex-with-icons-tabs-1" role="tabpanel" aria-labelledby="ex-with-icons-tab-1">
-            Таблица с мачовете.
-            <table>
-                <thead>
-                    <tr>
-                        <th>@Model.SeasonFilter</th>
-                        <th>@Model.DivisionFilter</th>
-                    </tr>
-                </thead>
+            <form method="get">
+                <div class="row">
+                    <div class="col-2">
+                        <select asp-for="SeasonFilter" class="form-control">
+                            @foreach (string seasonOption in Model.SeasonsOptions)
+                            {
+                                <option value="@seasonOption">@seasonOption</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <select asp-for="DivisionFilter" class="form-control">
+                            @foreach (string divisionOption in Model.DivisionsOptions)
+                            {
+                                <option value="@divisionOption">@divisionOption</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-1">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                        <input type="submit" value="Промени" class="btn btn-sm btn-primary" />
+                    </div>
+                </div>
+            </form>
+            <table class="table table-bordered table-responsive table-striped">
                 <tbody>
                     @foreach (var match in Model.Matches)
                     {
                         <tr>
-                            <td>@match.HomeTeam</td>
-                            <td>@match.AwayTeam</td>
-                            <td>@match.FixtureTime.ToString("dd-MMM")</td>
-                            <td>@(match.FinalResult != null ? match.FinalResult : string.Empty)</td>
+                            <td>@($"{match.HomeTeam} ({match.HomeTeamTownName})")</td>
+                            <td>@(match.FinalResult != null ? match.FinalResult : "-")</td>
+                            <td>@($"{match.AwayTeam} ({match.AwayTeamTownName})")</td>
+                            <td>@match.FixtureTime.ToString("MMM dd")</td>
+                            <td>@match.FixtureTime.ToShortTimeString()</td>
                         </tr>
                     }
                 </tbody>
             </table>
         </div>
         <div class="tab-pane fade" id="ex-with-icons-tabs-2" role="tabpanel" aria-labelledby="ex-with-icons-tab-2">
-            Таблица с класирането.
+            <table>
+                <thead>
+                    <tr>
+                        <th>Отбор</th>
+                        <th>ИМ</th>
+                        <th>T.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var team in Model.Standings)
+                    {
+                        <tr>
+                            <td>@($"{team.TeamPlacement} {team.TeamName} ({team.TeamTownName})")</td>
+                            <td>@team.MatchesPlayed</td>
+                            <td>@team.TeamPoints</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

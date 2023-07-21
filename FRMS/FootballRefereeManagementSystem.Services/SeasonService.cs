@@ -5,6 +5,7 @@
 
     using Contracts;
     using Data;
+    using FootballRefereeManagementSystem.Web.ViewModels.Season;
 
     public class SeasonService : ISeasonService
     {
@@ -24,6 +25,17 @@
                 .ToArrayAsync();
 
             return seasons;
+        }
+
+        public async Task<string> GetCurrentSeasonDescriptionAsync()
+        {
+            string currentSeason = await this.dbContext.Seasons
+                .AsNoTracking()
+                .OrderByDescending(s => s.Id)
+                .Select(s => s.Description)
+                .FirstAsync();
+
+            return currentSeason;
         }
     }
 }

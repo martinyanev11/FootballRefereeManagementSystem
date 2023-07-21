@@ -177,5 +177,13 @@
 
             return viewModel;
         }
+
+        public async Task<int> GetRefereeIdByUserId(string userId)
+        {
+            return await this.dbContext.Referees
+                .Where(r => r.UserId.ToString() == userId)
+                .Select(r => r.Id)
+                .FirstOrDefaultAsync();
+        }
     }
 }

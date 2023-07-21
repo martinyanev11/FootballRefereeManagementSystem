@@ -6,5 +6,6 @@
     public interface IDivisionService
     {
         Task<IEnumerable<string>> GetAllDivisionsAsync();
+        Task<string> GetMostOfficiatedDivisionForRefereeByIdAsync(int refereeId);
     }
 }
