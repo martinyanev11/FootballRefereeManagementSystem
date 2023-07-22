@@ -52,7 +52,7 @@
                     TeamId = ts.TeamId,
                     TeamName = ts.Team.Name,
                     TeamTownName = ts.Team.Town.Name,
-                    TeamPoints = ts.Points,
+                    TeamPoints = ts.Points, // Might change logic to make this auto-calculated property later!
                     TeamPlacement = ts.Placement,
                     MatchesPlayed = ts.HomeGames
                         .Where(m => m.HasFinished == true)
@@ -60,7 +60,13 @@
                         +
                         ts.AwayGames
                         .Where(m => m.HasFinished == true)
-                        .Count()
+                        .Count(),
+                    Wins = ts.Wins,
+                    Draws = ts.Draws,
+                    Losses = ts.Losses,
+                    GoalsFor = ts.GoalsFor,
+                    GoalsAgainst = ts.GoalsAgainst,
+                    GoalDifference = ts.GoalsFor - ts.GoalsAgainst
                 })
                 .OrderByDescending(t => t.TeamPoints)
                 .ToArrayAsync();

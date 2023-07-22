@@ -66,7 +66,14 @@
             queryModel.SeasonsOptions = await this.seasonService.GetAllSeasonsAsync();
             queryModel.DivisionsOptions = await this.divisionService.GetAllDivisionsAsync();
 
-            queryModel.LastSelectedTab = returneQueryModel.LastSelectedTab;
+            if (queryModel.LastSelectedTab == null)
+            {
+                queryModel.LastSelectedTab = "Matches";
+            }
+            else
+            {
+                queryModel.LastSelectedTab = returneQueryModel.LastSelectedTab;
+            }
 
             return View(queryModel);
         }

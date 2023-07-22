@@ -75,17 +75,29 @@
                         <th>Поз.</th>
                         <th>Отбор</th>
                         <th>ИМ</th>
-                        <th>T.</th>
+                        <th>П</th>
+                        <th>Р</th>
+                        <th>З</th>
+                        <th>ОГ</th>
+                        <th>ДГ</th>
+                        <th>ГР</th>
+                        <th>T</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var team in Model.Standings)
                     {
                         <tr>
-                            <td>@team.TeamPlacement</td>
+                            <td width="55px">@team.TeamPlacement</td>
                             <td>@($"{team.TeamName} ({team.TeamTownName})")</td>
-                            <td>@team.MatchesPlayed</td>
-                            <td>@team.TeamPoints</td>
+                            <td width="65px">@team.MatchesPlayed</td>
+                            <td width="65px">@team.Wins</td>
+                            <td width="65px">@team.Draws</td>
+                            <td width="65px">@team.Losses</td>
+                            <td width="65px">@team.GoalsFor</td>
+                            <td width="65px">@team.GoalsAgainst</td>
+                            <td width="65px">@team.GoalDifference</td>
+                            <td width="65px" class="fw-bold text-danger">@team.TeamPoints</td>
                         </tr>
                     }
                 </tbody>

@@ -14,12 +14,12 @@
             <img class="img-fluid" src="@Url.Content(Model.ImageUrl)" alt="ref">
         </div>
         <div class="col-3 mt-5">
-            <p><strong>Име:</strong> @Model.FullName</p>
-            <p><strong>Роля:</strong> @Model.Role</p>
-            <p><strong>Години:</strong> @Model.Age</p>
-            <p><strong>Контакт:</strong> @Model.Contact</p>
-            <p><strong>Град:</strong> @Model.Town</p>
-            <p><strong>Започнал на:</strong> @($"{Model.CareerStart.ToString("dd.MM.yyyy")} г.")</p>
+            <p><span class="fw-bold">Име:</span> @Model.FullName</p>
+            <p><span class="fw-bold">Роля:</span> @Model.Role</p>
+            <p><span class="fw-bold">Години:</span> @Model.Age</p>
+            <p><span class="fw-bold">Контакт:</span> @Model.Contact</p>
+            <p><span class="fw-bold">Град:</span> @Model.Town</p>
+            <p><span class="fw-bold">Започнал на:</span> @($"{Model.CareerStart.ToString("dd.MM.yyyy")} г.")</p>
         </div>
         <div class="col-4 mt-5 text-center">
             <h4>Дивизии и ръководени мачове</h4>
