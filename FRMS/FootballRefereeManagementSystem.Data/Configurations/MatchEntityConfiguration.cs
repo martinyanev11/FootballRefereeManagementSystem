@@ -20,7 +20,7 @@
             builder.HasOne(m => m.HomeTeam)
                 .WithMany(ts => ts.HomeGames)
                 .HasForeignKey(m => new { m.HomeTeamId, m.SeasonId })
-                .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(m => m.AwayTeam)
                 .WithMany(ts => ts.AwayGames)
@@ -30,7 +30,7 @@
             builder.Property(m => m.HasFinished)
                 .HasDefaultValue(false);
 
-            builder.HasData(this.matchSeeder.GenerateMatches());
+            //builder.HasData(this.matchSeeder.GenerateMatches());
         }
     }
 }

@@ -17,7 +17,7 @@
 
         public void Configure(EntityTypeBuilder<Article> builder)
         {
-            builder.HasData(seeder.GenerateArticles());
+            //builder.HasData(seeder.GenerateArticles());
         }
     }
 }

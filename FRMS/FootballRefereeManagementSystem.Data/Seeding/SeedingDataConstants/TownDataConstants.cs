@@ -9,21 +9,21 @@
         public const int GulqnciId = 3;
         public const int BeleneId = 4;
         public const int GrivicaId = 5;
-        //public const int BrestId = 6;
-        //public const int LepicaId = 7;
-        //public const int NikopolId = 8;
-        //public const int TrustenikId = 9;
+        public const int BrestId = 6;
+        public const int LepicaId = 7;
+        public const int NikopolId = 8;
+        public const int TrustenikId = 9;
 
-        //// „Б“ ОГ Изток
-        //public const int BulgareneId = 10;
-        //public const int VulchitrunId = 11;
-        //public const int ZgalevoId = 12;
-        //public const int IzgrevId = 13;
-        //public const int ObnovaId = 14;
-        //public const int NovacheneId = 15;
-        //public const int MuselievoId = 16;
-        //public const int PordimId = 17;
-        //public const int BrushlqnicaId = 18;
+        // „Б“ ОГ Изток
+        public const int BulgareneId = 10;
+        public const int VulchitrunId = 11;
+        public const int ZgalevoId = 12;
+        public const int IzgrevId = 13;
+        public const int ObnovaId = 14;
+        public const int NovacheneId = 15;
+        public const int MuselievoId = 16;
+        public const int PordimId = 17;
+        public const int BrushlqnicaId = 18;
 
         //// „Б“ ОГ Център
         //public const int PeturnicaId = 19;

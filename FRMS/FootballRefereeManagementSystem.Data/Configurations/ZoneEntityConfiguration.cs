@@ -17,7 +17,7 @@
 
         public void Configure(EntityTypeBuilder<Zone> builder)
         {
-            builder.HasData(this.zoneSeeder.GenerateZones());
+            //builder.HasData(this.zoneSeeder.GenerateZones());
         }
     }
 }

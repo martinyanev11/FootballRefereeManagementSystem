@@ -38,7 +38,7 @@
                 .HasForeignKey(ts => ts.DivisionId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasData(this.seeder.GenerateTeamsSeasons());
+            //builder.HasData(this.seeder.GenerateTeamsSeasons());
         }
     }
 }

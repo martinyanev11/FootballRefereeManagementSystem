@@ -29,7 +29,7 @@
                 .HasForeignKey(rd => rd.DivisionId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasData(this.seeder.GenerateRefereeDivisions());
+            //builder.HasData(this.seeder.GenerateRefereeDivisions());
         }
     }
 }

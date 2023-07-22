@@ -21,7 +21,7 @@
                     CareerStart = GenerateRandomDateTime(2016, 1, 1),
                     Role = Role.Referee,
                     TownId = TownDataConstants.PlevenTownId,
-                    UserId = new Guid(ApplicationUserDataConstants.RefereeGuid),
+                    UserId = new Guid(ApplicationUserDataConstants.RefereeId),
                     IsAvaliable = true
                 },
                 new Referee()
@@ -34,7 +34,7 @@
                     CareerStart = GenerateRandomDateTime(2016, 1, 1),
                     Role = Role.AssistantReferee,
                     TownId = TownDataConstants.PlevenTownId,
-                    UserId = new Guid(ApplicationUserDataConstants.AssistantRefereeOneGuid),
+                    UserId = new Guid(ApplicationUserDataConstants.AssistantRefereeOneId),
                     IsAvaliable = true
                 },
                 new Referee()
@@ -47,7 +47,7 @@
                     CareerStart = GenerateRandomDateTime(2016, 1, 1),
                     Role = Role.AssistantReferee,
                     TownId = TownDataConstants.PlevenTownId,
-                    UserId = new Guid(ApplicationUserDataConstants.AssistantRefereeTwoGuid),
+                    UserId = new Guid(ApplicationUserDataConstants.AssistantRefereeTwoId),
                     IsAvaliable = true
                 },
                 new Referee()
@@ -60,7 +60,7 @@
                     CareerStart = GenerateRandomDateTime(2016, 1, 1),
                     Role = Role.Delegate,
                     TownId = TownDataConstants.PlevenTownId,
-                    UserId = new Guid(ApplicationUserDataConstants.DelegateGuid),
+                    UserId = new Guid(ApplicationUserDataConstants.DelegateSecurityStamp),
                     IsAvaliable = true
                 },
                 new Referee()
@@ -73,7 +73,7 @@
                     CareerStart = GenerateRandomDateTime(2016, 1, 1),
                     Role = Role.Administration,
                     TownId = TownDataConstants.PlevenTownId,
-                    UserId = new Guid(ApplicationUserDataConstants.AdministratorGuid),
+                    UserId = new Guid(ApplicationUserDataConstants.AdministratorId),
                     IsAvaliable = false
                 },
             };

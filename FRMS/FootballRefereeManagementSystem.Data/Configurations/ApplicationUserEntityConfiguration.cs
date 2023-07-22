@@ -17,7 +17,7 @@
 
         public void Configure(EntityTypeBuilder<ApplicationUser> builder)
         {
-            builder.HasData(this.userSeeder.GenerateApplicationUsers());
+            //builder.HasData(this.userSeeder.GenerateApplicationUsers());
         }
     }
 }

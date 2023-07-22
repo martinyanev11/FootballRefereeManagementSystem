@@ -6,39 +6,22 @@
 
     internal class ManagerSeeder
     {
-        internal ICollection<Manager> GenerateManagers()
+        internal ICollection<Manager> GenerateManagers(int entitesToGenerate)
         {
-            ICollection<Manager> managers = new HashSet<Manager>()
+            ICollection<Manager> managers = new HashSet<Manager>();
+
+            for (int i = 1; i <= entitesToGenerate; i++)
             {
-                new Manager()
+                Manager manager = new Manager()
                 {
-                    Id = 1,
+                    Id = i,
                     FirstName = GenerateRandomFirstName(),
                     LastName = GenerateRandomLastName(),
                     Age = GenerateRandomAge(AgeMinValue, AgeMaxValue),
-                },
-                new Manager()
-                {
-                    Id = 2,
-                    FirstName = GenerateRandomFirstName(),
-                    LastName = GenerateRandomLastName(),
-                    Age = GenerateRandomAge(AgeMinValue, AgeMaxValue),
-                },
-                new Manager()
-                {
-                    Id = 3,
-                    FirstName = GenerateRandomFirstName(),
-                    LastName = GenerateRandomLastName(),
-                    Age = GenerateRandomAge(AgeMinValue, AgeMaxValue),
-                },
-                new Manager()
-                {
-                    Id = 4,
-                    FirstName = GenerateRandomFirstName(),
-                    LastName = GenerateRandomLastName(),
-                    Age = GenerateRandomAge(AgeMinValue, AgeMaxValue),
-                }
-            };
+                };
+
+                managers.Add(manager);
+            }
 
             return managers;
         }

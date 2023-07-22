@@ -17,7 +17,7 @@
 
         public void Configure(EntityTypeBuilder<Town> builder)
         {
-            builder.HasData(this.townSeeder.GenerateTowns());
+            //builder.HasData(this.townSeeder.GenerateTowns());
         }
     }
 }
