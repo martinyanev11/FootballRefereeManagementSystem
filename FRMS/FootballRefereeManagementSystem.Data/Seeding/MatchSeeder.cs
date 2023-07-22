@@ -572,6 +572,12 @@
                 },
             };
 
+            //// Seed matches for teams in zone "B regional group east"
+            //for (int i = TownDataConstants.BulgareneId; i < length; i++)
+            //{
+
+            //}
+
             return matches;
         }
     }

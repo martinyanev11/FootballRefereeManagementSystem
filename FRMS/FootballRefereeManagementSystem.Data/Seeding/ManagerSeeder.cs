@@ -1,8 +1,8 @@
 ﻿namespace FootballRefereeManagementSystem.Data.Seeding
 {
     using Models;
-    using static DataGenerator.RandomDataGenerator;
-    using static SeedingDataConstants.ManagerDataConstants;
+    //using static DataGenerator.RandomDataGenerator;
+    using SeedingDataConstants;
 
     internal class ManagerSeeder
     {
@@ -15,9 +15,14 @@
                 Manager manager = new Manager()
                 {
                     Id = i,
-                    FirstName = GenerateRandomFirstName(),
-                    LastName = GenerateRandomLastName(),
-                    Age = GenerateRandomAge(AgeMinValue, AgeMaxValue),
+                    FirstName = ManagerDataConstants.FirstNameConstantValue,
+                    LastName = ManagerDataConstants.LastNameConstantValue,
+                    Age = ManagerDataConstants.AgeConstantValue
+
+                    // Use the DataGenerator for more realistic data seeding
+                    //FirstName = GenerateRandomFirstName(),
+                    //LastName = GenerateRandomLastName(),
+                    //Age = GenerateRandomAge(AgeMinValue, AgeMaxValue),
                 };
 
                 managers.Add(manager);

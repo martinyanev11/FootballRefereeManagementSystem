@@ -46,5 +46,8 @@
 
         [Comment("Specifies whether the match has been played")]
         public bool HasFinished { get; set; }
+
+        [Comment("Specifies in which round of matches this particular match will be played")]
+        public int SeasonRound { get; set; }
     }
 }
