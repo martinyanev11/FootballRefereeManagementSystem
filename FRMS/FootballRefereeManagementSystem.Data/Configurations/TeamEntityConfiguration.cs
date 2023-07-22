@@ -17,7 +17,7 @@
 
         public void Configure(EntityTypeBuilder<Team> builder)
         {
-            //builder.HasData(this.teamSeeder.GenerateTeams());
+            builder.HasData(this.teamSeeder.GenerateTeams());
         }
     }
 }

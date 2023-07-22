@@ -1,62 +1,35 @@
 ﻿namespace FootballRefereeManagementSystem.Data.Seeding
 {
     using Models;
+    using SeedingDataConstants;
 
     internal class PlayerTeamSeasonSeeder
     {
-        internal ICollection<PlayerTeamSeason> GeneratePlayersTeamsSeasons()
+        internal ICollection<PlayerTeamSeason> GeneratePlayersTeamsSeasons(int ptsToGenerate)
         {
+            // Seeding 11 players per team for "A regional group" teams.
             ICollection<PlayerTeamSeason> ptsCollection = new HashSet<PlayerTeamSeason>();
 
-            int counter = 1;
-            while (counter < 45)
+            int teamId = TownDataConstants.TrunchovicaId;
+            int playersPerTeamCounter = 0;
+
+            for (int playerId = 1; playerId <= ptsToGenerate; playerId++)
             {
-                if (counter <= 11)
+                PlayerTeamSeason pts = new PlayerTeamSeason()
                 {
-                    PlayerTeamSeason pts = new PlayerTeamSeason()
-                    {
-                        TeamId = 1,
-                        SeasonId = 1,
-                        PlayerId = counter
-                    };
+                    PlayerId = playerId,
+                    TeamId = teamId,
+                    SeasonId = SeasonDataConstants.Season22And23Id
+                };
 
-                    ptsCollection.Add(pts);
-                }
-                else if (counter <= 22)
+                ptsCollection.Add(pts);
+                playersPerTeamCounter++;
+
+                if (playersPerTeamCounter > 11)
                 {
-                    PlayerTeamSeason pts = new PlayerTeamSeason()
-                    {
-                        TeamId = 2,
-                        SeasonId = 1,
-                        PlayerId = counter
-                    };
-
-                    ptsCollection.Add(pts);
+                    playersPerTeamCounter = 0;
+                    teamId++;
                 }
-                else if (counter <= 33)
-                {
-                    PlayerTeamSeason pts = new PlayerTeamSeason()
-                    {
-                        TeamId = 3,
-                        SeasonId = 1,
-                        PlayerId = counter
-                    };
-
-                    ptsCollection.Add(pts);
-                }
-                else
-                {
-                    PlayerTeamSeason pts = new PlayerTeamSeason()
-                    {
-                        TeamId = 4,
-                        SeasonId = 1,
-                        PlayerId = counter
-                    };
-
-                    ptsCollection.Add(pts);
-                }
-
-                counter++;
             }
 
             return ptsCollection;

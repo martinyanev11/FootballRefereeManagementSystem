@@ -9,8 +9,15 @@
         public const int DelegateId = 4;
         public const int AdministratorId = 5;
 
-        // Age
+        // Age range for dynamic seeding
         public const int AgeMinValue = 16;
         public const int AgeMaxValue = 55;
+
+        // Values for non-dynamic seeding
+        public const string FirstNameValue = "ИмеСъдия";
+        public const string LastNameValue = "ФламилияСъдия";
+        public const int AgeValue = 30;
+        public const string ContactValue = "0898556248";
+        public const string CareerStartValue = "2018/8/15";
     }
 }

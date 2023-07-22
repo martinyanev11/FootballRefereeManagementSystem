@@ -7,6 +7,7 @@
     {
         internal ICollection<Match> GenerateMatches()
         {
+            // Hard coded seed
             ICollection<Match> matches = new HashSet<Match>()
             {
                 new Match()
@@ -572,11 +573,55 @@
                 },
             };
 
-            //// Seed matches for teams in zone "B regional group east"
-            //for (int i = TownDataConstants.BulgareneId; i < length; i++)
-            //{
+            // Test: Seed matches for teams in zone "B regional group east"
+            bool addedSeasonBreak = false;
 
-            //}
+            // Counts season round in which match is played
+            int currentSeasonRound = 1;
+            int matchesPerRoundCounter = 1;
+            int matchId = 57; // Start from next free ID after hard coded matches
+
+            DateTime fixtureTime = DateTime.Parse(SeasonDataConstants.S22And23Start); // First match is when season starts
+
+            for (int homeTeamId = TownDataConstants.BulgareneId; homeTeamId <= TownDataConstants.BrushlqnicaId; homeTeamId++)
+            {
+                for (int awayTeamId = TownDataConstants.BulgareneId; awayTeamId <= TownDataConstants.BrushlqnicaId; awayTeamId++)
+                {
+                    if (currentSeasonRound == 10 && !addedSeasonBreak) // Mid season break to be added
+                    {
+                        fixtureTime = new DateTime(2023, 3, 18, 15, 0, 0);
+                        addedSeasonBreak = true;
+                    }
+
+                    if (homeTeamId == awayTeamId) // Forbit teams to play against themself
+                    {
+                        continue;
+                    }
+
+                    Match match = new Match()
+                    {
+                        Id = matchId,
+                        DivisionId = DivisionDataConstants.RegionalBGroupId,
+                        TownId = homeTeamId, // NOTE: HomeTeamId is same as the TownId of that team.
+                        FixtureTime = fixtureTime,
+                        HomeTeamId = homeTeamId,
+                        AwayTeamId = awayTeamId,
+                        SeasonId = SeasonDataConstants.Season22And23Id,
+                        SeasonRound = currentSeasonRound,
+                    };
+
+                    matches.Add(match);
+
+                    matchId++;
+                    matchesPerRoundCounter++;
+                    if (matchesPerRoundCounter > 4) // 4 matches per round
+                    {
+                        matchesPerRoundCounter = 1; // Reset counter
+                        currentSeasonRound++; // Increment round
+                        fixtureTime = fixtureTime.AddDays(7); // Go to next week
+                    }
+                }
+            }
 
             return matches;
         }

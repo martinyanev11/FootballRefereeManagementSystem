@@ -1,6 +1,7 @@
 ﻿namespace FootballRefereeManagementSystem.Data.Seeding
 {
-    using FootballRefereeManagementSystem.Data.Models;
+    using Models;
+    using SeedingDataConstants;
 
     internal class SeasonSeeder
     {
@@ -10,17 +11,17 @@
             {
                 new Season()
                 {
-                    Id = 1,
+                    Id = SeasonDataConstants.Season21And22Id,
                     Description = "2021/22",
-                    Start = new DateTime(2021, 9, 6),
-                    End = new DateTime(2022, 5, 26)
+                    Start = DateTime.Parse(SeasonDataConstants.S21And22Start),
+                    End = DateTime.Parse(SeasonDataConstants.S21And22End)
                 },
                 new Season()
                 {
-                    Id = 2,
+                    Id = SeasonDataConstants.Season22And23Id,
                     Description = "2022/23",
-                    Start = new DateTime(2022, 9, 16),
-                    End = new DateTime(2023, 5, 28)
+                    Start = DateTime.Parse(SeasonDataConstants.S22And23Start),
+                    End = DateTime.Parse(SeasonDataConstants.S22And23End)
                 },
             };
 

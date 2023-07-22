@@ -17,7 +17,7 @@
 
         public void Configure(EntityTypeBuilder<Division> builder)
         {
-            //builder.HasData(this.divisionSeeder.GenerateDivisions());
+            builder.HasData(this.divisionSeeder.GenerateDivisions());
         }
     }
 }

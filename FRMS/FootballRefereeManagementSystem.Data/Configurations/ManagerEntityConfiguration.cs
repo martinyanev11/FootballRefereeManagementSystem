@@ -17,7 +17,7 @@
 
         public void Configure(EntityTypeBuilder<Manager> builder)
         {
-            //builder.HasData(this.managerSeeder.GenerateManagers(17));
+            builder.HasData(this.managerSeeder.GenerateManagers(17));
         }
     }
 }

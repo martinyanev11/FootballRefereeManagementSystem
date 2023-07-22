@@ -41,7 +41,7 @@
                 .WithOne(msg => msg.RefereeSquad)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            //builder.HasData(this.seeder.GenerateRefereeSquads());
+            builder.HasData(this.seeder.GenerateRefereeSquads());
         }
     }
 }

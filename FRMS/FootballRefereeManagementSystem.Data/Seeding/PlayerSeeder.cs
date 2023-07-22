@@ -1,8 +1,8 @@
 ﻿namespace FootballRefereeManagementSystem.Data.Seeding
 {
     using Models;
-    using static DataGenerator.RandomDataGenerator;
-    using static SeedingDataConstants.PlayerDataConstants;
+    //using static DataGenerator.RandomDataGenerator;
+    using SeedingDataConstants;
 
     internal class PlayerSeeder
     {
@@ -16,9 +16,14 @@
                 Player player = new Player()
                 {
                     Id = id++,
-                    FirstName = GenerateRandomFirstName(),
-                    LastName = GenerateRandomLastName(),
-                    Age = GenerateRandomAge(AgeMinValue, AgeMaxValue)
+                    FirstName = PlayerDataConstants.FirstNameConstantValue,
+                    LastName = PlayerDataConstants.LastNameConstantValue,
+                    Age = PlayerDataConstants.AgeConstantValue,
+
+                    //// Dynamic seeding
+                    //FirstName = GenerateRandomFirstName(),
+                    //LastName = GenerateRandomLastName(),
+                    //Age = GenerateRandomAge(AgeMinValue, AgeMaxValue)
                 };
 
                 players.Add(player);

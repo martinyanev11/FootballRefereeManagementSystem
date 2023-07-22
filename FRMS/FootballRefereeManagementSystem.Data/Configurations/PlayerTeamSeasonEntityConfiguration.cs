@@ -29,7 +29,7 @@
                 .HasForeignKey(pts => pts.PlayerId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            //builder.HasData(this.seeder.GeneratePlayersTeamsSeasons());
+            builder.HasData(this.seeder.GeneratePlayersTeamsSeasons(88));
         }
     }
 }

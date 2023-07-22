@@ -17,7 +17,7 @@
 
         public void Configure(EntityTypeBuilder<Player> builder)
         {
-            //builder.HasData(this.playerSeeder.GeneratePlayers(44));
+            builder.HasData(this.playerSeeder.GeneratePlayers(88));
         }
     }
 }

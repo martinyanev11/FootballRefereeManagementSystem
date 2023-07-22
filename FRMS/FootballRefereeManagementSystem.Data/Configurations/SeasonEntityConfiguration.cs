@@ -17,7 +17,7 @@
 
         public void Configure(EntityTypeBuilder<Season> builder)
         {
-            //builder.HasData(this.seasonSeeder.GenerateSeasons());
+            builder.HasData(this.seasonSeeder.GenerateSeasons());
         }
     }
 }

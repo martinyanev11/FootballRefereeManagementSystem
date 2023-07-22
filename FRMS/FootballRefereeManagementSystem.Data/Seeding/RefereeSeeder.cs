@@ -3,7 +3,7 @@
     using Models;
     using Models.Enums;
     using SeedingDataConstants;
-    using static DataGenerator.RandomDataGenerator;
+    //using static DataGenerator.RandomDataGenerator;
 
     internal class RefereeSeeder
     {
@@ -14,11 +14,16 @@
                 new Referee()
                 {
                     Id = RefereeDataConstants.MainRefereeId,
-                    FirstName = GenerateRandomFirstName(),
-                    LastName = GenerateRandomLastName(),
-                    Age = GenerateRandomAge(RefereeDataConstants.AgeMinValue, RefereeDataConstants.AgeMaxValue),
-                    Contact = GeneratePhoneNumber(),
-                    CareerStart = GenerateRandomDateTime(2016, 1, 1),
+                    FirstName = RefereeDataConstants.FirstNameValue,
+                    LastName = RefereeDataConstants.LastNameValue,
+                    Age = RefereeDataConstants.AgeValue,
+                    Contact = RefereeDataConstants.ContactValue,
+                    CareerStart = DateTime.Parse(RefereeDataConstants.CareerStartValue),
+                    //FirstName = GenerateRandomFirstName(),
+                    //LastName = GenerateRandomLastName(),
+                    //Age = GenerateRandomAge(RefereeDataConstants.AgeMinValue, RefereeDataConstants.AgeMaxValue),
+                    //Contact = GeneratePhoneNumber(),
+                    //CareerStart = GenerateRandomDateTime(2016, 1, 1),
                     Role = Role.Referee,
                     TownId = TownDataConstants.PlevenTownId,
                     UserId = new Guid(ApplicationUserDataConstants.RefereeId),
@@ -27,11 +32,16 @@
                 new Referee()
                 {
                     Id = RefereeDataConstants.AssistantRefereeOneId,
-                    FirstName = GenerateRandomFirstName(),
-                    LastName = GenerateRandomLastName(),
-                    Age = GenerateRandomAge(RefereeDataConstants.AgeMinValue, RefereeDataConstants.AgeMaxValue),
-                    Contact = GeneratePhoneNumber(),
-                    CareerStart = GenerateRandomDateTime(2016, 1, 1),
+                    FirstName = RefereeDataConstants.FirstNameValue,
+                    LastName = RefereeDataConstants.LastNameValue,
+                    Age = RefereeDataConstants.AgeValue,
+                    Contact = RefereeDataConstants.ContactValue,
+                    CareerStart = DateTime.Parse(RefereeDataConstants.CareerStartValue),
+                    //FirstName = GenerateRandomFirstName(),
+                    //LastName = GenerateRandomLastName(),
+                    //Age = GenerateRandomAge(RefereeDataConstants.AgeMinValue, RefereeDataConstants.AgeMaxValue),
+                    //Contact = GeneratePhoneNumber(),
+                    //CareerStart = GenerateRandomDateTime(2016, 1, 1),
                     Role = Role.AssistantReferee,
                     TownId = TownDataConstants.PlevenTownId,
                     UserId = new Guid(ApplicationUserDataConstants.AssistantRefereeOneId),
@@ -40,11 +50,16 @@
                 new Referee()
                 {
                     Id = RefereeDataConstants.AssistantRefereeTwoId,
-                    FirstName = GenerateRandomFirstName(),
-                    LastName = GenerateRandomLastName(),
-                    Age = GenerateRandomAge(RefereeDataConstants.AgeMinValue, RefereeDataConstants.AgeMaxValue),
-                    Contact = GeneratePhoneNumber(),
-                    CareerStart = GenerateRandomDateTime(2016, 1, 1),
+                    FirstName = RefereeDataConstants.FirstNameValue,
+                    LastName = RefereeDataConstants.LastNameValue,
+                    Age = RefereeDataConstants.AgeValue,
+                    Contact = RefereeDataConstants.ContactValue,
+                    CareerStart = DateTime.Parse(RefereeDataConstants.CareerStartValue),
+                    //FirstName = GenerateRandomFirstName(),
+                    //LastName = GenerateRandomLastName(),
+                    //Age = GenerateRandomAge(RefereeDataConstants.AgeMinValue, RefereeDataConstants.AgeMaxValue),
+                    //Contact = GeneratePhoneNumber(),
+                    //CareerStart = GenerateRandomDateTime(2016, 1, 1),
                     Role = Role.AssistantReferee,
                     TownId = TownDataConstants.PlevenTownId,
                     UserId = new Guid(ApplicationUserDataConstants.AssistantRefereeTwoId),
@@ -53,11 +68,16 @@
                 new Referee()
                 {
                     Id = RefereeDataConstants.DelegateId,
-                    FirstName = GenerateRandomFirstName(),
-                    LastName = GenerateRandomLastName(),
-                    Age = GenerateRandomAge(RefereeDataConstants.AgeMinValue, RefereeDataConstants.AgeMaxValue),
-                    Contact = GeneratePhoneNumber(),
-                    CareerStart = GenerateRandomDateTime(2016, 1, 1),
+                    FirstName = RefereeDataConstants.FirstNameValue,
+                    LastName = RefereeDataConstants.LastNameValue,
+                    Age = RefereeDataConstants.AgeValue,
+                    Contact = RefereeDataConstants.ContactValue,
+                    CareerStart = DateTime.Parse(RefereeDataConstants.CareerStartValue),
+                    //FirstName = GenerateRandomFirstName(),
+                    //LastName = GenerateRandomLastName(),
+                    //Age = GenerateRandomAge(RefereeDataConstants.AgeMinValue, RefereeDataConstants.AgeMaxValue),
+                    //Contact = GeneratePhoneNumber(),
+                    //CareerStart = GenerateRandomDateTime(2016, 1, 1),
                     Role = Role.Delegate,
                     TownId = TownDataConstants.PlevenTownId,
                     UserId = new Guid(ApplicationUserDataConstants.DelegateSecurityStamp),
@@ -66,11 +86,16 @@
                 new Referee()
                 {
                     Id = RefereeDataConstants.AdministratorId,
-                    FirstName = GenerateRandomFirstName(),
-                    LastName = GenerateRandomLastName(),
-                    Age = GenerateRandomAge(RefereeDataConstants.AgeMinValue, RefereeDataConstants.AgeMaxValue),
-                    Contact = GeneratePhoneNumber(),
-                    CareerStart = GenerateRandomDateTime(2016, 1, 1),
+                    FirstName = RefereeDataConstants.FirstNameValue,
+                    LastName = RefereeDataConstants.LastNameValue,
+                    Age = RefereeDataConstants.AgeValue,
+                    Contact = RefereeDataConstants.ContactValue,
+                    CareerStart = DateTime.Parse(RefereeDataConstants.CareerStartValue),
+                    //FirstName = GenerateRandomFirstName(),
+                    //LastName = GenerateRandomLastName(),
+                    //Age = GenerateRandomAge(RefereeDataConstants.AgeMinValue, RefereeDataConstants.AgeMaxValue),
+                    //Contact = GeneratePhoneNumber(),
+                    //CareerStart = GenerateRandomDateTime(2016, 1, 1),
                     Role = Role.Administration,
                     TownId = TownDataConstants.PlevenTownId,
                     UserId = new Guid(ApplicationUserDataConstants.AdministratorId),

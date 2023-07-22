@@ -30,7 +30,7 @@
             builder.Property(m => m.HasFinished)
                 .HasDefaultValue(false);
 
-            //builder.HasData(this.matchSeeder.GenerateMatches());
+            builder.HasData(this.matchSeeder.GenerateMatches());
         }
     }
 }
