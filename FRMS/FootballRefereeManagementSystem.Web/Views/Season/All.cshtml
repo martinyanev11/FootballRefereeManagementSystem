@@ -69,9 +69,10 @@
             </table>
         </div>
         <div class="tab-pane fade @(Model.LastSelectedTab == "Standings" ? "show active" : string.Empty)" id="ex-with-icons-tabs-2" role="tabpanel" aria-labelledby="ex-with-icons-tab-2">
-            <table>
-                <thead>
+            <table class="table table-bordered table-responsive table-hover table-light">
+                <thead class="table-secondary">
                     <tr>
+                        <th>Поз.</th>
                         <th>Отбор</th>
                         <th>ИМ</th>
                         <th>T.</th>
@@ -81,7 +82,8 @@
                     @foreach (var team in Model.Standings)
                     {
                         <tr>
-                            <td>@($"{team.TeamPlacement} {team.TeamName} ({team.TeamTownName})")</td>
+                            <td>@team.TeamPlacement</td>
+                            <td>@($"{team.TeamName} ({team.TeamTownName})")</td>
                             <td>@team.MatchesPlayed</td>
                             <td>@team.TeamPoints</td>
                         </tr>
