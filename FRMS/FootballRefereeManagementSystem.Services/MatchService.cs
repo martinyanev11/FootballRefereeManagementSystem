@@ -32,7 +32,7 @@
                     AwayTeam = m.AwayTeam.Team.Name,
                     AwayTeamTownName = m.AwayTeam.Team.Town.Name,
                     FixtureTime = m.FixtureTime,
-                    FinalResult = m.FinalResult,
+                    FinalResult = m.HasFinished ? $"{m.HomeTeamScore} : {m.AwayTeamScore}" : "-"
                 })
                 .OrderBy(m => m.FixtureTime)
                 .ToArrayAsync();

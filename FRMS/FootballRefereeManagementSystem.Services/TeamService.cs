@@ -55,11 +55,11 @@
                     TeamPoints = ts.Points,
                     TeamPlacement = ts.Placement,
                     MatchesPlayed = ts.HomeGames
-                        .Where(hg => hg.FinalResult != null)
+                        .Where(m => m.HasFinished == true)
                         .Count()
                         +
                         ts.AwayGames
-                        .Where(ag => ag.FinalResult != null)
+                        .Where(m => m.HasFinished == true)
                         .Count()
                 })
                 .OrderByDescending(t => t.TeamPoints)
