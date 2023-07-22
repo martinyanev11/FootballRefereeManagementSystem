@@ -24,11 +24,6 @@
         [MaxLength(NameMaxLength)]
         public string Name { get; set; } = null!;
 
-        [Comment("Abbreviation of the team")]
-        [Required]
-        [MaxLength(AbbreviationMaxLength)]
-        public string Abbreviation { get; set; } = null!;
-
         [Comment("In which town the team is located")]
         [ForeignKey(nameof(Town))]
         public int TownId { get; set; }

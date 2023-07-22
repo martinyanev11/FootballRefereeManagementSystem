@@ -27,6 +27,9 @@
                 .HasForeignKey(m => new { m.AwayTeamId, m.SeasonId })
                 .OnDelete(DeleteBehavior.Restrict);
 
+            builder.Property(m => m.HasFinished)
+                .HasDefaultValue(false);
+
             builder.HasData(this.matchSeeder.GenerateMatches());
         }
     }

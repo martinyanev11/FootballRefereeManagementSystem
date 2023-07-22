@@ -5,8 +5,6 @@
 
     using Microsoft.EntityFrameworkCore;
 
-    using static Common.EntityValidationConstants.Match;
-
     [Comment("Information about a football match")]
     public class Match
     {
@@ -27,9 +25,11 @@
         [Comment("Date and time the match is played")]
         public DateTime FixtureTime { get; set; }
 
-        [Comment("The final result of the match")]
-        [MaxLength(FinalResultMaxLength)]
-        public string? FinalResult { get; set; }
+        [Comment("Goals scored by home team")]
+        public int HomeTeamScore { get; set; }
+
+        [Comment("Goals scored by away team")]
+        public int AwayTeamScore { get; set; }
 
         [Comment("Information about host team")]
         public int HomeTeamId { get; set; }
@@ -43,5 +43,8 @@
         [Comment("The referee squad appointed to officiate the match")]
         public Guid? RefereeSquadId { get; set; }
         public RefereeSquad? RefereeSquad { get; set; } = null!;
+
+        [Comment("Specifies whether the match has been played")]
+        public bool HasFinished { get; set; }
     }
 }

@@ -37,6 +37,21 @@
         [Comment("Placement in the division during the season")]
         public int Placement { get; set; }
 
+        [Comment("Number of won matches during specific season")]
+        public int Wins { get; set; }
+
+        [Comment("Number of drawn matches during specific season")]
+        public int Draws { get; set; }
+
+        [Comment("Number of lost matches during specific season")]
+        public int Losses { get; set; }
+
+        [Comment("Number of goals scored by this team during specific season")]
+        public int GoalsFor { get; set; }
+
+        [Comment("Number of goals scored againsts this team during specific season")]
+        public int GoalsAgainst { get; set; }
+
         [Comment("Color of the player's shirts")]
         public Color ShirtColor { get; set; }
 
