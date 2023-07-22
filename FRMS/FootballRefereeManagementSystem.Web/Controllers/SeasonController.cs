@@ -66,6 +66,8 @@
             queryModel.SeasonsOptions = await this.seasonService.GetAllSeasonsAsync();
             queryModel.DivisionsOptions = await this.divisionService.GetAllDivisionsAsync();
 
+            queryModel.LastSelectedTab = returneQueryModel.LastSelectedTab;
+
             return View(queryModel);
         }
     }

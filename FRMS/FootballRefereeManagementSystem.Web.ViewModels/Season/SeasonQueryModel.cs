@@ -21,6 +21,8 @@
 
         public string DivisionFilter { get; set; } = null!;
 
+        public string LastSelectedTab { get; set; } = null!;
+
         public IEnumerable<string> SeasonsOptions { get; set; } = null!;
 
         public IEnumerable<string> DivisionsOptions { get; set; } = null!;

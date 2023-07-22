@@ -6,45 +6,54 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <div class="container">
+    <!--Filter options-->
+    <form method="get">
+        <input id="last-selected-tab" type="hidden" asp-for="LastSelectedTab" />
+        <div class="row mb-3">
+            <div class="col-2">
+                <select asp-for="SeasonFilter" class="form-control">
+                    @foreach (string seasonOption in Model.SeasonsOptions)
+                    {
+                        <option value="@seasonOption">@seasonOption</option>
+                    }
+                </select>
+            </div>
+            <div class="col-4">
+                <select asp-for="DivisionFilter" class="form-control">
+                    @foreach (string divisionOption in Model.DivisionsOptions)
+                    {
+                        <option value="@divisionOption">@divisionOption</option>
+                    }
+                </select>
+            </div>
+            <div class="col-1">
+                <button type="submit" class="bg-primary text-light mt-1"><i class="fa-solid fa-arrows-rotate"></i></button>
+            </div>
+        </div>
+    </form>
+
+    <!--Tab selection-->
     <div class="row justify-content-center">
         <ul class="nav nav-tabs mb-3" id="ex-with-icons" role="tablist">
             <li class="nav-item" role="presentation">
-                <a class="nav-link text-dark active" id="ex-with-icons-tab-1" data-mdb-toggle="tab" href="#ex-with-icons-tabs-1" role="tab"
-                   aria-controls="ex-with-icons-tabs-1" aria-selected="true"><i class="fas fa-futbol"></i> Мачове</a>
+                <a class="nav-link text-dark @(Model.LastSelectedTab == "Matches" ? "active" : string.Empty)" id="ex-with-icons-tab-1" data-mdb-toggle="tab" href="#ex-with-icons-tabs-1" role="tab"
+                   aria-controls="ex-with-icons-tabs-1" aria-selected="@(Model.LastSelectedTab == "Matches" ? true : false)" onclick="updateQueryString('LastSelectedTab', 'Matches')">
+                   <i class="fas fa-futbol"></i> Мачове
+               </a>
             </li>
             <li class="nav-item" role="presentation">
-                <a class="nav-link text-dark" id="ex-with-icons-tab-2" data-mdb-toggle="tab" href="#ex-with-icons-tabs-2" role="tab"
-                   aria-controls="ex-with-icons-tabs-2" aria-selected="false"><i class="fas fa-star"></i> Класиране</a>
+                <a class="nav-link text-dark @(Model.LastSelectedTab == "Standings" ? "active" : string.Empty)" id="ex-with-icons-tab-2" data-mdb-toggle="tab" href="#ex-with-icons-tabs-2" role="tab"
+                   aria-controls="ex-with-icons-tabs-2" aria-selected="@(Model.LastSelectedTab == "Standings" ? true : false)" onclick="updateQueryString('LastSelectedTab', 'Standings')">
+                   <i class="fas fa-star"></i> Класиране
+               </a>
             </li>
         </ul>
     </div>
+
+    <!--Tab display-->
     <div class="tab-content" id="ex-with-icons-content">
-        <div class="tab-pane fade show active" id="ex-with-icons-tabs-1" role="tabpanel" aria-labelledby="ex-with-icons-tab-1">
-            <form method="get">
-                <div class="row">
-                    <div class="col-2">
-                        <select asp-for="SeasonFilter" class="form-control">
-                            @foreach (string seasonOption in Model.SeasonsOptions)
-                            {
-                                <option value="@seasonOption">@seasonOption</option>
-                            }
-                        </select>
-                    </div>
-                    <div class="col-4">
-                        <select asp-for="DivisionFilter" class="form-control">
-                            @foreach (string divisionOption in Model.DivisionsOptions)
-                            {
-                                <option value="@divisionOption">@divisionOption</option>
-                            }
-                        </select>
-                    </div>
-                    <div class="col-1">
-                        <i class="fa-solid fa-arrows-rotate"></i>
-                        <input type="submit" value="Промени" class="btn btn-sm btn-primary" />
-                    </div>
-                </div>
-            </form>
-            <table class="table table-bordered table-responsive table-striped">
+        <div class="tab-pane fade @(Model.LastSelectedTab == "Matches" ? "show active" : string.Empty)" id="ex-with-icons-tabs-1" role="tabpanel" aria-labelledby="ex-with-icons-tab-1">
+            <table class="table table-bordered table-responsive table-hover table-light">
                 <tbody>
                     @foreach (var match in Model.Matches)
                     {
@@ -59,7 +68,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="tab-pane fade" id="ex-with-icons-tabs-2" role="tabpanel" aria-labelledby="ex-with-icons-tab-2">
+        <div class="tab-pane fade @(Model.LastSelectedTab == "Standings" ? "show active" : string.Empty)" id="ex-with-icons-tabs-2" role="tabpanel" aria-labelledby="ex-with-icons-tab-2">
             <table>
                 <thead>
                     <tr>
@@ -83,4 +92,7 @@
     </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.9.0/mdb.min.js"></script>
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.9.0/mdb.min.js"></script>
+    <script src="~/js/last-tab-handler.js"></script>
+}
