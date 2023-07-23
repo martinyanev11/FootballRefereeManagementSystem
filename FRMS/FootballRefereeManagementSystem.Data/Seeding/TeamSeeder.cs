@@ -11,103 +11,103 @@
             {
                 new Team()
                 {
-                    Id = TownDataConstants.TrunchovicaId,
+                    Id = TeamDataConstants.TrunchovicaId,
                     Name = "Ботев",
                     TownId = TownDataConstants.TrunchovicaId,
                 },
                 new Team()
                 {
-                    Id = TownDataConstants.GulqnciId,
+                    Id = TeamDataConstants.GulqnciId,
                     Name = "Вихър",
                     TownId = TownDataConstants.GulqnciId,
                 },
                 new Team()
                 {
-                    Id = TownDataConstants.BeleneId,
+                    Id = TeamDataConstants.BeleneId,
                     Name = "Гигант",
                     TownId = TownDataConstants.BeleneId,
                 },
                 new Team()
                 {
-                    Id = TownDataConstants.GrivicaId,
+                    Id = TeamDataConstants.GrivicaId,
                     Name = "Космос",
                     TownId = TownDataConstants.GrivicaId,
                 },
                 new Team()
                 {
-                    Id = TownDataConstants.BrestId,
+                    Id = TeamDataConstants.BrestId,
                     Name = "Левски",
                     TownId = TownDataConstants.BrestId,
                 },
                 new Team()
                 {
-                    Id = TownDataConstants.LepicaId,
+                    Id = TeamDataConstants.LepicaId,
                     Name = "Светослав",
                     TownId = TownDataConstants.LepicaId,
                 },
                 new Team()
                 {
-                    Id = TownDataConstants.NikopolId,
+                    Id = TeamDataConstants.NikopolId,
                     Name = "Ситомир",
                     TownId = TownDataConstants.NikopolId,
                 },
                 new Team()
                 {
-                    Id = TownDataConstants.TrustenikId,
+                    Id = TeamDataConstants.TrustenikId,
                     Name = "Тръстеник",
                     TownId = TownDataConstants.TrustenikId,
                 },
                 new Team()
                 {
-                    Id = TownDataConstants.BulgareneId,
+                    Id = TeamDataConstants.BulgareneId,
                     Name = "Ботев",
                     TownId = TownDataConstants.BulgareneId,
                 },
                 new Team()
                 {
-                    Id = TownDataConstants.VulchitrunId,
+                    Id = TeamDataConstants.VulchitrunId,
                     Name = "Ботев",
                     TownId = TownDataConstants.VulchitrunId,
                 },
                 new Team()
                 {
-                    Id = TownDataConstants.ZgalevoId,
+                    Id = TeamDataConstants.ZgalevoId,
                     Name = "Виная",
                     TownId = TownDataConstants.ZgalevoId,
                 },
                 new Team()
                 {
-                    Id = TownDataConstants.IzgrevId,
+                    Id = TeamDataConstants.IzgrevId,
                     Name = "Динамо",
                     TownId = TownDataConstants.IzgrevId,
                 },
                 new Team()
                 {
-                    Id = TownDataConstants.ObnovaId,
+                    Id = TeamDataConstants.ObnovaId,
                     Name = "Обнова",
                     TownId = TownDataConstants.ObnovaId,
                 },
                 new Team()
                 {
-                    Id = TownDataConstants.NovacheneId,
+                    Id = TeamDataConstants.NovacheneId,
                     Name = "Славия",
                     TownId = TownDataConstants.NovacheneId,
                 },
                 new Team()
                 {
-                    Id = TownDataConstants.MuselievoId,
+                    Id = TeamDataConstants.MuselievoId,
                     Name = "Спартак",
                     TownId = TownDataConstants.MuselievoId,
                 },
                 new Team()
                 {
-                    Id = TownDataConstants.PordimId,
+                    Id = TeamDataConstants.PordimId,
                     Name = "Пордим",
                     TownId = TownDataConstants.PordimId,
                 },
                 new Team()
                 {
-                    Id = TownDataConstants.BrushlqnicaId,
+                    Id = TeamDataConstants.BrushlqnicaId,
                     Name = "Чавдар",
                     TownId = TownDataConstants.BrushlqnicaId,
                 },

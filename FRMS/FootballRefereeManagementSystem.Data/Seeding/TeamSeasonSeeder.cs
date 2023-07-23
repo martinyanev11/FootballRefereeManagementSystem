@@ -12,72 +12,104 @@
             {
                 new TeamSeason()
                 {
-                    TeamId = TownDataConstants.TrunchovicaId,
-                    SeasonId = 2,
+                    TeamId = TeamDataConstants.TrunchovicaId,
+                    SeasonId = SeasonDataConstants.Season22And23Id,
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     ShirtColor = Color.White,
                     ManagerId = 1,
                 },
                 new TeamSeason()
                 {
-                    TeamId = TownDataConstants.GulqnciId,
-                    SeasonId = 2,
+                    TeamId = TeamDataConstants.GulqnciId,
+                    SeasonId = SeasonDataConstants.Season22And23Id,
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     ShirtColor = Color.Red,
                     ManagerId = 2,
                 },
                 new TeamSeason()
                 {
-                    TeamId = TownDataConstants.BeleneId,
-                    SeasonId = 2,
+                    TeamId = TeamDataConstants.BeleneId,
+                    SeasonId = SeasonDataConstants.Season22And23Id,
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     ShirtColor = Color.Blue,
                     ManagerId = 3,
                 },
                 new TeamSeason()
                 {
-                    TeamId = TownDataConstants.GrivicaId,
-                    SeasonId = 2,
+                    TeamId = TeamDataConstants.GrivicaId,
+                    SeasonId = SeasonDataConstants.Season22And23Id,
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     ShirtColor = Color.Yellow,
                     ManagerId = 4,
                 },
                 new TeamSeason()
                 {
-                    TeamId = TownDataConstants.BrestId,
-                    SeasonId = 2,
+                    TeamId = TeamDataConstants.TrunchovicaId,
+                    SeasonId = SeasonDataConstants.Season23And24Id,
+                    DivisionId = DivisionDataConstants.RegionalAGroupId,
+                    ShirtColor = Color.White,
+                    ManagerId = 1,
+                },
+                new TeamSeason()
+                {
+                    TeamId = TeamDataConstants.GulqnciId,
+                    SeasonId = SeasonDataConstants.Season23And24Id,
+                    DivisionId = DivisionDataConstants.RegionalAGroupId,
+                    ShirtColor = Color.Red,
+                    ManagerId = 2,
+                },
+                new TeamSeason()
+                {
+                    TeamId = TeamDataConstants.BeleneId,
+                    SeasonId = SeasonDataConstants.Season23And24Id,
+                    DivisionId = DivisionDataConstants.RegionalAGroupId,
+                    ShirtColor = Color.Blue,
+                    ManagerId = 3,
+                },
+                new TeamSeason()
+                {
+                    TeamId = TeamDataConstants.GrivicaId,
+                    SeasonId = SeasonDataConstants.Season23And24Id,
+                    DivisionId = DivisionDataConstants.RegionalAGroupId,
+                    ShirtColor = Color.Yellow,
+                    ManagerId = 4,
+                },
+                new TeamSeason()
+                {
+                    TeamId = TeamDataConstants.BrestId,
+                    SeasonId = SeasonDataConstants.Season23And24Id,
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     ShirtColor = Color.Pink,
                     ManagerId = 5,
                 },
                 new TeamSeason()
                 {
-                    TeamId = TownDataConstants.LepicaId,
-                    SeasonId = 2,
+                    TeamId = TeamDataConstants.LepicaId,
+                    SeasonId = SeasonDataConstants.Season23And24Id,
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     ShirtColor = Color.Purple,
                     ManagerId = 6,
                 },
                 new TeamSeason()
                 {
-                    TeamId = TownDataConstants.NikopolId,
-                    SeasonId = 2,
+                    TeamId = TeamDataConstants.NikopolId,
+                    SeasonId = SeasonDataConstants.Season23And24Id,
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     ShirtColor = Color.Orange,
                     ManagerId = 7,
                 },
                 new TeamSeason()
                 {
-                    TeamId = TownDataConstants.TrustenikId,
-                    SeasonId = 2,
+                    TeamId = TeamDataConstants.TrustenikId,
+                    SeasonId = SeasonDataConstants.Season23And24Id,
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     ShirtColor = Color.Black,
                     ManagerId = 8,
                 },
                 new TeamSeason()
                 {
-                    TeamId = TownDataConstants.BulgareneId,
-                    SeasonId = 1,
+                    TeamId = TeamDataConstants.BulgareneId,
+                    SeasonId = SeasonDataConstants.Season22And23Id,
                     DivisionId = DivisionDataConstants.RegionalBGroupId,
                     Wins = 8,
                     Draws = 3,
@@ -89,8 +121,8 @@
                 },
                 new TeamSeason()
                 {
-                    TeamId = TownDataConstants.VulchitrunId,
-                    SeasonId = 1,
+                    TeamId = TeamDataConstants.VulchitrunId,
+                    SeasonId = SeasonDataConstants.Season22And23Id,
                     DivisionId = DivisionDataConstants.RegionalBGroupId,
                     Wins = 1,
                     Draws = 1,
@@ -102,8 +134,8 @@
                 },
                 new TeamSeason()
                 {
-                    TeamId = TownDataConstants.ZgalevoId,
-                    SeasonId = 1,
+                    TeamId = TeamDataConstants.ZgalevoId,
+                    SeasonId = SeasonDataConstants.Season22And23Id,
                     DivisionId = DivisionDataConstants.RegionalBGroupId,
                     Wins = 6,
                     Draws = 1,
@@ -115,8 +147,8 @@
                 },
                 new TeamSeason()
                 {
-                    TeamId = TownDataConstants.IzgrevId,
-                    SeasonId = 1,
+                    TeamId = TeamDataConstants.IzgrevId,
+                    SeasonId = SeasonDataConstants.Season22And23Id,
                     DivisionId = DivisionDataConstants.RegionalBGroupId,
                     Wins = 11,
                     Draws = 2,
@@ -128,8 +160,8 @@
                 },
                 new TeamSeason()
                 {
-                    TeamId = TownDataConstants.ObnovaId,
-                    SeasonId = 1,
+                    TeamId = TeamDataConstants.ObnovaId,
+                    SeasonId = SeasonDataConstants.Season22And23Id,
                     DivisionId = DivisionDataConstants.RegionalBGroupId,
                     Wins = 13,
                     Draws = 1,
@@ -141,8 +173,8 @@
                 },
                 new TeamSeason()
                 {
-                    TeamId = TownDataConstants.NovacheneId,
-                    SeasonId = 1,
+                    TeamId = TeamDataConstants.NovacheneId,
+                    SeasonId = SeasonDataConstants.Season22And23Id,
                     DivisionId = DivisionDataConstants.RegionalBGroupId,
                     Wins = 4,
                     Draws = 1,
@@ -154,8 +186,8 @@
                 },
                 new TeamSeason()
                 {
-                    TeamId = TownDataConstants.MuselievoId,
-                    SeasonId = 1,
+                    TeamId = TeamDataConstants.MuselievoId,
+                    SeasonId = SeasonDataConstants.Season22And23Id,
                     DivisionId = DivisionDataConstants.RegionalBGroupId,
                     Wins = 5,
                     Draws = 2,
@@ -167,8 +199,8 @@
                 },
                 new TeamSeason()
                 {
-                    TeamId = TownDataConstants.PordimId,
-                    SeasonId = 1,
+                    TeamId = TeamDataConstants.PordimId,
+                    SeasonId = SeasonDataConstants.Season22And23Id,
                     DivisionId = DivisionDataConstants.RegionalBGroupId,
                     Wins = 4,
                     Draws = 3,
@@ -180,8 +212,8 @@
                 },
                 new TeamSeason()
                 {
-                    TeamId = TownDataConstants.BrushlqnicaId,
-                    SeasonId = 1,
+                    TeamId = TeamDataConstants.BrushlqnicaId,
+                    SeasonId = SeasonDataConstants.Season22And23Id,
                     DivisionId = DivisionDataConstants.RegionalBGroupId,
                     Wins = 11,
                     Draws = 4,

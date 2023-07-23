@@ -153,6 +153,93 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
 
                     b.HasComment("Customization of Default Identity User");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("ea01fe26-36c8-4daa-b1c8-8b9209e82478"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "2732dc73-1d92-4cfd-861d-5bc1d5fbdee1",
+                            Email = "referee@bfs.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "REFEREE@BFS.COM",
+                            NormalizedUserName = "REFEREE@BFS.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAx1olg0Q7c8nClYBF9bjzQ7yFIvYmdJuhRF/nliDzd6OkXuMD3XzDvX39wof2oeDg==",
+                            PhoneNumberConfirmed = false,
+                            RefereeId = 1,
+                            SecurityStamp = "1c6f9e35-d20d-439e-bb8e-7f2a1e697472",
+                            TwoFactorEnabled = false,
+                            UserName = "referee@bfs.com"
+                        },
+                        new
+                        {
+                            Id = new Guid("1e48bbc8-cbf0-494c-89e0-6bcccc36cc6a"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "cfd97abc-0042-4cf9-8f38-e9be15c33c34",
+                            Email = "assitant_referee1@bfs.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ASSITANT_REFEREE1@BFS.COM",
+                            NormalizedUserName = "ASSITANT_REFEREE1@BFS.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBsYTANdtpi4fXPK6kFNyD0m3S5v4d0Hl0jGSIYRKlhKvOhJ6fWBknCpjHGC8OgDHg==",
+                            PhoneNumberConfirmed = false,
+                            RefereeId = 2,
+                            SecurityStamp = "874c18db-15a7-4e23-8838-3c66d8faf2cc",
+                            TwoFactorEnabled = false,
+                            UserName = "assitant_referee1@bfs.com"
+                        },
+                        new
+                        {
+                            Id = new Guid("065a8654-fc52-43b4-8d3d-7e90a87e2bd9"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "54fbbba0-e699-4a1a-af57-1a4dff1b6e05",
+                            Email = "assitant_referee2@bfs.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ASSITANT_REFEREE2@BFS.COM",
+                            NormalizedUserName = "ASSITANT_REFEREE2@BFS.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOsid7cGk8SFkxDZOO6CwvLKVegsCNaQEa3IDICSzPUvARrHKuJeTkhU5wLkPDcyPg==",
+                            PhoneNumberConfirmed = false,
+                            RefereeId = 3,
+                            SecurityStamp = "2e120751-2ca3-475f-bfe4-f40e6f2964a6",
+                            TwoFactorEnabled = false,
+                            UserName = "assitant_referee2@bfs.com"
+                        },
+                        new
+                        {
+                            Id = new Guid("35e56d1c-a7c2-445d-9eb5-0cdaecb0ebb1"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "78cc6321-a2a8-4c16-8e5b-aa216c0b497a",
+                            Email = "delegate@bfs.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "DELEGATE@BFS.COM",
+                            NormalizedUserName = "DELEGATE@BFS.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEML5tq5GMN2UCtVkn2srEb8T9RYnU9q5YDhPFH4Gt21WC9V4LgivhF6by/rj9lNvTA==",
+                            PhoneNumberConfirmed = false,
+                            RefereeId = 4,
+                            SecurityStamp = "2e64ebbd-92ae-404a-8360-127a1d38edba",
+                            TwoFactorEnabled = false,
+                            UserName = "delegate@bfs.com"
+                        },
+                        new
+                        {
+                            Id = new Guid("d9f18631-5bdb-4b41-86f4-8d6dbe71efb6"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "2cc1913e-3ef1-461a-8750-dc7b56f31fdf",
+                            Email = "admin@bfs.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@BFS.COM",
+                            NormalizedUserName = "ADMIN@BFS.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHyD1vItUojYhbJ3x+frPKeQbn1UVVD+i81rDIex9PqaXCch6N66XMT/KcDcvlVaGw==",
+                            PhoneNumberConfirmed = false,
+                            RefereeId = 5,
+                            SecurityStamp = "e7b59d93-decc-4044-a889-2607f1f4aaf4",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@bfs.com"
+                        });
                 });
 
             modelBuilder.Entity("FootballRefereeManagementSystem.Data.Models.Article", b =>
@@ -193,6 +280,56 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.ToTable("Articles", (string)null);
 
                     b.HasComment("Any news or announcements on the platform");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Content = "На 08.06.2023г в ОС на БФС-Плевен се проведе заседание на СТК при ОС на БФС Плевен и бяха взети следните решения:\r\n\r\nНа 04.06.2023г. в среща от 18 кръг на първенството на „Б”ОФГ-изток между отборите на ФК\"Обнова-2022\" – Обнова и ФК\"Чавдар-1920\" – Бръшляница, проведена в с.Обнова от 18ч. В 80мин. на срещата при резултат 1:0 в полза на ФК\"Обнова-2022\" е отсъден 11-метров наказателен удар в полза на ФК\"Обнова-2022\".Следва бурен протест от състезателите на ФК\"Чавдар-1920\" – Бръшляница.Нанесени са удари на гл.съдия в главата и тялото от състезатели на ФК\"Чавдар-1920\" – Бръшляница.поради създалата се обстановка при която е застрашено здравето и сигурността на длъжностните лица и няма условия футболната среща да продължи, същата е прекратена.\r\n\r\nНа основание чл.24 ал.9 от наредбата на БФС,се присъжда служебна  загуба при резултат 4:0 в полза на ФК\"Обнова-2022\".\r\n\r\nНеизрядната страна няма право да обжалва наказанието по тази алинея.",
+                            CreatedOn = new DateTime(2023, 7, 22, 9, 21, 32, 365, DateTimeKind.Utc).AddTicks(444),
+                            IsActive = true,
+                            Title = "Заседание на СТК при ОС на БФС Плевен"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Content = "В среща от 17-ти кръг от първенството на „Б” ОФГ-запад между отборите на ФК\"Мизия-1924\" – Кнежа и ФК”Спартак-1924”-Койнаре проведена на 28.05. от 18ч. в гр.Кнежа и бяха взети следните решения:За навлизане на публиката на гостите от ФК”Спартак-1924”-Койнаре на терена по  време на срещата :Наказва ФК”Спартак-1924”-Койнаре с предупреждение, лишаване от домакинство и глоба в размер на 150/сто и петдесет/лева  по чл.37 ал.1 буква „в” от ДП.",
+                            CreatedOn = new DateTime(2023, 7, 22, 9, 21, 32, 365, DateTimeKind.Utc).AddTicks(452),
+                            IsActive = true,
+                            Title = "Решение на ДК- ОС на БФС Плевен"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Content = "В среща от 15-ти кръг от първенството на „Б” ОФГ-изток между отборите на ФК\"Славия\"-Новачене и ФК\"Обнова-2022\" - Обнова проведена на14.05.от 18ч. в с.Новачене и бяха взети следните решения:Наказва Явор Руменов Димитров  от отбора на ФК\"Славия\"-Новачене за получен червен картон със ССП за 1/една/ среща по чл.22 ал.1 т.1буква „з”от ДП.Наказва Галин Пламенов Георгиев от отбора на ФК\"Обнова-2022\" - Обнова за получен червен картон със ССП за 1/една/ среща по чл.22 ал.1 т.1буква „в”от ДП.",
+                            CreatedOn = new DateTime(2023, 7, 22, 9, 21, 32, 365, DateTimeKind.Utc).AddTicks(453),
+                            IsActive = true,
+                            Title = "Решение на ДК- ОС на БФС Плевен"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Content = "Съдийската комисия към Българския футболен съюз уведомява клубовете в системата на българското първенство, че от началото на новия спортно-състезателен сезон 2023/2024 г. в сила влизат някои промени и допълнения към Правилата на играта в съответствие с изискванията на Международния борд на футболните асоциации (IFAB).",
+                            CreatedOn = new DateTime(2022, 8, 20, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            Title = "Промени и допълнения в Правилата на играта, влизащи в сила през новия сезон"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Content = "Ръководителят на отдел „Техническо развитие“ към УЕФА Франк К. Лудолф изпрати официално писмо до Българския футболен съюз, в което изказва положителната оценка на европейската централа за програмата за развитие на обучители на треньори на БФС, която отговаря на стандартите на УЕФА.\nНа панела Jira, проведен в Нион на 5 май т.г., Българският футболен съюз и Треньорската школа по футбол са получили отлични отзиви за работата си с менторите на треньори.",
+                            CreatedOn = new DateTime(2022, 9, 15, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            Title = "УЕФА с положителна оценка за развитието на обучители на треньори у нас"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Content = "Заседанието премина при следния дневен ред.\r\n\r\n1.Разглеждане на жалба от ФК „Свобода ”-Милковица за нередовен състезател.\r\n\r\nСлед като СТК се запозна с жалбата и с приложените доказателства по нея установи:\r\n\r\n1.На 09.11.2022г. по време на футболната среща от 12-кръг на „Б”ОФГ-Център  между ФК\"Спартак\"-Божурица и ФК „Свобода ”-Милковица.проведена в с.Божурица от11ч.,взема участие нередовен състезател в отбора на ФК\"Спартак\"-Божурица",
+                            CreatedOn = new DateTime(2022, 11, 10, 0, 0, 0, 0, DateTimeKind.Utc),
+                            IsActive = true,
+                            Title = "Протокол №8 от заседание на СТК при ОС на БФС Плевен"
+                        });
                 });
 
             modelBuilder.Entity("FootballRefereeManagementSystem.Data.Models.Division", b =>
@@ -215,6 +352,33 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.ToTable("Divisions", (string)null);
 
                     b.HasComment("Division represents the level of the teams playing in it");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Първа професионална футболна лига"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Втора професионална футболна лига"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Трета аматьорска футболна лига"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "„А“ областнa футболнa групa"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "„Б“ областнa футболнa групa"
+                        });
                 });
 
             modelBuilder.Entity("FootballRefereeManagementSystem.Data.Models.Manager", b =>
@@ -247,6 +411,36 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.ToTable("Managers", (string)null);
 
                     b.HasComment("Manager is the one who is in charge of team");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Age = 62,
+                            FirstName = "Александър",
+                            LastName = "Георгиев"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Age = 64,
+                            FirstName = "Марио",
+                            LastName = "Борисов"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Age = 33,
+                            FirstName = "Кристиян",
+                            LastName = "Николов"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Age = 62,
+                            FirstName = "Иво",
+                            LastName = "Петров"
+                        });
                 });
 
             modelBuilder.Entity("FootballRefereeManagementSystem.Data.Models.Match", b =>
@@ -296,10 +490,6 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         .HasColumnType("int")
                         .HasComment("Season during which match takes place");
 
-                    b.Property<int>("SeasonRound")
-                        .HasColumnType("int")
-                        .HasComment("Specifies in which round of matches this particular match will be played");
-
                     b.Property<int>("TownId")
                         .HasColumnType("int")
                         .HasComment("Town in which the match is played");
@@ -317,6 +507,165 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.ToTable("Matches", (string)null);
 
                     b.HasComment("Information about a football match");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AwayTeamId = 2,
+                            AwayTeamScore = 0,
+                            DivisionId = 4,
+                            FixtureTime = new DateTime(2022, 9, 17, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 1,
+                            HomeTeamScore = 0,
+                            RefereeSquadId = new Guid("5f7a5bad-da9c-4fd9-871a-483492e9bdaa"),
+                            SeasonId = 1,
+                            TownId = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AwayTeamId = 3,
+                            AwayTeamScore = 0,
+                            DivisionId = 4,
+                            FixtureTime = new DateTime(2022, 9, 24, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 1,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            TownId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AwayTeamId = 4,
+                            AwayTeamScore = 0,
+                            DivisionId = 4,
+                            FixtureTime = new DateTime(2022, 10, 1, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 1,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            TownId = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AwayTeamId = 1,
+                            AwayTeamScore = 0,
+                            DivisionId = 4,
+                            FixtureTime = new DateTime(2022, 10, 8, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 2,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            TownId = 3
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AwayTeamId = 3,
+                            AwayTeamScore = 0,
+                            DivisionId = 4,
+                            FixtureTime = new DateTime(2022, 9, 25, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 2,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            TownId = 3
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AwayTeamId = 4,
+                            AwayTeamScore = 0,
+                            DivisionId = 4,
+                            FixtureTime = new DateTime(2022, 9, 18, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 2,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            TownId = 3
+                        },
+                        new
+                        {
+                            Id = 7,
+                            AwayTeamId = 1,
+                            AwayTeamScore = 0,
+                            DivisionId = 4,
+                            FixtureTime = new DateTime(2022, 10, 2, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 3,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            TownId = 4
+                        },
+                        new
+                        {
+                            Id = 8,
+                            AwayTeamId = 2,
+                            AwayTeamScore = 0,
+                            DivisionId = 4,
+                            FixtureTime = new DateTime(2022, 10, 9, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 3,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            TownId = 4
+                        },
+                        new
+                        {
+                            Id = 9,
+                            AwayTeamId = 4,
+                            AwayTeamScore = 0,
+                            DivisionId = 4,
+                            FixtureTime = new DateTime(2022, 9, 17, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 3,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            TownId = 4
+                        },
+                        new
+                        {
+                            Id = 10,
+                            AwayTeamId = 1,
+                            AwayTeamScore = 0,
+                            DivisionId = 4,
+                            FixtureTime = new DateTime(2022, 9, 25, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 4,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            TownId = 5
+                        },
+                        new
+                        {
+                            Id = 11,
+                            AwayTeamId = 2,
+                            AwayTeamScore = 0,
+                            DivisionId = 4,
+                            FixtureTime = new DateTime(2022, 9, 24, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 4,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            TownId = 5
+                        },
+                        new
+                        {
+                            Id = 12,
+                            AwayTeamId = 3,
+                            AwayTeamScore = 0,
+                            DivisionId = 4,
+                            FixtureTime = new DateTime(2022, 10, 8, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 4,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            TownId = 5
+                        });
                 });
 
             modelBuilder.Entity("FootballRefereeManagementSystem.Data.Models.Message", b =>
@@ -390,6 +739,316 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.ToTable("Players", (string)null);
 
                     b.HasComment("Player playing in specific team during specific season");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Age = 33,
+                            FirstName = "Христо",
+                            LastName = "Иванов"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Age = 15,
+                            FirstName = "Калоян",
+                            LastName = "Михайлов"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Age = 35,
+                            FirstName = "Антон",
+                            LastName = "Емилов"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Age = 33,
+                            FirstName = "Георги",
+                            LastName = "Андреев"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Age = 34,
+                            FirstName = "Радослав",
+                            LastName = "Николов"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Age = 15,
+                            FirstName = "Стефанос",
+                            LastName = "Калоянов"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Age = 36,
+                            FirstName = "Димо",
+                            LastName = "Владимиров"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Age = 32,
+                            FirstName = "Иво",
+                            LastName = "Емилов"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Age = 18,
+                            FirstName = "Велин",
+                            LastName = "Андреев"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Age = 38,
+                            FirstName = "Радослав",
+                            LastName = "Викторов"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Age = 26,
+                            FirstName = "Георгиос",
+                            LastName = "Ивайлов"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Age = 28,
+                            FirstName = "Александър",
+                            LastName = "Василев"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Age = 30,
+                            FirstName = "Калоян",
+                            LastName = "Георгиев"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Age = 23,
+                            FirstName = "Александър",
+                            LastName = "Емилов"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Age = 34,
+                            FirstName = "Калоян",
+                            LastName = "Христов"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Age = 31,
+                            FirstName = "Михаил",
+                            LastName = "Стефанов"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Age = 34,
+                            FirstName = "Даниел",
+                            LastName = "Георгиев"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Age = 18,
+                            FirstName = "Антонио",
+                            LastName = "Любомиров"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Age = 33,
+                            FirstName = "Роберт",
+                            LastName = "Димитров"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Age = 39,
+                            FirstName = "Николай",
+                            LastName = "Андреев"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Age = 37,
+                            FirstName = "Васил",
+                            LastName = "Емилов"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Age = 20,
+                            FirstName = "Борислав",
+                            LastName = "Симеонов"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Age = 24,
+                            FirstName = "Илия",
+                            LastName = "Димитров"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Age = 22,
+                            FirstName = "Любен",
+                            LastName = "Михаелов"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Age = 32,
+                            FirstName = "Ивайло",
+                            LastName = "Димов"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Age = 35,
+                            FirstName = "Владимир",
+                            LastName = "Ивов"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Age = 37,
+                            FirstName = "Тодор",
+                            LastName = "Велинов"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Age = 20,
+                            FirstName = "Ангел",
+                            LastName = "Христов"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Age = 17,
+                            FirstName = "Георги",
+                            LastName = "Антониев"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Age = 20,
+                            FirstName = "Радослав",
+                            LastName = "Илиев"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Age = 30,
+                            FirstName = "Георги",
+                            LastName = "Ивов"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Age = 23,
+                            FirstName = "Георгиос",
+                            LastName = "Георгиев"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Age = 15,
+                            FirstName = "Марин",
+                            LastName = "Димов"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Age = 24,
+                            FirstName = "Ивайло",
+                            LastName = "Илиев"
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Age = 23,
+                            FirstName = "Илия",
+                            LastName = "Емилов"
+                        },
+                        new
+                        {
+                            Id = 36,
+                            Age = 21,
+                            FirstName = "Христо",
+                            LastName = "Кристиянов"
+                        },
+                        new
+                        {
+                            Id = 37,
+                            Age = 37,
+                            FirstName = "Алексей",
+                            LastName = "Андреев"
+                        },
+                        new
+                        {
+                            Id = 38,
+                            Age = 24,
+                            FirstName = "Никола",
+                            LastName = "Янков"
+                        },
+                        new
+                        {
+                            Id = 39,
+                            Age = 21,
+                            FirstName = "Михаел",
+                            LastName = "Бориславов"
+                        },
+                        new
+                        {
+                            Id = 40,
+                            Age = 20,
+                            FirstName = "Мартин",
+                            LastName = "Димитров"
+                        },
+                        new
+                        {
+                            Id = 41,
+                            Age = 35,
+                            FirstName = "Георгиос",
+                            LastName = "Борисов"
+                        },
+                        new
+                        {
+                            Id = 42,
+                            Age = 39,
+                            FirstName = "Виктор",
+                            LastName = "Михаелов"
+                        },
+                        new
+                        {
+                            Id = 43,
+                            Age = 24,
+                            FirstName = "Михаил",
+                            LastName = "Стефаносов"
+                        },
+                        new
+                        {
+                            Id = 44,
+                            Age = 24,
+                            FirstName = "Виктор",
+                            LastName = "Робертов"
+                        });
                 });
 
             modelBuilder.Entity("FootballRefereeManagementSystem.Data.Models.PlayerTeamSeason", b =>
@@ -412,6 +1071,272 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.ToTable("PlayerTeamSeason", (string)null);
 
                     b.HasComment("Player playing in a team during a season");
+
+                    b.HasData(
+                        new
+                        {
+                            TeamId = 1,
+                            SeasonId = 1,
+                            PlayerId = 1
+                        },
+                        new
+                        {
+                            TeamId = 1,
+                            SeasonId = 1,
+                            PlayerId = 2
+                        },
+                        new
+                        {
+                            TeamId = 1,
+                            SeasonId = 1,
+                            PlayerId = 3
+                        },
+                        new
+                        {
+                            TeamId = 1,
+                            SeasonId = 1,
+                            PlayerId = 4
+                        },
+                        new
+                        {
+                            TeamId = 1,
+                            SeasonId = 1,
+                            PlayerId = 5
+                        },
+                        new
+                        {
+                            TeamId = 1,
+                            SeasonId = 1,
+                            PlayerId = 6
+                        },
+                        new
+                        {
+                            TeamId = 1,
+                            SeasonId = 1,
+                            PlayerId = 7
+                        },
+                        new
+                        {
+                            TeamId = 1,
+                            SeasonId = 1,
+                            PlayerId = 8
+                        },
+                        new
+                        {
+                            TeamId = 1,
+                            SeasonId = 1,
+                            PlayerId = 9
+                        },
+                        new
+                        {
+                            TeamId = 1,
+                            SeasonId = 1,
+                            PlayerId = 10
+                        },
+                        new
+                        {
+                            TeamId = 1,
+                            SeasonId = 1,
+                            PlayerId = 11
+                        },
+                        new
+                        {
+                            TeamId = 2,
+                            SeasonId = 1,
+                            PlayerId = 12
+                        },
+                        new
+                        {
+                            TeamId = 2,
+                            SeasonId = 1,
+                            PlayerId = 13
+                        },
+                        new
+                        {
+                            TeamId = 2,
+                            SeasonId = 1,
+                            PlayerId = 14
+                        },
+                        new
+                        {
+                            TeamId = 2,
+                            SeasonId = 1,
+                            PlayerId = 15
+                        },
+                        new
+                        {
+                            TeamId = 2,
+                            SeasonId = 1,
+                            PlayerId = 16
+                        },
+                        new
+                        {
+                            TeamId = 2,
+                            SeasonId = 1,
+                            PlayerId = 17
+                        },
+                        new
+                        {
+                            TeamId = 2,
+                            SeasonId = 1,
+                            PlayerId = 18
+                        },
+                        new
+                        {
+                            TeamId = 2,
+                            SeasonId = 1,
+                            PlayerId = 19
+                        },
+                        new
+                        {
+                            TeamId = 2,
+                            SeasonId = 1,
+                            PlayerId = 20
+                        },
+                        new
+                        {
+                            TeamId = 2,
+                            SeasonId = 1,
+                            PlayerId = 21
+                        },
+                        new
+                        {
+                            TeamId = 2,
+                            SeasonId = 1,
+                            PlayerId = 22
+                        },
+                        new
+                        {
+                            TeamId = 3,
+                            SeasonId = 1,
+                            PlayerId = 23
+                        },
+                        new
+                        {
+                            TeamId = 3,
+                            SeasonId = 1,
+                            PlayerId = 24
+                        },
+                        new
+                        {
+                            TeamId = 3,
+                            SeasonId = 1,
+                            PlayerId = 25
+                        },
+                        new
+                        {
+                            TeamId = 3,
+                            SeasonId = 1,
+                            PlayerId = 26
+                        },
+                        new
+                        {
+                            TeamId = 3,
+                            SeasonId = 1,
+                            PlayerId = 27
+                        },
+                        new
+                        {
+                            TeamId = 3,
+                            SeasonId = 1,
+                            PlayerId = 28
+                        },
+                        new
+                        {
+                            TeamId = 3,
+                            SeasonId = 1,
+                            PlayerId = 29
+                        },
+                        new
+                        {
+                            TeamId = 3,
+                            SeasonId = 1,
+                            PlayerId = 30
+                        },
+                        new
+                        {
+                            TeamId = 3,
+                            SeasonId = 1,
+                            PlayerId = 31
+                        },
+                        new
+                        {
+                            TeamId = 3,
+                            SeasonId = 1,
+                            PlayerId = 32
+                        },
+                        new
+                        {
+                            TeamId = 3,
+                            SeasonId = 1,
+                            PlayerId = 33
+                        },
+                        new
+                        {
+                            TeamId = 4,
+                            SeasonId = 1,
+                            PlayerId = 34
+                        },
+                        new
+                        {
+                            TeamId = 4,
+                            SeasonId = 1,
+                            PlayerId = 35
+                        },
+                        new
+                        {
+                            TeamId = 4,
+                            SeasonId = 1,
+                            PlayerId = 36
+                        },
+                        new
+                        {
+                            TeamId = 4,
+                            SeasonId = 1,
+                            PlayerId = 37
+                        },
+                        new
+                        {
+                            TeamId = 4,
+                            SeasonId = 1,
+                            PlayerId = 38
+                        },
+                        new
+                        {
+                            TeamId = 4,
+                            SeasonId = 1,
+                            PlayerId = 39
+                        },
+                        new
+                        {
+                            TeamId = 4,
+                            SeasonId = 1,
+                            PlayerId = 40
+                        },
+                        new
+                        {
+                            TeamId = 4,
+                            SeasonId = 1,
+                            PlayerId = 41
+                        },
+                        new
+                        {
+                            TeamId = 4,
+                            SeasonId = 1,
+                            PlayerId = 42
+                        },
+                        new
+                        {
+                            TeamId = 4,
+                            SeasonId = 1,
+                            PlayerId = 43
+                        },
+                        new
+                        {
+                            TeamId = 4,
+                            SeasonId = 1,
+                            PlayerId = 44
+                        });
                 });
 
             modelBuilder.Entity("FootballRefereeManagementSystem.Data.Models.Referee", b =>
@@ -489,6 +1414,83 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.ToTable("Referees", (string)null);
 
                     b.HasComment("The main entity of the application");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Age = 54,
+                            CareerStart = new DateTime(2017, 10, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Contact = "0915433499",
+                            CurrentlyAppointedMatchesCount = 0,
+                            FirstName = "Ивайло",
+                            IsAvaliable = true,
+                            LastName = "Любенов",
+                            Role = 0,
+                            TotalMatchesOfficiated = 0,
+                            TownId = 1,
+                            UserId = new Guid("ea01fe26-36c8-4daa-b1c8-8b9209e82478")
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Age = 50,
+                            CareerStart = new DateTime(2023, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Contact = "0996526700",
+                            CurrentlyAppointedMatchesCount = 0,
+                            FirstName = "Христо",
+                            IsAvaliable = true,
+                            LastName = "Борисов",
+                            Role = 1,
+                            TotalMatchesOfficiated = 0,
+                            TownId = 1,
+                            UserId = new Guid("1e48bbc8-cbf0-494c-89e0-6bcccc36cc6a")
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Age = 41,
+                            CareerStart = new DateTime(2022, 2, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Contact = "0912365117",
+                            CurrentlyAppointedMatchesCount = 0,
+                            FirstName = "Борислав",
+                            IsAvaliable = true,
+                            LastName = "Кристиянов",
+                            Role = 1,
+                            TotalMatchesOfficiated = 0,
+                            TownId = 1,
+                            UserId = new Guid("065a8654-fc52-43b4-8d3d-7e90a87e2bd9")
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Age = 28,
+                            CareerStart = new DateTime(2022, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Contact = "0991608752",
+                            CurrentlyAppointedMatchesCount = 0,
+                            FirstName = "Владимир",
+                            IsAvaliable = true,
+                            LastName = "Димов",
+                            Role = 2,
+                            TotalMatchesOfficiated = 0,
+                            TownId = 1,
+                            UserId = new Guid("35e56d1c-a7c2-445d-9eb5-0cdaecb0ebb1")
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Age = 54,
+                            CareerStart = new DateTime(2017, 9, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Contact = "0972187210",
+                            CurrentlyAppointedMatchesCount = 0,
+                            FirstName = "Янко",
+                            IsAvaliable = false,
+                            LastName = "Георгиев",
+                            Role = 3,
+                            TotalMatchesOfficiated = 0,
+                            TownId = 1,
+                            UserId = new Guid("d9f18631-5bdb-4b41-86f4-8d6dbe71efb6")
+                        });
                 });
 
             modelBuilder.Entity("FootballRefereeManagementSystem.Data.Models.RefereeDivision", b =>
@@ -512,6 +1514,74 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.ToTable("RefereesDivisions", (string)null);
 
                     b.HasComment("Mapping table for Referee and Division");
+
+                    b.HasData(
+                        new
+                        {
+                            RefereeId = 1,
+                            DivisionId = 5,
+                            DivisionMatchesOfficiated = 0
+                        },
+                        new
+                        {
+                            RefereeId = 1,
+                            DivisionId = 4,
+                            DivisionMatchesOfficiated = 0
+                        },
+                        new
+                        {
+                            RefereeId = 2,
+                            DivisionId = 5,
+                            DivisionMatchesOfficiated = 0
+                        },
+                        new
+                        {
+                            RefereeId = 2,
+                            DivisionId = 4,
+                            DivisionMatchesOfficiated = 0
+                        },
+                        new
+                        {
+                            RefereeId = 3,
+                            DivisionId = 5,
+                            DivisionMatchesOfficiated = 0
+                        },
+                        new
+                        {
+                            RefereeId = 3,
+                            DivisionId = 4,
+                            DivisionMatchesOfficiated = 0
+                        },
+                        new
+                        {
+                            RefereeId = 4,
+                            DivisionId = 5,
+                            DivisionMatchesOfficiated = 0
+                        },
+                        new
+                        {
+                            RefereeId = 4,
+                            DivisionId = 4,
+                            DivisionMatchesOfficiated = 0
+                        },
+                        new
+                        {
+                            RefereeId = 4,
+                            DivisionId = 3,
+                            DivisionMatchesOfficiated = 0
+                        },
+                        new
+                        {
+                            RefereeId = 5,
+                            DivisionId = 2,
+                            DivisionMatchesOfficiated = 0
+                        },
+                        new
+                        {
+                            RefereeId = 5,
+                            DivisionId = 1,
+                            DivisionMatchesOfficiated = 0
+                        });
                 });
 
             modelBuilder.Entity("FootballRefereeManagementSystem.Data.Models.RefereeSquad", b =>
@@ -557,6 +1627,17 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.ToTable("RefereesSquads", (string)null);
 
                     b.HasComment("Every referee squad consists of 1 main ref, 2 assitants and a delegate");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("5f7a5bad-da9c-4fd9-871a-483492e9bdaa"),
+                            DelegateId = 4,
+                            FirstAssistantRefereeId = 2,
+                            MainRefereeId = 1,
+                            MatchId = 1,
+                            SecondAssistantRefereeId = 3
+                        });
                 });
 
             modelBuilder.Entity("FootballRefereeManagementSystem.Data.Models.RegistrationToken", b =>
@@ -614,6 +1695,15 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.ToTable("Seasons", (string)null);
 
                     b.HasComment("Season is the timespan in which all matches between teams are played");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "2022/23",
+                            End = new DateTime(2023, 5, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Start = new DateTime(2022, 9, 16, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("FootballRefereeManagementSystem.Data.Models.Team", b =>
@@ -642,6 +1732,32 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.ToTable("Teams", (string)null);
 
                     b.HasComment("Team that plays matches in specific division during specific season");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Ботев",
+                            TownId = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Вихър",
+                            TownId = 3
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Гигант",
+                            TownId = 4
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Космос",
+                            TownId = 5
+                        });
                 });
 
             modelBuilder.Entity("FootballRefereeManagementSystem.Data.Models.TeamSeason", b =>
@@ -705,6 +1821,68 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.ToTable("TeamsSeasons", (string)null);
 
                     b.HasComment("Mapping table for team and season");
+
+                    b.HasData(
+                        new
+                        {
+                            TeamId = 1,
+                            SeasonId = 1,
+                            DivisionId = 4,
+                            Draws = 0,
+                            GoalsAgainst = 0,
+                            GoalsFor = 0,
+                            Losses = 0,
+                            ManagerId = 1,
+                            Placement = 1,
+                            Points = 0,
+                            ShirtColor = 11,
+                            Wins = 0
+                        },
+                        new
+                        {
+                            TeamId = 2,
+                            SeasonId = 1,
+                            DivisionId = 4,
+                            Draws = 0,
+                            GoalsAgainst = 0,
+                            GoalsFor = 0,
+                            Losses = 0,
+                            ManagerId = 2,
+                            Placement = 1,
+                            Points = 0,
+                            ShirtColor = 0,
+                            Wins = 0
+                        },
+                        new
+                        {
+                            TeamId = 3,
+                            SeasonId = 1,
+                            DivisionId = 4,
+                            Draws = 0,
+                            GoalsAgainst = 0,
+                            GoalsFor = 0,
+                            Losses = 0,
+                            ManagerId = 3,
+                            Placement = 1,
+                            Points = 0,
+                            ShirtColor = 4,
+                            Wins = 0
+                        },
+                        new
+                        {
+                            TeamId = 4,
+                            SeasonId = 1,
+                            DivisionId = 4,
+                            Draws = 0,
+                            GoalsAgainst = 0,
+                            GoalsFor = 0,
+                            Losses = 0,
+                            ManagerId = 4,
+                            Placement = 1,
+                            Points = 0,
+                            ShirtColor = 2,
+                            Wins = 0
+                        });
                 });
 
             modelBuilder.Entity("FootballRefereeManagementSystem.Data.Models.Town", b =>
@@ -745,6 +1923,53 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.ToTable("Towns", (string)null);
 
                     b.HasComment("Where teams and referees are located and matches are played");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Distance = 0.0,
+                            Name = "Плевен",
+                            TravelCost = 0.0,
+                            TravelTime = 0,
+                            ZoneId = 4
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Distance = 0.0,
+                            Name = "Трънчовица",
+                            TravelCost = 0.0,
+                            TravelTime = 0,
+                            ZoneId = 4
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Distance = 0.0,
+                            Name = "Гулянци",
+                            TravelCost = 0.0,
+                            TravelTime = 0,
+                            ZoneId = 4
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Distance = 0.0,
+                            Name = "Белене",
+                            TravelCost = 0.0,
+                            TravelTime = 0,
+                            ZoneId = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Distance = 0.0,
+                            Name = "Гривица",
+                            TravelCost = 0.0,
+                            TravelTime = 0,
+                            ZoneId = 4
+                        });
                 });
 
             modelBuilder.Entity("FootballRefereeManagementSystem.Data.Models.Zone", b =>
@@ -767,6 +1992,28 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.ToTable("Zones", (string)null);
 
                     b.HasComment("Zone that is part of region in the country");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Плевен Изток"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Плевен Запад"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Плевен Център"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Плевенска Област"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", b =>

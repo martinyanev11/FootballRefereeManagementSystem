@@ -16,8 +16,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.LepicaId,
                     FixtureTime = new DateTime(2022, 9, 17, 17, 0, 0),
-                    HomeTeamId = TownDataConstants.LepicaId,
-                    AwayTeamId = TownDataConstants.GrivicaId,
+                    HomeTeamId = TeamDataConstants.LepicaId,
+                    AwayTeamId = TeamDataConstants.GrivicaId,
                     SeasonId = 2,
                     RefereeSquadId = new Guid(RefereeSquadDataConstants.RefereeSquadGuid)
                 },
@@ -27,8 +27,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.BrestId,
                     FixtureTime = new DateTime(2022, 9, 17, 17, 0, 0),
-                    HomeTeamId = TownDataConstants.BrestId,
-                    AwayTeamId = TownDataConstants.GulqnciId,
+                    HomeTeamId = TeamDataConstants.BrestId,
+                    AwayTeamId = TeamDataConstants.GulqnciId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -37,8 +37,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.TrustenikId,
                     FixtureTime = new DateTime(2022, 9, 17, 17, 0, 0),
-                    HomeTeamId = TownDataConstants.TrustenikId,
-                    AwayTeamId = TownDataConstants.TrunchovicaId,
+                    HomeTeamId = TeamDataConstants.TrustenikId,
+                    AwayTeamId = TeamDataConstants.TrunchovicaId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -47,8 +47,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.NikopolId,
                     FixtureTime = new DateTime(2022, 9, 17, 17, 0, 0),
-                    HomeTeamId = TownDataConstants.NikopolId,
-                    AwayTeamId = TownDataConstants.BeleneId,
+                    HomeTeamId = TeamDataConstants.NikopolId,
+                    AwayTeamId = TeamDataConstants.BeleneId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -57,8 +57,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.GrivicaId,
                     FixtureTime = new DateTime(2022, 9, 24, 17, 0, 0),
-                    HomeTeamId = TownDataConstants.GrivicaId,
-                    AwayTeamId = TownDataConstants.BeleneId,
+                    HomeTeamId = TeamDataConstants.GrivicaId,
+                    AwayTeamId = TeamDataConstants.BeleneId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -67,8 +67,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.TrunchovicaId,
                     FixtureTime = new DateTime(2022, 9, 24, 17, 0, 0),
-                    HomeTeamId = TownDataConstants.TrunchovicaId,
-                    AwayTeamId = TownDataConstants.NikopolId,
+                    HomeTeamId = TeamDataConstants.TrunchovicaId,
+                    AwayTeamId = TeamDataConstants.NikopolId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -77,8 +77,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.GulqnciId,
                     FixtureTime = new DateTime(2022, 9, 24, 17, 0, 0),
-                    HomeTeamId = TownDataConstants.GulqnciId,
-                    AwayTeamId = TownDataConstants.TrustenikId,
+                    HomeTeamId = TeamDataConstants.GulqnciId,
+                    AwayTeamId = TeamDataConstants.TrustenikId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -87,8 +87,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.LepicaId,
                     FixtureTime = new DateTime(2022, 9, 24, 17, 0, 0),
-                    HomeTeamId = TownDataConstants.LepicaId,
-                    AwayTeamId = TownDataConstants.BrestId,
+                    HomeTeamId = TeamDataConstants.LepicaId,
+                    AwayTeamId = TeamDataConstants.BrestId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -97,8 +97,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.BrestId,
                     FixtureTime = new DateTime(2022, 10, 8, 16, 0, 0),
-                    HomeTeamId = TownDataConstants.BrestId,
-                    AwayTeamId = TownDataConstants.GrivicaId,
+                    HomeTeamId = TeamDataConstants.BrestId,
+                    AwayTeamId = TeamDataConstants.GrivicaId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -107,8 +107,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.TrustenikId,
                     FixtureTime = new DateTime(2022, 10, 8, 16, 0, 0),
-                    HomeTeamId = TownDataConstants.TrustenikId,
-                    AwayTeamId = TownDataConstants.LepicaId,
+                    HomeTeamId = TeamDataConstants.TrustenikId,
+                    AwayTeamId = TeamDataConstants.LepicaId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -117,8 +117,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.NikopolId,
                     FixtureTime = new DateTime(2022, 10, 8, 16, 0, 0),
-                    HomeTeamId = TownDataConstants.NikopolId,
-                    AwayTeamId = TownDataConstants.GulqnciId,
+                    HomeTeamId = TeamDataConstants.NikopolId,
+                    AwayTeamId = TeamDataConstants.GulqnciId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -127,8 +127,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.BeleneId,
                     FixtureTime = new DateTime(2022, 10, 8, 16, 0, 0),
-                    HomeTeamId = TownDataConstants.BeleneId,
-                    AwayTeamId = TownDataConstants.TrunchovicaId,
+                    HomeTeamId = TeamDataConstants.BeleneId,
+                    AwayTeamId = TeamDataConstants.TrunchovicaId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -137,8 +137,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.GrivicaId,
                     FixtureTime = new DateTime(2022, 10, 15, 16, 0, 0),
-                    HomeTeamId = TownDataConstants.GrivicaId,
-                    AwayTeamId = TownDataConstants.TrunchovicaId,
+                    HomeTeamId = TeamDataConstants.GrivicaId,
+                    AwayTeamId = TeamDataConstants.TrunchovicaId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -147,8 +147,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.GulqnciId,
                     FixtureTime = new DateTime(2022, 10, 15, 16, 0, 0),
-                    HomeTeamId = TownDataConstants.GulqnciId,
-                    AwayTeamId = TownDataConstants.BeleneId,
+                    HomeTeamId = TeamDataConstants.GulqnciId,
+                    AwayTeamId = TeamDataConstants.BeleneId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -157,8 +157,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.LepicaId,
                     FixtureTime = new DateTime(2022, 10, 15, 16, 0, 0),
-                    HomeTeamId = TownDataConstants.LepicaId,
-                    AwayTeamId = TownDataConstants.NikopolId,
+                    HomeTeamId = TeamDataConstants.LepicaId,
+                    AwayTeamId = TeamDataConstants.NikopolId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -167,8 +167,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.BrestId,
                     FixtureTime = new DateTime(2022, 10, 15, 16, 0, 0),
-                    HomeTeamId = TownDataConstants.BrestId,
-                    AwayTeamId = TownDataConstants.TrustenikId,
+                    HomeTeamId = TeamDataConstants.BrestId,
+                    AwayTeamId = TeamDataConstants.TrustenikId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -177,8 +177,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.TrustenikId,
                     FixtureTime = new DateTime(2022, 10, 22, 16, 0, 0),
-                    HomeTeamId = TownDataConstants.TrustenikId,
-                    AwayTeamId = TownDataConstants.GrivicaId,
+                    HomeTeamId = TeamDataConstants.TrustenikId,
+                    AwayTeamId = TeamDataConstants.GrivicaId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -187,8 +187,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.NikopolId,
                     FixtureTime = new DateTime(2022, 10, 22, 16, 0, 0),
-                    HomeTeamId = TownDataConstants.NikopolId,
-                    AwayTeamId = TownDataConstants.BrestId,
+                    HomeTeamId = TeamDataConstants.NikopolId,
+                    AwayTeamId = TeamDataConstants.BrestId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -197,8 +197,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.BeleneId,
                     FixtureTime = new DateTime(2022, 10, 22, 16, 0, 0),
-                    HomeTeamId = TownDataConstants.BeleneId,
-                    AwayTeamId = TownDataConstants.LepicaId,
+                    HomeTeamId = TeamDataConstants.BeleneId,
+                    AwayTeamId = TeamDataConstants.LepicaId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -207,8 +207,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.TrunchovicaId,
                     FixtureTime = new DateTime(2022, 10, 22, 16, 0, 0),
-                    HomeTeamId = TownDataConstants.TrunchovicaId,
-                    AwayTeamId = TownDataConstants.GulqnciId,
+                    HomeTeamId = TeamDataConstants.TrunchovicaId,
+                    AwayTeamId = TeamDataConstants.GulqnciId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -217,8 +217,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.GrivicaId,
                     FixtureTime = new DateTime(2022, 10, 29, 15, 0, 0),
-                    HomeTeamId = TownDataConstants.GrivicaId,
-                    AwayTeamId = TownDataConstants.GulqnciId,
+                    HomeTeamId = TeamDataConstants.GrivicaId,
+                    AwayTeamId = TeamDataConstants.GulqnciId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -227,8 +227,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.LepicaId,
                     FixtureTime = new DateTime(2022, 10, 29, 15, 0, 0),
-                    HomeTeamId = TownDataConstants.LepicaId,
-                    AwayTeamId = TownDataConstants.TrunchovicaId,
+                    HomeTeamId = TeamDataConstants.LepicaId,
+                    AwayTeamId = TeamDataConstants.TrunchovicaId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -237,8 +237,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.BrestId,
                     FixtureTime = new DateTime(2022, 10, 29, 15, 0, 0),
-                    HomeTeamId = TownDataConstants.BrestId,
-                    AwayTeamId = TownDataConstants.BeleneId,
+                    HomeTeamId = TeamDataConstants.BrestId,
+                    AwayTeamId = TeamDataConstants.BeleneId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -247,8 +247,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.TrustenikId,
                     FixtureTime = new DateTime(2022, 10, 29, 15, 0, 0),
-                    HomeTeamId = TownDataConstants.TrustenikId,
-                    AwayTeamId = TownDataConstants.NikopolId,
+                    HomeTeamId = TeamDataConstants.TrustenikId,
+                    AwayTeamId = TeamDataConstants.NikopolId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -257,8 +257,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.NikopolId,
                     FixtureTime = new DateTime(2022, 11, 5, 15, 0, 0),
-                    HomeTeamId = TownDataConstants.NikopolId,
-                    AwayTeamId = TownDataConstants.GrivicaId,
+                    HomeTeamId = TeamDataConstants.NikopolId,
+                    AwayTeamId = TeamDataConstants.GrivicaId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -267,8 +267,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.BeleneId,
                     FixtureTime = new DateTime(2022, 11, 5, 15, 0, 0),
-                    HomeTeamId = TownDataConstants.BeleneId,
-                    AwayTeamId = TownDataConstants.TrustenikId,
+                    HomeTeamId = TeamDataConstants.BeleneId,
+                    AwayTeamId = TeamDataConstants.TrustenikId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -277,8 +277,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.TrunchovicaId,
                     FixtureTime = new DateTime(2022, 11, 5, 15, 0, 0),
-                    HomeTeamId = TownDataConstants.TrunchovicaId,
-                    AwayTeamId = TownDataConstants.BrestId,
+                    HomeTeamId = TeamDataConstants.TrunchovicaId,
+                    AwayTeamId = TeamDataConstants.BrestId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -287,8 +287,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.GulqnciId,
                     FixtureTime = new DateTime(2022, 11, 5, 15, 0, 0),
-                    HomeTeamId = TownDataConstants.GulqnciId,
-                    AwayTeamId = TownDataConstants.LepicaId,
+                    HomeTeamId = TeamDataConstants.GulqnciId,
+                    AwayTeamId = TeamDataConstants.LepicaId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -297,8 +297,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.GrivicaId,
                     FixtureTime = new DateTime(2023, 3, 25, 16, 0, 0),
-                    HomeTeamId = TownDataConstants.GrivicaId,
-                    AwayTeamId = TownDataConstants.LepicaId,
+                    HomeTeamId = TeamDataConstants.GrivicaId,
+                    AwayTeamId = TeamDataConstants.LepicaId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -307,8 +307,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.GulqnciId,
                     FixtureTime = new DateTime(2023, 3, 25, 16, 0, 0),
-                    HomeTeamId = TownDataConstants.GulqnciId,
-                    AwayTeamId = TownDataConstants.BrestId,
+                    HomeTeamId = TeamDataConstants.GulqnciId,
+                    AwayTeamId = TeamDataConstants.BrestId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -317,8 +317,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.TrunchovicaId,
                     FixtureTime = new DateTime(2023, 3, 25, 16, 0, 0),
-                    HomeTeamId = TownDataConstants.TrunchovicaId,
-                    AwayTeamId = TownDataConstants.TrustenikId,
+                    HomeTeamId = TeamDataConstants.TrunchovicaId,
+                    AwayTeamId = TeamDataConstants.TrustenikId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -327,8 +327,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.BeleneId,
                     FixtureTime = new DateTime(2023, 3, 25, 16, 0, 0),
-                    HomeTeamId = TownDataConstants.BeleneId,
-                    AwayTeamId = TownDataConstants.NikopolId,
+                    HomeTeamId = TeamDataConstants.BeleneId,
+                    AwayTeamId = TeamDataConstants.NikopolId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -337,8 +337,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.BeleneId,
                     FixtureTime = new DateTime(2023, 4, 8, 15, 0, 0),
-                    HomeTeamId = TownDataConstants.BeleneId,
-                    AwayTeamId = TownDataConstants.GrivicaId,
+                    HomeTeamId = TeamDataConstants.BeleneId,
+                    AwayTeamId = TeamDataConstants.GrivicaId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -347,8 +347,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.NikopolId,
                     FixtureTime = new DateTime(2023, 4, 8, 15, 0, 0),
-                    HomeTeamId = TownDataConstants.NikopolId,
-                    AwayTeamId = TownDataConstants.TrunchovicaId,
+                    HomeTeamId = TeamDataConstants.NikopolId,
+                    AwayTeamId = TeamDataConstants.TrunchovicaId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -357,8 +357,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.TrustenikId,
                     FixtureTime = new DateTime(2023, 4, 8, 15, 0, 0),
-                    HomeTeamId = TownDataConstants.TrustenikId,
-                    AwayTeamId = TownDataConstants.GulqnciId,
+                    HomeTeamId = TeamDataConstants.TrustenikId,
+                    AwayTeamId = TeamDataConstants.GulqnciId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -367,8 +367,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.BrestId,
                     FixtureTime = new DateTime(2023, 4, 8, 15, 0, 0),
-                    HomeTeamId = TownDataConstants.BrestId,
-                    AwayTeamId = TownDataConstants.LepicaId,
+                    HomeTeamId = TeamDataConstants.BrestId,
+                    AwayTeamId = TeamDataConstants.LepicaId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -377,8 +377,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.GrivicaId,
                     FixtureTime = new DateTime(2023, 4, 22, 17, 0, 0),
-                    HomeTeamId = TownDataConstants.GrivicaId,
-                    AwayTeamId = TownDataConstants.BrestId,
+                    HomeTeamId = TeamDataConstants.GrivicaId,
+                    AwayTeamId = TeamDataConstants.BrestId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -387,8 +387,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.LepicaId,
                     FixtureTime = new DateTime(2023, 4, 22, 17, 0, 0),
-                    HomeTeamId = TownDataConstants.LepicaId,
-                    AwayTeamId = TownDataConstants.TrustenikId,
+                    HomeTeamId = TeamDataConstants.LepicaId,
+                    AwayTeamId = TeamDataConstants.TrustenikId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -397,8 +397,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.GulqnciId,
                     FixtureTime = new DateTime(2023, 4, 22, 17, 0, 0),
-                    HomeTeamId = TownDataConstants.GulqnciId,
-                    AwayTeamId = TownDataConstants.NikopolId,
+                    HomeTeamId = TeamDataConstants.GulqnciId,
+                    AwayTeamId = TeamDataConstants.NikopolId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -407,8 +407,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.TrunchovicaId,
                     FixtureTime = new DateTime(2023, 4, 22, 17, 0, 0),
-                    HomeTeamId = TownDataConstants.TrunchovicaId,
-                    AwayTeamId = TownDataConstants.BeleneId,
+                    HomeTeamId = TeamDataConstants.TrunchovicaId,
+                    AwayTeamId = TeamDataConstants.BeleneId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -417,8 +417,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.TrunchovicaId,
                     FixtureTime = new DateTime(2023, 4, 29, 17, 0, 0),
-                    HomeTeamId = TownDataConstants.TrunchovicaId,
-                    AwayTeamId = TownDataConstants.GrivicaId,
+                    HomeTeamId = TeamDataConstants.TrunchovicaId,
+                    AwayTeamId = TeamDataConstants.GrivicaId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -427,8 +427,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.BeleneId,
                     FixtureTime = new DateTime(2023, 4, 29, 17, 0, 0),
-                    HomeTeamId = TownDataConstants.BeleneId,
-                    AwayTeamId = TownDataConstants.GulqnciId,
+                    HomeTeamId = TeamDataConstants.BeleneId,
+                    AwayTeamId = TeamDataConstants.GulqnciId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -437,8 +437,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.NikopolId,
                     FixtureTime = new DateTime(2023, 4, 29, 17, 0, 0),
-                    HomeTeamId = TownDataConstants.NikopolId,
-                    AwayTeamId = TownDataConstants.LepicaId,
+                    HomeTeamId = TeamDataConstants.NikopolId,
+                    AwayTeamId = TeamDataConstants.LepicaId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -447,8 +447,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.TrustenikId,
                     FixtureTime = new DateTime(2023, 4, 29, 17, 0, 0),
-                    HomeTeamId = TownDataConstants.TrustenikId,
-                    AwayTeamId = TownDataConstants.BrestId,
+                    HomeTeamId = TeamDataConstants.TrustenikId,
+                    AwayTeamId = TeamDataConstants.BrestId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -457,8 +457,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.GrivicaId,
                     FixtureTime = new DateTime(2023, 5, 13, 18, 0, 0),
-                    HomeTeamId = TownDataConstants.GrivicaId,
-                    AwayTeamId = TownDataConstants.TrustenikId,
+                    HomeTeamId = TeamDataConstants.GrivicaId,
+                    AwayTeamId = TeamDataConstants.TrustenikId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -467,8 +467,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.BrestId,
                     FixtureTime = new DateTime(2023, 5, 13, 18, 0, 0),
-                    HomeTeamId = TownDataConstants.BrestId,
-                    AwayTeamId = TownDataConstants.NikopolId,
+                    HomeTeamId = TeamDataConstants.BrestId,
+                    AwayTeamId = TeamDataConstants.NikopolId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -477,8 +477,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.LepicaId,
                     FixtureTime = new DateTime(2023, 5, 13, 18, 0, 0),
-                    HomeTeamId = TownDataConstants.LepicaId,
-                    AwayTeamId = TownDataConstants.BeleneId,
+                    HomeTeamId = TeamDataConstants.LepicaId,
+                    AwayTeamId = TeamDataConstants.BeleneId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -487,8 +487,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.GulqnciId,
                     FixtureTime = new DateTime(2023, 5, 13, 18, 0, 0),
-                    HomeTeamId = TownDataConstants.GulqnciId,
-                    AwayTeamId = TownDataConstants.TrunchovicaId,
+                    HomeTeamId = TeamDataConstants.GulqnciId,
+                    AwayTeamId = TeamDataConstants.TrunchovicaId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -497,8 +497,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.GulqnciId,
                     FixtureTime = new DateTime(2023, 5, 20, 18, 0, 0),
-                    HomeTeamId = TownDataConstants.GulqnciId,
-                    AwayTeamId = TownDataConstants.GrivicaId,
+                    HomeTeamId = TeamDataConstants.GulqnciId,
+                    AwayTeamId = TeamDataConstants.GrivicaId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -507,8 +507,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.TrunchovicaId,
                     FixtureTime = new DateTime(2023, 5, 20, 18, 0, 0),
-                    HomeTeamId = TownDataConstants.TrunchovicaId,
-                    AwayTeamId = TownDataConstants.LepicaId,
+                    HomeTeamId = TeamDataConstants.TrunchovicaId,
+                    AwayTeamId = TeamDataConstants.LepicaId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -517,8 +517,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.BeleneId,
                     FixtureTime = new DateTime(2023, 5, 20, 18, 0, 0),
-                    HomeTeamId = TownDataConstants.BeleneId,
-                    AwayTeamId = TownDataConstants.BrestId,
+                    HomeTeamId = TeamDataConstants.BeleneId,
+                    AwayTeamId = TeamDataConstants.BrestId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -527,8 +527,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.NikopolId,
                     FixtureTime = new DateTime(2023, 5, 20, 18, 0, 0),
-                    HomeTeamId = TownDataConstants.NikopolId,
-                    AwayTeamId = TownDataConstants.TrustenikId,
+                    HomeTeamId = TeamDataConstants.NikopolId,
+                    AwayTeamId = TeamDataConstants.TrustenikId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -537,8 +537,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.GrivicaId,
                     FixtureTime = new DateTime(2023, 5, 27, 18, 0, 0),
-                    HomeTeamId = TownDataConstants.GrivicaId,
-                    AwayTeamId = TownDataConstants.NikopolId,
+                    HomeTeamId = TeamDataConstants.GrivicaId,
+                    AwayTeamId = TeamDataConstants.NikopolId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -547,8 +547,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.TrustenikId,
                     FixtureTime = new DateTime(2023, 5, 27, 18, 0, 0),
-                    HomeTeamId = TownDataConstants.TrustenikId,
-                    AwayTeamId = TownDataConstants.BeleneId,
+                    HomeTeamId = TeamDataConstants.TrustenikId,
+                    AwayTeamId = TeamDataConstants.BeleneId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -557,8 +557,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.BrestId,
                     FixtureTime = new DateTime(2023, 5, 27, 18, 0, 0),
-                    HomeTeamId = TownDataConstants.BrestId,
-                    AwayTeamId = TownDataConstants.TrunchovicaId,
+                    HomeTeamId = TeamDataConstants.BrestId,
+                    AwayTeamId = TeamDataConstants.TrunchovicaId,
                     SeasonId = 2,
                 },
                 new Match()
@@ -567,8 +567,8 @@
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     TownId = TownDataConstants.LepicaId,
                     FixtureTime = new DateTime(2023, 5, 27, 18, 0, 0),
-                    HomeTeamId = TownDataConstants.LepicaId,
-                    AwayTeamId = TownDataConstants.GulqnciId,
+                    HomeTeamId = TeamDataConstants.LepicaId,
+                    AwayTeamId = TeamDataConstants.GulqnciId,
                     SeasonId = 2,
                 },
             };
@@ -581,11 +581,11 @@
             int matchesPerRoundCounter = 1;
             int matchId = 57; // Start from next free ID after hard coded matches
 
-            DateTime fixtureTime = DateTime.Parse(SeasonDataConstants.S22And23Start); // First match is when season starts
+            DateTime fixtureTime = DateTime.Parse(SeasonDataConstants.S23And24Start); // First match is when season starts
 
-            for (int homeTeamId = TownDataConstants.BulgareneId; homeTeamId <= TownDataConstants.BrushlqnicaId; homeTeamId++)
+            for (int homeTeamId = TeamDataConstants.BulgareneId; homeTeamId <= TeamDataConstants.BrushlqnicaId; homeTeamId++)
             {
-                for (int awayTeamId = TownDataConstants.BulgareneId; awayTeamId <= TownDataConstants.BrushlqnicaId; awayTeamId++)
+                for (int awayTeamId = TeamDataConstants.BulgareneId; awayTeamId <= TeamDataConstants.BrushlqnicaId; awayTeamId++)
                 {
                     if (currentSeasonRound == 10 && !addedSeasonBreak) // Mid season break to be added
                     {
@@ -606,7 +606,7 @@
                         FixtureTime = fixtureTime,
                         HomeTeamId = homeTeamId,
                         AwayTeamId = awayTeamId,
-                        SeasonId = SeasonDataConstants.Season22And23Id,
+                        SeasonId = SeasonDataConstants.Season23And24Id,
                         SeasonRound = currentSeasonRound,
                     };
 

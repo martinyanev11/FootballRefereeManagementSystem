@@ -19,7 +19,7 @@
                 {
                     PlayerId = playerId,
                     TeamId = teamId,
-                    SeasonId = SeasonDataConstants.Season22And23Id
+                    SeasonId = SeasonDataConstants.Season23And24Id
                 };
 
                 ptsCollection.Add(pts);

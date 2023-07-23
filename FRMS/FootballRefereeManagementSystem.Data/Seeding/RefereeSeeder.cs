@@ -80,7 +80,7 @@
                     //CareerStart = GenerateRandomDateTime(2016, 1, 1),
                     Role = Role.Delegate,
                     TownId = TownDataConstants.PlevenTownId,
-                    UserId = new Guid(ApplicationUserDataConstants.DelegateSecurityStamp),
+                    UserId = new Guid(ApplicationUserDataConstants.DelegateId),
                     IsAvaliable = true
                 },
                 new Referee()
