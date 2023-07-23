@@ -19,7 +19,7 @@
                 new Season()
                 {
                     Id = SeasonDataConstants.Season23And24Id,
-                    Description = "2022/23",
+                    Description = "2023/24",
                     Start = DateTime.Parse(SeasonDataConstants.S23And24Start),
                     End = DateTime.Parse(SeasonDataConstants.S23And24End)
                 },

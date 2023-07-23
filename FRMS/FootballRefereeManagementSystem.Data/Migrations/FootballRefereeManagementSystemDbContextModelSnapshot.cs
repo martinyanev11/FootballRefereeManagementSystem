@@ -159,13 +159,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = new Guid("ea01fe26-36c8-4daa-b1c8-8b9209e82478"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ecc1779d-5c6a-410e-8bc9-8c24fcf629c1",
+                            ConcurrencyStamp = "ab6fd9bb-dd1e-41ac-a9a7-23b38fe7b4d4",
                             Email = "referee@bfs.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "REFEREE@BFS.COM",
                             NormalizedUserName = "REFEREE@BFS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAENbLLD5uh+Z+y0MGod/OQcZo3ZE17xzY4mmFmHONDDsn4BxQYFZrugiUjoiEk/CyNw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEdJ8Jr4g1hNuOzYqc3jugWRjWN7X+oAVx7rlTy8NvC5Y35ktCqDUEEv6WDqnkJodA==",
                             PhoneNumberConfirmed = false,
                             RefereeId = 1,
                             SecurityStamp = "db733aa2-e6af-45eb-89f4-f313843a9477",
@@ -176,13 +176,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = new Guid("1e48bbc8-cbf0-494c-89e0-6bcccc36cc6a"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d879322c-9b6c-4add-9117-60aeb4129444",
+                            ConcurrencyStamp = "00ee8d3f-aca4-4577-ab85-569e0862eddf",
                             Email = "assitant_referee1@bfs.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ASSITANT_REFEREE1@BFS.COM",
                             NormalizedUserName = "ASSITANT_REFEREE1@BFS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEUx9hbIYRbRe2NkovSYXsiq6N8QBa7pnciLle0GPVZvOnrzA7oyVU1rhKQpvYbjdQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFMdnDMIUL/5XK3Le3T4LSfuZ7fbK5lwuijOu0ohfZAxnFqk+Sa6i3LXJVD74iOp4w==",
                             PhoneNumberConfirmed = false,
                             RefereeId = 2,
                             SecurityStamp = "953c5389-11bf-4a85-985e-8838dbc244e9",
@@ -193,13 +193,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = new Guid("065a8654-fc52-43b4-8d3d-7e90a87e2bd9"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b260400a-d943-416a-a368-c2109caee327",
+                            ConcurrencyStamp = "0c2f16a3-3f96-42b0-a52c-0475a6d146f3",
                             Email = "assitant_referee2@bfs.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ASSITANT_REFEREE2@BFS.COM",
                             NormalizedUserName = "ASSITANT_REFEREE2@BFS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEE/T+fLS7QH3q6CjHqZ673DuIIp9+MlTxGh+8dOqSCSi+wcUADpptXxWOhlp/sUC8A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELIOWxiKGvcP/egIc0F8dfeCDjQeUtpfJV10lzO+DUBb/oIQnhyEX2RSETUCKQtcSg==",
                             PhoneNumberConfirmed = false,
                             RefereeId = 3,
                             SecurityStamp = "54aa92fc-e351-4099-b8c2-2e11844b5055",
@@ -210,13 +210,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = new Guid("35e56d1c-a7c2-445d-9eb5-0cdaecb0ebb1"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "505499f7-7083-4c23-8d71-af28f3bf52ba",
+                            ConcurrencyStamp = "6d76d446-b7d7-4292-ab97-11b73ae73285",
                             Email = "delegate@bfs.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "DELEGATE@BFS.COM",
                             NormalizedUserName = "DELEGATE@BFS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEK1ejvrupZAl4gJiZVWXKiBjiV81CvUT+Le0gTmp5xlgZtqHOVM300e6xEoeY1QD1w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHfeh2HUJmESRv10VNZWucYbAbhoRyZof8zNJNqdvJCi5YcAtxQyQEB4+ggH7wf+NA==",
                             PhoneNumberConfirmed = false,
                             RefereeId = 4,
                             SecurityStamp = "0d2f845c-5cff-4c19-9b10-897c8e4293bf",
@@ -227,13 +227,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = new Guid("d9f18631-5bdb-4b41-86f4-8d6dbe71efb6"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1db3708c-c789-46dd-b26b-f987102eef22",
+                            ConcurrencyStamp = "76800a49-b066-4f09-b319-ad1b28b9aeef",
                             Email = "admin@bfs.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@BFS.COM",
                             NormalizedUserName = "ADMIN@BFS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAECcZVKrCN0qLtsizFnErnhaHjV+I77W2vHO3VTbI8Z0uOr0ATxypAdyMhIHoPnWoCw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFtbBU2Z6PPKGYlaI3aP4txh4habU8qbq9ndDvDZJeq4VXjwAfZfdk2MQdeDy1clqw==",
                             PhoneNumberConfirmed = false,
                             RefereeId = 5,
                             SecurityStamp = "e2dc0205-924a-40d8-88f7-7ebf282eba0f",
@@ -286,7 +286,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = 1,
                             Content = "На 08.06.2023г в ОС на БФС-Плевен се проведе заседание на СТК при ОС на БФС Плевен и бяха взети следните решения:\r\n\r\nНа 04.06.2023г. в среща от 18 кръг на първенството на „Б”ОФГ-изток между отборите на ФК\"Обнова-2022\" – Обнова и ФК\"Чавдар-1920\" – Бръшляница, проведена в с.Обнова от 18ч. В 80мин. на срещата при резултат 1:0 в полза на ФК\"Обнова-2022\" е отсъден 11-метров наказателен удар в полза на ФК\"Обнова-2022\".Следва бурен протест от състезателите на ФК\"Чавдар-1920\" – Бръшляница.Нанесени са удари на гл.съдия в главата и тялото от състезатели на ФК\"Чавдар-1920\" – Бръшляница.поради създалата се обстановка при която е застрашено здравето и сигурността на длъжностните лица и няма условия футболната среща да продължи, същата е прекратена.\r\n\r\nНа основание чл.24 ал.9 от наредбата на БФС,се присъжда служебна  загуба при резултат 4:0 в полза на ФК\"Обнова-2022\".\r\n\r\nНеизрядната страна няма право да обжалва наказанието по тази алинея.",
-                            CreatedOn = new DateTime(2023, 7, 23, 16, 20, 24, 882, DateTimeKind.Utc).AddTicks(4392),
+                            CreatedOn = new DateTime(2023, 7, 23, 17, 22, 48, 147, DateTimeKind.Utc).AddTicks(1509),
                             IsActive = true,
                             Title = "Заседание на СТК при ОС на БФС Плевен"
                         },
@@ -294,7 +294,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = 2,
                             Content = "В среща от 17-ти кръг от първенството на „Б” ОФГ-запад между отборите на ФК\"Мизия-1924\" – Кнежа и ФК”Спартак-1924”-Койнаре проведена на 28.05. от 18ч. в гр.Кнежа и бяха взети следните решения:За навлизане на публиката на гостите от ФК”Спартак-1924”-Койнаре на терена по  време на срещата :Наказва ФК”Спартак-1924”-Койнаре с предупреждение, лишаване от домакинство и глоба в размер на 150/сто и петдесет/лева  по чл.37 ал.1 буква „в” от ДП.",
-                            CreatedOn = new DateTime(2023, 7, 23, 16, 20, 24, 882, DateTimeKind.Utc).AddTicks(4397),
+                            CreatedOn = new DateTime(2023, 7, 23, 17, 22, 48, 147, DateTimeKind.Utc).AddTicks(1517),
                             IsActive = true,
                             Title = "Решение на ДК- ОС на БФС Плевен"
                         },
@@ -302,7 +302,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = 3,
                             Content = "В среща от 15-ти кръг от първенството на „Б” ОФГ-изток между отборите на ФК\"Славия\"-Новачене и ФК\"Обнова-2022\" - Обнова проведена на14.05.от 18ч. в с.Новачене и бяха взети следните решения:Наказва Явор Руменов Димитров  от отбора на ФК\"Славия\"-Новачене за получен червен картон със ССП за 1/една/ среща по чл.22 ал.1 т.1буква „з”от ДП.Наказва Галин Пламенов Георгиев от отбора на ФК\"Обнова-2022\" - Обнова за получен червен картон със ССП за 1/една/ среща по чл.22 ал.1 т.1буква „в”от ДП.",
-                            CreatedOn = new DateTime(2023, 7, 23, 16, 20, 24, 882, DateTimeKind.Utc).AddTicks(4399),
+                            CreatedOn = new DateTime(2023, 7, 23, 17, 22, 48, 147, DateTimeKind.Utc).AddTicks(1518),
                             IsActive = true,
                             Title = "Решение на ДК- ОС на БФС Плевен"
                         },
@@ -1420,6 +1420,1014 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                             SeasonId = 2,
                             SeasonRound = 0,
                             TownId = 7
+                        },
+                        new
+                        {
+                            Id = 57,
+                            AwayTeamId = 10,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 9,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 1,
+                            TownId = 10
+                        },
+                        new
+                        {
+                            Id = 58,
+                            AwayTeamId = 11,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 9,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 1,
+                            TownId = 10
+                        },
+                        new
+                        {
+                            Id = 59,
+                            AwayTeamId = 12,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 9,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 1,
+                            TownId = 10
+                        },
+                        new
+                        {
+                            Id = 60,
+                            AwayTeamId = 13,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 9,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 1,
+                            TownId = 10
+                        },
+                        new
+                        {
+                            Id = 61,
+                            AwayTeamId = 14,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 9,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 2,
+                            TownId = 10
+                        },
+                        new
+                        {
+                            Id = 62,
+                            AwayTeamId = 15,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 9,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 2,
+                            TownId = 10
+                        },
+                        new
+                        {
+                            Id = 63,
+                            AwayTeamId = 16,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 9,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 2,
+                            TownId = 10
+                        },
+                        new
+                        {
+                            Id = 64,
+                            AwayTeamId = 17,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 9,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 2,
+                            TownId = 10
+                        },
+                        new
+                        {
+                            Id = 65,
+                            AwayTeamId = 9,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 9, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 10,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 3,
+                            TownId = 11
+                        },
+                        new
+                        {
+                            Id = 66,
+                            AwayTeamId = 11,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 9, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 10,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 3,
+                            TownId = 11
+                        },
+                        new
+                        {
+                            Id = 67,
+                            AwayTeamId = 12,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 9, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 10,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 3,
+                            TownId = 11
+                        },
+                        new
+                        {
+                            Id = 68,
+                            AwayTeamId = 13,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 9, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 10,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 3,
+                            TownId = 11
+                        },
+                        new
+                        {
+                            Id = 69,
+                            AwayTeamId = 14,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 9, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 10,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 4,
+                            TownId = 11
+                        },
+                        new
+                        {
+                            Id = 70,
+                            AwayTeamId = 15,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 9, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 10,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 4,
+                            TownId = 11
+                        },
+                        new
+                        {
+                            Id = 71,
+                            AwayTeamId = 16,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 9, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 10,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 4,
+                            TownId = 11
+                        },
+                        new
+                        {
+                            Id = 72,
+                            AwayTeamId = 17,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 9, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 10,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 4,
+                            TownId = 11
+                        },
+                        new
+                        {
+                            Id = 73,
+                            AwayTeamId = 9,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 11,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 5,
+                            TownId = 12
+                        },
+                        new
+                        {
+                            Id = 74,
+                            AwayTeamId = 10,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 11,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 5,
+                            TownId = 12
+                        },
+                        new
+                        {
+                            Id = 75,
+                            AwayTeamId = 12,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 11,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 5,
+                            TownId = 12
+                        },
+                        new
+                        {
+                            Id = 76,
+                            AwayTeamId = 13,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 11,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 5,
+                            TownId = 12
+                        },
+                        new
+                        {
+                            Id = 77,
+                            AwayTeamId = 14,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 10, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 11,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 6,
+                            TownId = 12
+                        },
+                        new
+                        {
+                            Id = 78,
+                            AwayTeamId = 15,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 10, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 11,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 6,
+                            TownId = 12
+                        },
+                        new
+                        {
+                            Id = 79,
+                            AwayTeamId = 16,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 10, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 11,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 6,
+                            TownId = 12
+                        },
+                        new
+                        {
+                            Id = 80,
+                            AwayTeamId = 17,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 10, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 11,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 6,
+                            TownId = 12
+                        },
+                        new
+                        {
+                            Id = 81,
+                            AwayTeamId = 9,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 12,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 7,
+                            TownId = 13
+                        },
+                        new
+                        {
+                            Id = 82,
+                            AwayTeamId = 10,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 12,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 7,
+                            TownId = 13
+                        },
+                        new
+                        {
+                            Id = 83,
+                            AwayTeamId = 11,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 12,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 7,
+                            TownId = 13
+                        },
+                        new
+                        {
+                            Id = 84,
+                            AwayTeamId = 13,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 10, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 12,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 7,
+                            TownId = 13
+                        },
+                        new
+                        {
+                            Id = 85,
+                            AwayTeamId = 14,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 10, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 12,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 8,
+                            TownId = 13
+                        },
+                        new
+                        {
+                            Id = 86,
+                            AwayTeamId = 15,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 10, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 12,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 8,
+                            TownId = 13
+                        },
+                        new
+                        {
+                            Id = 87,
+                            AwayTeamId = 16,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 10, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 12,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 8,
+                            TownId = 13
+                        },
+                        new
+                        {
+                            Id = 88,
+                            AwayTeamId = 17,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 10, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 12,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 8,
+                            TownId = 13
+                        },
+                        new
+                        {
+                            Id = 89,
+                            AwayTeamId = 9,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 10, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 13,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 9,
+                            TownId = 14
+                        },
+                        new
+                        {
+                            Id = 90,
+                            AwayTeamId = 10,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 10, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 13,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 9,
+                            TownId = 14
+                        },
+                        new
+                        {
+                            Id = 91,
+                            AwayTeamId = 11,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 10, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 13,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 9,
+                            TownId = 14
+                        },
+                        new
+                        {
+                            Id = 92,
+                            AwayTeamId = 12,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2022, 10, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 13,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 9,
+                            TownId = 14
+                        },
+                        new
+                        {
+                            Id = 93,
+                            AwayTeamId = 14,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 3, 18, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 13,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 10,
+                            TownId = 14
+                        },
+                        new
+                        {
+                            Id = 94,
+                            AwayTeamId = 15,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 3, 18, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 13,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 10,
+                            TownId = 14
+                        },
+                        new
+                        {
+                            Id = 95,
+                            AwayTeamId = 16,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 3, 18, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 13,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 10,
+                            TownId = 14
+                        },
+                        new
+                        {
+                            Id = 96,
+                            AwayTeamId = 17,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 3, 18, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 13,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 10,
+                            TownId = 14
+                        },
+                        new
+                        {
+                            Id = 97,
+                            AwayTeamId = 9,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 14,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 11,
+                            TownId = 15
+                        },
+                        new
+                        {
+                            Id = 98,
+                            AwayTeamId = 10,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 14,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 11,
+                            TownId = 15
+                        },
+                        new
+                        {
+                            Id = 99,
+                            AwayTeamId = 11,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 14,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 11,
+                            TownId = 15
+                        },
+                        new
+                        {
+                            Id = 100,
+                            AwayTeamId = 12,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 3, 25, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 14,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 11,
+                            TownId = 15
+                        },
+                        new
+                        {
+                            Id = 101,
+                            AwayTeamId = 13,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 4, 1, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 14,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 12,
+                            TownId = 15
+                        },
+                        new
+                        {
+                            Id = 102,
+                            AwayTeamId = 15,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 4, 1, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 14,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 12,
+                            TownId = 15
+                        },
+                        new
+                        {
+                            Id = 103,
+                            AwayTeamId = 16,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 4, 1, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 14,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 12,
+                            TownId = 15
+                        },
+                        new
+                        {
+                            Id = 104,
+                            AwayTeamId = 17,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 4, 1, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 14,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 12,
+                            TownId = 15
+                        },
+                        new
+                        {
+                            Id = 105,
+                            AwayTeamId = 9,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 4, 8, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 15,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 13,
+                            TownId = 16
+                        },
+                        new
+                        {
+                            Id = 106,
+                            AwayTeamId = 10,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 4, 8, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 15,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 13,
+                            TownId = 16
+                        },
+                        new
+                        {
+                            Id = 107,
+                            AwayTeamId = 11,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 4, 8, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 15,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 13,
+                            TownId = 16
+                        },
+                        new
+                        {
+                            Id = 108,
+                            AwayTeamId = 12,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 4, 8, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 15,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 13,
+                            TownId = 16
+                        },
+                        new
+                        {
+                            Id = 109,
+                            AwayTeamId = 13,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 4, 15, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 15,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 14,
+                            TownId = 16
+                        },
+                        new
+                        {
+                            Id = 110,
+                            AwayTeamId = 14,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 4, 15, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 15,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 14,
+                            TownId = 16
+                        },
+                        new
+                        {
+                            Id = 111,
+                            AwayTeamId = 16,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 4, 15, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 15,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 14,
+                            TownId = 16
+                        },
+                        new
+                        {
+                            Id = 112,
+                            AwayTeamId = 17,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 4, 15, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 15,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 14,
+                            TownId = 16
+                        },
+                        new
+                        {
+                            Id = 113,
+                            AwayTeamId = 9,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 4, 22, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 16,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 15,
+                            TownId = 17
+                        },
+                        new
+                        {
+                            Id = 114,
+                            AwayTeamId = 10,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 4, 22, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 16,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 15,
+                            TownId = 17
+                        },
+                        new
+                        {
+                            Id = 115,
+                            AwayTeamId = 11,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 4, 22, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 16,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 15,
+                            TownId = 17
+                        },
+                        new
+                        {
+                            Id = 116,
+                            AwayTeamId = 12,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 4, 22, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 16,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 15,
+                            TownId = 17
+                        },
+                        new
+                        {
+                            Id = 117,
+                            AwayTeamId = 13,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 4, 29, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 16,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 16,
+                            TownId = 17
+                        },
+                        new
+                        {
+                            Id = 118,
+                            AwayTeamId = 14,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 4, 29, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 16,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 16,
+                            TownId = 17
+                        },
+                        new
+                        {
+                            Id = 119,
+                            AwayTeamId = 15,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 4, 29, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 16,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 16,
+                            TownId = 17
+                        },
+                        new
+                        {
+                            Id = 120,
+                            AwayTeamId = 17,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 4, 29, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 16,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 16,
+                            TownId = 17
+                        },
+                        new
+                        {
+                            Id = 121,
+                            AwayTeamId = 9,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 5, 6, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 17,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 17,
+                            TownId = 18
+                        },
+                        new
+                        {
+                            Id = 122,
+                            AwayTeamId = 10,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 5, 6, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 17,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 17,
+                            TownId = 18
+                        },
+                        new
+                        {
+                            Id = 123,
+                            AwayTeamId = 11,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 5, 6, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 17,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 17,
+                            TownId = 18
+                        },
+                        new
+                        {
+                            Id = 124,
+                            AwayTeamId = 12,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 5, 6, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 17,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 17,
+                            TownId = 18
+                        },
+                        new
+                        {
+                            Id = 125,
+                            AwayTeamId = 13,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 5, 13, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 17,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 18,
+                            TownId = 18
+                        },
+                        new
+                        {
+                            Id = 126,
+                            AwayTeamId = 14,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 5, 13, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 17,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 18,
+                            TownId = 18
+                        },
+                        new
+                        {
+                            Id = 127,
+                            AwayTeamId = 15,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 5, 13, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 17,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 18,
+                            TownId = 18
+                        },
+                        new
+                        {
+                            Id = 128,
+                            AwayTeamId = 16,
+                            AwayTeamScore = 0,
+                            DivisionId = 5,
+                            FixtureTime = new DateTime(2023, 5, 13, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            HasFinished = false,
+                            HomeTeamId = 17,
+                            HomeTeamScore = 0,
+                            SeasonId = 1,
+                            SeasonRound = 18,
+                            TownId = 18
                         });
                 });
 
@@ -3034,7 +4042,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         new
                         {
                             Id = 2,
-                            Description = "2022/23",
+                            Description = "2023/24",
                             End = new DateTime(2024, 6, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Start = new DateTime(2023, 9, 2, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
