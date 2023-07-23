@@ -22,7 +22,7 @@
             builder.HasOne(pts => pts.TeamSeason)
                 .WithMany(ts => ts.TeamSeasonPlayers)
                 .HasForeignKey(pts => new { pts.TeamId, pts.SeasonId })
-            .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(pts => pts.Player)
                 .WithMany(p => p.PlayerTeamsSeasons)

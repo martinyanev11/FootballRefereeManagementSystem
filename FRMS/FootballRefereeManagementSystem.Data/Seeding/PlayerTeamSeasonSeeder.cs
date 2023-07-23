@@ -7,11 +7,11 @@
     {
         internal ICollection<PlayerTeamSeason> GeneratePlayersTeamsSeasons(int ptsToGenerate)
         {
-            // Seeding 11 players per team for "A regional group" teams.
+            // Seeding 11 players per team for "A regional group" teams for season 2023/24.
             ICollection<PlayerTeamSeason> ptsCollection = new HashSet<PlayerTeamSeason>();
 
-            int teamId = TownDataConstants.TrunchovicaId;
-            int playersPerTeamCounter = 0;
+            int teamId = TeamDataConstants.TrunchovicaId;
+            int playersPerTeamCounter = 1;
 
             for (int playerId = 1; playerId <= ptsToGenerate; playerId++)
             {
@@ -27,7 +27,7 @@
 
                 if (playersPerTeamCounter > 11)
                 {
-                    playersPerTeamCounter = 0;
+                    playersPerTeamCounter = 1;
                     teamId++;
                 }
             }

@@ -27,11 +27,11 @@
 
             builder.HasOne(rs => rs.SecondAssistantReferee)
                .WithMany(r => r.SecondAssistantRefereeSquads)
-               .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(rs => rs.Delegate)
                .WithMany(r => r.DelegateRefereeSquads)
-               .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(rs => rs.Match)
                 .WithOne(m => m.RefereeSquad)
