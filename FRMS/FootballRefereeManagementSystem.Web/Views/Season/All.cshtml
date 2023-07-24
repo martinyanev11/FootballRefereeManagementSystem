@@ -10,19 +10,23 @@
     <form method="get">
         <input id="last-selected-tab" type="hidden" asp-for="LastSelectedTab" />
         <div class="row mb-3">
-            <div class="col-2">
-                <select asp-for="SeasonFilter" class="form-control">
+            <div class="col-1">
+                <select asp-for="SeasonFilter" class="form-control text-center">
                     @foreach (string seasonOption in Model.SeasonsOptions)
                     {
-                        <option value="@seasonOption">@seasonOption</option>
+                        <option value="@seasonOption" class="@(seasonOption == Model.SeasonFilter ? "text-primary fw-bold": string.Empty)">
+                            @seasonOption
+                        </option>
                     }
                 </select>
             </div>
-            <div class="col-4">
+            <div class="col-3">
                 <select asp-for="DivisionFilter" class="form-control">
                     @foreach (string divisionOption in Model.DivisionsOptions)
                     {
-                        <option value="@divisionOption">@divisionOption</option>
+                        <option value="@divisionOption" class="@(divisionOption == Model.DivisionFilter ? "text-primary fw-bold": string.Empty)">
+                            @divisionOption
+                        </option>
                     }
                 </select>
             </div>
@@ -55,15 +59,30 @@
         <div class="tab-pane fade @(Model.LastSelectedTab == "Matches" ? "show active" : string.Empty)" id="ex-with-icons-tabs-1" role="tabpanel" aria-labelledby="ex-with-icons-tab-1">
             <table class="table table-bordered table-responsive table-hover table-light">
                 <tbody>
-                    @foreach (var match in Model.Matches)
-                    {
-                        <tr>
-                            <td>@($"{match.HomeTeam} ({match.HomeTeamTownName})")</td>
-                            <td>@(match.FinalResult != null ? match.FinalResult : "-")</td>
-                            <td>@($"{match.AwayTeam} ({match.AwayTeamTownName})")</td>
-                            <td>@match.FixtureTime.ToString("MMM dd")</td>
-                            <td>@match.FixtureTime.ToShortTimeString()</td>
-                        </tr>
+                    @{
+                        int matchesPerRoundCounter = 1;
+                        foreach (var match in Model.Matches)
+                        {
+                            @if (matchesPerRoundCounter == 1)
+                            {
+                                <tr class="table-active table-primary">
+                                    <td class="table-active text-center fw-bold" colspan="5">@($"Кръг {match.Round}")</td>
+                                </tr>
+                            }
+                            <tr>
+                                <td>@($"{match.HomeTeam} ({match.HomeTeamTownName})")</td>
+                                <td>@(match.FinalResult != null ? match.FinalResult : "-")</td>
+                                <td>@($"{match.AwayTeam} ({match.AwayTeamTownName})")</td>
+                                <td>@match.FixtureTime.ToString("MMM dd")</td>
+                                <td>@match.FixtureTime.ToShortTimeString()</td>
+                            </tr>
+
+                            matchesPerRoundCounter++;
+                            if (matchesPerRoundCounter > 4)
+                            {
+                                matchesPerRoundCounter = 1;
+                            }
+                        }
                     }
                 </tbody>
             </table>

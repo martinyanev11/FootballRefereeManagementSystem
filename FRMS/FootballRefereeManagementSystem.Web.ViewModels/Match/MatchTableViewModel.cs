@@ -14,6 +14,8 @@
 
         public DateTime FixtureTime { get; set; }
 
-        public string? FinalResult { get; set; }       
+        public string? FinalResult { get; set; }
+
+        public int Round { get; set; }
     }
 }

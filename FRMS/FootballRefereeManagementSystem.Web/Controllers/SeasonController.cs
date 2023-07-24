@@ -56,7 +56,8 @@
             {
                 queryModel.DivisionFilter = returneQueryModel.DivisionFilter;
             }
-
+            
+            // Fetch data
             queryModel.Matches = await this.matchService
                 .GetFilteredBySeasonAndDivisionMatchesAsync(queryModel.SeasonFilter, queryModel.DivisionFilter);
 
@@ -66,7 +67,8 @@
             queryModel.SeasonsOptions = await this.seasonService.GetAllSeasonsAsync();
             queryModel.DivisionsOptions = await this.divisionService.GetAllDivisionsAsync();
 
-            if (string.IsNullOrEmpty(queryModel.LastSelectedTab))
+            // Return to last selected tab for better UX
+            if (string.IsNullOrEmpty(returneQueryModel.LastSelectedTab))
             {
                 queryModel.LastSelectedTab = "Matches";
             }

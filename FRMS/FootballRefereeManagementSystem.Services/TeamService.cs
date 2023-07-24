@@ -61,6 +61,8 @@
 
             IEnumerable<TeamStandingsViewModel> teams = await this.dbContext
                 .TeamsSeasons
+                .Include(ts => ts.HomeGames)
+                .Include(ts => ts.AwayGames)
                 .AsNoTracking()
                 .Where(ts => ts.Season.Description == seasonFilter &&
                     ts.Division.Name == divisionFilter)
@@ -69,7 +71,7 @@
                     TeamId = ts.TeamId,
                     TeamName = ts.Team.Name,
                     TeamTownName = ts.Team.Town.Name,
-                    TeamPoints = ts.Points, // Might change logic to make this auto-calculated property later!
+                    TeamPoints = ts.Points,
                     TeamPlacement = ts.Placement,
                     MatchesPlayed = ts.HomeGames
                         .Where(m => m.HasFinished == true)
@@ -86,6 +88,7 @@
                     GoalDifference = ts.GoalsFor - ts.GoalsAgainst
                 })
                 .OrderByDescending(t => t.TeamPoints)
+                .ThenByDescending(t => t.GoalDifference)
                 .ToArrayAsync();
 
             return teams;
