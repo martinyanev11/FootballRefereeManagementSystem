@@ -18,7 +18,23 @@
             this.dbContext = dbContext;
         }
 
-        private async Task UpdateTeamPlacementsForSpecifiedDivisionAndSeason(string season, string division)
+        private async Task UpdateTeamPointsForSpecifiedDivisionAndSeasonAsync(string season, string division)
+        {
+            IEnumerable<TeamSeason> teams = await this.dbContext
+                .TeamsSeasons
+                .Where(ts => ts.Season.Description == season &&
+                    ts.Division.Name == division)
+                .ToArrayAsync();
+
+            foreach (TeamSeason team in teams)
+            {
+                team.Points = team.Wins * 3 + team.Draws;
+            }
+
+            await this.dbContext.SaveChangesAsync();
+        }
+
+        private async Task UpdateTeamPlacementsForSpecifiedDivisionAndSeasonAsync(string season, string division)
         {
             IEnumerable<TeamSeason> teams = await this.dbContext
                 .TeamsSeasons
@@ -40,7 +56,8 @@
         public async Task<IEnumerable<TeamStandingsViewModel>> GetFilteredBySeasonAndDivisionTeamStandingsAsync
             (string seasonFilter, string divisionFilter)
         {
-            await UpdateTeamPlacementsForSpecifiedDivisionAndSeason(seasonFilter, divisionFilter);
+            await UpdateTeamPointsForSpecifiedDivisionAndSeasonAsync(seasonFilter, divisionFilter);
+            await UpdateTeamPlacementsForSpecifiedDivisionAndSeasonAsync(seasonFilter, divisionFilter);
 
             IEnumerable<TeamStandingsViewModel> teams = await this.dbContext
                 .TeamsSeasons

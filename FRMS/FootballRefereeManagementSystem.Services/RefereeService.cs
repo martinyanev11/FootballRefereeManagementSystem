@@ -178,7 +178,7 @@
             return viewModel;
         }
 
-        public async Task<int> GetRefereeIdByUserId(string userId)
+        public async Task<int> GetRefereeIdByUserIdAsync(string userId)
         {
             return await this.dbContext.Referees
                 .Where(r => r.UserId.ToString() == userId)

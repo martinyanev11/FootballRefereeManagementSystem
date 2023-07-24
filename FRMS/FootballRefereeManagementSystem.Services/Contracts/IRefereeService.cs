@@ -8,6 +8,6 @@
     {
         Task<IEnumerable<RefereeViewModel>> GetAllRefereesFilteredAsync(RefereeQueryModel queryModel);
         Task<RefereeDetailsViewModel> GetRefereeDetailsByIdAsync(int id);
-        Task<int> GetRefereeIdByUserId(string userId);
+        Task<int> GetRefereeIdByUserIdAsync(string userId);
     }
 }

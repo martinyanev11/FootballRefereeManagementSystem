@@ -31,7 +31,7 @@
         {
             string currentSeason = await this.dbContext.Seasons
                 .AsNoTracking()
-                .OrderByDescending(s => s.Id)
+                .OrderByDescending(s => s.End.Year)
                 .Select(s => s.Description)
                 .FirstAsync();
 

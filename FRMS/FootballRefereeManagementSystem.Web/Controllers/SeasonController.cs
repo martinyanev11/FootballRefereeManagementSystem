@@ -47,7 +47,7 @@
             if (string.IsNullOrEmpty(returneQueryModel.DivisionFilter))
             {
                 string userId = User.GetId();
-                int refereeId = await this.refereeService.GetRefereeIdByUserId(userId);
+                int refereeId = await this.refereeService.GetRefereeIdByUserIdAsync(userId);
 
                 queryModel.DivisionFilter = 
                     await this.divisionService.GetMostOfficiatedDivisionForRefereeByIdAsync(refereeId);
@@ -66,7 +66,7 @@
             queryModel.SeasonsOptions = await this.seasonService.GetAllSeasonsAsync();
             queryModel.DivisionsOptions = await this.divisionService.GetAllDivisionsAsync();
 
-            if (queryModel.LastSelectedTab == null)
+            if (string.IsNullOrEmpty(queryModel.LastSelectedTab))
             {
                 queryModel.LastSelectedTab = "Matches";
             }
