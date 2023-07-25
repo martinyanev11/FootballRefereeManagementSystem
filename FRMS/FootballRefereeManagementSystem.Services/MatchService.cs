@@ -6,6 +6,7 @@
     using Contracts;
     using Data;
     using Web.ViewModels.Match;
+    using System;
 
     public class MatchService : IMatchService
     {
@@ -50,10 +51,11 @@
                 .Select(m => new MatchDetailsViewModel()
                 {
                     Division = m.Division.Name,
-                    HomeTeamTownName = m.HomeTeam.Team.Town.Name,
                     FixtureTime = m.FixtureTime,
+                    MatchLocation = m.Town.Name,
                     HomeTeamId = m.HomeTeamId,
                     HomeTeamName = m.HomeTeam.Team.Name,
+                    HomeTeamTownName = m.HomeTeam.Team.Town.Name,
                     HomeTeamScore = m.HomeTeamScore,
                     HomeTeamShirtColor = m.HomeTeam.ShirtColor.ToString(),
                     HomeTeamCurrentPosition = m.HomeTeam.Placement,
@@ -68,7 +70,28 @@
                 })
                 .FirstAsync();
 
+            match.MatchHistoryBetweenThem = await this.GetOtherMatchesBetweenTwoTeams(id, match.HomeTeamId, match.AwayTeamId);
+
             return match;
+        }
+
+        private async Task<IEnumerable<DetailsHistoryViewModel>> GetOtherMatchesBetweenTwoTeams(int matchId, int homeTeamId, int awayTeamId)
+        {
+            return await this.dbContext
+                .Matches
+                .AsNoTracking()
+                .Where(m => m.Id != matchId && m.HasFinished &&
+                    (m.HomeTeamId == homeTeamId && m.AwayTeamId == awayTeamId) ||
+                    (m.HomeTeamId == awayTeamId && m.AwayTeamId == homeTeamId))
+                .Select(m => new DetailsHistoryViewModel()
+                {
+                    HomeTeamName = m.HomeTeam.Team.Name,
+                    HomeTeamGoals = m.HomeTeamScore,
+                    AwayTeamName = m.AwayTeam.Team.Name,
+                    AwayTeamGoals = m.AwayTeamScore,
+                    FixtureTime = m.FixtureTime,
+                })
+                .ToArrayAsync();
         }
     }
 }
