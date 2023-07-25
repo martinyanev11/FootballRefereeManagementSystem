@@ -40,5 +40,35 @@
 
             return matches;
         }
+
+        public async Task<MatchDetailsViewModel> GetMatchDetailsByIdAsync(int id)
+        {
+            MatchDetailsViewModel match = await this.dbContext
+                .Matches
+                .AsNoTracking()
+                .Where(m => m.Id == id)
+                .Select(m => new MatchDetailsViewModel()
+                {
+                    Division = m.Division.Name,
+                    HomeTeamTownName = m.HomeTeam.Team.Town.Name,
+                    FixtureTime = m.FixtureTime,
+                    HomeTeamId = m.HomeTeamId,
+                    HomeTeamName = m.HomeTeam.Team.Name,
+                    HomeTeamScore = m.HomeTeamScore,
+                    HomeTeamShirtColor = m.HomeTeam.ShirtColor.ToString(),
+                    HomeTeamCurrentPosition = m.HomeTeam.Placement,
+                    AwayTeamId = m.AwayTeamId,
+                    AwayTeamName = m.AwayTeam.Team.Name,
+                    AwayTeamTownName = m.AwayTeam.Team.Town.Name,
+                    AwayTeamScore = m.AwayTeamScore,
+                    AwayTeamShirtColor = m.AwayTeam.ShirtColor.ToString(),
+                    AwayTeamCurrentPosition = m.AwayTeam.Placement,
+                    HasFinished = m.HasFinished,
+                    SeasonRound = m.SeasonRound,
+                })
+                .FirstAsync();
+
+            return match;
+        }
     }
 }

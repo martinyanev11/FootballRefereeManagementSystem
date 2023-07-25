@@ -7,5 +7,6 @@
     public interface IMatchService
     {
         Task<IEnumerable<MatchTableViewModel>> GetFilteredBySeasonAndDivisionMatchesAsync(string seasonFilter, string divisionFilter);
+        Task<MatchDetailsViewModel> GetMatchDetailsByIdAsync(int id);
     }
 }
