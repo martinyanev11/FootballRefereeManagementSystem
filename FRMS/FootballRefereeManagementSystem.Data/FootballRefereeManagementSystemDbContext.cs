@@ -30,6 +30,7 @@
         public DbSet<Article> Articles { get; set; } = null!;
         public DbSet<Application> Applications { get; set; } = null!;
         public DbSet<RegistrationToken> RegistrationTokens { get; set; } = null!;
+        public DbSet<PlayerTeamSeason> PlayersTeamsSeasons { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
