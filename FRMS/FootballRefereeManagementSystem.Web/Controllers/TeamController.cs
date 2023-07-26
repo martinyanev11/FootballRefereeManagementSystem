@@ -40,7 +40,7 @@
             queryModel.SeasonalInformation.MatchHistory = await this.matchService.GetMatchHistoryForSeasonByTeamId(id, seasonId);
             queryModel.SeasonalInformation.Players = await this.playerService.GetTeamPlayersForSeasonAsync(id, seasonId);
 
-            return View();
+            return View(queryModel);
         }
     }
 }
