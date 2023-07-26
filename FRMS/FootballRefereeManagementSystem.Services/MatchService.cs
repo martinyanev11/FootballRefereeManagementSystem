@@ -6,7 +6,6 @@
     using Contracts;
     using Data;
     using Web.ViewModels.Match;
-    using System;
 
     public class MatchService : IMatchService
     {
@@ -80,9 +79,11 @@
             return await this.dbContext
                 .Matches
                 .AsNoTracking()
-                .Where(m => m.Id != matchId && m.HasFinished &&
-                    (m.HomeTeamId == homeTeamId && m.AwayTeamId == awayTeamId) ||
-                    (m.HomeTeamId == awayTeamId && m.AwayTeamId == homeTeamId))
+                .Where(m =>
+                    m.Id != matchId &&
+                    m.HasFinished == true &&
+                    ((m.HomeTeamId == homeTeamId && m.AwayTeamId == awayTeamId) ||
+                    (m.HomeTeamId == awayTeamId && m.AwayTeamId == homeTeamId)))
                 .Select(m => new DetailsHistoryViewModel()
                 {
                     HomeTeamName = m.HomeTeam.Team.Name,
@@ -91,6 +92,7 @@
                     AwayTeamGoals = m.AwayTeamScore,
                     FixtureTime = m.FixtureTime,
                 })
+                .OrderBy(model => model.FixtureTime)
                 .ToArrayAsync();
         }
     }

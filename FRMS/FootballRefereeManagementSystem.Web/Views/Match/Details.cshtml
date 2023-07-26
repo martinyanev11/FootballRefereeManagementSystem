@@ -5,12 +5,14 @@
 }
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-<div class="container bg-white text-dark shadow mt-5 mb-5">
+<div class="container bg-white text-dark shadow mt-5 mb-1">
     <div class="row bg-secondary text-center text-light">
         <div class="offset-3 col-2">
-            <div class="mb-2 mt-4"><i class="fa-solid fa-shirt fa-2xl" style="color: @Model.HomeTeamShirtColor;"></i></div>
-            <div class="h2">@Model.HomeTeamName</div>
-            <div class="h6">@Model.HomeTeamTownName.ToUpper()</div>
+            <a class="text-decoration-none text-light" asp-controller="Team" asp-action="Details" asp-route-id="@Model.HomeTeamId">
+                <div class="mb-2 mt-4"><i class="fa-solid fa-shirt fa-2xl" style="color: @Model.HomeTeamShirtColor"></i></div>
+                <div class="h2">@Model.HomeTeamName</div>
+                <div class="h6">@Model.HomeTeamTownName.ToUpper()</div>
+            </a>
         </div>
         @{
             if (Model.HasFinished)
@@ -27,17 +29,28 @@
             }
         }
         <div class="col-2">
-            <div class="mb-2 mt-4"><i class="fa-solid fa-shirt fa-2xl" style="color: @Model.AwayTeamShirtColor"></i></div>
-            <div class="h2">@Model.AwayTeamName</div>
-            <div class="h6">@Model.AwayTeamTownName.ToUpper()</div>
+            <a class="text-decoration-none text-light" asp-controller="Team" asp-action="Details" asp-route-id="@Model.AwayTeamId">
+                <div class="mb-2 mt-4"><i class="fa-solid fa-shirt fa-2xl" style="color: @Model.AwayTeamShirtColor"></i></div>
+                <div class="h2">@Model.AwayTeamName</div>
+                <div class="h6">@Model.AwayTeamTownName.ToUpper()</div>
+            </a>
         </div>
         <hr class="offset-2 col-8 text-white" />
         <div class="row text-center">
-            <p class="offset-3 col-2 fst-italic h5 me-3"><span class="badge badge-pill badge-primary border border-light bg-primary">Класиране: @Model.HomeTeamCurrentPosition</span></p>
-            <p class="offset-2 col-2 fst-italic h5"><span class="badge badge-light border border-light bg-primary">Класиране: @Model.AwayTeamCurrentPosition</span></p>
+            <p class="offset-3 col-2 fst-italic h4 me-3">
+                <span class="badge badge-pill badge-primary border border-light bg-primary">
+                    <i class="fa-solid fa-medal fa-sm me-1"></i>@Model.HomeTeamCurrentPosition
+                </span>
+            </p>
+            <p class="offset-2 col-2 fst-italic h4">
+                <span class="badge badge-light border border-light bg-primary">
+                    <i class="fa-solid fa-medal fa-sm me-1"></i>@Model.AwayTeamCurrentPosition
+                </span>
+            </p>
         </div>
     </div>
 
+    <br />
     <div class="row mt-4 mb-4 text-center">
         <div class="offset-2 col-2 mb-3">
             <i class="fa-regular fa-calendar-days fa-xl me-1"></i>@Model.FixtureTime.ToLongDateString()
@@ -49,17 +62,41 @@
             <i class="fa-solid fa-location-dot fa-xl me-1"></i>@Model.MatchLocation
         </div>
         <div class="col-3">
-            <i class="fa-solid fa-medal fa-xl me-1"></i>@Model.Division
+            <i class="fa-solid fa-trophy fa-xl me-1"></i>@Model.Division
         </div>
     </div>
-
-    @foreach (var match in Model.MatchHistoryBetweenThem)
+    <hr class="bg-dark" />
+    <div class="row text-dark">
+        <h4 class="h4 mb-4 text-center">Резултати от предишни мачове между двата отбора:</h4>
+    </div>
+    
+    @if (Model.MatchHistoryBetweenThem.Any())
     {
-        <div class="row">
-            <div class="col-2">@match.HomeTeamName</div>
-            <div class="col-2">@match.HomeTeamGoals - @match.AwayTeamGoals</div>
-            <div class="col-2">@match.AwayTeamName</div>
-            <div class="col-2">@match.FixtureTime.ToString("dd-MM-yyyy HH:mm")</div>
+        <div class="row mb-3">
+            @foreach (var match in Model.MatchHistoryBetweenThem)
+            {
+                <div class="offset-1 col-2 border border-1 border-secondary">
+                    <div class="row text-center">
+                        <div class="col-5 me-2 text-start">@match.HomeTeamName</div>
+                        <div class="col-1 opacity-75 bg-primary text-white">@match.HomeTeamGoals</div>
+                        <div class="col-5">@match.FixtureTime.ToString("dd-MM")</div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col-5 me-2 text-start">@match.AwayTeamName</div>
+                        <div class="col-1 opacity-75 bg-primary text-white">@match.AwayTeamGoals</div>
+                        <div class="col-5">@match.FixtureTime.ToString("yyyy") г.</div>
+                    </div>
+                </div>
+            }
         </div>
     }
+    else
+    {
+        <div class="row text-center">
+            <div class="offset-4 col-4 h5 alert-danger">
+                Тези два отбора се срещат за първи път!
+            </div>
+        </div>
+    }
+    <br />
 </div>
