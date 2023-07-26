@@ -6,5 +6,6 @@
     {
         Task<IEnumerable<string>> GetAllSeasonsAsync();
         Task<string> GetCurrentSeasonDescriptionAsync();
+        Task<int> GetSeasonIdByDescriptionAsync(string seasonFilter);
     }
 }

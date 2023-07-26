@@ -46,6 +46,7 @@ namespace FootballRefereeManagementSystem.Web
             builder.Services.AddScoped<ITeamService, TeamService>();
             builder.Services.AddScoped<ISeasonService, SeasonService>();
             builder.Services.AddScoped<IDivisionService, DivisionService>();
+            builder.Services.AddScoped<IPlayerService, PlayerService>();
 
             WebApplication app = builder.Build();
 

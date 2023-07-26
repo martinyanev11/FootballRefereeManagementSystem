@@ -74,6 +74,26 @@
             return match;
         }
 
+        public async Task<IEnumerable<DetailsHistoryViewModel>> GetMatchHistoryForSeasonByTeamId(int id, int seasonId)
+        {
+            IEnumerable<DetailsHistoryViewModel> matches = await this.dbContext
+                .Matches
+                .AsNoTracking()
+                .Where(m => (m.HomeTeamId == id || m.AwayTeamId == id) &&
+                    m.HasFinished == true && m.SeasonId == seasonId)
+                .Select(m => new DetailsHistoryViewModel()
+                {
+                    HomeTeamName = m.HomeTeam.Team.Name,
+                    HomeTeamGoals = m.HomeTeamScore,
+                    AwayTeamName = m.AwayTeam.Team.Name,
+                    AwayTeamGoals = m.AwayTeamScore,
+                    FixtureTime = m.FixtureTime
+                })
+                .ToArrayAsync();
+
+            return matches;
+        }
+
         private async Task<IEnumerable<DetailsHistoryViewModel>> GetOtherMatchesBetweenTwoTeams(int matchId, int homeTeamId, int awayTeamId)
         {
             return await this.dbContext

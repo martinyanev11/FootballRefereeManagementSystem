@@ -37,5 +37,15 @@
 
             return currentSeason;
         }
+
+        public async Task<int> GetSeasonIdByDescriptionAsync(string seasonFilter)
+        {
+            return await this.dbContext
+                .Seasons
+                .AsNoTracking()
+                .Where(s => s.Description == seasonFilter)
+                .Select(s => s.Id)
+                .FirstAsync();
+        }
     }
 }

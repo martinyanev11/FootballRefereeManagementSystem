@@ -1,0 +1,19 @@
+﻿@using FootballRefereeManagementSystem.Web.ViewModels.Team;
+@model TeamQueryModel;
+@{
+    ViewData["Title"] = Model.GeneralInformation.TeamName;
+}
+
+<div class="container shadow bg-white mt-5 mb-5">
+    <div class="row text-center mb-3">
+        <h2>@Model.GeneralInformation.TeamName</h2>
+    </div>
+    <div class="row">
+        <div class="offset-1 col-3">
+            @Model.GeneralInformation.TeamLocation
+        </div>
+        <div class="col-7">
+            <p>Най-високо класиране: @Model.GeneralInformation.HighestPlacement през @Model.GeneralInformation.YearOfHighestPlacement</p>
+        </div>
+    </div>
+</div>

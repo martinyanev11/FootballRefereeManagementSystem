@@ -93,5 +93,44 @@
 
             return teams;
         }
+
+        public async Task<TeamDetailsViewModel> GetTeamDetailsInformationByIdAsync(int id)
+        {
+            TeamDetailsViewModel teamDetails = await this.dbContext
+                .Teams
+                .AsNoTracking()
+                .Where(t => t.Id == id)
+                .Select(t => new TeamDetailsViewModel()
+                {
+                    Id = t.Id,
+                    TeamName = t.Name,
+                    TeamLocation = t.Town.Name,
+                    HighestPlacement = t.TeamSeasons.Max(ts => ts.Placement),
+                    YearOfHighestPlacement = t.TeamSeasons
+                        .Where(ts => ts.Placement == t.TeamSeasons.Max(maxTs => maxTs.Placement))
+                        .Select(ts => ts.Season.Description)
+                        .First()
+                })
+                .FirstAsync();
+
+            return teamDetails;
+        }
+
+        public async Task<TeamSeasonDetailsViewModel> GetTeamSeasonsInformationByIdAsync(int id)
+        {
+            TeamSeasonDetailsViewModel teamSeasonDetails = await this.dbContext
+                .TeamsSeasons
+                .AsNoTracking()
+                .Where(ts => ts.TeamId == id)
+                .Select(ts => new TeamSeasonDetailsViewModel()
+                {
+                    Division = ts.Division.Name,
+                    ManagerName = $"{ts.Manager.LastName} {ts.Manager.LastName}",
+                    ManagerAge = ts.Manager.Age
+                })
+                .FirstAsync();
+
+            return teamSeasonDetails;
+        }
     }
 }
