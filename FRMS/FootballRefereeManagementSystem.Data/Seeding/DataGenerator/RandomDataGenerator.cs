@@ -2,6 +2,12 @@
 {
     internal static class RandomDataGenerator
     {
+        /// <summary>
+        /// Generates a random age within the specified range.
+        /// </summary>
+        /// <param name="ageMinValue">The minimum value for the random age (inclusive).</param>
+        /// <param name="ageMaxValue">The maximum value for the random age (exclusive).</param>
+        /// <returns>A random integer representing the generated age within the specified range.</returns>
         internal static int GenerateRandomAge(int ageMinValue, int ageMaxValue)
         {
             Random randomAgeGenerator = new Random();
@@ -11,6 +17,10 @@
             return age;
         }
 
+        /// <summary>
+        /// Generates a random first name from a predefined pool of names.
+        /// </summary>
+        /// <returns>A random first name as a string.</returns>
         internal static string GenerateRandomFirstName()
         {
             string[] namesPool = { "Иван", "Петър", "Георги", "Николай", "Димитър", "Александър", "Владимир",
@@ -25,6 +35,10 @@
             return namesPool[random.Next(namesPool.Length)];
         }
 
+        /// <summary>
+        /// Generates a random last name from a predefined pool of names.
+        /// </summary>
+        /// <returns>A random last name as a string.</returns>
         internal static string GenerateRandomLastName()
         {
             string[] namesPool = { "Иванов", "Петров", "Георгиев", "Николов", "Димитров", "Александров", "Владимиров",
@@ -41,6 +55,10 @@
             return namesPool[random.Next(namesPool.Length)];
         }
 
+        /// <summary>
+        /// Generates a random Bulgarian mobile phone number in the format "0894XXXXXX".
+        /// </summary>
+        /// <returns>A string representing the randomly generated phone number.</returns>
         internal static string GeneratePhoneNumber()
         {
             Random randomPhoneNumberGenerator = new Random();
@@ -53,16 +71,16 @@
                 .ToString()
                 .Insert(0, "0");
 
-            return phoneNumber; // should look like this: 0894124526
+            return phoneNumber;
         }
 
         /// <summary>
-        /// Generates a new DateTime that will be between the starting parameters and today's date.
+        /// Generates a new <see cref="DateTime"/> that will be between the starting parameters and today's date.
         /// </summary>
         /// <param name="startingYear">Minimum year value</param>
         /// <param name="startingMonth">Minimum month value</param>
         /// <param name="startingDay">Minimum day value</param>
-        /// <returns>Random DateTime</returns>
+        /// <returns>Random <see cref="DateTime"/></returns>
         internal static DateTime GenerateRandomDateTime(int startingYear, int startingMonth, int startingDay)
         {
             Random random = new Random();

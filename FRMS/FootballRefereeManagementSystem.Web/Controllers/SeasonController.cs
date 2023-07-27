@@ -50,7 +50,7 @@
                 int refereeId = await this.refereeService.GetRefereeIdByUserIdAsync(userId);
 
                 queryModel.DivisionFilter = 
-                    await this.divisionService.GetMostOfficiatedDivisionForRefereeByIdAsync(refereeId);
+                    await this.divisionService.GetNameOfMostOfficiatedDivisionForRefereeByIdAsync(refereeId);
             }
             else
             {
@@ -65,7 +65,7 @@
                 .GetFilteredBySeasonAndDivisionTeamStandingsAsync(queryModel.SeasonFilter, queryModel.DivisionFilter);
 
             queryModel.SeasonsOptions = await this.seasonService.GetAllSeasonsAsync();
-            queryModel.DivisionsOptions = await this.divisionService.GetAllDivisionsAsync();
+            queryModel.DivisionsOptions = await this.divisionService.GetAllDivisionNamesAsync();
 
             // Return to last selected tab for better UX
             if (string.IsNullOrEmpty(returneQueryModel.LastSelectedTab))

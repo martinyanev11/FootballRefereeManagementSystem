@@ -1,5 +1,7 @@
 ﻿namespace FootballRefereeManagementSystem.Services.Contracts
 {
+    using System.Threading.Tasks;
+
     public interface IEmailService
     {
         /// <summary>

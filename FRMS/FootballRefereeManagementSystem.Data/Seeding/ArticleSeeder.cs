@@ -1,7 +1,6 @@
 ﻿namespace FootballRefereeManagementSystem.Data.Seeding
 {
     using Models;
-    using SeedingDataConstants;
 
     internal class ArticleSeeder
     {

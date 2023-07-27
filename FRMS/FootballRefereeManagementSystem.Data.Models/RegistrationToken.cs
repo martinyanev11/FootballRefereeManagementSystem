@@ -1,7 +1,8 @@
 ﻿namespace FootballRefereeManagementSystem.Data.Models
 {
-    using Microsoft.EntityFrameworkCore;
     using System.ComponentModel.DataAnnotations;
+
+    using Microsoft.EntityFrameworkCore;
 
     [Comment("Registration token is used to restrict register of random users")]
     public class RegistrationToken

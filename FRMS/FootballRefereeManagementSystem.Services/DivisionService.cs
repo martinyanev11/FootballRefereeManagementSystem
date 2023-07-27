@@ -1,6 +1,8 @@
 ﻿namespace FootballRefereeManagementSystem.Services
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
+
     using Microsoft.EntityFrameworkCore;
 
     using Contracts;
@@ -15,7 +17,7 @@
             this.dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<string>> GetAllDivisionsAsync()
+        public async Task<IEnumerable<string>> GetAllDivisionNamesAsync()
         {
             IEnumerable<string> divisions = await this.dbContext
                 .Divisions
@@ -26,7 +28,7 @@
             return divisions;
         }
 
-        public async Task<string> GetMostOfficiatedDivisionForRefereeByIdAsync(int refereeId)
+        public async Task<string> GetNameOfMostOfficiatedDivisionForRefereeByIdAsync(int refereeId)
         {
             string mostOfficiatedDivision = await this.dbContext
                 .RefereesDivisions
