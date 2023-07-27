@@ -1,9 +1,10 @@
 ﻿namespace FootballRefereeManagementSystem.Web.Controllers
 {
-    using FootballRefereeManagementSystem.Services.Contracts;
-    using FootballRefereeManagementSystem.Web.ViewModels.Career;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+
+    using Services.Contracts;
+    using ViewModels.Career;
 
     [AllowAnonymous]
     public class CareerController : BaseController
@@ -29,7 +30,7 @@
                 ModelState.AddModelError("KnowsFootballRules", "Задължителна проверка");
             }
 
-            if (model.Contact.StartsWith("0") == false)
+            if (!model.Contact.StartsWith("0"))
             {
                 ModelState.AddModelError("Contact", "Телефонния номер трябва да започва с 0");
             }
@@ -39,7 +40,14 @@
                 return View(model);
             }
 
-            await this.careerService.AddApplicationAsync(model);
+            try
+            {
+                await this.careerService.AddApplicationAsync(model);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
 
             return RedirectToAction("Success", "Career");
         }

@@ -28,17 +28,17 @@
         {
             if (string.IsNullOrEmpty(queryModel.SeasonFilter))
             {
-                queryModel.SeasonFilter = await seasonService.GetCurrentSeasonDescriptionAsync();
+                queryModel.SeasonFilter = await seasonService.GetLatestSeasonDescriptionAsync();
             }
 
-            queryModel.SeasonsOptions = await seasonService.GetAllSeasonsAsync();
+            queryModel.SeasonsOptions = await seasonService.GetAllSeasonDescriptionsAsync();
 
-            TeamDetailsViewModel teamVM = await teamService.GetTeamDetailsInformationByIdAsync(id);
+            TeamDetailsViewModel teamVM = await teamService.GetTeamDetailsByIdAsync(id);
             queryModel.GeneralInformation = teamVM;
 
-            TeamSeasonDetailsViewModel teamSeasonVM = await teamService.GetTeamSeasonsInformationByIdAsync(id);
+            TeamSeasonDetailsViewModel teamSeasonVM = await teamService.GetTeamSeasonInformationByIdAsync(id);
             int seasonId = await this.seasonService.GetSeasonIdByDescriptionAsync(queryModel.SeasonFilter);
-            teamSeasonVM.MatchHistory = await this.matchService.GetMatchHistoryForSeasonByTeamId(id, seasonId);
+            teamSeasonVM.MatchHistory = await this.matchService.GetMatchHistoryForSeasonByTeamIdAsync(id, seasonId);
             teamSeasonVM.Players = await this.playerService.GetTeamPlayersForSeasonAsync(id, seasonId);
 
             queryModel.SeasonalInformation = teamSeasonVM;

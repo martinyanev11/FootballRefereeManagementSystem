@@ -1,6 +1,7 @@
 ﻿namespace FootballRefereeManagementSystem.Services
 {
     using System.Collections.Generic;
+
     using Microsoft.EntityFrameworkCore;
 
     using Contracts;
@@ -69,12 +70,13 @@
                 })
                 .FirstAsync();
 
-            match.MatchHistoryBetweenThem = await this.GetOtherMatchesBetweenTwoTeams(id, match.HomeTeamId, match.AwayTeamId);
+            match.MatchHistoryBetweenThem = 
+                await this.GetOtherMatchesBetweenTwoTeams(id, match.HomeTeamId, match.AwayTeamId);
 
             return match;
         }
 
-        public async Task<IEnumerable<DetailsHistoryViewModel>> GetMatchHistoryForSeasonByTeamId(int id, int seasonId)
+        public async Task<IEnumerable<DetailsHistoryViewModel>> GetMatchHistoryForSeasonByTeamIdAsync(int id, int seasonId)
         {
             IEnumerable<DetailsHistoryViewModel> matches = await this.dbContext
                 .Matches
@@ -94,6 +96,16 @@
             return matches;
         }
 
+        // --------------------------------------------
+        // Helper methods
+        // ---------------------------------------------
+        /// <summary>
+        /// Asynchronously retrieves details of other finished matches between two teams.
+        /// </summary>
+        /// <param name="matchId">The ID of the current match to exclude from the results.</param>
+        /// <param name="homeTeamId">The ID of the home team.</param>
+        /// <param name="awayTeamId">The ID of the away team.</param>
+        /// <returns>A collection of models containing details of the other matches.</returns>
         private async Task<IEnumerable<DetailsHistoryViewModel>> GetOtherMatchesBetweenTwoTeams(int matchId, int homeTeamId, int awayTeamId)
         {
             return await this.dbContext

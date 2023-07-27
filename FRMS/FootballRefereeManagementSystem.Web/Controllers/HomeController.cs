@@ -17,8 +17,15 @@
 
         public IActionResult GameRulesDownload()
         {
-            byte[] fileBytes = System.IO.File.ReadAllBytes("~/Downloads/Footbal-Rules-2021-22.pdf");
             string fileName = "Footbal-Rules-2021-22.pdf";
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Downloads", fileName);
+
+            if (!System.IO.File.Exists(filePath))
+            {
+                return View("Error");
+            }
+
+            byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
 
             return File(fileBytes, "application/pdf", fileName);
         }

@@ -1,12 +1,14 @@
 ﻿namespace FootballRefereeManagementSystem.Services
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
+
     using Microsoft.EntityFrameworkCore;
 
     using Contracts;
     using Data;
+    using Data.Models;
     using Web.ViewModels.Team;
-    using FootballRefereeManagementSystem.Data.Models;
 
     public class TeamService : ITeamService
     {
@@ -18,54 +20,19 @@
             this.dbContext = dbContext;
         }
 
-        private async Task UpdateTeamPointsForSpecifiedDivisionAndSeasonAsync(string season, string division)
+        public async Task<IEnumerable<TeamStandingsViewModel>> GetFilteredBySeasonAndDivisionTeamsStandingsAsync
+            (string season, string division)
         {
-            IEnumerable<TeamSeason> teams = await this.dbContext
-                .TeamsSeasons
-                .Where(ts => ts.Season.Description == season &&
-                    ts.Division.Name == division)
-                .ToArrayAsync();
-
-            foreach (TeamSeason team in teams)
-            {
-                team.Points = team.Wins * 3 + team.Draws;
-            }
-
-            await this.dbContext.SaveChangesAsync();
-        }
-
-        private async Task UpdateTeamPlacementsForSpecifiedDivisionAndSeasonAsync(string season, string division)
-        {
-            IEnumerable<TeamSeason> teams = await this.dbContext
-                .TeamsSeasons
-                .Where(ts => ts.Season.Description == season &&
-                    ts.Division.Name == division)
-                .OrderByDescending(ts => ts.Points)
-                .ToArrayAsync();
-
-            int currentPlacement = StandingsPlacementStart;
-            foreach (TeamSeason team in teams)
-            {
-                team.Placement = currentPlacement;
-                currentPlacement++;
-            }
-
-            await this.dbContext.SaveChangesAsync();
-        }
-
-        public async Task<IEnumerable<TeamStandingsViewModel>> GetFilteredBySeasonAndDivisionTeamStandingsAsync
-            (string seasonFilter, string divisionFilter)
-        {
-            await UpdateTeamPointsForSpecifiedDivisionAndSeasonAsync(seasonFilter, divisionFilter);
-            await UpdateTeamPlacementsForSpecifiedDivisionAndSeasonAsync(seasonFilter, divisionFilter);
+            await UpdateAllTeamsPointsForSpecifiedDivisionAndSeasonAsync(season, division);
+            await UpdateAllTeamsPlacementForSpecifiedDivisionAndSeasonAsync(season, division);
 
             IEnumerable<TeamStandingsViewModel> teams = await this.dbContext
                 .TeamsSeasons
                 .Include(ts => ts.HomeGames)
                 .Include(ts => ts.AwayGames)
                 .AsNoTracking()
-                .Where(ts => ts.Season.Description == seasonFilter &&
-                    ts.Division.Name == divisionFilter)
+                .Where(ts => ts.Season.Description == season &&
+                    ts.Division.Name == division)
                 .Select(ts => new TeamStandingsViewModel()
                 {
                     TeamId = ts.TeamId,
@@ -94,7 +61,7 @@
             return teams;
         }
 
-        public async Task<TeamDetailsViewModel> GetTeamDetailsInformationByIdAsync(int id)
+        public async Task<TeamDetailsViewModel> GetTeamDetailsByIdAsync(int id)
         {
             TeamDetailsViewModel teamDetails = await this.dbContext
                 .Teams
@@ -116,7 +83,7 @@
             return teamDetails;
         }
 
-        public async Task<TeamSeasonDetailsViewModel> GetTeamSeasonsInformationByIdAsync(int id)
+        public async Task<TeamSeasonDetailsViewModel> GetTeamSeasonInformationByIdAsync(int id)
         {
             TeamSeasonDetailsViewModel teamSeasonDetails = await this.dbContext
                 .TeamsSeasons
@@ -131,6 +98,57 @@
                 .FirstAsync();
 
             return teamSeasonDetails;
+        }
+
+        // ----------------------------------
+        // Helper classes
+        // ----------------------------------
+
+        /// <summary>
+        /// Asynchronously updates the points for all teams in the standings table in the specified division and during specified season.
+        /// </summary>
+        /// <param name="season">The description of the season to update teams' points for.</param>
+        /// <param name="division">The name of the division to update teams' points for.</param>
+        /// <returns>A Task representing the asynchronous operation.</returns>
+        private async Task UpdateAllTeamsPointsForSpecifiedDivisionAndSeasonAsync(string season, string division)
+        {
+            IEnumerable<TeamSeason> teams = await this.dbContext
+                .TeamsSeasons
+                .Where(ts => ts.Season.Description == season &&
+                    ts.Division.Name == division)
+                .ToArrayAsync();
+
+            foreach (TeamSeason team in teams)
+            {
+                team.Points = team.Wins * 3 + team.Draws;
+            }
+
+            await this.dbContext.SaveChangesAsync();
+        }
+
+        /// <summary>
+        /// Asynchronously updates the placement for all teams in the standings table in the specified division and season based on their points.
+        /// </summary>
+        /// <param name="season">The description of the season to update teams' placement for.</param>
+        /// <param name="division">The name of the division to update teams' placement for.</param>
+        /// <returns>A Task representing the asynchronous operation.</returns>
+        private async Task UpdateAllTeamsPlacementForSpecifiedDivisionAndSeasonAsync(string season, string division)
+        {
+            IEnumerable<TeamSeason> teams = await this.dbContext
+                .TeamsSeasons
+                .Where(ts => ts.Season.Description == season &&
+                    ts.Division.Name == division)
+                .OrderByDescending(ts => ts.Points)
+                .ToArrayAsync();
+
+            int currentPlacement = StandingsPlacementStart;
+            foreach (TeamSeason team in teams)
+            {
+                team.Placement = currentPlacement;
+                currentPlacement++;
+            }
+
+            await this.dbContext.SaveChangesAsync();
         }
     }
 }

@@ -37,7 +37,7 @@
             if (string.IsNullOrEmpty(returneQueryModel.SeasonFilter))
             {
                 queryModel.SeasonFilter = 
-                    await this.seasonService.GetCurrentSeasonDescriptionAsync();
+                    await this.seasonService.GetLatestSeasonDescriptionAsync();
             }
             else
             {
@@ -62,9 +62,9 @@
                 .GetFilteredBySeasonAndDivisionMatchesAsync(queryModel.SeasonFilter, queryModel.DivisionFilter);
 
             queryModel.Standings = await this.teamService
-                .GetFilteredBySeasonAndDivisionTeamStandingsAsync(queryModel.SeasonFilter, queryModel.DivisionFilter);
+                .GetFilteredBySeasonAndDivisionTeamsStandingsAsync(queryModel.SeasonFilter, queryModel.DivisionFilter);
 
-            queryModel.SeasonsOptions = await this.seasonService.GetAllSeasonsAsync();
+            queryModel.SeasonsOptions = await this.seasonService.GetAllSeasonDescriptionsAsync();
             queryModel.DivisionsOptions = await this.divisionService.GetAllDivisionNamesAsync();
 
             // Return to last selected tab for better UX

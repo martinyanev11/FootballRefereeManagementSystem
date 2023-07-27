@@ -30,16 +30,15 @@
                 return View("Contact", model);
             }
 
-            bool res = await emailService
+            bool isSedingSuccessful = await emailService
                 .SendEmailToContactSystemAsync(model.FirstName, model.LastName, model.Email, model.Title, model.Message);
 
-            if (res)
+            if (!isSedingSuccessful)
             {
-                return RedirectToAction("Success", "Contact");
+                return View("Error");
             }
-            
-            // TODO: redirect to error page
-            return View("Contact", model);
+
+            return RedirectToAction("Success", "Contact");
         }
 
         [HttpGet]

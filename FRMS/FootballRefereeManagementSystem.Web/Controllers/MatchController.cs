@@ -14,12 +14,27 @@
             this.matchService = matchService;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            MatchDetailsViewModel model = 
-                await this.matchService.GetMatchDetailsByIdAsync(id);
+            try
+            {
+                MatchDetailsViewModel model = 
+                    await this.matchService.GetMatchDetailsByIdAsync(id);
 
-            return View(model);
+                if (model is null)
+                {
+                    // TODO: Add Error404 page
+                    return NotFound();
+                }
+
+                return View(model);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+
         }
     }
 }

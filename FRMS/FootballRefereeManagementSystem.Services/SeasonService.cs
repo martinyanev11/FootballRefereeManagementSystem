@@ -1,11 +1,12 @@
 ﻿namespace FootballRefereeManagementSystem.Services
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
+
     using Microsoft.EntityFrameworkCore;
 
     using Contracts;
     using Data;
-    using FootballRefereeManagementSystem.Web.ViewModels.Season;
 
     public class SeasonService : ISeasonService
     {
@@ -16,7 +17,7 @@
             this.dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<string>> GetAllSeasonsAsync()
+        public async Task<IEnumerable<string>> GetAllSeasonDescriptionsAsync()
         {
             IEnumerable<string> seasons = await this.dbContext
                 .Seasons
@@ -27,7 +28,7 @@
             return seasons;
         }
 
-        public async Task<string> GetCurrentSeasonDescriptionAsync()
+        public async Task<string> GetLatestSeasonDescriptionAsync()
         {
             string currentSeason = await this.dbContext.Seasons
                 .AsNoTracking()
@@ -38,12 +39,12 @@
             return currentSeason;
         }
 
-        public async Task<int> GetSeasonIdByDescriptionAsync(string seasonFilter)
+        public async Task<int> GetSeasonIdByDescriptionAsync(string seasonDescription)
         {
             return await this.dbContext
                 .Seasons
                 .AsNoTracking()
-                .Where(s => s.Description == seasonFilter)
+                .Where(s => s.Description == seasonDescription)
                 .Select(s => s.Id)
                 .FirstAsync();
         }

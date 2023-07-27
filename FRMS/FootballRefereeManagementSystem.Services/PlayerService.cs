@@ -18,12 +18,12 @@
             this.dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<PlayerDetailsViewModel>> GetTeamPlayersForSeasonAsync(int id, int seasonId)
+        public async Task<IEnumerable<PlayerDetailsViewModel>> GetTeamPlayersForSeasonAsync(int teamId, int seasonId)
         {
             IEnumerable<PlayerDetailsViewModel> players = await this.dbContext
                 .PlayersTeamsSeasons
                 .AsNoTracking()
-                .Where(pts => pts.SeasonId == seasonId && pts.TeamId == id)
+                .Where(pts => pts.SeasonId == seasonId && pts.TeamId == teamId)
                 .Select(pts => new PlayerDetailsViewModel()
                 {
                     FullName = $"{pts.Player.FirstName} {pts.Player.LastName}",
