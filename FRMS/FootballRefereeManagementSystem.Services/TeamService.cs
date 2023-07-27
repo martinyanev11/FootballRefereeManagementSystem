@@ -125,7 +125,7 @@
                 .Select(ts => new TeamSeasonDetailsViewModel()
                 {
                     Division = ts.Division.Name,
-                    ManagerName = $"{ts.Manager.LastName} {ts.Manager.LastName}",
+                    ManagerName = $"{ts.Manager.FirstName} {ts.Manager.LastName}",
                     ManagerAge = ts.Manager.Age
                 })
                 .FirstAsync();
