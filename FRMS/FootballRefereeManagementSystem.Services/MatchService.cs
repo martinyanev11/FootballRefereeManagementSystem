@@ -76,6 +76,11 @@
             return match;
         }
 
+        public Task<MatchRefereeSquadSummaryViewModel> GetMatchForRefereeSquadByIdAsync(string refereeSquadId)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<DetailsHistoryViewModel>> GetMatchHistoryForSeasonByTeamIdAsync(int id, int seasonId)
         {
             IEnumerable<DetailsHistoryViewModel> matches = await this.dbContext

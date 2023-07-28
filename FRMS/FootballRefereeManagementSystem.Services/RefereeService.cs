@@ -10,6 +10,7 @@
     using Contracts;
     using Web.ViewModels.Referee;
     using Web.ViewModels.Referee.Enums;
+    using FootballRefereeManagementSystem.Web.ViewModels.RefereeSquad;
 
     public class RefereeService : IRefereeService
     {
@@ -117,6 +118,11 @@
             }
 
             return refereeViewModels;
+        }
+
+        public Task<IEnumerable<RefereeSquadViewModel>> GetAllRefereeSquadsAsync()
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<RefereeDetailsViewModel> GetRefereeDetailsByIdAsync(int id)

@@ -1,5 +1,6 @@
 ﻿namespace FootballRefereeManagementSystem.Web.Controllers
 {
+    using FootballRefereeManagementSystem.Web.ViewModels.RefereeSquad;
     using Microsoft.AspNetCore.Mvc;
 
     using Services.Contracts;
@@ -8,10 +9,12 @@
     public class RefereeController : BaseController
     {
         private readonly IRefereeService refereeService;
+        private readonly IMatchService matchService;
 
-        public RefereeController(IRefereeService refereeService)
+        public RefereeController(IRefereeService refereeService, IMatchService matchService)
         {
             this.refereeService = refereeService;
+            this.matchService = matchService;
         }
 
         [HttpGet]
@@ -53,6 +56,21 @@
             {
                 return View("Error");
             }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Schedule()
+        {
+            IEnumerable<RefereeSquadViewModel> squadViewModels =
+                await this.refereeService.GetAllRefereeSquadsAsync();
+
+            foreach (RefereeSquadViewModel refSquad in squadViewModels)
+            {
+                refSquad.Match = 
+                    await this.matchService.GetMatchForRefereeSquadByIdAsync(refSquad.RefereeSquadId);
+            }
+
+            return View(squadViewModels);
         }
     }
 }

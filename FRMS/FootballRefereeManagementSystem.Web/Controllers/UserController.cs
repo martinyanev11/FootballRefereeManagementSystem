@@ -19,6 +19,11 @@
         {
             try
             {
+                if (User.IsInRole("Admin"))
+                {
+                    return View("Dashboard");
+                }
+
                 string userId = User.GetId();
                 ApplicationUserViewModel model = 
                     await this.userService.GetUserInformationAsync(userId);
@@ -44,6 +49,16 @@
             {
                 return View("Error");
             }
+        }
+
+        public IActionResult Dashboard()
+        {
+            if (!User.IsInRole("Admin"))
+            {
+                return View("Error401");
+            }
+
+            return View();
         }
     }
 }

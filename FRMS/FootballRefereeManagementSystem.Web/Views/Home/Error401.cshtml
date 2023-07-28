@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "401 - Неоторизиран достъп";
+}
+
+<div class="container py-5">
+    <div class="text-center">
+        <h1 class="display-1 text-danger">401</h1>
+        <h2 class="display-4 text-danger">Неоторизиран достъп</h2>
+        <p class="lead">За да достъпите тази страница, трябва да се логнете или да имате права за достъп.</p>
+        <hr>
+        <div class="text-left">
+            <a class="btn btn-primary btn-lg" asp-controller="Account" asp-action="Login">Вход</a>
+            <a class="btn btn-secondary btn-lg" asp-controller="Home" asp-action="Index">Към началната страница</a>
+        </div>
+    </div>
+</div>
