@@ -39,7 +39,7 @@ namespace FootballRefereeManagementSystem.Services
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task<ApplicationUserViewModel> GetApplicationUserInformationAsync(string id)
+        public async Task<ApplicationUserViewModel> GetUserInformationAsync(string id)
         {
             ApplicationUserViewModel model = await dbContext.Users
                 .Where(u => u.Id.ToString() == id)

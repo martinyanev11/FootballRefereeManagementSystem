@@ -19,26 +19,36 @@
         [HttpGet]
         public async Task<IActionResult> All([FromQuery]ArticleQueryModel queryModel)
         {
-            if (queryModel.CurrentPage <= 0)
+            try
             {
-                queryModel.CurrentPage = 1;
-            }
+                queryModel ??= new ArticleQueryModel();
 
-            int allArticlesCount = await this.newsService.GetArticlesCountAsync();
-            int maxPage = (int)Math.Ceiling((double)allArticlesCount / GeneralApplicationConstants.ItemsPerPage);
-            if (queryModel.CurrentPage > maxPage)
+                if (queryModel.CurrentPage <= 0)
+                {
+                    queryModel.CurrentPage = 1;
+                }
+
+                int allArticlesCount = await this.newsService.GetArticlesCountAsync();
+                int maxPage = (int)Math.Ceiling((double)allArticlesCount / GeneralApplicationConstants.ItemsPerPage);
+
+                if (queryModel.CurrentPage > maxPage)
+                {
+                    queryModel.CurrentPage = maxPage;
+                }
+
+                ArticleAllFilteredAndPagedServiceModel serviceModel =
+                    await this.newsService.GetAllArticlesAsync(queryModel);
+
+                queryModel.Articles = serviceModel.Articles;
+                queryModel.TotalArticles = serviceModel.TotalArticlesCount;
+                queryModel.Years = await this.newsService.GetArticlesDistinctYearsAsStringAsync();
+
+                return View(queryModel);
+            }
+            catch (Exception)
             {
-                queryModel.CurrentPage = maxPage;
+                return View("Error");
             }
-
-            ArticleAllFilteredAndPagedServiceModel serviceModel =
-                await this.newsService.AllAsync(queryModel);
-
-            queryModel.Articles = serviceModel.Articles;
-            queryModel.TotalArticles = serviceModel.TotalArticlesCount;
-            queryModel.Years = await this.newsService.GetArticlesDistinctYearsAsStringAsync();
-
-            return View(queryModel);
         }
 
         [HttpGet]
@@ -54,17 +64,39 @@
                 return View(model);
             }
 
-            await this.newsService.AddNewArticleAsync(model);
+            try
+            {
+                await this.newsService.AddNewArticleAsync(model);
 
-            return RedirectToAction("All", "News");
+                return RedirectToAction("All", "News");
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            ArticleFormViewModel model = await this.newsService.GetArticleForEditByIdAsync(id);
+            try
+            {
+                bool entityExists = await this.newsService.CheckArticleExistanceByIdAsync(id);
 
-            return View(model);
+                if (!entityExists)
+                {
+                    return View("Error404");
+                }
+
+                ArticleFormViewModel model = await this.newsService.GetArticleForEditByIdAsync(id);
+
+                return View(model);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+            
         }
         [HttpPost]
         public async Task<IActionResult> Edit(int id, ArticleFormViewModel model)
@@ -74,17 +106,40 @@
                 return View(model);
             }
 
-            await this.newsService.EditArticleAsync(id, model);
+            try
+            {
+                await this.newsService.EditArticleAsync(id, model);
 
-            return RedirectToAction("All", "News");
+                return RedirectToAction("All", "News");
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+            
         }
 
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            await this.newsService.DeleteArticleAsync(id);
+            bool entityExists = await this.newsService.CheckArticleExistanceByIdAsync(id);
 
-            return RedirectToAction("All", "News");
+            if (!entityExists)
+            {
+                return View("Error404");
+            }
+
+            try
+            {
+                await this.newsService.DeleteArticleAsync(id);
+
+                return RedirectToAction("All", "News");
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+            
         }
     }
 }

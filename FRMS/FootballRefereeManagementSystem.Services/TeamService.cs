@@ -100,6 +100,12 @@
             return teamSeasonDetails;
         }
 
+        public async Task<bool> CheckTeamExistanceByIdAsync(int id)
+        {
+            return await this.dbContext.Teams
+                .AllAsync(t => t.Id == id);
+        }
+
         // ----------------------------------
         // Helper classes
         // ----------------------------------

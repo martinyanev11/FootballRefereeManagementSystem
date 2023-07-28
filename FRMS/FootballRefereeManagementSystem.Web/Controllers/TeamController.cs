@@ -26,24 +26,40 @@
 
         public async Task<IActionResult> Details(int id, [FromQuery]TeamQueryModel queryModel)
         {
-            if (string.IsNullOrEmpty(queryModel.SeasonFilter))
+            try
             {
-                queryModel.SeasonFilter = await seasonService.GetLatestSeasonDescriptionAsync();
+                bool teamExists = await this.teamService.CheckTeamExistanceByIdAsync(id);
+
+                if (!teamExists)
+                {
+                    return View("Error404");
+                }
+
+                if (string.IsNullOrEmpty(queryModel.SeasonFilter))
+                {
+                    queryModel.SeasonFilter = await seasonService.GetLatestSeasonDescriptionAsync();
+                }
+
+                queryModel.SeasonsOptions = await seasonService.GetAllSeasonDescriptionsAsync();
+
+                // General team information
+                TeamDetailsViewModel teamVM = await teamService.GetTeamDetailsByIdAsync(id);
+                queryModel.GeneralInformation = teamVM;
+
+                // Team information for specific season
+                TeamSeasonDetailsViewModel teamSeasonVM = await teamService.GetTeamSeasonInformationByIdAsync(id);
+                int seasonId = await this.seasonService.GetSeasonIdByDescriptionAsync(queryModel.SeasonFilter);
+                teamSeasonVM.MatchHistory = await this.matchService.GetMatchHistoryForSeasonByTeamIdAsync(id, seasonId);
+                teamSeasonVM.Players = await this.playerService.GetTeamPlayersForSeasonAsync(id, seasonId);
+
+                queryModel.SeasonalInformation = teamSeasonVM;
+
+                return View(queryModel);
             }
-
-            queryModel.SeasonsOptions = await seasonService.GetAllSeasonDescriptionsAsync();
-
-            TeamDetailsViewModel teamVM = await teamService.GetTeamDetailsByIdAsync(id);
-            queryModel.GeneralInformation = teamVM;
-
-            TeamSeasonDetailsViewModel teamSeasonVM = await teamService.GetTeamSeasonInformationByIdAsync(id);
-            int seasonId = await this.seasonService.GetSeasonIdByDescriptionAsync(queryModel.SeasonFilter);
-            teamSeasonVM.MatchHistory = await this.matchService.GetMatchHistoryForSeasonByTeamIdAsync(id, seasonId);
-            teamSeasonVM.Players = await this.playerService.GetTeamPlayersForSeasonAsync(id, seasonId);
-
-            queryModel.SeasonalInformation = teamSeasonVM;
-
-            return View(queryModel);
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
     }
 }

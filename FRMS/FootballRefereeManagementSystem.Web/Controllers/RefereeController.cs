@@ -17,22 +17,42 @@
         [HttpGet]
         public async Task<IActionResult> All([FromQuery]RefereeQueryModel queryModel)
         {
-            IEnumerable<RefereeViewModel> filteredRefereesCollection =
+            try
+            {
+                IEnumerable<RefereeViewModel> filteredRefereesCollection =
                 await this.refereeService.GetAllRefereesFilteredAsync(queryModel);
 
-            queryModel.Referees = filteredRefereesCollection;
+                queryModel.Referees = filteredRefereesCollection;
 
-            return View(queryModel);
+                return View(queryModel);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            RefereeDetailsViewModel viewModel = 
+            try
+            {
+                bool refereeExists = await this.refereeService.CheckRefereeExistanceByIdAsync(id);
+
+                if (!refereeExists)
+                {
+                    return View("Error404");
+                }
+            
+                RefereeDetailsViewModel viewModel =
                 await this.refereeService.GetRefereeDetailsByIdAsync(id);
 
-            return View(viewModel);
-            //return PartialView("_Details", viewModel);
+                return View(viewModel);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
     }
 }

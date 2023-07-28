@@ -7,6 +7,13 @@
     public interface IRefereeService
     {
         /// <summary>
+        /// Asynchronously checks the existence of a referee based on the provided referee ID.
+        /// </summary>
+        /// <param name="id">The ID of the referee to check for existence.</param>
+        /// <returns>A boolean value indicating whether the referee with the specified ID exists or not.</returns>
+        Task<bool> CheckRefereeExistanceByIdAsync(int id);
+
+        /// <summary>
         /// Asynchronously retrieves a filtered list of referees based on the provided query model.
         /// </summary>
         /// <param name="queryModel">The query model containing filter and sorting options for the referees.</param>

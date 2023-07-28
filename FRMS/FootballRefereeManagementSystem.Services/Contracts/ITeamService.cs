@@ -8,6 +8,13 @@
     public interface ITeamService
     {
         /// <summary>
+        /// Asynchronously checks the existence of a team based on the provided team ID.
+        /// </summary>
+        /// <param name="id">The ID of the team to check for existence.</param>
+        /// <returns>A boolean value indicating whether the team with the specified ID exists or not.</returns>
+        Task<bool> CheckTeamExistanceByIdAsync(int id);
+
+        /// <summary>
         /// Asynchronously retrieves team standings for a specified season and division.
         /// </summary>
         /// <param name="seasonDescription">The season description to filter the team standings.</param>

@@ -17,18 +17,33 @@
 
         public async Task<IActionResult> Index()
         {
-            string userId = User.GetId();
-            ApplicationUserViewModel model = await this.userService.GetApplicationUserInformationAsync(userId);
+            try
+            {
+                string userId = User.GetId();
+                ApplicationUserViewModel model = 
+                    await this.userService.GetUserInformationAsync(userId);
 
-            return View(model);
+                return View(model);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
 
         public async Task<IActionResult> Status()
         {
-            string userId = User.GetId();
-            await this.userService.ChangeStatusAsync(userId);
+            try
+            {
+                string userId = User.GetId();
+                await this.userService.ChangeStatusAsync(userId);
 
-            return RedirectToAction("Index", "User");
+                return RedirectToAction("Index", "User");
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
     }
 }

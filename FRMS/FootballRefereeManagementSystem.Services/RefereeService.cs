@@ -20,6 +20,12 @@
             this.dbContext = dbContext;
         }
 
+        public async Task<bool> CheckRefereeExistanceByIdAsync(int id)
+        {
+            return await this.dbContext.Referees
+                .AnyAsync(r => r.Id == id);
+        }
+
         public async Task<IEnumerable<RefereeViewModel>> GetAllRefereesFilteredAsync(RefereeQueryModel queryModel)
         {
             IQueryable<Referee> refereesAsQueryable = this.dbContext

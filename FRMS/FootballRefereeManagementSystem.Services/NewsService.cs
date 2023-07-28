@@ -24,12 +24,6 @@ namespace FootballRefereeManagementSystem.Services
             this.dbContext = dbContext;
         }
 
-        private async Task<Article> GetArticleByIdAsync(int id)
-        {
-            return await this.dbContext.Articles
-                .FirstAsync(a => a.Id == id);
-        }
-
         public async Task AddNewArticleAsync(ArticleFormViewModel modelToAdd)
         {
             Article article = new Article()
@@ -43,7 +37,7 @@ namespace FootballRefereeManagementSystem.Services
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<ArticleAllFilteredAndPagedServiceModel> AllAsync(ArticleQueryModel queryModel)
+        public async Task<ArticleAllFilteredAndPagedServiceModel> GetAllArticlesAsync(ArticleQueryModel queryModel)
         {
             IQueryable<Article> articlesQuery = this.dbContext
                 .Articles
@@ -59,7 +53,7 @@ namespace FootballRefereeManagementSystem.Services
                 if (parsedSuccessfully)
                 {
                     articlesQuery = articlesQuery
-                    .Where(a => a.CreatedOn.Year == yearToFilter);
+                        .Where(a => a.CreatedOn.Year == yearToFilter);
                 }
             }
 
@@ -103,9 +97,9 @@ namespace FootballRefereeManagementSystem.Services
             };
         }
 
-        public async Task EditArticleAsync(int id, ArticleFormViewModel model)
+        public async Task EditArticleAsync(int articleId, ArticleFormViewModel model)
         {
-            Article articleToEdit = await this.GetArticleByIdAsync(id);
+            Article articleToEdit = await this.GetArticleByIdAsync(articleId);
 
             articleToEdit.Title = model.Title;
             articleToEdit.Content = model.Content;
@@ -154,5 +148,21 @@ namespace FootballRefereeManagementSystem.Services
             articleToDelete.IsActive = false;
             await this.dbContext.SaveChangesAsync();
         }
+
+        public async Task<bool> CheckArticleExistanceByIdAsync(int id)
+        {
+            return await this.dbContext.Articles
+                .AnyAsync(a => a.Id == id);
+        }
+
+        // ---------------------------------------
+        // Helper methods
+        // ---------------------------------------
+
+        private async Task<Article> GetArticleByIdAsync(int id)
+        {
+            return await this.dbContext.Articles
+                .FirstAsync(a => a.Id == id);
+        }        
     }
 }

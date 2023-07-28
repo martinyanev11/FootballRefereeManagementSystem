@@ -24,8 +24,7 @@
 
                 if (model is null)
                 {
-                    // TODO: Add Error404 page
-                    return NotFound();
+                    return View("Error404");
                 }
 
                 return View(model);

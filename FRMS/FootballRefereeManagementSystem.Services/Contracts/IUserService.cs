@@ -16,6 +16,6 @@
         /// </summary>
         /// <param name="id">The ID of the application user to retrieve information for.</param>
         /// <returns>A task representing the asynchronous operation that returns an instance of <see cref="ApplicationUserViewModel"/> containing the user information.</returns>
-        Task<ApplicationUserViewModel> GetApplicationUserInformationAsync(string id);
+        Task<ApplicationUserViewModel> GetUserInformationAsync(string id);
     }
 }

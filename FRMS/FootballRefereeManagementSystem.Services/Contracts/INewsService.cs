@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="queryModel">The query model containing filtering, sorting, and pagination parameters.</param>
         /// <returns>A task representing the asynchronous operation that returns an instance of <see cref="ArticleAllFilteredAndPagedServiceModel"/> containing the filtered and paginated <see cref="ArticleViewModel"/> models.</returns>
-        Task<ArticleAllFilteredAndPagedServiceModel> AllAsync(ArticleQueryModel queryModel);
+        Task<ArticleAllFilteredAndPagedServiceModel> GetAllArticlesAsync(ArticleQueryModel queryModel);
 
         /// <summary>
         /// Adds a new article to the database based on the provided <see cref="ArticleFormViewModel"/>.
@@ -52,5 +52,12 @@
         /// <param name="id">The ID of the article to delete.</param>
         /// <returns>A task representing the asynchronous operation.</returns>
         Task DeleteArticleAsync(int id);
+
+        /// <summary>
+        /// Asynchronously checks the existence of an article based on the provided article ID.
+        /// </summary>
+        /// <param name="id">The ID of the article to check for existence.</param>
+        /// <returns>A boolean value indicating whether the article with the specified ID exists or not.</returns>
+        Task<bool> CheckArticleExistanceByIdAsync(int id);
     }
 }
