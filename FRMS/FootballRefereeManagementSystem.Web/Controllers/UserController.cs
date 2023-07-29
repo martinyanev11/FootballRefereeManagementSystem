@@ -9,10 +9,12 @@
     public class UserController : BaseController
     {
         private readonly IUserService userService;
+        private readonly IRefereeService refereeService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, IRefereeService refereeService)
         {
             this.userService = userService;
+            this.refereeService = refereeService;
         }
 
         public async Task<IActionResult> Index()
@@ -27,6 +29,9 @@
                 string userId = User.GetId();
                 ApplicationUserViewModel model = 
                     await this.userService.GetUserInformationAsync(userId);
+
+                int userRefereeId = await this.refereeService.GetRefereeIdByUserIdAsync(userId);
+                model.RefereeDetails = await this.refereeService.GetRefereeDetailsByIdAsync(userRefereeId);
 
                 return View(model);
             }

@@ -21,17 +21,13 @@
             </h6>
             <hr class="my-4">
             <div class="row mb-3">
-                <div class="col-6 text-end">
-                    <button type="submit" class="btn btn-primary">
-                        Предстоящи мачове <span class="badge bg-light text-danger">@Model.CurrentlyAppointedMatchesCount</span>
-                    </button>
-                </div>
-                <div class="col-6 text-start">
-                    <p>Роля: @Model.Role</p>
+                <div class="h6">
+                    Предстоящи мачове <span class="badge bg-light text-danger">@Model.CurrentlyAppointedMatchesCount</span>
                 </div>
             </div>
         </div>
     </div>
+    <partial name="_RefereeDetailsPartial", model="@Model.RefereeDetails" />
 </div>
 
 <div class="confirm-container" id="statusChangeMenu">
