@@ -120,9 +120,30 @@
             return refereeViewModels;
         }
 
-        public Task<IEnumerable<RefereeSquadViewModel>> GetAllRefereeSquadsAsync()
+        public async Task<IEnumerable<RefereeSquadViewModel>> GetAllActiveRefereeSquadsAsync()
         {
-            throw new NotImplementedException();
+            IEnumerable<RefereeSquadViewModel> refereeSquads = await this.dbContext
+                .RefereesSquads
+                .AsNoTracking()
+                .Where(rs => rs.Match.HasFinished == false)
+                .Select(rs => new RefereeSquadViewModel()
+                {
+                    MainRefereeFullName = $"{rs.MainReferee.FirstName} {rs.MainReferee.LastName}",
+                    AssistantRefereeOneFullName = $"{rs.FirstAssistantReferee.FirstName} {rs.FirstAssistantReferee.LastName}",
+                    AssistantRefereeTwoFullName = $"{rs.SecondAssistantReferee.FirstName} {rs.SecondAssistantReferee.LastName}",
+                    DelegateFullName = $"{rs.Delegate.FirstName} {rs.Delegate.LastName}",
+                    RefereeSquadId = rs.Id.ToString(),
+                    RefereeIds = new HashSet<int>()
+                    {
+                        rs.MainRefereeId,
+                        rs.FirstAssistantRefereeId,
+                        rs.SecondAssistantRefereeId,
+                        rs.DelegateId
+                    }
+                })
+                .ToArrayAsync();
+
+            return refereeSquads;
         }
 
         public async Task<RefereeDetailsViewModel> GetRefereeDetailsByIdAsync(int id)

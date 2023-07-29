@@ -1,5 +1,6 @@
 ﻿namespace FootballRefereeManagementSystem.Web.Controllers
 {
+    using FootballRefereeManagementSystem.Web.Infrastructure.Extensions;
     using FootballRefereeManagementSystem.Web.ViewModels.RefereeSquad;
     using Microsoft.AspNetCore.Mvc;
 
@@ -62,7 +63,11 @@
         public async Task<IActionResult> Schedule()
         {
             IEnumerable<RefereeSquadViewModel> squadViewModels =
-                await this.refereeService.GetAllRefereeSquadsAsync();
+                await this.refereeService.GetAllActiveRefereeSquadsAsync();
+
+            string userId = this.User.GetId();
+            int userRefereeId = await this.refereeService.GetRefereeIdByUserIdAsync(userId);
+            ViewData["UserRefereeId"] = userRefereeId;
 
             foreach (RefereeSquadViewModel refSquad in squadViewModels)
             {

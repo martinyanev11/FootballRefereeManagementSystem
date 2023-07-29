@@ -76,9 +76,24 @@
             return match;
         }
 
-        public Task<MatchRefereeSquadSummaryViewModel> GetMatchForRefereeSquadByIdAsync(string refereeSquadId)
+        public async Task<MatchRefereeSquadSummaryViewModel> GetMatchForRefereeSquadByIdAsync(string refereeSquadId)
         {
-            throw new NotImplementedException();
+            MatchRefereeSquadSummaryViewModel matchSummary = await this.dbContext
+                .Matches
+                .AsNoTracking()
+                .Where(m => m.RefereeSquadId == new Guid(refereeSquadId))
+                .Select(m => new MatchRefereeSquadSummaryViewModel()
+                {
+                    MatchId = m.Id,
+                    HomeTeamName = m.HomeTeam.Team.Name,
+                    HomeTeamTown = m.HomeTeam.Team.Town.Name,
+                    AwayTeamName = m.AwayTeam.Team.Name,
+                    AwayTeamTown = m.AwayTeam.Team.Town.Name,
+                    FixtureTime = m.FixtureTime,
+                })
+                .FirstAsync();
+
+            return matchSummary;
         }
 
         public async Task<IEnumerable<DetailsHistoryViewModel>> GetMatchHistoryForSeasonByTeamIdAsync(int id, int seasonId)

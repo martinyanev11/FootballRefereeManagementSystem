@@ -20,7 +20,7 @@
         /// <param name="queryModel">The query model containing filter and sorting options for the referees.</param>
         /// <returns>A collection of models containing details of the filtered referees.</returns>
         Task<IEnumerable<RefereeViewModel>> GetAllRefereesFilteredAsync(RefereeQueryModel queryModel);
-        Task<IEnumerable<RefereeSquadViewModel>> GetAllRefereeSquadsAsync();
+        Task<IEnumerable<RefereeSquadViewModel>> GetAllActiveRefereeSquadsAsync();
 
         /// <summary>
         /// Asynchronously retrieves detailed information about a referee based on the provided ID.
