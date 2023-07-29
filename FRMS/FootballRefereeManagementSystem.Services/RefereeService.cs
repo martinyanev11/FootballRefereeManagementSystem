@@ -141,6 +141,7 @@
                         rs.DelegateId
                     }
                 })
+                .OrderBy(rs => rs.Match.FixtureTime)
                 .ToArrayAsync();
 
             return refereeSquads;

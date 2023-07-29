@@ -1,17 +1,25 @@
 ﻿namespace FootballRefereeManagementSystem.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
-
     using Microsoft.EntityFrameworkCore;
 
+    using Enums;
     using static Common.EntityValidationConstants.Application;
 
     [Comment("Application request to become a referee")]
     public class Application
     {
+        public Application()
+        {
+            this.Id = Guid.NewGuid();
+            this.CreatedOn = DateTime.UtcNow;
+            this.IsRegistered = false;
+            this.Status = 0;
+        }
+
         [Comment("Primary key")]
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Comment("First name of applicant")]
         [Required]
@@ -43,5 +51,15 @@
 
         [Comment("Does applicant have car")]
         public bool HasCar { get; set; }
+
+        public Status Status { get; set; }
+
+        [Comment("To track for one-time use for registration")]
+        [Required]
+        public bool IsRegistered { get; set; }
+
+        [Comment("Date and time of creation")]
+        [Required]
+        public DateTime CreatedOn { get; set; }
     }
 }
