@@ -5,14 +5,18 @@
 
     using Services.Contracts;
     using ViewModels.Career;
+    using ViewModels.Career.Enums;
 
     public class CareerController : BaseController
     {
         private readonly ICareerService careerService;
+        private readonly IEmailService emailService;
 
-        public CareerController(ICareerService careerService)
+        public CareerController(ICareerService careerService, IEmailService emailService)
         {
             this.careerService = careerService;
+            this.emailService = emailService;
+
         }
 
         [AllowAnonymous]
@@ -74,19 +78,83 @@
         [HttpGet]
         public async Task<IActionResult> DeclineConfirmation(string id)
         {
-            ApplicationViewModel model = await this.careerService
-                .GetApplicationByIdAsync(id);
+            try
+            {
+                bool applicationExists =
+                    await this.careerService.CheckApplicationExistanceByIdAsync(id);
 
-            return View(model);
+                if (!applicationExists)
+                {
+                    return View("Error404");
+                }
+
+                ApplicationViewModel model = await this.careerService
+                    .GetApplicationByIdAsync(id);
+
+                return View(model);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            } 
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Decline(string id)
+        {
+            try
+            {
+                bool applicationExists = 
+                    await this.careerService.CheckApplicationExistanceByIdAsync(id);
+
+                if (!applicationExists)
+                {
+                    return View("Error404");
+                }
+
+                await this.careerService.ChangeApplicationStatusAsync(StatusSorting.Declined.ToString(), id);
+
+                ApplicationViewModel applicationModel = await this.careerService
+                    .GetApplicationByIdAsync(id);
+
+                bool isSedingSuccessful = await this.emailService
+                    .SendDeclineEmailToCareerCandidateAsync(applicationModel.FullName, applicationModel.EmailAddress);
+
+                if (!isSedingSuccessful)
+                {
+                    return View("Error");
+                }
+
+                return RedirectToAction("All", "Career");
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
 
         [HttpGet]
         public async Task<IActionResult> ApproveConfirmation(string id)
         {
-            ApplicationViewModel model = await this.careerService
-                .GetApplicationByIdAsync(id);
+            try
+            {
+                bool applicationExists =
+                    await this.careerService.CheckApplicationExistanceByIdAsync(id);
 
-            return View(model);
+                if (!applicationExists)
+                {
+                    return View("Error404");
+                }
+
+                ApplicationViewModel model = await this.careerService
+                    .GetApplicationByIdAsync(id);
+
+                return View(model);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
     }
 }

@@ -39,6 +39,30 @@
             await dbContext.SaveChangesAsync();
         }
 
+        public async Task ChangeApplicationStatusAsync(string newStatus, string applicationId)
+        {
+            Application application = await this.dbContext.Applications
+                .Where(a => a.Id.ToString() == applicationId)
+                .FirstAsync();
+
+            if (StatusSorting.Approved.ToString() == newStatus)
+            {
+                application.Status = Status.Approved;
+            }
+            else
+            {
+                application.Status = Status.Declined;
+            }
+
+            await dbContext.SaveChangesAsync();
+        }
+
+        public async Task<bool> CheckApplicationExistanceByIdAsync(string id)
+        {
+            return await this.dbContext.Applications
+                .AnyAsync(a => a.Id.ToString() == id);
+        }
+
         public async Task<IEnumerable<ApplicationViewModel>> GetAllApplicationsFilteredAsync(ApplicationQueryModel queryModel)
         {
             IQueryable<Application> applicationsAsQueryable = this.dbContext

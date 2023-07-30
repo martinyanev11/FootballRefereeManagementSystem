@@ -4,6 +4,8 @@
 
     public interface IEmailService
     {
+        Task<bool> SendDeclineEmailToCareerCandidateAsync(string candidateFullName, string candidateEmail);
+
         /// <summary>
         /// Sends an email to the contact system using the provided information.
         /// </summary>

@@ -1,11 +1,13 @@
 ﻿namespace FootballRefereeManagementSystem.Services
 {
+    using System.Text;
+
     using SendGrid;
     using SendGrid.Helpers.Mail;
 
-    using Contracts;
     using Microsoft.Extensions.Configuration;
-    using System.Text;
+
+    using Contracts;
 
     public class EmailService : IEmailService
     {
@@ -39,6 +41,42 @@
             }
 
             // If it reached here, an error occurred while sending the email
+            return false;
+        }
+
+        public async Task<bool> SendDeclineEmailToCareerCandidateAsync(string candidateFullName, string candidateEmail)
+        {
+            SendGridClient client = new SendGridClient(apiKey);
+
+            string careerSystemEmail = configuration["EmailSettings:ContactSystem:Email"];
+            string careerSystemName = "Кариерен център - БФС Плевен";
+            EmailAddress senderEmail = new EmailAddress(careerSystemEmail, careerSystemName);
+
+            EmailAddress recieverEmail = new EmailAddress(candidateEmail);
+
+            string subject = "Кандидатура за съдия";
+            string plainTextContent =
+                @$"Здравейте {candidateFullName},
+                Благодарим Ви за интереса, който проявихте и за участието Ви в нашия подборен процес за позицията на футболен съдия.
+
+                Бихме искали да Ви уведомим, че след дълъг и внимателен разглед, нашето ръководство взеха решение да продължат напред с друг кандидат, който най-добре отговаря на нашите настоящи нужди и изисквания.
+                С уважение,
+                {careerSystemName}";
+
+            string htmlContent = "";
+
+            SendGridMessage? msg = MailHelper.CreateSingleEmail(senderEmail, recieverEmail, subject, plainTextContent, htmlContent);
+
+            Response? response = await client.SendEmailAsync(msg);
+
+            // Check the response status code
+            if (response.StatusCode == System.Net.HttpStatusCode.Accepted)
+            {
+                // Email sent successfully
+                return true;
+            }
+
+            // An error occurred while sending the email
             return false;
         }
 
