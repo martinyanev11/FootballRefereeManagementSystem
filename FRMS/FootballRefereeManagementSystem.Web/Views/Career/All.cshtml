@@ -1,0 +1,106 @@
+﻿@using FootballRefereeManagementSystem.Web.ViewModels.Career;
+@model ApplicationQueryModel;
+@{
+    ViewData["Title"] = "Кандидатури";
+}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<h2>Кандидатури за присъединяване към екипа</h2>
+<hr />
+<div class="row">
+    <form method="get" class="col-md-2 border-end border-3 border-primary">
+        <div>
+            <h5 class="text-center"><i class="bi bi-funnel-fill"></i> Сортиране:</h5>
+            <hr />
+            <div class="row mb-3">
+                <div class="col-5 offset-1">
+                    <label asp-for="DateSorting" class="dropdown-header text-end">По дата:</label>
+                </div>
+                <div class="form-group col-6">
+                    <select asp-for="DateSorting" class="form-control">
+                        <option value="0">Най-нови</option>
+                        <option value="1">Най-стари</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-5 offset-1">
+                    <label asp-for="StatusSorting" class="dropdown-header text-end">По статус:</label>
+                </div>
+                <div class="form-group col-6">
+                    <select asp-for="StatusSorting" class="form-control">
+                        <option value="0">Всички</option>
+                        <option value="1">В процес</option>
+                        <option value="2">Одобрени</option>
+                        <option value="3">Отхвърлени</option>
+                    </select>
+                </div>
+            </div>
+            <hr />
+            <div class="row mb-1">
+                <div class="col-5 offset-1">
+                    <label asp-for="IsRegisteredIsChecked" class="dropdown-header text-end">Регистриран</label>
+                </div>
+                <div class="col-4 p-2 text-start">
+                    <input asp-for="IsRegisteredIsChecked" class="form-check-input" type="checkbox" value="true">
+                </div>
+            </div>
+
+            <div class="text-center mb-3">
+                <input type="submit" value="Филтрирай" class="btn btn-primary col-12" />
+            </div>
+        </div>
+    </form>
+    <div class="container col-md-10">
+        <table class="table table-bordered table-responsive table-hover bg-white">
+            <thead class="table-primary">
+                <tr class="d-table-row text-center">
+                    <th>#</th>
+                    <th>Име</th>
+                    <th>Години</th>
+                    <th>Контакт</th>
+                    <th>Имейл адрес</th>
+                    <th>Тегло</th>
+                    <th>Книжка</th>
+                    <th>Автомобил</th>
+                    <th>Дата</th>
+                    <th>Статус</th>
+                    <th>Регистриран е</th>
+                    <th><i class="bi bi-person-fill-gear"></i></th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                @{
+                    int counter = 1;
+                    foreach (var application in Model.Applications)
+                    {
+                        <tr class="d-table-row text-center">
+                            <td class="fw-bold">@counter</td>
+                            <td>@application.FullName</td>
+                            <td>@application.Age</td>
+                            <td>@application.ContactNumber</td>
+                            <td>@application.EmailAddress</td>
+                            <td>@application.Weight кг.</td>
+                            <td><i class="@(application.HasDriverLicense ? "bi bi-check-circle-fill text-success" : "bi bi-x-circle-fill text-danger")"></i></td>
+                            <td><i class="@(application.HasCar ? "bi bi-check-circle-fill text-success" : "bi bi-x-circle-fill text-danger")"></i></td>
+                            <td>@($"{application.CreatedOn.ToString("dd-MM-yyyy")} г.")</td>
+                            <td>@application.Status</td>
+                            <td><i class="@(application.IsRegistered ? "bi bi-check-circle-fill text-success" : "bi bi-x-circle-fill text-danger")"></i></td>
+                            <td>
+                                <a class="btn btn-sm btn-success btn-outline-dark" asp-controller="Career" asp-action="Approve" asp-route-id="@application.Id">
+                                    <i class="bi bi-check2"></i>
+                                </a>
+                                <a class="btn btn-sm btn-danger btn-outline-dark" asp-controller="Career" asp-action="Decline" asp-route-id="@application.Id">
+                                    <i class="bi bi-x-lg"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                        counter++;
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

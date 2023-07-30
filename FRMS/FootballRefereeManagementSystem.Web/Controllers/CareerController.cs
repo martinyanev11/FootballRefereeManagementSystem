@@ -6,7 +6,6 @@
     using Services.Contracts;
     using ViewModels.Career;
 
-    [AllowAnonymous]
     public class CareerController : BaseController
     {
         private readonly ICareerService careerService;
@@ -16,12 +15,14 @@
             this.careerService = careerService;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Apply()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Apply(ApplicationFormModel model)
         {
@@ -52,10 +53,22 @@
             return RedirectToAction("Success", "Career");
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Success()
         {
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> All([FromQuery]ApplicationQueryModel queryModel) // TODO: Admin access only
+        {
+            IEnumerable<ApplicationViewModel> allApplicationsFiltered =
+                await this.careerService.GetAllApplicationsFilteredAsync(queryModel);
+
+            queryModel.Applications = allApplicationsFiltered;
+
+            return View(queryModel);
         }
     }
 }

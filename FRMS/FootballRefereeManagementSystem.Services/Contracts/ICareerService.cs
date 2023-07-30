@@ -1,5 +1,6 @@
 ﻿namespace FootballRefereeManagementSystem.Services.Contracts
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using Web.ViewModels.Career;
@@ -12,5 +13,6 @@
         /// <param name="model">The application form model containing the application information to add.</param>
         /// <returns>A task representing the asynchronous operation.</returns>
         Task AddApplicationAsync(ApplicationFormModel model);
+        Task<IEnumerable<ApplicationViewModel>> GetAllApplicationsFilteredAsync(ApplicationQueryModel queryModel);
     }
 }

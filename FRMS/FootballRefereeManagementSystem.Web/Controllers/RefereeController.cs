@@ -24,7 +24,7 @@
             try
             {
                 IEnumerable<RefereeViewModel> filteredRefereesCollection =
-                await this.refereeService.GetAllRefereesFilteredAsync(queryModel);
+                    await this.refereeService.GetAllRefereesFilteredAsync(queryModel);
 
                 queryModel.Referees = filteredRefereesCollection;
 
