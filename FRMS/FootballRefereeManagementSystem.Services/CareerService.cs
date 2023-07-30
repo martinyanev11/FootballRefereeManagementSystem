@@ -107,6 +107,30 @@
             return applicationViewModels;
         }
 
+        public async Task<ApplicationViewModel> GetApplicationByIdAsync(string id)
+        {
+            ApplicationViewModel application = await this.dbContext
+                .Applications
+                .Where(a => a.Id.ToString() == id)
+                .Select(a => new ApplicationViewModel()
+                {
+                    FullName = $"{a.FirstName} {a.LastName}",
+                    Age = a.Age,
+                    Weight = a.Weight,
+                    ContactNumber = a.Contact,
+                    HasDriverLicense = a.HasDriverLicense,
+                    HasCar = a.HasCar,
+                    EmailAddress = a.Email,
+                    Id = a.Id.ToString(),
+                    CreatedOn = a.CreatedOn,
+                    IsRegistered = a.IsRegistered,
+                    Status = a.Status.ToString(),
+                })
+                .FirstAsync();
+
+            return application;
+        }
+
         // ---------------------------------------------
         // Helper methods
         // ---------------------------------------------

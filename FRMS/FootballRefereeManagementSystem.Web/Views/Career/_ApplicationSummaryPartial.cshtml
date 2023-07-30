@@ -1,0 +1,22 @@
+﻿@using FootballRefereeManagementSystem.Web.ViewModels.Career;
+@model ApplicationViewModel;
+
+<div class="card-title h4">Кандидат за съдия:</div>
+<div class="card-body">
+    <div class="card-text">
+        <div class="card-subtitle h5 fst-italic mb-2">Основни данни:</div>
+        <ul class="list-group">
+            <li class="list-group-item"><span class="fw-bold me-2">Име:</span>@Model.FullName</li>
+            <li class="list-group-item"><span class="fw-bold me-2">Години:</span>@Model.Age</li>
+            <li class="list-group-item"><span class="fw-bold me-2">Имейл:</span>@Model.EmailAddress</li>
+            <li class="list-group-item"><span class="fw-bold me-2">Контакт:</span>@Model.ContactNumber</li>
+        </ul>
+        <br />
+        <div class="card-subtitle h5 fst-italic mb-2">Допълнителна информация:</div>
+        <ul class="list-group">
+            <li class="list-group-item"><span class="fw-bold me-2">Тегло:</span>@Model.Weight кг.</li>
+            <li class="list-group-item"><span class="fw-bold me-2">Свидетелство за шофиране:</span><i class="@(Model.HasDriverLicense ? "bi bi-check-circle-fill text-success" : "bi bi-x-circle-fill text-danger")"></i></li>
+            <li class="list-group-item"><span class="fw-bold me-2">Личен автомобил:</span><i class="@(Model.HasCar ? "bi bi-check-circle-fill text-success" : "bi bi-x-circle-fill text-danger")"></i></li>
+        </ul>
+    </div>
+</div>

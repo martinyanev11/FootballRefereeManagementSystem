@@ -1,12 +1,7 @@
 ﻿namespace FootballRefereeManagementSystem.Web.Controllers
 {
-    using System.Diagnostics;
-
     using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-
-    using ViewModels.Home;
 
     [AllowAnonymous]
     public class HomeController : BaseController

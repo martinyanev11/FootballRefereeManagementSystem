@@ -70,5 +70,23 @@
 
             return View(queryModel);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> DeclineConfirmation(string id)
+        {
+            ApplicationViewModel model = await this.careerService
+                .GetApplicationByIdAsync(id);
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ApproveConfirmation(string id)
+        {
+            ApplicationViewModel model = await this.careerService
+                .GetApplicationByIdAsync(id);
+
+            return View(model);
+        }
     }
 }

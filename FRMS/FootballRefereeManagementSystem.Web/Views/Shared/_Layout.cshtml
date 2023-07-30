@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-3 @(User.IsInRole("Admin") ? "bg-danger" : "bg-primary")">
             <div class="container-fluid">
                 @if (User.Identity?.IsAuthenticated ?? false)
                 {
@@ -41,8 +41,13 @@
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="" asp-controller="Season" asp-action="All">СЕЗОН</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item me-3">
                                 <a class="nav-link" asp-area="" asp-controller="Referee" asp-action="Schedule">СЕДМИЧЕН НАРЯД</a>
+                            </li>
+                            // Check for admin role for the rest:
+                            <li class="vr me-3 text-white"></li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Career" asp-action="All">КАНДИДАТУРИ</a>
                             </li>
                         }
                         else
