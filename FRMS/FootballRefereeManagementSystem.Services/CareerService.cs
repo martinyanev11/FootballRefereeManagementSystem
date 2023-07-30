@@ -63,6 +63,14 @@
                 .AnyAsync(a => a.Id.ToString() == id);
         }
 
+        public async Task<bool> ConfirmRegistrationLinkAsync(string id)
+        {
+            bool result = await this.dbContext.Applications
+                .AnyAsync(a => a.IsRegistered == false && a.Id.ToString() == id);
+
+            return result;
+        }
+
         public async Task<IEnumerable<ApplicationViewModel>> GetAllApplicationsFilteredAsync(ApplicationQueryModel queryModel)
         {
             IQueryable<Application> applicationsAsQueryable = this.dbContext

@@ -80,6 +80,41 @@
             return false;
         }
 
+        public async Task<bool> SendApproveEmailToCareerCandidateAsync(string candidateFullName, string candidateEmail, string applicationId)
+        {
+            SendGridClient client = new SendGridClient(apiKey);
+
+            string careerSystemEmail = configuration["EmailSettings:ContactSystem:Email"];
+            string careerSystemName = "Кариерен център - БФС Плевен";
+            EmailAddress senderEmail = new EmailAddress(careerSystemEmail, careerSystemName);
+
+            EmailAddress recieverEmail = new EmailAddress(candidateEmail);
+
+            string subject = "Кандидатура за съдия";
+            string plainTextContent =
+                @$"Здравейте {candidateFullName},
+                С радост Ви съобщаваме, че Вашата кандидатура беше успешна, и искаме да Ви поздравим за приемането Ви на позицията асистент съдия в БФС Плевен!
+                През следния линк може да направите своя личен профил в нашата Съдийска система - https://localhost:7251/Identity/Account/Register?id={applicationId}
+                С уважение,
+                {careerSystemName}";
+
+            string htmlContent = "";
+
+            SendGridMessage? msg = MailHelper.CreateSingleEmail(senderEmail, recieverEmail, subject, plainTextContent, htmlContent);
+
+            Response? response = await client.SendEmailAsync(msg);
+
+            // Check the response status code
+            if (response.StatusCode == System.Net.HttpStatusCode.Accepted)
+            {
+                // Email sent successfully
+                return true;
+            }
+
+            // An error occurred while sending the email
+            return false;
+        }
+
         public async Task<bool> SendEmailToContactSystemAsync(string firstName, string lastName, string email, string subject, string messageContent)
         {
             SendGridClient client = new SendGridClient(apiKey);
@@ -116,5 +151,6 @@
             // An error occurred while sending the email
             return false;
         }
+
     }
 }

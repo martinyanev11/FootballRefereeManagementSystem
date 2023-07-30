@@ -156,5 +156,39 @@
                 return View("Error");
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Approve(string id)
+        {
+            try
+            {
+                bool applicationExists =
+                    await this.careerService.CheckApplicationExistanceByIdAsync(id);
+
+                if (!applicationExists)
+                {
+                    return View("Error404");
+                }
+
+                await this.careerService.ChangeApplicationStatusAsync(StatusSorting.Approved.ToString(), id);
+
+                ApplicationViewModel applicationModel = await this.careerService
+                    .GetApplicationByIdAsync(id);
+
+                bool isSedingSuccessful = await this.emailService
+                    .SendApproveEmailToCareerCandidateAsync(applicationModel.FullName, applicationModel.EmailAddress, applicationModel.Id);
+
+                if (!isSedingSuccessful)
+                {
+                    return View("Error");
+                }
+
+                return RedirectToAction("All", "Career");
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+        }
     }
 }

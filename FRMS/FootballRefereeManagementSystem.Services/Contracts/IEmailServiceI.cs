@@ -4,6 +4,7 @@
 
     public interface IEmailService
     {
+        Task<bool> SendApproveEmailToCareerCandidateAsync(string candidateFullName, string candidateEmail, string applicationId);
         Task<bool> SendDeclineEmailToCareerCandidateAsync(string candidateFullName, string candidateEmail);
 
         /// <summary>

@@ -16,6 +16,7 @@
         Task AddApplicationAsync(ApplicationFormModel model);
         Task ChangeApplicationStatusAsync(string newStatus, string applicationId);
         Task<bool> CheckApplicationExistanceByIdAsync(string id);
+        Task<bool> ConfirmRegistrationLinkAsync(string id);
         Task<IEnumerable<ApplicationViewModel>> GetAllApplicationsFilteredAsync(ApplicationQueryModel queryModel);
         Task<ApplicationViewModel> GetApplicationByIdAsync(string id);
     }
