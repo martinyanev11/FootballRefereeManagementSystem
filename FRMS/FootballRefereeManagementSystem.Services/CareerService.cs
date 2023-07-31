@@ -163,6 +163,16 @@
             return application;
         }
 
+        public async Task SetIsRegisterValueToTrueAsync(string id)
+        {
+            Application app = await this.dbContext.Applications
+                .Where(a => a.Id.ToString() == id)
+                .FirstAsync();
+
+            app.IsRegistered = true;
+            await this.dbContext.SaveChangesAsync();
+        }
+
         // ---------------------------------------------
         // Helper methods
         // ---------------------------------------------

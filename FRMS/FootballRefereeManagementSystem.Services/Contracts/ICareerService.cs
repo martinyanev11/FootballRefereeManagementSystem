@@ -50,5 +50,6 @@
         /// <param name="id">The ID of the application to retrieve.</param>
         /// <returns>A model containing details of the specified application.</returns>
         Task<ApplicationViewModel> GetApplicationByIdAsync(string id);
+        Task SetIsRegisterValueToTrueAsync(string id);
     }
 }

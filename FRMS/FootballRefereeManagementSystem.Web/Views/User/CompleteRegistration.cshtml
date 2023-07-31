@@ -1,0 +1,68 @@
+﻿@model RefereeFormModel;
+@{
+    ViewData["Title"] = "Завърши регистрацията";
+}
+
+<div class="container">
+    <h2 class="mb-2">@ViewData["Title"]</h2>
+    <hr />
+    <form asp-controller="User" asp-action="CompleteRegistration" method="post">
+        <div class="row">
+            <div class="form-group mb-3 col-3 me-1">
+                <label asp-for="FirstName">Име:</label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3 col-3 me-1">
+                <label asp-for="LastName">Фамилия:</label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3 col-1 me-1">
+                <label asp-for="Age">Години:</label>
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group mb-3">
+                <label asp-for="ImageUrl">Линк на изображение:</label>
+                <input asp-for="ImageUrl" class="form-control" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group mb-3 col-4 me-1">
+                <label asp-for="Contact">Контакт:</label>
+                <input asp-for="Contact" class="form-control" />
+                <span asp-validation-for="Contact" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3 col-4 me-1">
+                <label asp-for="Town">Град:</label>
+                <input asp-for="Town" class="form-control" />
+                <span asp-validation-for="Town" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3 col-4">
+                <label asp-for="Role">Роля:</label>
+                <input asp-for="Role" class="form-control" disabled />
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3 col-4">
+                <label asp-for="Division">Дивизия:</label>
+                <input asp-for="Division" class="form-control" disabled />
+                <span asp-validation-for="Division" class="text-danger"></span>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Завърши регистрация</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

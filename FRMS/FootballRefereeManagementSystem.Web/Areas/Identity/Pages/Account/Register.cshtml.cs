@@ -5,6 +5,7 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account
     using System.Text.Encodings.Web;
     using System.ComponentModel.DataAnnotations;
 
+    using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.UI.Services;
     using Microsoft.AspNetCore.Mvc;
@@ -12,8 +13,8 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account
     using Microsoft.AspNetCore.WebUtilities;
 
     using Data.Models;
-    using FootballRefereeManagementSystem.Services.Contracts;
-    using FootballRefereeManagementSystem.Web.ViewModels.Career;
+    using Services.Contracts;
+    using ViewModels.Career;
 
     public class RegisterModel : PageModel
     {
@@ -33,7 +34,7 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account
         {
             this.userManager = userManager;
             this.userStore = userStore;
-            emailStore = GetEmailStore();
+            this.emailStore = GetEmailStore();
             this.signInManager = signInManager;
             this.emailSender = emailSender;
             this.careerService = careerService;
@@ -73,31 +74,32 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account
                 return RedirectToAction("Error", StatusCode(403));
             }
 
+            ViewData["Id"] = id;
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/");
+            string id = Request.Form["id"];
+
+            returnUrl ??= Url.Content($"~/User/CompleteRegistration?id={id}");
 
             if (ModelState.IsValid)
             {
-                //ApplicationViewModel applicationModel = await this.careerService
-                //    .GetApplicationByIdAsync(id);
+                await this.careerService.SetIsRegisterValueToTrueAsync(id);
 
-                var user = CreateUser();
+                ApplicationUser user = CreateUser();
 
                 await userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
-                //await userManager.SetPhoneNumberAsync(user, )
                 await emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                var result = await userManager.CreateAsync(user, Input.Password);
+                IdentityResult result = await userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
-                    var userId = await userManager.GetUserIdAsync(user);
-                    var code = await userManager.GenerateEmailConfirmationTokenAsync(user);
+                    string userId = await userManager.GetUserIdAsync(user);
+                    string code = await userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page(
+                    string callbackUrl = Url.Page(
                         "/Account/ConfirmEmail",
                         pageHandler: null,
                         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },

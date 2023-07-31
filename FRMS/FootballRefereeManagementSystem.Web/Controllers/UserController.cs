@@ -56,6 +56,12 @@
             }
         }
 
+        [HttpGet]
+        public IActionResult CompleteRegistration(string id)
+        {
+            return View();
+        }
+
         public IActionResult Dashboard()
         {
             if (!User.IsInRole("Admin"))
