@@ -21,6 +21,12 @@
         /// <param name="id">The ID of the match to retrieve details for.</param>
         /// <returns>A model containing detailed information about the match.</returns>
         Task<MatchDetailsViewModel> GetMatchDetailsByIdAsync(int id);
+
+        /// <summary>
+        /// Asynchronously retrieves a view model for a match associated with the provided referee squad ID.
+        /// </summary>
+        /// <param name="refereeSquadId">The ID of the referee squad.</param>
+        /// <returns>A model containing details of the match.</returns>
         Task<MatchRefereeSquadSummaryViewModel> GetMatchForRefereeSquadByIdAsync(string refereeSquadId);
 
         /// <summary>

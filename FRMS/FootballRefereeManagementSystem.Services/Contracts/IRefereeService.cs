@@ -20,6 +20,12 @@
         /// <param name="queryModel">The query model containing filter and sorting options for the referees.</param>
         /// <returns>A collection of models containing details of the filtered referees.</returns>
         Task<IEnumerable<RefereeViewModel>> GetAllRefereesFilteredAsync(RefereeQueryModel queryModel);
+
+        /// <summary>
+        /// Asynchronously retrieves all active referee squads along with their details.
+        /// An active referee squad is considered one where the match that they officiate is yet to be played.
+        /// </summary>
+        /// <returns>A collection of models containing details of active referee squads.</returns>
         Task<IEnumerable<RefereeSquadViewModel>> GetAllActiveRefereeSquadsAsync();
 
         /// <summary>

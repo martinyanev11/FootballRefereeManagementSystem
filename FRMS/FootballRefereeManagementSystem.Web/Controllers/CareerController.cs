@@ -16,7 +16,6 @@
         {
             this.careerService = careerService;
             this.emailService = emailService;
-
         }
 
         [AllowAnonymous]
@@ -67,16 +66,23 @@
         [HttpGet]
         public async Task<IActionResult> All([FromQuery]ApplicationQueryModel queryModel) // TODO: Admin access only
         {
-            IEnumerable<ApplicationViewModel> allApplicationsFiltered =
+            try
+            {
+                IEnumerable<ApplicationViewModel> allApplicationsFiltered =
                 await this.careerService.GetAllApplicationsFilteredAsync(queryModel);
 
-            queryModel.Applications = allApplicationsFiltered;
+                queryModel.Applications = allApplicationsFiltered;
 
-            return View(queryModel);
+                return View(queryModel);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
 
         [HttpGet]
-        public async Task<IActionResult> DeclineConfirmation(string id)
+        public async Task<IActionResult> DeclineConfirmation(string id) // TODO: Admin access only
         {
             try
             {
@@ -100,7 +106,7 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> Decline(string id)
+        public async Task<IActionResult> Decline(string id) // TODO: Admin access only
         {
             try
             {
@@ -134,7 +140,7 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> ApproveConfirmation(string id)
+        public async Task<IActionResult> ApproveConfirmation(string id) // TODO: Admin access only
         {
             try
             {
@@ -158,7 +164,7 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> Approve(string id)
+        public async Task<IActionResult> Approve(string id) // TODO: Admin access only
         {
             try
             {

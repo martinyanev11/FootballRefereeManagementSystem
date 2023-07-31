@@ -20,30 +20,6 @@
             this.apiKey = configuration["EmailSettings:ApiKey"];
         }
 
-        public async Task<bool> SendEmailAsync(string recipient, string subject, string content)
-        {
-            SendGridClient client = new SendGridClient(apiKey);
-
-            EmailAddress fromEmail = new EmailAddress(configuration["EmailSettings:ContactSystem:Email"], "NoReply");
-            EmailAddress toEmail = new EmailAddress("bojejec943@meogl.com", "Test"); // random email for test
-            string plainTextContent = content;
-            string htmlContent = "";
-
-            SendGridMessage? msg = MailHelper.CreateSingleEmail(fromEmail, toEmail, subject, plainTextContent, htmlContent);
-
-            Response? response = await client.SendEmailAsync(msg);
-
-            // Check the response status code
-            if (response.StatusCode == System.Net.HttpStatusCode.Accepted)
-            {
-                // Email sent successfully
-                return true;
-            }
-
-            // If it reached here, an error occurred while sending the email
-            return false;
-        }
-
         public async Task<bool> SendDeclineEmailToCareerCandidateAsync(string candidateFullName, string candidateEmail)
         {
             SendGridClient client = new SendGridClient(apiKey);
