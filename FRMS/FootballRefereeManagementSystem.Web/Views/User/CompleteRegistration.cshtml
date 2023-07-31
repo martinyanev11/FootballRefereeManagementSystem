@@ -34,18 +34,33 @@
             </div>
         </div>
         <div class="row">
-            <div class="form-group mb-3 col-4 me-1">
+            <div class="form-group mb-2 col-4 me-1">
                 <label asp-for="Contact">Контакт:</label>
                 <input asp-for="Contact" class="form-control" />
                 <span asp-validation-for="Contact" class="text-danger"></span>
             </div>
+        </div>
 
+        <div class="row">
             <div class="form-group mb-3 col-4 me-1">
                 <label asp-for="Town">Град:</label>
                 <input asp-for="Town" class="form-control" />
                 <span asp-validation-for="Town" class="text-danger"></span>
             </div>
+        </div>
+        <div class="row">
+            <div class="form-group mb-3 col-3 me-1">
+                <label asp-for="Zone" class="dropdown-header">Зона:</label>
+                <select asp-for="Zone" class="form-control">
+                    @foreach (string zone in Model.Zones)
+                    {
+                        <option value="@zone">@zone</option>
+                    }
+                </select>
+            </div>
+        </div>
 
+        <div class="row">
             <div class="form-group mb-3 col-4">
                 <label asp-for="Role">Роля:</label>
                 <input asp-for="Role" class="form-control" disabled />

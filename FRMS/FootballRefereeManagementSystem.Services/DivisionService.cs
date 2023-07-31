@@ -7,6 +7,7 @@
 
     using Contracts;
     using Data;
+    using Data.Models;
 
     public class DivisionService : IDivisionService
     {
@@ -15,6 +16,18 @@
         public DivisionService(FootballRefereeManagementSystemDbContext dbContext)
         {
             this.dbContext = dbContext;
+        }
+
+        public async Task AddNewDivisionToRefereeByIdAsync(int refereeId, string division)
+        {
+            RefereeDivision refereeDivision = new RefereeDivision()
+            {
+                RefereeId = refereeId,
+                DivisionId = await GetDivisionIdByNameAsync(division)
+            };
+
+            await this.dbContext.RefereesDivisions.AddAsync(refereeDivision);
+            await this.dbContext.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<string>> GetAllDivisionNamesAsync()
@@ -28,6 +41,16 @@
             return divisions;
         }
 
+        public async Task<string> GetLowestDivisionNameAsync()
+        {
+            return await this.dbContext
+                .Divisions
+                .AsNoTracking()
+                .Where(d => d.Id == 5)
+                .Select(d => d.Name)
+                .FirstAsync();
+        }
+
         public async Task<string> GetNameOfMostOfficiatedDivisionForRefereeByIdAsync(int refereeId)
         {
             string mostOfficiatedDivision = await this.dbContext
@@ -39,6 +62,18 @@
                 .FirstAsync();
 
             return mostOfficiatedDivision;
+        }
+
+        //------------------------------------------
+        // Helper methods
+        //------------------------------------------
+
+        private async Task<int> GetDivisionIdByNameAsync(string divisionName)
+        {
+            return await this.dbContext.Divisions
+                .Where(d => d.Name == divisionName)
+                .Select(d => d.Id)
+                .FirstAsync();
         }
     }
 }

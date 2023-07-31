@@ -41,5 +41,8 @@
         /// <param name="userId">The ID of the user to retrieve the referee ID for.</param>
         /// <returns>The referee ID as an integer.</returns>
         Task<int> GetRefereeIdByUserIdAsync(string userId);
+
+        string GetRefereeStartingRole();
+        Task CreateNewRefereeAsync(RefereeFormModel model);
     }
 }

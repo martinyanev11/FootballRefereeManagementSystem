@@ -44,7 +44,7 @@
 
         [Comment("Phone number of the person represented by this entity")]
         [Required]
-        [MaxLength(ContactMaxLength)]
+        [MaxLength(ContactLength)]
         public string Contact { get; set; } = null!;
 
         [Comment("Current role of the person represented by this entity within the organization")]

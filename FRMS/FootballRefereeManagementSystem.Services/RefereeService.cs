@@ -10,11 +10,12 @@
     using Contracts;
     using Web.ViewModels.Referee;
     using Web.ViewModels.Referee.Enums;
-    using FootballRefereeManagementSystem.Web.ViewModels.RefereeSquad;
+    using Web.ViewModels.RefereeSquad;
 
     public class RefereeService : IRefereeService
     {
         private readonly FootballRefereeManagementSystemDbContext dbContext;
+        private string RefereeStartingRole = Role.AssistantReferee.ToString();
 
         public RefereeService(FootballRefereeManagementSystemDbContext dbContext)
         {
@@ -181,6 +182,30 @@
                 .Where(r => r.UserId.ToString() == userId)
                 .Select(r => r.Id)
                 .FirstOrDefaultAsync();
+        }
+
+        public string GetRefereeStartingRole()
+        {
+            RefereeStartingRole = TranslateRoleToBulgarian(RefereeStartingRole);
+            return RefereeStartingRole;
+        }
+
+        public async Task CreateNewRefereeAsync(RefereeFormModel model)
+        {
+            Referee newReferee = new Referee()
+            {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Age = model.Age,
+                ImageUrl = model.ImageUrl,
+                Contact = model.Contact,
+                Role = Role.AssistantReferee, // All new referees start from this role
+                TownId = model.TownId,
+                UserId = Guid.Parse(model.UserId)
+            };
+
+            await this.dbContext.Referees.AddAsync(newReferee);
+            await this.dbContext.SaveChangesAsync();
         }
 
         // --------------------------------------------

@@ -12,8 +12,10 @@
 
             public const int ImageUrlMaxLength = 2048;
 
-            public const int ContactMinLength = 10;
-            public const int ContactMaxLength = 15;
+            public const int ContactLength = 10;
+
+            public const int AgeMinValue = 15;
+            public const int AgeMaxValue = 65;
         }
 
         public static class Team

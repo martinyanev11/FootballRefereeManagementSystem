@@ -5,11 +5,14 @@
 
     public interface IDivisionService
     {
+        Task AddNewDivisionToRefereeByIdAsync(int refereeId, string division);
+
         /// <summary>
         /// Asynchronously retrieves all division names from the database.
         /// </summary>
         /// <returns>A collection sequence containing the names of all divisions.</returns>
         Task<IEnumerable<string>> GetAllDivisionNamesAsync();
+        Task<string> GetLowestDivisionNameAsync();
 
         /// <summary>
         /// Asynchronously retrieves the name of the division that a referee has officiated the most matches in.
