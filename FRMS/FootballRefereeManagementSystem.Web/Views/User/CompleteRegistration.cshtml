@@ -42,38 +42,20 @@
         </div>
 
         <div class="row">
-            <div class="form-group mb-3 col-4 me-1">
-                <label asp-for="Town">Град:</label>
-                <input asp-for="Town" class="form-control" />
-                <span asp-validation-for="Town" class="text-danger"></span>
+            <div class="form-group mb-3">
+                    <span class="fw-bold me-2">Роля:</span> @Model.StartingRole
             </div>
-        </div>
-        <div class="row">
-            <div class="form-group mb-3 col-3 me-1">
-                <label asp-for="Zone" class="dropdown-header">Зона:</label>
-                <select asp-for="Zone" class="form-control">
-                    @foreach (string zone in Model.Zones)
-                    {
-                        <option value="@zone">@zone</option>
-                    }
-                </select>
+            <div class="form-group mb-3">
+                <span class="fw-bold me-2">Дивизия:</span> @Model.StartingDivision
             </div>
         </div>
 
         <div class="row">
-            <div class="form-group mb-3 col-4">
-                <label asp-for="Role">Роля:</label>
-                <input asp-for="Role" class="form-control" disabled />
-                <span asp-validation-for="Role" class="text-danger"></span>
-            </div>
-
-            <div class="form-group mb-3 col-4">
-                <label asp-for="Division">Дивизия:</label>
-                <input asp-for="Division" class="form-control" disabled />
-                <span asp-validation-for="Division" class="text-danger"></span>
-            </div>
+            <!-- Hidden fields for StartingRole, StartingDivision, and UserId -->
+            <input type="hidden" asp-for="StartingRole" value="@Model.StartingRole" />
+            <input type="hidden" asp-for="StartingDivision" value="@Model.StartingDivision" />
+            <input type="hidden" asp-for="UserId" value="@Model.UserId" />
         </div>
-
         <button type="submit" class="btn btn-primary">Завърши регистрация</button>
     </form>
 </div>

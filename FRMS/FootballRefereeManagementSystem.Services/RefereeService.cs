@@ -17,7 +17,6 @@
     public class RefereeService : IRefereeService
     {
         private readonly FootballRefereeManagementSystemDbContext dbContext;
-        private string RefereeStartingRole = Role.AssistantReferee.ToString();
 
         public RefereeService(FootballRefereeManagementSystemDbContext dbContext)
         {
@@ -117,7 +116,7 @@
             // This is to translate the enums
             foreach (var refModel in refereeViewModels)
             {
-                refModel.Role = Translator.TranslateRole(refModel.Role);
+                refModel.Role = Translator.TranslateRoleToBulgarian(refModel.Role);
             }
 
             return refereeViewModels;
@@ -171,7 +170,7 @@
                 })
                 .FirstAsync();
 
-            viewModel.Role = Translator.TranslateRole(viewModel.Role);
+            viewModel.Role = Translator.TranslateRoleToBulgarian(viewModel.Role);
 
             return viewModel;
         }
@@ -184,14 +183,10 @@
                 .FirstOrDefaultAsync();
         }
 
-        public string GetRefereeStartingRole()
-        {
-            RefereeStartingRole = Translator.TranslateRole(RefereeStartingRole);
-            return RefereeStartingRole;
-        }
-
         public async Task CreateNewRefereeAsync(RefereeFormModel model)
         {
+            model.StartingRole = Translator.TranslateRoleToEnglish(model.StartingRole);
+
             Referee newReferee = new Referee()
             {
                 FirstName = model.FirstName,
@@ -199,7 +194,7 @@
                 Age = model.Age,
                 ImageUrl = model.ImageUrl,
                 Contact = model.Contact,
-                Role = Role.AssistantReferee,
+                Role = (Role)Enum.Parse(typeof(Role), model.StartingRole),
                 UserId = Guid.Parse(model.UserId)
             };
 

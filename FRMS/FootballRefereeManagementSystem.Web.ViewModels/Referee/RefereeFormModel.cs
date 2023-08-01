@@ -3,15 +3,9 @@
     using System.ComponentModel.DataAnnotations;
 
     using static Common.EntityValidationConstants.Referee;
-    using static Common.EntityValidationConstants.Town;
 
     public class RefereeFormModel
     {
-        public RefereeFormModel()
-        {
-            this.Zones = new HashSet<string>();
-        }
-
         [Required(ErrorMessage = "Полето е задължително")]
         [StringLength(FirstNameMaxLength, MinimumLength = FirstNameMinLength,
             ErrorMessage = "Името трябва да е с дължина между 2 и 50 символа")]
@@ -35,17 +29,8 @@
             ErrorMessage = "Телефонния номер трябва да е с дължина точно 10 цифри")]
         public string Contact { get; set; } = null!;
 
-        [Required(ErrorMessage = "Полето е задължително")]
-        [StringLength(NameMaxLength, MinimumLength = NameMinLength,
-            ErrorMessage = "Името на града трябва да е между 2 и 26 символа")]
-        public string Town { get; set; } = null!;
-
-        public int TownId { get; set; }
-
-        public string Role { get; set; } = null!;
-        public string Division { get; set; } = null!;
+        public string StartingRole { get; set; } = null!;
+        public string StartingDivision { get; set; } = null!;
         public string UserId { get; set; } = null!;
-        public string Zone { get; set; } = null!;
-        public IEnumerable<string> Zones { get; set; } = null!;
     }
 }

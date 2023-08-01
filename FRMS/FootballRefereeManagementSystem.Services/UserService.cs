@@ -55,7 +55,17 @@ namespace FootballRefereeManagementSystem.Services
 
             return model;
         }
-        
+
+        public async Task LinkUserToRefereeAsync(string userId, int refereeId)
+        {
+            ApplicationUser user = await this.dbContext.Users
+                .Where(u => u.Id.ToString() == userId)
+                .FirstAsync();
+
+            user.RefereeId = refereeId;
+            await this.dbContext.SaveChangesAsync();
+        }
+
         // --------------------------------------
         // Helper methods
         // --------------------------------------

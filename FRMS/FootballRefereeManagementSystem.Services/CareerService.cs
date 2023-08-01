@@ -136,7 +136,7 @@
             foreach (var appModel in applicationViewModels)
             {
                 appModel.Status = Translator.TranslateStatus(appModel.Status);
-                appModel.Role = Translator.TranslateRole(appModel.Role);
+                appModel.Role = Translator.TranslateRoleToBulgarian(appModel.Role);
             }
 
             return applicationViewModels;
@@ -164,7 +164,7 @@
                 })
                 .FirstAsync();
 
-            application.Role = Translator.TranslateRole(application.Role);
+            application.Role = Translator.TranslateRoleToBulgarian(application.Role);
 
             return application;
         }

@@ -80,14 +80,13 @@
 
             RefereeFormModel model = new RefereeFormModel()
             {
-                FirstName = userCareerApplication.FirstName.Split()[0].TrimEnd(),
-                LastName = userCareerApplication.FirstName.Split()[1].TrimStart(),
+                FirstName = userCareerApplication.FirstName,
+                LastName = userCareerApplication.LastName,
                 Age = userCareerApplication.Age,
                 Contact = userCareerApplication.ContactNumber,
                 UserId = this.User.GetId(),
-                Role = this.refereeService.GetRefereeStartingRole(),
-                Division = await this.divisionService.GetLowestDivisionNameAsync(),
-                Zones = await this.zoneService.GetAllZoneNamesAsync()
+                StartingRole = userCareerApplication.Role.ToString(),
+                StartingDivision = userCareerApplication.Division
             };
 
             return View(model);
@@ -96,13 +95,6 @@
         [HttpPost]
         public async Task<IActionResult> CompleteRegistration(RefereeFormModel model)
         {
-            bool zoneExists = await this.zoneService.CheckZoneExistanceByNameAsync(model.Zone);
-
-            if (!zoneExists)
-            {
-                ModelState.AddModelError("Zone", "Зоната не е валидна");
-            }
-
             if (!model.Contact.StartsWith("0"))
             {
                 ModelState.AddModelError("Contact", "Телефонния номер трябва да започва с 0");
@@ -110,29 +102,15 @@
 
             if (!ModelState.IsValid)
             {
-                model.UserId = this.User.GetId();
-                model.Role = this.refereeService.GetRefereeStartingRole();
-                model.Division = await this.divisionService.GetLowestDivisionNameAsync();
-                model.Zones = await this.zoneService.GetAllZoneNamesAsync();
-
                 return View(model);
             }
-
-            bool townExists = await this.townService.CheckTownExistanceByNameAsync(model.Town);
-
-            if (!townExists)
-            {
-                int zoneId = await this.zoneService.GetZoneIdByNameAsync(model.Zone);
-                await this.townService.AddNewTownAsync(model.Town, zoneId);
-            }
-
-            int townId = await this.townService.GetTownIdByNameAsync(model.Town); 
-            model.TownId = townId;
 
             await this.refereeService.CreateNewRefereeAsync(model);
 
             int refereeId = await this.refereeService.GetRefereeIdByUserIdAsync(model.UserId);
-            await this.divisionService.AddNewDivisionToRefereeByIdAsync(refereeId, model.Division);
+            await this.divisionService.AddNewDivisionToRefereeByIdAsync(refereeId, model.StartingDivision);
+
+            await this.userService.LinkUserToRefereeAsync(model.UserId, refereeId);
 
             return RedirectToAction("Index", "User");
         }

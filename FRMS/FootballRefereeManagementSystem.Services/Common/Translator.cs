@@ -4,7 +4,7 @@
 
     internal static class Translator
     {
-        public static string TranslateRole(string role)
+        public static string TranslateRoleToBulgarian(string role)
         {
             if (role == Role.Referee.ToString())
             {
@@ -21,6 +21,28 @@
             else if (role == Role.Administration.ToString())
             {
                 role = "Администрация";
+            }
+
+            return role;
+        }
+
+        public static string TranslateRoleToEnglish(string role)
+        {
+            if (role == "Главен съдия")
+            {
+                role = Role.Referee.ToString();
+            }
+            else if (role == "Асистент съдия")
+            {
+                role = Role.AssistantReferee.ToString();
+            }
+            else if (role == "Делегат")
+            {
+                role = Role.Delegate.ToString();
+            }
+            else if (role == "Администрация")
+            {
+                role = Role.Administration.ToString();
             }
 
             return role;

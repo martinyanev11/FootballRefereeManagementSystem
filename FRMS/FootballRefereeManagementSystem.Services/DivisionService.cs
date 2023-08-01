@@ -81,16 +81,6 @@
             return divisions;
         }
 
-        public async Task<string> GetLowestDivisionNameAsync()
-        {
-            return await this.dbContext
-                .Divisions
-                .AsNoTracking()
-                .Where(d => d.Id == 5)
-                .Select(d => d.Name)
-                .FirstAsync();
-        }
-
         public async Task<string> GetNameOfMostOfficiatedDivisionForRefereeByIdAsync(int refereeId)
         {
             string mostOfficiatedDivision = await this.dbContext
