@@ -610,7 +610,6 @@
                         HomeTeamId = homeTeamId,
                         AwayTeamId = awayTeamId,
                         SeasonId = SeasonDataConstants.Season22And23Id,
-                        SeasonRound = currentSeasonRound,
                         HasFinished = true,
                     };
 

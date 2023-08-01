@@ -25,7 +25,6 @@
                     //Contact = GeneratePhoneNumber(),
                     //CareerStart = GenerateRandomDateTime(2016, 1, 1),
                     Role = Role.Referee,
-                    TownId = TownDataConstants.PlevenTownId,
                     UserId = new Guid(ApplicationUserDataConstants.RefereeId),
                     IsAvaliable = true
                 },
@@ -43,7 +42,6 @@
                     //Contact = GeneratePhoneNumber(),
                     //CareerStart = GenerateRandomDateTime(2016, 1, 1),
                     Role = Role.AssistantReferee,
-                    TownId = TownDataConstants.PlevenTownId,
                     UserId = new Guid(ApplicationUserDataConstants.AssistantRefereeOneId),
                     IsAvaliable = true
                 },
@@ -61,7 +59,6 @@
                     //Contact = GeneratePhoneNumber(),
                     //CareerStart = GenerateRandomDateTime(2016, 1, 1),
                     Role = Role.AssistantReferee,
-                    TownId = TownDataConstants.PlevenTownId,
                     UserId = new Guid(ApplicationUserDataConstants.AssistantRefereeTwoId),
                     IsAvaliable = true
                 },
@@ -79,7 +76,6 @@
                     //Contact = GeneratePhoneNumber(),
                     //CareerStart = GenerateRandomDateTime(2016, 1, 1),
                     Role = Role.Delegate,
-                    TownId = TownDataConstants.PlevenTownId,
                     UserId = new Guid(ApplicationUserDataConstants.DelegateId),
                     IsAvaliable = true
                 },
@@ -97,7 +93,6 @@
                     //Contact = GeneratePhoneNumber(),
                     //CareerStart = GenerateRandomDateTime(2016, 1, 1),
                     Role = Role.Administration,
-                    TownId = TownDataConstants.PlevenTownId,
                     UserId = new Guid(ApplicationUserDataConstants.AdministratorId),
                     IsAvaliable = false
                 },
