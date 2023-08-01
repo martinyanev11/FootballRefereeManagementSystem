@@ -12,27 +12,32 @@
                 new Division()
                 {
                     Id = FirstProLeagueId,
-                    Name = "Първа професионална футболна лига"
+                    Name = "Първа професионална футболна лига",
+                    Difficulty = 5,
                 },
                 new Division()
                 {
                     Id = SecondProLeagueId,
-                    Name = "Втора професионална футболна лига"
+                    Name = "Втора професионална футболна лига",
+                    Difficulty = 4,
                 },
                 new Division()
                 {
                     Id = ThirdAmateurLeagueId,
-                    Name = "Трета аматьорска футболна лига"
+                    Name = "Трета аматьорска футболна лига",
+                    Difficulty = 3,
                 },
                 new Division()
                 {
                     Id = RegionalAGroupId,
-                    Name = "„А“ областнa футболнa групa"
+                    Name = "„А“ областнa футболнa групa",
+                    Difficulty = 2,
                 },
                 new Division()
                 {
                     Id = RegionalBGroupId,
-                    Name = "„Б“ областнa футболнa групa"
+                    Name = "„Б“ областнa футболнa групa",
+                    Difficulty = 1,
                 }
             };
 

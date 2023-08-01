@@ -57,11 +57,6 @@
         [Comment("Number of matches officiated")]
         public int TotalMatchesOfficiated { get; set; }
 
-        [Comment("Current town which the person represented by this entity resides")]
-        [ForeignKey(nameof(Town))]
-        public int TownId { get; set; }
-        public Town Town { get; set; } = null!;
-
         [Comment("The registered user related to this entity")]
         [ForeignKey(nameof(User))]
         public Guid UserId { get; set; }

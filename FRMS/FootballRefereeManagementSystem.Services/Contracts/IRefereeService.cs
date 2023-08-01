@@ -1,5 +1,6 @@
 ﻿namespace FootballRefereeManagementSystem.Services.Contracts
 {
+    using FootballRefereeManagementSystem.Web.ViewModels.Career;
     using FootballRefereeManagementSystem.Web.ViewModels.RefereeSquad;
     using System.Collections.Generic;
 
@@ -44,5 +45,6 @@
 
         string GetRefereeStartingRole();
         Task CreateNewRefereeAsync(RefereeFormModel model);
+        int DetermineBestSuitedRoleForApplication(ApplicationFormModel model);
     }
 }

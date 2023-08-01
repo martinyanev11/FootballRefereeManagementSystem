@@ -2,11 +2,13 @@
 {
     public class ApplicationViewModel
     {
-        public string FullName { get; set; } = null!;
+        public string FirstName { get; set; } = null!;
+
+        public string LastName { get; set; } = null!;
 
         public int Age { get; set; }
 
-        public int Weight { get; set; }
+        public int Experience { get; set; }
 
         public string ContactNumber { get; set; } = null!;
 
@@ -20,8 +22,8 @@
 
         public string Status { get; set; } = null!;
 
-        public bool HasDriverLicense { get; set; }
+        public string Role { get; set; } = null!;
 
-        public bool HasCar { get; set; }
+        public string Division { get; set; } = null!;
     }
 }

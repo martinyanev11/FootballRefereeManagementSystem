@@ -80,8 +80,8 @@
 
             RefereeFormModel model = new RefereeFormModel()
             {
-                FirstName = userCareerApplication.FullName.Split()[0].TrimEnd(),
-                LastName = userCareerApplication.FullName.Split()[1].TrimStart(),
+                FirstName = userCareerApplication.FirstName.Split()[0].TrimEnd(),
+                LastName = userCareerApplication.FirstName.Split()[1].TrimStart(),
                 Age = userCareerApplication.Age,
                 Contact = userCareerApplication.ContactNumber,
                 UserId = this.User.GetId(),

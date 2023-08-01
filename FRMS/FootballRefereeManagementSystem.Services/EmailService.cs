@@ -8,6 +8,7 @@
     using Microsoft.Extensions.Configuration;
 
     using Contracts;
+    using Web.ViewModels.Career;
 
     public class EmailService : IEmailService
     {
@@ -20,7 +21,7 @@
             this.apiKey = configuration["EmailSettings:ApiKey"];
         }
 
-        public async Task<bool> SendDeclineEmailToCareerCandidateAsync(string candidateFullName, string candidateEmail)
+        public async Task<bool> SendDeclineEmailToCareerCandidateAsync(ApplicationEmailModel emailModel)
         {
             SendGridClient client = new SendGridClient(apiKey);
 
@@ -28,11 +29,11 @@
             string careerSystemName = "Кариерен център - БФС Плевен";
             EmailAddress senderEmail = new EmailAddress(careerSystemEmail, careerSystemName);
 
-            EmailAddress recieverEmail = new EmailAddress(candidateEmail);
+            EmailAddress recieverEmail = new EmailAddress(emailModel.EmailAddress);
 
             string subject = "Кандидатура за съдия";
             string plainTextContent =
-                @$"Здравейте {candidateFullName},
+                @$"Здравейте {emailModel.FullName},
                 Благодарим Ви за интереса, който проявихте и за участието Ви в нашия подборен процес за позицията на футболен съдия.
 
                 Бихме искали да Ви уведомим, че след дълъг и внимателен разглед, нашето ръководство взеха решение да продължат напред с друг кандидат, който най-добре отговаря на нашите настоящи нужди и изисквания.
@@ -56,7 +57,7 @@
             return false;
         }
 
-        public async Task<bool> SendApproveEmailToCareerCandidateAsync(string candidateFullName, string candidateEmail, string applicationId)
+        public async Task<bool> SendApproveEmailToCareerCandidateAsync(ApplicationEmailModel emailModel)
         {
             SendGridClient client = new SendGridClient(apiKey);
 
@@ -64,13 +65,13 @@
             string careerSystemName = "Кариерен център - БФС Плевен";
             EmailAddress senderEmail = new EmailAddress(careerSystemEmail, careerSystemName);
 
-            EmailAddress recieverEmail = new EmailAddress(candidateEmail);
+            EmailAddress recieverEmail = new EmailAddress(emailModel.EmailAddress);
 
             string subject = "Кандидатура за съдия";
             string plainTextContent =
-                @$"Здравейте {candidateFullName},
+                @$"Здравейте {emailModel.FullName},
                 С радост Ви съобщаваме, че Вашата кандидатура беше успешна, и искаме да Ви поздравим за приемането Ви на позицията асистент съдия в БФС Плевен!
-                През следния линк може да направите своя личен профил в нашата Съдийска система - https://localhost:7251/Identity/Account/Register?id={applicationId}
+                През следния линк може да направите своя личен профил в нашата Съдийска система - https://localhost:7251/Identity/Account/Register?id={emailModel.Id}
                 С уважение,
                 {careerSystemName}";
 

@@ -14,6 +14,7 @@
             this.TeamsSeasons = new HashSet<TeamSeason>();
             this.DivisionReferees = new HashSet<RefereeDivision>();
             this.Matches = new HashSet<Match>();
+            this.Applications = new HashSet<Application>();
         }
 
         [Comment("Primary key")]
@@ -25,6 +26,10 @@
         [MaxLength(NameMaxLength)]
         public string Name { get; set; } = null!;
 
+        [Comment("Number representing the difficulty level of a division compared to the rest")]
+        [Required]
+        public int Difficulty { get; set; }
+
         [Comment("Collection of a teams during specific season playing in this division")]
         public ICollection<TeamSeason> TeamsSeasons { get; set; } = null!;
 
@@ -33,5 +38,8 @@
 
         [Comment("Collection of all matches played in a division")]
         public ICollection<Match> Matches { get; set; } = null!;
+
+        [Comment("Collection of all applications who are suitable for this division")]
+        public ICollection<Application> Applications { get; set; } = null!;
     }
 }

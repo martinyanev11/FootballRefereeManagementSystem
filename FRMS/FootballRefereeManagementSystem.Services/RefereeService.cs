@@ -11,6 +11,8 @@
     using Web.ViewModels.Referee;
     using Web.ViewModels.Referee.Enums;
     using Web.ViewModels.RefereeSquad;
+    using Web.ViewModels.Career;
+    using Services.Common;
 
     public class RefereeService : IRefereeService
     {
@@ -115,7 +117,7 @@
             // This is to translate the enums
             foreach (var refModel in refereeViewModels)
             {
-                refModel.Role = TranslateRoleToBulgarian(refModel.Role);
+                refModel.Role = Translator.TranslateRole(refModel.Role);
             }
 
             return refereeViewModels;
@@ -150,7 +152,6 @@
         public async Task<RefereeDetailsViewModel> GetRefereeDetailsByIdAsync(int id)
         {
             RefereeDetailsViewModel viewModel = await this.dbContext.Referees
-                .Include(r => r.Town)
                 .Include(r => r.RefereeDivisions)
                 .AsNoTracking()
                 .Where(r => r.Id == id)
@@ -163,7 +164,6 @@
                     Role = r.Role.ToString(),
                     CareerStart = r.CareerStart,
                     TotalMatchesOfficiated = r.TotalMatchesOfficiated,
-                    Town = r.Town.Name,
                     DivisionsAndMatchesCount = r.RefereeDivisions
                         .Select(rd => 
                             new Tuple<string, int>(rd.Division.Name, rd.DivisionMatchesOfficiated))
@@ -171,7 +171,7 @@
                 })
                 .FirstAsync();
 
-            viewModel.Role = TranslateRoleToBulgarian(viewModel.Role);
+            viewModel.Role = Translator.TranslateRole(viewModel.Role);
 
             return viewModel;
         }
@@ -186,7 +186,7 @@
 
         public string GetRefereeStartingRole()
         {
-            RefereeStartingRole = TranslateRoleToBulgarian(RefereeStartingRole);
+            RefereeStartingRole = Translator.TranslateRole(RefereeStartingRole);
             return RefereeStartingRole;
         }
 
@@ -199,8 +199,7 @@
                 Age = model.Age,
                 ImageUrl = model.ImageUrl,
                 Contact = model.Contact,
-                Role = Role.AssistantReferee, // All new referees start from this role
-                TownId = model.TownId,
+                Role = Role.AssistantReferee,
                 UserId = Guid.Parse(model.UserId)
             };
 
@@ -208,29 +207,27 @@
             await this.dbContext.SaveChangesAsync();
         }
 
-        // --------------------------------------------
-        // Helper methods
-        // ---------------------------------------------
-
-        private string TranslateRoleToBulgarian(string role)
+        public int DetermineBestSuitedRoleForApplication(ApplicationFormModel model)
         {
-            switch (role)
+            if (model.Age <= 18)
             {
-                case "Referee":
-                    role = "Главен съдия";
-                    break;
-                case "AssistantReferee":
-                    role = "Асистент съдия";
-                    break;
-                case "Delegate":
-                    role = "Делегат";
-                    break;
-                case "Administration":
-                    role = "Администрация";
-                    break;
+                return (int)Role.AssistantReferee;
             }
-
-            return role;
+            else
+            {
+                if (model.ExperienceInYears <= 2)
+                {
+                    return (int)Role.AssistantReferee;
+                }
+                else if (model.ExperienceInYears <= 10)
+                {
+                    return (int)Role.Referee;
+                }
+                else
+                {
+                    return (int)Role.Delegate;
+                }
+            }
         }
     }
 }

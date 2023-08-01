@@ -13,7 +13,6 @@
         public Town()
         {
             this.Teams = new HashSet<Team>();
-            this.Referees = new HashSet<Referee>();
             this.Matches = new HashSet<Match>();
         }
 
@@ -42,9 +41,6 @@
 
         [Comment("Collection of all teams located in this town")]
         public ICollection<Team> Teams { get; set; } = null!;
-
-        [Comment("Collection of all referee entities located in this town")]
-        public ICollection<Referee> Referees { get; set; } = null!;
 
         [Comment("Collection of all matches that are played in this town")]
         public ICollection<Match> Matches { get; set; } = null!;

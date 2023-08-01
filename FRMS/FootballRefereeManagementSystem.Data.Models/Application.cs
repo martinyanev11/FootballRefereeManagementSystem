@@ -1,10 +1,12 @@
 ﻿namespace FootballRefereeManagementSystem.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
+
     using Microsoft.EntityFrameworkCore;
 
     using Enums;
     using static Common.EntityValidationConstants.Application;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     [Comment("Application request to become a referee")]
     public class Application
@@ -31,26 +33,20 @@
         [MaxLength(LastNameMaxLength)]
         public string LastName { get; set; } = null!;
 
-        [Comment("Email of applicant")]
-        [Required]
-        public string Email { get; set; } = null!;
-
         [Comment("Age of applicant")]
         public int Age { get; set; }
 
-        [Comment("Weight of applicant")]
-        public int Weight { get; set; }
+        [Comment("Number of years of experience for similar job")]
+        public int ExperienceInYears { get; set; }
+
+        [Comment("Email of applicant")]
+        [Required]
+        public string Email { get; set; } = null!;
 
         [Comment("Contact number of applicant")]
         [Required]
         [MaxLength(ContactMaxLength)]
         public string Contact { get; set; } = null!;
-
-        [Comment("Does applicant have drivers license")]
-        public bool HasDriverLicense { get; set; }
-
-        [Comment("Does applicant have car")]
-        public bool HasCar { get; set; }
 
         public Status Status { get; set; }
 
@@ -61,5 +57,13 @@
         [Comment("Date and time of creation")]
         [Required]
         public DateTime CreatedOn { get; set; }
+
+        [Comment("Позицията, която този кандидат е подходящ да заема")]
+        public Role StartingRole { get; set; }
+
+        [Comment("Дивизия, в която кандидата е подходящ да работи")]
+        [ForeignKey(nameof(StartingDivision))]
+        public int StartingDivisionId { get; set; }
+        public Division StartingDivision { get; set; } = null!;
     }
 }

@@ -25,8 +25,8 @@
         public string Email { get; set; } = null!;
 
         [Required(ErrorMessage = "Полето е задължително")]
-        [Range(WeightMinValue, WeightMaxValue, ErrorMessage = "Въведеното тегло е извън допустимото")]
-        public int Weight { get; set; }
+        [Range(ExperienceMinValue, ExperienceMaxValue, ErrorMessage = "Опита на подобна работа трябва да е между 0 и 50 години.")]
+        public int ExperienceInYears { get; set; }
 
         [Required(ErrorMessage = "Полето е задължително")]
         [Phone(ErrorMessage = "Въведете валиден телефонен номер")]
@@ -34,10 +34,10 @@
             ErrorMessage = "Телефонния номер трябва да е с дължина точно 10 цифри")]
         public string Contact { get; set; } = null!;
 
-        public bool HasDriverLicense { get; set; }
-
-        public bool HasCar { get; set; }
-
         public bool KnowsFootballRules { get; set; }
+
+        public int Role { get; set; }
+
+        public int DivisionId { get; set; }
     }
 }

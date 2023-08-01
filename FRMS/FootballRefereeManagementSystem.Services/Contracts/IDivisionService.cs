@@ -1,11 +1,13 @@
 ﻿namespace FootballRefereeManagementSystem.Services.Contracts
 {
+    using FootballRefereeManagementSystem.Web.ViewModels.Career;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
     public interface IDivisionService
     {
         Task AddNewDivisionToRefereeByIdAsync(int refereeId, string division);
+        Task<int> DetermineBestSuitedDivisionForApplicationAsync(ApplicationFormModel model);
 
         /// <summary>
         /// Asynchronously retrieves all division names from the database.

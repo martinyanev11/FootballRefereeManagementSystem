@@ -34,7 +34,6 @@
                     AwayTeamTownName = m.AwayTeam.Team.Town.Name,
                     FixtureTime = m.FixtureTime,
                     FinalResult = m.HasFinished ? $"{m.HomeTeamScore} : {m.AwayTeamScore}" : "-",
-                    Round = m.SeasonRound
                 })
                 .OrderBy(m => m.FixtureTime)
                 .ToArrayAsync();
@@ -66,7 +65,6 @@
                     AwayTeamShirtColor = m.AwayTeam.ShirtColor.ToString(),
                     AwayTeamCurrentPosition = m.AwayTeam.Placement,
                     HasFinished = m.HasFinished,
-                    SeasonRound = m.SeasonRound,
                 })
                 .FirstAsync();
 

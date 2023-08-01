@@ -11,11 +11,18 @@
     {
         private readonly ICareerService careerService;
         private readonly IEmailService emailService;
+        private readonly IRefereeService refereeService;
+        private readonly IDivisionService divisionService;
 
-        public CareerController(ICareerService careerService, IEmailService emailService)
+        public CareerController(ICareerService careerService,
+            IEmailService emailService,
+            IRefereeService refereeService,
+            IDivisionService divisionService)
         {
             this.careerService = careerService;
             this.emailService = emailService;
+            this.refereeService = refereeService;
+            this.divisionService = divisionService;
         }
 
         [AllowAnonymous]
@@ -46,6 +53,9 @@
 
             try
             {
+                model.Role = this.refereeService.DetermineBestSuitedRoleForApplication(model);
+                model.DivisionId = await this.divisionService.DetermineBestSuitedDivisionForApplicationAsync(model);
+
                 await this.careerService.AddApplicationAsync(model);
             }
             catch (Exception)
@@ -69,7 +79,7 @@
             try
             {
                 IEnumerable<ApplicationViewModel> allApplicationsFiltered =
-                await this.careerService.GetAllApplicationsFilteredAsync(queryModel);
+                    await this.careerService.GetAllApplicationsFilteredAsync(queryModel);
 
                 queryModel.Applications = allApplicationsFiltered;
 
@@ -120,11 +130,11 @@
 
                 await this.careerService.ChangeApplicationStatusAsync(StatusSorting.Declined.ToString(), id);
 
-                ApplicationViewModel applicationModel = await this.careerService
-                    .GetApplicationByIdAsync(id);
+                ApplicationEmailModel emailModel =
+                    await this.careerService.GetApplicationForEmailByIdAsync(id);
 
                 bool isSedingSuccessful = await this.emailService
-                    .SendDeclineEmailToCareerCandidateAsync(applicationModel.FullName, applicationModel.EmailAddress);
+                    .SendDeclineEmailToCareerCandidateAsync(emailModel);
 
                 if (!isSedingSuccessful)
                 {
@@ -178,11 +188,11 @@
 
                 await this.careerService.ChangeApplicationStatusAsync(StatusSorting.Approved.ToString(), id);
 
-                ApplicationViewModel applicationModel = await this.careerService
-                    .GetApplicationByIdAsync(id);
+                ApplicationEmailModel emailModel = 
+                    await this.careerService.GetApplicationForEmailByIdAsync(id);
 
                 bool isSedingSuccessful = await this.emailService
-                    .SendApproveEmailToCareerCandidateAsync(applicationModel.FullName, applicationModel.EmailAddress, applicationModel.Id);
+                    .SendApproveEmailToCareerCandidateAsync(emailModel);
 
                 if (!isSedingSuccessful)
                 {

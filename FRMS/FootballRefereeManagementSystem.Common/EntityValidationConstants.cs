@@ -15,7 +15,7 @@
             public const int ContactLength = 10;
 
             public const int AgeMinValue = 15;
-            public const int AgeMaxValue = 65;
+            public const int AgeMaxValue = 50;
         }
 
         public static class Team
@@ -102,8 +102,8 @@
             public const int AgeMinValue = 15;
             public const int AgeMaxValue = 65;
 
-            public const int WeightMinValue = 40;
-            public const int WeightMaxValue = 110;
+            public const int ExperienceMinValue = 0;
+            public const int ExperienceMaxValue = 50;
         }
 
         public static class ContactMessage

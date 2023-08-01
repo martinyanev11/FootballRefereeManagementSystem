@@ -11,7 +11,7 @@ namespace FootballRefereeManagementSystem.Services
     using Models.Article;
     using Web.ViewModels.News;
     using Web.ViewModels.News.Enums;
-    using static Common.GeneralApplicationConstants;
+    using static FootballRefereeManagementSystem.Common.GeneralApplicationConstants;
 
     using Article = Data.Models.Article;
 

@@ -11,6 +11,7 @@
     using Contracts;
     using Web.ViewModels.Career;
     using Web.ViewModels.Career.Enums;
+    using Services.Common;
 
     public class CareerService : ICareerService
     {
@@ -29,10 +30,10 @@
                 LastName = model.LastName,
                 Email = model.Email,
                 Age = model.Age,
-                Weight = model.Weight,
                 Contact = model.Contact,
-                HasDriverLicense = model.HasDriverLicense,
-                HasCar = model.HasCar,
+                ExperienceInYears = model.ExperienceInYears,
+                StartingRole = (Role)model.Role,
+                StartingDivisionId = model.DivisionId
             };
 
             await dbContext.Applications.AddAsync(application);
@@ -117,23 +118,25 @@
             IEnumerable<ApplicationViewModel> applicationViewModels = await applicationsAsQueryable
                 .Select(a => new ApplicationViewModel()
                 {
-                    FullName = $"{a.FirstName} {a.LastName}",
+                    FirstName = a.FirstName,
+                    LastName = a.LastName,
                     Age = a.Age,
-                    Weight = a.Weight,
                     ContactNumber = a.Contact,
-                    HasDriverLicense = a.HasDriverLicense,
-                    HasCar = a.HasCar,
                     EmailAddress = a.Email,
                     Id = a.Id.ToString(),
                     CreatedOn = a.CreatedOn,
                     IsRegistered = a.IsRegistered,
                     Status = a.Status.ToString(),
+                    Experience = a.ExperienceInYears,
+                    Role = a.StartingRole.ToString(),
+                    Division = a.StartingDivision.Name
                 })
                 .ToArrayAsync();
 
             foreach (var appModel in applicationViewModels)
             {
-                appModel.Status = TranslateStatusToBulgarian(appModel.Status);
+                appModel.Status = Translator.TranslateStatus(appModel.Status);
+                appModel.Role = Translator.TranslateRole(appModel.Role);
             }
 
             return applicationViewModels;
@@ -146,17 +149,36 @@
                 .Where(a => a.Id.ToString() == id)
                 .Select(a => new ApplicationViewModel()
                 {
-                    FullName = $"{a.FirstName} {a.LastName}",
+                    FirstName = a.FirstName,
+                    LastName = a.LastName,
                     Age = a.Age,
-                    Weight = a.Weight,
                     ContactNumber = a.Contact,
-                    HasDriverLicense = a.HasDriverLicense,
-                    HasCar = a.HasCar,
                     EmailAddress = a.Email,
                     Id = a.Id.ToString(),
                     CreatedOn = a.CreatedOn,
                     IsRegistered = a.IsRegistered,
                     Status = a.Status.ToString(),
+                    Experience = a.ExperienceInYears,
+                    Role = a.StartingRole.ToString(),
+                    Division = a.StartingDivision.Name
+                })
+                .FirstAsync();
+
+            application.Role = Translator.TranslateRole(application.Role);
+
+            return application;
+        }
+
+        public async Task<ApplicationEmailModel> GetApplicationForEmailByIdAsync(string id)
+        {
+            ApplicationEmailModel application = await this.dbContext
+                .Applications
+                .Where(a => a.Id.ToString() == id)
+                .Select(a => new ApplicationEmailModel()
+                {
+                    Id = a.Id.ToString(),
+                    FullName = $"{a.FirstName} {a.LastName}",
+                    EmailAddress = a.Email,
                 })
                 .FirstAsync();
 
@@ -171,28 +193,6 @@
 
             app.IsRegistered = true;
             await this.dbContext.SaveChangesAsync();
-        }
-
-        // ---------------------------------------------
-        // Helper methods
-        // ---------------------------------------------
-
-        private string TranslateStatusToBulgarian(string status)
-        {
-            switch (status)
-            {
-                case "Waiting":
-                    status = "В процес";
-                    break;
-                case "Approved":
-                    status = "Одобрен";
-                    break;
-                case "Declined":
-                    status = "Отхвърлен";
-                    break;
-            }
-
-            return status;
         }
     }
 }

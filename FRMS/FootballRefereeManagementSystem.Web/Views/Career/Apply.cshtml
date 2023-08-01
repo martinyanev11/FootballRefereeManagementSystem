@@ -36,7 +36,7 @@
         </div>
         <div class="col-md-6 m-2 shadow bg-white border border-1 border-primary">
             <div class="application-form">
-                <h2 class="text-primary mt-3">Започни своята кариера</h2>
+                <h2 class="text-primary mb-5 mt-3">Започни своята кариера</h2>
                 <form asp-action="Apply" method="post">
                     <div class="row mt-4">
                         <div class="col-md-5 me-5 mb-4">
@@ -69,30 +69,14 @@
                                 <input asp-for="Age" class="form-control">
                                 <span asp-validation-for="Age" class="text-danger"></span>
                             </div>
-                            <div class="col-md-2 mb-5">
-                                <label asp-for="Weight" class="form-label">Тегло:</label>
-                                <input asp-for="Weight" class="form-control">
-                                <span asp-validation-for="Weight" class="text-danger"></span>
+                            <div class="col-md-3 mb-5">
+                                <label asp-for="ExperienceInYears" class="form-label">Опит (години):</label>
+                                <input asp-for="ExperienceInYears" class="form-control">
+                                <span asp-validation-for="ExperienceInYears" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12 mb-3">
-                            <div class="form-check">
-                                <input asp-for="HasDriverLicense" class="form-check-input" />
-                                <label asp-for="HasDriverLicense" class="form-check-label">Имам шофьорска книжка</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 mb-3">
-                            <div class="form-check">
-                                <input asp-for="HasCar" class="form-check-input" />
-                                <label asp-for="HasCar" class="form-check-label">Имам личен автомобил</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-check mb-4">
+                    <div class="form-check mb-5">
                         <input asp-for="KnowsFootballRules" class="form-check-input" />
                         <label asp-for="KnowsFootballRules" class="form-check-label">
                             Запознат съм с футболните правила<span class="text-danger">*</span>

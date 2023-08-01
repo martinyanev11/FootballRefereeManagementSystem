@@ -61,9 +61,7 @@
                     <th>Години</th>
                     <th>Контакт</th>
                     <th>Имейл адрес</th>
-                    <th>Тегло</th>
-                    <th>Книжка</th>
-                    <th>Автомобил</th>
+                    <th>Опит</th>
                     <th>Дата</th>
                     <th>Статус</th>
                     <th>Регистриран е</th>
@@ -77,13 +75,11 @@
                     {
                         <tr class="d-table-row text-center">
                             <td class="fw-bold">@counter</td>
-                            <td>@application.FullName</td>
+                            <td>@($"{application.FirstName} {application.LastName}")</td>
                             <td>@application.Age</td>
                             <td>@application.ContactNumber</td>
                             <td>@application.EmailAddress</td>
-                            <td>@application.Weight кг.</td>
-                            <td><i class="@(application.HasDriverLicense ? "bi bi-check-circle-fill text-success" : "bi bi-x-circle-fill text-danger")"></i></td>
-                            <td><i class="@(application.HasCar ? "bi bi-check-circle-fill text-success" : "bi bi-x-circle-fill text-danger")"></i></td>
+                            <td>@application.Experience г.</td>
                             <td>@($"{application.CreatedOn.ToString("dd-MM-yyyy")} г.")</td>
                             <td>@application.Status</td>
                             <td><i class="@(application.IsRegistered ? "bi bi-check-circle-fill text-success" : "bi bi-x-circle-fill text-danger")"></i></td>
