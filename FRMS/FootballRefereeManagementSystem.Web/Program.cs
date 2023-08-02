@@ -4,11 +4,14 @@ namespace FootballRefereeManagementSystem.Web
     using Microsoft.Extensions.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.AspNetCore.Identity;
 
     using Data;
     using Data.Models;
     using Services;
     using Services.Contracts;
+    using Web.Infrastructure.Extensions;
+    using static Common.GeneralApplicationConstants;
 
     public class Program
     {
@@ -32,6 +35,7 @@ namespace FootballRefereeManagementSystem.Web
                     options.Password.RequireNonAlphanumeric = builder.Configuration.GetValue<bool>("Identity:Password:RequireNonAlphanumeric");
                     options.Password.RequiredLength = builder.Configuration.GetValue<int>("Identity:Password:RequiredLength");
                 })
+                .AddRoles<IdentityRole<Guid>>()
                 .AddEntityFrameworkStores<FootballRefereeManagementSystemDbContext>();
 
             builder.Services.AddControllersWithViews();
@@ -71,6 +75,11 @@ namespace FootballRefereeManagementSystem.Web
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            if (app.Environment.IsDevelopment())
+            {
+                app.SeedAdministrator(DevelopmentAdminEmail);
+            }
 
             app.MapDefaultControllerRoute();
             app.MapRazorPages();
