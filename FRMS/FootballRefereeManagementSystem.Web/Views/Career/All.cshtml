@@ -84,10 +84,10 @@
                             <td>@application.Status</td>
                             <td><i class="@(application.IsRegistered ? "bi bi-check-circle-fill text-success" : "bi bi-x-circle-fill text-danger")"></i></td>
                             <td>
-                                <a class="btn btn-sm btn-success btn-outline-dark" asp-controller="Career" asp-action="ApproveConfirmation" asp-route-id="@application.Id">
+                                <a class="btn btn-sm btn-success btn-outline-dark @(application.Status != "В процес" ? "disabled" : string.Empty)" asp-controller="Career" asp-action="ApproveConfirmation" asp-route-id="@application.Id">
                                     <i class="bi bi-check2"></i>
                                 </a>
-                                <a class="btn btn-sm btn-danger btn-outline-dark" asp-controller="Career" asp-action="DeclineConfirmation" asp-route-id="@application.Id">
+                                <a class="btn btn-sm btn-danger btn-outline-dark @(application.Status != "В процес" ? "disabled" : string.Empty)" asp-controller="Career" asp-action="DeclineConfirmation" asp-route-id="@application.Id">
                                     <i class="bi bi-x-lg"></i>
                                 </a>
                             </td>

@@ -46,6 +46,20 @@
                 ModelState.AddModelError("Contact", "Телефонния номер трябва да започва с 0");
             }
 
+            try
+            {
+                bool isEmailTaken = await this.careerService.CheckIfEmailIsAlreadyUsedAsync(model.Email);
+
+                if (isEmailTaken)
+                {
+                    ModelState.AddModelError("Email", "Вече съществува потребител с този имейл в системата.");
+                }
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(model);

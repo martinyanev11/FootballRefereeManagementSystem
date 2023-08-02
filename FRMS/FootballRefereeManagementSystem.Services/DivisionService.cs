@@ -19,15 +19,26 @@
             this.dbContext = dbContext;
         }
 
-        public async Task AddNewDivisionToRefereeByIdAsync(int refereeId, string division)
+        public async Task AddDivisionAndDivisionsWithLessDifficultyToRefereeByIdAsync(int refereeId, string divisionName)
         {
-            RefereeDivision refereeDivision = new RefereeDivision()
-            {
-                RefereeId = refereeId,
-                DivisionId = await GetDivisionIdByNameAsync(division)
-            };
+            Division division = await this.GetDivisionByNameAsync(divisionName);
+            IEnumerable<Division> divisionsToAdd = await this.dbContext
+                .Divisions
+                .Where(d => d.Difficulty <= division.Difficulty)
+                .Select(d => d)
+                .ToArrayAsync();
 
-            await this.dbContext.RefereesDivisions.AddAsync(refereeDivision);
+            foreach (Division div in divisionsToAdd)
+            {
+                RefereeDivision refereeDivision = new RefereeDivision()
+                {
+                    RefereeId = refereeId,
+                    DivisionId = div.Id
+                };
+
+                await this.dbContext.RefereesDivisions.AddAsync(refereeDivision);
+            }
+            
             await this.dbContext.SaveChangesAsync();
         }
 
@@ -98,11 +109,11 @@
         // Helper methods
         //------------------------------------------
 
-        private async Task<int> GetDivisionIdByNameAsync(string divisionName)
+        private async Task<Division> GetDivisionByNameAsync(string divisionName)
         {
             return await this.dbContext.Divisions
                 .Where(d => d.Name == divisionName)
-                .Select(d => d.Id)
+                .Select(d => d)
                 .FirstAsync();
         }
     }

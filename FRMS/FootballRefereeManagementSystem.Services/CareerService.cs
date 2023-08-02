@@ -64,6 +64,12 @@
                 .AnyAsync(a => a.Id.ToString() == id);
         }
 
+        public async Task<bool> CheckIfEmailIsAlreadyUsedAsync(string email)
+        {
+            return await this.dbContext.Applications
+                .AnyAsync(a => a.Email == email && a.IsRegistered);
+        }
+
         public async Task<bool> ConfirmRegistrationLinkAsync(string id)
         {
             bool result = await this.dbContext.Applications

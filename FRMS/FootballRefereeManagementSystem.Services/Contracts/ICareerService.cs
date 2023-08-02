@@ -28,6 +28,7 @@
         /// <param name="id">The ID of the application to check for existence.</param>
         /// <returns>A boolean value indicating whether the application with the specified ID exists in the database or not.</returns>
         Task<bool> CheckApplicationExistanceByIdAsync(string id);
+        Task<bool> CheckIfEmailIsAlreadyUsedAsync(string email);
 
         /// <summary>
         /// Asynchronously confirms the registration link for an application based on the provided ID.

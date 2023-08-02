@@ -104,15 +104,21 @@
             {
                 return View(model);
             }
+            try
+            {
+                await this.refereeService.CreateNewRefereeAsync(model);
 
-            await this.refereeService.CreateNewRefereeAsync(model);
+                int refereeId = await this.refereeService.GetRefereeIdByUserIdAsync(model.UserId);
+                await this.divisionService.AddDivisionAndDivisionsWithLessDifficultyToRefereeByIdAsync(refereeId, model.StartingDivision);
 
-            int refereeId = await this.refereeService.GetRefereeIdByUserIdAsync(model.UserId);
-            await this.divisionService.AddNewDivisionToRefereeByIdAsync(refereeId, model.StartingDivision);
+                await this.userService.LinkUserToRefereeAsync(model.UserId, refereeId);
 
-            await this.userService.LinkUserToRefereeAsync(model.UserId, refereeId);
-
-            return RedirectToAction("Index", "User");
+                return RedirectToAction("Index", "User");
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }            
         }
 
         public IActionResult Dashboard()

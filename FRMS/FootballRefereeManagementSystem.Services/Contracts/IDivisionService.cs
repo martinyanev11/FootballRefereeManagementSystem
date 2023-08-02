@@ -6,7 +6,7 @@
 
     public interface IDivisionService
     {
-        Task AddNewDivisionToRefereeByIdAsync(int refereeId, string division);
+        Task AddDivisionAndDivisionsWithLessDifficultyToRefereeByIdAsync(int refereeId, string division);
         Task<int> DetermineBestSuitedDivisionForApplicationAsync(ApplicationFormModel model);
 
         /// <summary>
