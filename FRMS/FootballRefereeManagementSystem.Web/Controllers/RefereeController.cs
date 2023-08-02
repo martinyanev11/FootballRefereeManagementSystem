@@ -1,10 +1,10 @@
 ﻿namespace FootballRefereeManagementSystem.Web.Controllers
 {
-    using FootballRefereeManagementSystem.Web.Infrastructure.Extensions;
-    using FootballRefereeManagementSystem.Web.ViewModels.RefereeSquad;
     using Microsoft.AspNetCore.Mvc;
 
     using Services.Contracts;
+    using Infrastructure.Extensions;
+    using ViewModels.RefereeSquad;
     using ViewModels.Referee;
 
     public class RefereeController : BaseController

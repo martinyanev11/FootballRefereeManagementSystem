@@ -39,7 +39,7 @@ namespace FootballRefereeManagementSystem.Services
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task<ApplicationUserViewModel> GetUserInformationAsync(string id)
+        public async Task<ApplicationUserViewModel> GetUserInformationByIdAsync(string id)
         {
             await UpdateCurrentlyAppointedMatchesCountForUserAsync(id);
 
@@ -67,7 +67,7 @@ namespace FootballRefereeManagementSystem.Services
         }
 
         // --------------------------------------
-        // Helper methods
+        // private methods
         // --------------------------------------
 
         private async Task UpdateCurrentlyAppointedMatchesCountForUserAsync(string userId)

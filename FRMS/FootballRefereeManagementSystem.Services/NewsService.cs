@@ -156,7 +156,7 @@ namespace FootballRefereeManagementSystem.Services
         }
 
         // ---------------------------------------
-        // Helper methods
+        // private methods
         // ---------------------------------------
 
         private async Task<Article> GetArticleByIdAsync(int id)

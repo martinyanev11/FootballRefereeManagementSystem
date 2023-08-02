@@ -6,20 +6,17 @@
     public interface IEmailService
     {
         /// <summary>
-        /// Asynchronously sends an approval email to a career candidate with the provided candidate information and application ID.
+        /// Asynchronously sends an approval email to a career candidate. The email contains personal registration link.
         /// </summary>
-        /// <param name="candidateFullName">The full name of the candidate.</param>
-        /// <param name="candidateEmail">The email address of the candidate.</param>
-        /// <param name="applicationId">The ID of the candidate application.</param>
-        /// <returns>A boolean value indicating whether the email was sent successfully or not.</returns>
+        /// <param name="emailModel">The ApplicationEmailModel containing the candidate's information.</param>
+        /// <returns>Task representing the asynchronous operation. The result indicates whether the email was sent successfully.</returns>
         Task<bool> SendApproveEmailToCareerCandidateAsync(ApplicationEmailModel emailModel);
 
         /// <summary>
-        /// Asynchronously sends a decline email to a career candidate with the provided candidate information.
+        /// Asynchronously sends a decline email to a career candidate.
         /// </summary>
-        /// <param name="candidateFullName">The full name of the candidate.</param>
-        /// <param name="candidateEmail">The email address of the candidate.</param>
-        /// <returns>A boolean value indicating whether the email was sent successfully or not.</returns>
+        /// <param name="emailModel">The ApplicationEmailModel containing the candidate's information.</param>
+        /// <returns>Task representing the asynchronous operation. The result indicates whether the email was sent successfully.</returns>
         Task<bool> SendDeclineEmailToCareerCandidateAsync(ApplicationEmailModel emailModel);
 
         /// <summary>

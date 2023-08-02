@@ -48,7 +48,7 @@
             return role;
         }
 
-        public static string TranslateStatus(string status)
+        public static string TranslateStatusToBulgarian(string status)
         {
             if (status == Status.Waiting.ToString())
             {

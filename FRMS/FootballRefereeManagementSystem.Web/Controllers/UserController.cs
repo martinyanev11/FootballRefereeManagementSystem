@@ -3,11 +3,10 @@
     using Microsoft.AspNetCore.Mvc;
 
     using ViewModels.User;
+    using ViewModels.Referee;
+    using ViewModels.Career;
     using Services.Contracts;
     using Infrastructure.Extensions;
-    using Web.ViewModels.Career;
-    using Web.ViewModels.Referee;
-    using FootballRefereeManagementSystem.Data.Models.Enums;
 
     public class UserController : BaseController
     {
@@ -15,22 +14,16 @@
         private readonly IRefereeService refereeService;
         private readonly ICareerService careerService;
         private readonly IDivisionService divisionService;
-        private readonly ITownService townService;
-        private readonly IZoneService zoneService;
 
         public UserController(IUserService userService, 
             IRefereeService refereeService, 
             ICareerService careerService,
-            IDivisionService divisionService,
-            ITownService townService,
-            IZoneService zoneService)
+            IDivisionService divisionService)
         {
             this.userService = userService;
             this.refereeService = refereeService;
             this.careerService = careerService;
             this.divisionService = divisionService;
-            this.townService = townService;
-            this.zoneService = zoneService;
         }
 
         public async Task<IActionResult> Index()
@@ -44,7 +37,7 @@
 
                 string userId = User.GetId();
                 ApplicationUserViewModel model = 
-                    await this.userService.GetUserInformationAsync(userId);
+                    await this.userService.GetUserInformationByIdAsync(userId);
 
                 int userRefereeId = await this.refereeService.GetRefereeIdByUserIdAsync(userId);
                 model.RefereeDetails = await this.refereeService.GetRefereeDetailsByIdAsync(userRefereeId);

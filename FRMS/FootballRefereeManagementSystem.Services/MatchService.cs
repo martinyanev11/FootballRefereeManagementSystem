@@ -115,7 +115,7 @@
         }
 
         // --------------------------------------------
-        // Helper methods
+        // private methods
         // ---------------------------------------------
         /// <summary>
         /// Asynchronously retrieves details of other finished matches between two teams.

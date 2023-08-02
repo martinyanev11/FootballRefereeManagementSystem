@@ -1,10 +1,10 @@
 ﻿namespace FootballRefereeManagementSystem.Services.Contracts
 {
-    using FootballRefereeManagementSystem.Web.ViewModels.Career;
-    using FootballRefereeManagementSystem.Web.ViewModels.RefereeSquad;
     using System.Collections.Generic;
 
     using Web.ViewModels.Referee;
+    using Web.ViewModels.RefereeSquad;
+    using Web.ViewModels.Career;
 
     public interface IRefereeService
     {
@@ -42,7 +42,19 @@
         /// <param name="userId">The ID of the user to retrieve the referee ID for.</param>
         /// <returns>The referee ID as an integer.</returns>
         Task<int> GetRefereeIdByUserIdAsync(string userId);
+
+        /// <summary>
+        /// Asynchronously creates a new referee and adds it to the database.
+        /// </summary>
+        /// <param name="model">The <see cref="RefereeFormModel"/> containing the referee's information.</param>
+        /// <returns>Task representing the asynchronous operation.</returns>
         Task CreateNewRefereeAsync(RefereeFormModel model);
+
+        /// <summary>
+        /// Determines the best suited role for an application based on the applicant's age and experience.
+        /// </summary>
+        /// <param name="model">The ApplicationFormModel containing the applicant's information.</param>
+        /// <returns>An integer representing the best suited role (Role enum value).</returns>
         int DetermineBestSuitedRoleForApplication(ApplicationFormModel model);
     }
 }

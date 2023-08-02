@@ -139,9 +139,10 @@
                 })
                 .ToArrayAsync();
 
+            // Translating strings for view display
             foreach (var appModel in applicationViewModels)
             {
-                appModel.Status = Translator.TranslateStatus(appModel.Status);
+                appModel.Status = Translator.TranslateStatusToBulgarian(appModel.Status);
                 appModel.Role = Translator.TranslateRoleToBulgarian(appModel.Role);
             }
 

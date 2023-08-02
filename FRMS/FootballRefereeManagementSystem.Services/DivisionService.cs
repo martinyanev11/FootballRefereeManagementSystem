@@ -106,7 +106,7 @@
         }
 
         //------------------------------------------
-        // Helper methods
+        // private methods
         //------------------------------------------
 
         private async Task<Division> GetDivisionByNameAsync(string divisionName)

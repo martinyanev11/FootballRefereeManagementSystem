@@ -6,7 +6,7 @@
     
     using Contracts;
     using Data;
-    using FootballRefereeManagementSystem.Data.Models;
+    using Data.Models;
 
     public class TownService : ITownService
     {

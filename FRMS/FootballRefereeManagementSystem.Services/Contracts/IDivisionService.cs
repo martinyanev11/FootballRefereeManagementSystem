@@ -1,12 +1,25 @@
 ﻿namespace FootballRefereeManagementSystem.Services.Contracts
 {
-    using FootballRefereeManagementSystem.Web.ViewModels.Career;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
+    using Web.ViewModels.Career;
+
     public interface IDivisionService
     {
-        Task AddDivisionAndDivisionsWithLessDifficultyToRefereeByIdAsync(int refereeId, string division);
+        /// <summary>
+        /// Asynchronously adds a specific division and divisions with less difficulty to a referee by their ID.
+        /// </summary>
+        /// <param name="refereeId">The ID of the referee.</param>
+        /// <param name="divisionName">The name of the specific division to add.</param>
+        /// <returns>Task representing the asynchronous operation.</returns>
+        Task AddDivisionAndDivisionsWithLessDifficultyToRefereeByIdAsync(int refereeId, string divisionName);
+
+        /// <summary>
+        /// Asynchronously determines the best suited division for an application based on the applicant's age and experience.
+        /// </summary>
+        /// <param name="model">The <see cref="ApplicationFormModel"/> containing the applicant's information.</param>
+        /// <returns>Task representing the asynchronous operation. The result is the ID of the best suited division.</returns>
         Task<int> DetermineBestSuitedDivisionForApplicationAsync(ApplicationFormModel model);
 
         /// <summary>
