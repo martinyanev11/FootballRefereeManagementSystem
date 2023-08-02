@@ -30,11 +30,6 @@
         {
             try
             {
-                if (User.IsInRole("Admin"))
-                {
-                    return View("Dashboard");
-                }
-
                 string userId = User.GetId();
                 ApplicationUserViewModel model = 
                     await this.userService.GetUserInformationByIdAsync(userId);

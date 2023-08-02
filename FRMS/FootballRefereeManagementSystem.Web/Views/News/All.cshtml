@@ -39,16 +39,12 @@
                 <input type="submit" value="Филтрирай" class="btn btn-primary" />
             </div>
 
-            @*@if (User.IsInRole("Admin"))
+            @if (User.IsInRole("Admin"))
             {
                 <div class="col-md-2 mt-4 p-3">
                     <a class="btn btn-success" asp-area="" asp-controller="News" asp-action="Add">Добави новина</a>
                 </div>
-            }*@
-            @*TODO: REMOVE BUTTON AFTER ROLE IMPLEMENTATION!*@
-            <div class="col-md-2 mt-4 p-3">
-                <a class="btn btn-success" asp-area="" asp-controller="News" asp-action="Add">Добави новина</a>
-            </div>
+            }
         </div>
     </form>
 
@@ -68,44 +64,20 @@
                             <img class="card-img mb-3 mt-3" src="~/Images/News/news-default.png" alt="Default image">
                         }
                     </div>
+                    <div class="@(User.IsInRole("Admin") ? "col-8 me-3" : "col-10")">
+                        <div class="card mb-2 mt-2">
+                            <div class="card-body">
+                                <h5 class="card-title">@article.Title</h5>
+                                <p class="card-text">
+                                    <small class="text-muted">Дата: @article.CreatedOn.ToString("dd/MM/yyyy")</small>
+                                </p>
+                                <p class="card-text">@article.Content</p>
+                            </div>
+                        </div>
+                    </div>
+
                     @if (User.IsInRole("Admin"))
                     {
-                        <div class="col-8 me-3">
-                            <div class="card mb-2 mt-2">
-                                <div class="card-body">
-                                    <h5 class="card-title">@article.Title</h5>
-                                    <p class="card-text">
-                                        <small class="text-muted">Дата: @article.CreatedOn.ToString("dd/MM/yyyy")</small>
-                                    </p>
-                                    <p class="card-text">@article.Content</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-1 mt-4">
-                            <div class="mb-3">
-                                <a class="btn btn-warning" asp-area="" asp-controller="News" asp-action="Edit">Редактирай</a>
-                            </div>
-                            <div>
-                                <a class="btn btn-danger" asp-area="" asp-controller="News" asp-action="Delete">Изтрий</a>
-                            </div>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="col-8 me-3" @*class="col-10"*@>
-                            <div class="card mb-2 mt-2">
-                                <div class="card-body">
-                                    <h5 class="card-title">@article.Title</h5>
-                                    <p class="card-text">
-                                        <small class="text-muted">Дата: @article.CreatedOn.ToString("dd/MM/yyyy")</small>
-                                    </p>
-                                    <p class="card-text">@article.Content</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        @*TODO: REMOVE BUTTON AFTER ROLE IMPLEMENTATION!*@
                         <div class="col-1 mt-4">
                             <div class="mb-3">
                                 <a class="btn btn-warning" asp-area="" asp-controller="News" asp-action="Edit" asp-route-id="@article.Id">Редактирай</a>

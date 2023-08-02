@@ -44,11 +44,14 @@
                             <li class="nav-item me-3">
                                 <a class="nav-link" asp-area="" asp-controller="Referee" asp-action="Schedule">СЕДМИЧЕН НАРЯД</a>
                             </li>
-                            // Check for admin role for the rest:
-                            <li class="vr me-3 text-white"></li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Career" asp-action="All">КАНДИДАТУРИ</a>
-                            </li>
+
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="vr me-3 text-white"></li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Career" asp-action="All">КАНДИДАТУРИ</a>
+                                </li>
+                            }
                         }
                         else
                         {

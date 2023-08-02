@@ -6,6 +6,7 @@
     using ViewModels.News;
     using Services.Contracts;
     using Services.Models.Article;
+    using Microsoft.AspNetCore.Authorization;
 
     public class NewsController : BaseController
     {
@@ -52,11 +53,14 @@
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Add()
         {
             return View();
         }
+
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Add(ArticleFormViewModel model) 
         {
             if (!ModelState.IsValid)
@@ -77,6 +81,7 @@
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id)
         {
             try
@@ -98,7 +103,9 @@
             }
             
         }
+
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, ArticleFormViewModel model)
         {
             if (!ModelState.IsValid)
@@ -120,6 +127,7 @@
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             bool entityExists = await this.newsService.CheckArticleExistanceByIdAsync(id);
