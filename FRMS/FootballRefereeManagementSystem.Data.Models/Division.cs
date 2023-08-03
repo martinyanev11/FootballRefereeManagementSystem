@@ -15,6 +15,7 @@
             this.DivisionReferees = new HashSet<RefereeDivision>();
             this.Matches = new HashSet<Match>();
             this.Applications = new HashSet<Application>();
+            this.IsActive = true;
         }
 
         [Comment("Primary key")]
@@ -41,5 +42,8 @@
 
         [Comment("Collection of all applications who are suitable for this division")]
         public ICollection<Application> Applications { get; set; } = null!;
+
+        [Comment("Soft delete value")]
+        public bool IsActive { get; set; }
     }
 }

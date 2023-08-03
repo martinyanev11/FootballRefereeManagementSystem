@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
 
     using Web.ViewModels.Career;
+    using Web.ViewModels.Division;
 
     public interface IDivisionService
     {
@@ -15,18 +16,29 @@
         /// <returns>Task representing the asynchronous operation.</returns>
         Task AddDivisionAndDivisionsWithLessDifficultyToRefereeByIdAsync(int refereeId, string divisionName);
 
+
+        Task AddNewDivisionAsync(DivisionFormModel model);
+        Task<bool> CheckDivisionExistanceByIdAsync(int id);
+        Task DeleteDivisionAsync(int id);
+
         /// <summary>
         /// Asynchronously determines the best suited division for an application based on the applicant's age and experience.
         /// </summary>
         /// <param name="model">The <see cref="ApplicationFormModel"/> containing the applicant's information.</param>
         /// <returns>Task representing the asynchronous operation. The result is the ID of the best suited division.</returns>
         Task<int> DetermineBestSuitedDivisionForApplicationAsync(ApplicationFormModel model);
+        Task EditDivisionAsync(int id, DivisionFormModel model);
 
         /// <summary>
         /// Asynchronously retrieves all division names from the database.
         /// </summary>
         /// <returns>A collection sequence containing the names of all divisions.</returns>
         Task<IEnumerable<string>> GetAllDivisionNamesAsync();
+
+
+        Task<IEnumerable<DivisionAllViewModel>> GetAllDivisionsAsync();
+        Task<DivisionViewModel> GetDivisionViewModelByIdAsync(int id);
+        Task<DivisionFormModel> GetDivisionForEditByIdAsync(int id);
 
         /// <summary>
         /// Asynchronously retrieves the name of the division that a referee has officiated the most matches in.

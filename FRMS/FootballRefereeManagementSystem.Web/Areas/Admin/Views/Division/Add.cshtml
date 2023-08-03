@@ -1,0 +1,32 @@
+﻿@using FootballRefereeManagementSystem.Web.ViewModels.Division;
+@model DivisionFormModel;
+@{
+    ViewData["Title"] = "Добавяне на дивизия";
+}
+
+<div class="container">
+    <h2 class="mb-2">@ViewData["Title"]</h2>
+    <hr />
+    <form asp-area="Admin" asp-controller="Division" asp-action="Add" method="post">
+        <div class="row">
+            <div class="form-group mb-3 col-5">
+                <label asp-for="Name">Име:</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3 col-2">
+                <label asp-for="Difficulty">Коефициент на трудност:</label>
+                <input asp-for="Difficulty" class="form-control" />
+                <span asp-validation-for="Difficulty" class="text-danger"></span>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Добави</button>
+        <a class="btn btn-secondary" asp-area="Admin" asp-controller="Division" asp-action="All">Отказ</a>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -17,6 +17,9 @@
 
         public void Configure(EntityTypeBuilder<Division> builder)
         {
+            builder.Property(d => d.IsActive)
+                .HasDefaultValue(true);
+
             builder.HasData(this.divisionSeeder.GenerateDivisions());
         }
     }

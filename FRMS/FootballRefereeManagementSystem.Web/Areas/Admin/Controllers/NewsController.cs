@@ -32,7 +32,7 @@
             {
                 await this.newsService.AddNewArticleAsync(model);
 
-                return RedirectToAction("All", "News");
+                return RedirectToAction("All", "News", new { area = "" });
             }
             catch (Exception)
             {
@@ -75,13 +75,12 @@
             {
                 await this.newsService.EditArticleAsync(id, model);
 
-                return RedirectToAction("All", "News");
+                return RedirectToAction("All", "News", new { area = "" });
             }
             catch (Exception)
             {
                 return View("Error");
             }
-
         }
 
         [HttpGet]
@@ -98,13 +97,12 @@
             {
                 await this.newsService.DeleteArticleAsync(id);
 
-                return RedirectToAction("All", "News");
+                return RedirectToAction("All", "News", new { area = "" });
             }
             catch (Exception)
             {
                 return View("Error");
             }
-
         }
     }
 }

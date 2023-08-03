@@ -1,0 +1,17 @@
+﻿@using FootballRefereeManagementSystem.Web.ViewModels.Division;
+@model DivisionViewModel;
+@{
+    ViewData["Title"] = "Изтриване на дивизия";
+}
+
+<div class="container">
+    <h2 class="text-center">@ViewData["Title"]</h2>
+    <hr />
+    <div class="row mb-3 text-center">
+        <p class="h4">@Model.Name</p>
+    </div>
+    <div class="row align-items-center text-center d-flex justify-content-center">
+        <a class="btn btn-danger me-3 col-2" asp-area="Admin" asp-controller="Division" asp-action="ConfirmedDelete" asp-route-id="@Model.Id">Изтрий</a>
+        <a class="btn btn-secondary col-2" asp-area="Admin" asp-controller="Division" asp-action="All">Отказ</a>
+    </div>
+</div>

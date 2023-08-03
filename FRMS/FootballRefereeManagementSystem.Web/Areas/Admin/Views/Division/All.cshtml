@@ -1,0 +1,51 @@
+﻿@using FootballRefereeManagementSystem.Web.ViewModels.Division;
+@model IEnumerable<DivisionAllViewModel>
+@{
+    ViewData["Title"] = "Дивизий";
+}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<div class="container shadow mt-5">
+    <div class="row mb-3 text-center">
+        <div class="offset-4 col-4 mt-3">
+            <a class="btn btn-lg btn-success btn-outline-dark text-white" asp-area="Admin" asp-controller="Division" asp-action="Add">
+                <i class="bi bi-plus-square me-2"></i> Добяване
+            </a>
+        </div>
+    </div>
+    <table class="table table-bordered bg-white table-hover mb-5">
+        <thead>
+            <tr class="alert-secondary">
+                <th>#</th>
+                <th>Име</th>
+                <th>Трудност</th>
+                <th>Брой съдиий</th>
+                <th>Настройки</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int rowNumber = 1;
+                foreach (DivisionAllViewModel division in Model)
+                {
+                    <tr>
+                        <td>@rowNumber</td>
+                        <td>@division.Name</td>
+                        <td>@division.Difficulty</td>
+                        <td>@division.RefereesCount</td>
+                        <td>
+                            <a class="btn btn-warning btn-outline-dark text-white me-3" asp-area="Admin" asp-controller="Division" asp-action="Edit" asp-route-id="@division.Id">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                            <a class="btn btn-danger btn-outline-dark text-white" asp-area="Admin" asp-controller="Division" asp-action="Delete" asp-route-id="@division.Id">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+
+                    rowNumber++;
+                }
+            }
+        </tbody>
+    </table>
+</div>

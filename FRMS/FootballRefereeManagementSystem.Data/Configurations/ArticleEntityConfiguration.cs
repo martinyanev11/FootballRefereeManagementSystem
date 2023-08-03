@@ -17,6 +17,9 @@
 
         public void Configure(EntityTypeBuilder<Article> builder)
         {
+            builder.Property(a => a.IsActive)
+                .HasDefaultValue(true);
+
             builder.HasData(seeder.GenerateArticles());
         }
     }
