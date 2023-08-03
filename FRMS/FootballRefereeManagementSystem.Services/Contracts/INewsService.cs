@@ -1,7 +1,7 @@
 ﻿namespace FootballRefereeManagementSystem.Services.Contracts
 {
-    using Models.Article;
     using Web.ViewModels.News;
+    using Models.Article;
 
     public interface INewsService
     {

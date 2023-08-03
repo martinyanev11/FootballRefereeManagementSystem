@@ -108,15 +108,5 @@
                 return View("Error");
             }            
         }
-
-        public IActionResult Dashboard()
-        {
-            if (!User.IsInRole("Admin"))
-            {
-                return View("Error401");
-            }
-
-            return View();
-        }
     }
 }

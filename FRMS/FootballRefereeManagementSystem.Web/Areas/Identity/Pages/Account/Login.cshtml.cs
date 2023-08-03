@@ -57,7 +57,7 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account
                 SignInResult result = await signInManager.PasswordSignInAsync(Input.Email, Input.Password, false, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "User");
+                    return RedirectToAction("Index", "User", new { area = "" });
                 }
                 if (result.IsLockedOut)
                 {
