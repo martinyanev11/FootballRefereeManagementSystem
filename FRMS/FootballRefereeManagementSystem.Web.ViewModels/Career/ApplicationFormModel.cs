@@ -17,7 +17,7 @@
         public string LastName { get; set; } = null!;
 
         [Required(ErrorMessage = "Полето е задължително")]
-        [Range(AgeMinValue, AgeMaxValue, ErrorMessage = "Възрастта трябва да бъде между 15 и 65 години.")]
+        [Range(AgeMinValue, AgeMaxValue, ErrorMessage = "Възрастта трябва да бъде между 15 и 50 години.")]
         public int Age { get; set; }
 
         [Required(ErrorMessage = "Полето е задължително")]

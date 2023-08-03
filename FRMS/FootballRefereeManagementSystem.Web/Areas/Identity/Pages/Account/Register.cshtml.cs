@@ -1,20 +1,15 @@
 ﻿#nullable disable
 namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account
 {
-    using System.Text;
-    using System.Text.Encodings.Web;
     using System.ComponentModel.DataAnnotations;
 
-    using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.UI.Services;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
-    using Microsoft.AspNetCore.WebUtilities;
 
     using Data.Models;
     using Services.Contracts;
-    using ViewModels.Career;
 
     public class RegisterModel : PageModel
     {
@@ -86,8 +81,6 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                await this.careerService.SetIsRegisterValueToTrueAsync(id);
-
                 ApplicationUser user = CreateUser();
 
                 await userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
@@ -96,35 +89,18 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    string userId = await userManager.GetUserIdAsync(user);
-                    string code = await userManager.GenerateEmailConfirmationTokenAsync(user);
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    string callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
-                        protocol: Request.Scheme);
+                    await this.careerService.SetIsRegisterValueToTrueAsync(id);
 
-                    await emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
-                    if (userManager.Options.SignIn.RequireConfirmedAccount)
-                    {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
-                    }
-                    else
-                    {
-                        await signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
-                    }
+                    await signInManager.SignInAsync(user, isPersistent: false);
+                    return LocalRedirect(returnUrl);
                 }
+
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return Page();
         }
 

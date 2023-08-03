@@ -100,7 +100,7 @@
             public const int ContactMaxLength = 10;
 
             public const int AgeMinValue = 15;
-            public const int AgeMaxValue = 65;
+            public const int AgeMaxValue = 50;
 
             public const int ExperienceMinValue = 0;
             public const int ExperienceMaxValue = 50;
