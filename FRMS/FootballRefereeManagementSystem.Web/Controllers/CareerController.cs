@@ -63,7 +63,7 @@
             try
             {
                 model.Role = this.refereeService.DetermineBestSuitedRoleForApplication(model);
-                model.DivisionId = await this.divisionService.DetermineBestSuitedDivisionForApplicationAsync(model);
+                model.DivisionId = await this.divisionService.DetermineBestSuitedDivisionForApplicationAsync(model.Age, model.ExperienceInYears);
 
                 await this.careerService.AddApplicationAsync(model);
             }

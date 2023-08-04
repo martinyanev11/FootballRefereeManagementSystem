@@ -17,10 +17,18 @@
         [HttpGet]
         public async Task<IActionResult> All()
         {
-            IEnumerable<DivisionAllViewModel> models = 
-                await this.divisionService.GetAllDivisionsAsync();
+            try
+            {
+                IEnumerable<DivisionAllViewModel> models =
+                    await this.divisionService.GetAllDivisionsAsync();
 
-            return View(models);
+                return View(models);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+            
         }
 
         [HttpGet]
@@ -107,7 +115,7 @@
                 }
 
                 DivisionViewModel model =
-                    await this.divisionService.GetDivisionViewModelByIdAsync(id);
+                    await this.divisionService.GetDivisionByIdAsync(id);
 
                 return View(model);
             }

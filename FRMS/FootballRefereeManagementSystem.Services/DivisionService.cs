@@ -15,7 +15,8 @@
     public class DivisionService : IDivisionService
     {
         private readonly FootballRefereeManagementSystemDbContext dbContext;
-        private const int HighDivisionsAgeLimit = 18; // users younger than that are placed in lowest division
+
+        private const int HigherDivisionsAgeLimit = 18; // users younger than that are placed in lowest division
         private const int LowDivisionsExperienceRequirement = 2;
         private const int MidDivisionsExperienceRequirement = 10;
 
@@ -69,15 +70,15 @@
 
         public async Task DeleteDivisionAsync(int id)
         {
-            Division divisionToDelete = await GetDivisionByIdAsync(id);
+            Division divisionToDelete = await GetDivisionAsync(id);
 
             divisionToDelete.IsActive = false;
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task<int> DetermineBestSuitedDivisionForApplicationAsync(ApplicationFormModel model)
+        public async Task<int> DetermineBestSuitedDivisionForApplicationAsync(int candidateAge, int candidateExperienceInYears)
         {
-            if (model.Age <= HighDivisionsAgeLimit)
+            if (candidateAge <= HigherDivisionsAgeLimit)
             {
                 // Gets the easiest division for underaged
                 return await this.dbContext.Divisions
@@ -87,7 +88,7 @@
             }
             else
             {
-                if (model.ExperienceInYears <= LowDivisionsExperienceRequirement)
+                if (candidateExperienceInYears <= LowDivisionsExperienceRequirement)
                 {
                     // Gets the easiest division for inexperienced candidate
                     return await this.dbContext.Divisions
@@ -95,7 +96,7 @@
                         .Select(d => d.Id)
                         .FirstAsync();
                 }
-                else if (model.ExperienceInYears <= MidDivisionsExperienceRequirement)
+                else if (candidateExperienceInYears <= MidDivisionsExperienceRequirement)
                 {
                     // Gets the middle division for candidate
                     int averageDivisionDifficulty = await GetMidDivisionDifficultyAsync();
@@ -118,7 +119,7 @@
 
         public async Task EditDivisionAsync(int id, DivisionFormModel model)
         {
-            Division divisionToEdit = await GetDivisionByIdAsync(id);
+            Division divisionToEdit = await GetDivisionAsync(id);
 
             divisionToEdit.Name = model.Name;
             divisionToEdit.Difficulty = model.Difficulty;
@@ -181,7 +182,7 @@
             return mostOfficiatedDivision;
         }
 
-        public async Task<DivisionViewModel> GetDivisionViewModelByIdAsync(int id)
+        public async Task<DivisionViewModel> GetDivisionByIdAsync(int id)
         {
             return await this.dbContext.Divisions
                 .Where(d => d.Id == id && d.IsActive)
@@ -205,7 +206,7 @@
                 .FirstAsync();
         }
 
-        private async Task<Division> GetDivisionByIdAsync(int divisionId)
+        private async Task<Division> GetDivisionAsync(int divisionId)
         {
             return await this.dbContext.Divisions
                 .Where(d => d.Id == divisionId && d.IsActive)
