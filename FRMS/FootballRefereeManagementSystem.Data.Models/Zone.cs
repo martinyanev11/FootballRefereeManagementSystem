@@ -12,6 +12,7 @@
         public Zone()
         {
             this.Towns = new HashSet<Town>();
+            this.IsActive = true;
         }
 
         [Comment("Primary key")]
@@ -25,5 +26,8 @@
 
         [Comment("Collection of all towns located in the zone")]
         public ICollection<Town> Towns { get; set; } = null!;
+
+        [Comment("Soft delete value")]
+        public bool IsActive { get; set; }
     }
 }

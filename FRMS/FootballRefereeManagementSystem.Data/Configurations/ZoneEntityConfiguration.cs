@@ -17,6 +17,9 @@
 
         public void Configure(EntityTypeBuilder<Zone> builder)
         {
+            builder.Property(z => z.IsActive)
+                .HasDefaultValue(true);
+
             builder.HasData(this.zoneSeeder.GenerateZones());
         }
     }

@@ -4,6 +4,7 @@ using FootballRefereeManagementSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FootballRefereeManagementSystem.Data.Migrations
 {
     [DbContext(typeof(FootballRefereeManagementSystemDbContext))]
-    partial class FootballRefereeManagementSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230804082406_TownEntityUpdate")]
+    partial class TownEntityUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -164,13 +166,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = new Guid("ea01fe26-36c8-4daa-b1c8-8b9209e82478"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "64c581ea-2166-4554-8767-9f0b695fdba3",
+                            ConcurrencyStamp = "ddbe4a19-b3fe-4dfc-aa2d-e6495499de96",
                             Email = "referee@bfs.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "REFEREE@BFS.COM",
                             NormalizedUserName = "REFEREE@BFS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDgqAyEI5VXG+OTUIqvx22yAU9M46AGplp5O0tg7pLgURhqbQ1B/dIW81xv0HkY2vA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEA6GKeGtVgnW6j7X6aVqDuQpBPDX1pKSFuUHdcWHK9vnrJOUV40TFNQFcPu2wzoGDQ==",
                             PhoneNumberConfirmed = false,
                             RefereeId = 1,
                             SecurityStamp = "db733aa2-e6af-45eb-89f4-f313843a9477",
@@ -181,13 +183,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = new Guid("1e48bbc8-cbf0-494c-89e0-6bcccc36cc6a"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b936f9d1-3f55-486c-a863-44b8dcccf44f",
+                            ConcurrencyStamp = "a1fb74f5-bd24-4925-b6ad-8dfe5bd9276a",
                             Email = "assitant_referee1@bfs.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ASSITANT_REFEREE1@BFS.COM",
                             NormalizedUserName = "ASSITANT_REFEREE1@BFS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDYtJBdh59VEG3Smh5pAfaZGKllWpPtb0Z3SzGs7Sr0yUpeG4GOtMLoD3G0UBCoW+w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEB1VXyZIlYTSYQSxcrivzXvmcDEhLekfmdGVsMF/8/WSo49DmZFdjPArzdmoKh3zBw==",
                             PhoneNumberConfirmed = false,
                             RefereeId = 2,
                             SecurityStamp = "953c5389-11bf-4a85-985e-8838dbc244e9",
@@ -198,13 +200,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = new Guid("065a8654-fc52-43b4-8d3d-7e90a87e2bd9"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b2b00b1b-f738-44b5-aa38-1c4b073f5bc4",
+                            ConcurrencyStamp = "805ebccb-ed19-4161-b02d-04a5e1e7602f",
                             Email = "assitant_referee2@bfs.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ASSITANT_REFEREE2@BFS.COM",
                             NormalizedUserName = "ASSITANT_REFEREE2@BFS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAGgC316Xez7y6UqxOqWNbIj7gjLBSRxDL+Z6Uq4+PDV6yvFieGB+LxDqsPFgKp5iQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFebE4KB4dq0M5auArz0tXf5pDo4QQttXMy+TtnO0qPel9SXBAbS97eH+tiAXE8mqg==",
                             PhoneNumberConfirmed = false,
                             RefereeId = 3,
                             SecurityStamp = "54aa92fc-e351-4099-b8c2-2e11844b5055",
@@ -215,13 +217,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = new Guid("35e56d1c-a7c2-445d-9eb5-0cdaecb0ebb1"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e8709cd8-dba3-4e1a-a1bc-d0fd8e98126e",
+                            ConcurrencyStamp = "0e5c0ed2-0a90-4594-87cd-5973feddf46d",
                             Email = "delegate@bfs.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "DELEGATE@BFS.COM",
                             NormalizedUserName = "DELEGATE@BFS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKhCifH9eCMrAL2HpvoEo7PkvsuDjcFkoC+E+6ubJ8v2nNS5SGHC7xX9qW4aQ1jqew==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDwACvMFO5LWloePN1mKWykbbRshUuekngO+WPoMYxOmlraGbfhPh6k5drhMMaqqbg==",
                             PhoneNumberConfirmed = false,
                             RefereeId = 4,
                             SecurityStamp = "0d2f845c-5cff-4c19-9b10-897c8e4293bf",
@@ -232,13 +234,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = new Guid("d9f18631-5bdb-4b41-86f4-8d6dbe71efb6"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5062e86a-50f7-41f4-af9e-f2260d393850",
+                            ConcurrencyStamp = "19d43154-8b3b-44fd-bc87-931fc4204a7e",
                             Email = "admin@bfs.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@BFS.COM",
                             NormalizedUserName = "ADMIN@BFS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJOKq5484fFZ/q1/WopwuOPp1jdKP2ym6V0NmVbE1ETLmAZxRNVdx0lwX5sbjs3YEA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJwXLM3s+6/oqwXtmUhxrcE4ApZf/KrV3eOi90BBgCWi+IkB4Ow/H7vjB5mMbhPxgA==",
                             PhoneNumberConfirmed = false,
                             RefereeId = 5,
                             SecurityStamp = "e2dc0205-924a-40d8-88f7-7ebf282eba0f",
@@ -293,7 +295,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = 1,
                             Content = "На 08.06.2023г в ОС на БФС-Плевен се проведе заседание на СТК при ОС на БФС Плевен и бяха взети следните решения:\r\n\r\nНа 04.06.2023г. в среща от 18 кръг на първенството на „Б”ОФГ-изток между отборите на ФК\"Обнова-2022\" – Обнова и ФК\"Чавдар-1920\" – Бръшляница, проведена в с.Обнова от 18ч. В 80мин. на срещата при резултат 1:0 в полза на ФК\"Обнова-2022\" е отсъден 11-метров наказателен удар в полза на ФК\"Обнова-2022\".Следва бурен протест от състезателите на ФК\"Чавдар-1920\" – Бръшляница.Нанесени са удари на гл.съдия в главата и тялото от състезатели на ФК\"Чавдар-1920\" – Бръшляница.поради създалата се обстановка при която е застрашено здравето и сигурността на длъжностните лица и няма условия футболната среща да продължи, същата е прекратена.\r\n\r\nНа основание чл.24 ал.9 от наредбата на БФС,се присъжда служебна  загуба при резултат 4:0 в полза на ФК\"Обнова-2022\".\r\n\r\nНеизрядната страна няма право да обжалва наказанието по тази алинея.",
-                            CreatedOn = new DateTime(2023, 8, 4, 16, 8, 18, 922, DateTimeKind.Utc).AddTicks(2154),
+                            CreatedOn = new DateTime(2023, 8, 4, 8, 24, 5, 496, DateTimeKind.Utc).AddTicks(3270),
                             IsActive = true,
                             Title = "Заседание на СТК при ОС на БФС Плевен"
                         },
@@ -301,7 +303,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = 2,
                             Content = "В среща от 17-ти кръг от първенството на „Б” ОФГ-запад между отборите на ФК\"Мизия-1924\" – Кнежа и ФК”Спартак-1924”-Койнаре проведена на 28.05. от 18ч. в гр.Кнежа и бяха взети следните решения:За навлизане на публиката на гостите от ФК”Спартак-1924”-Койнаре на терена по  време на срещата :Наказва ФК”Спартак-1924”-Койнаре с предупреждение, лишаване от домакинство и глоба в размер на 150/сто и петдесет/лева  по чл.37 ал.1 буква „в” от ДП.",
-                            CreatedOn = new DateTime(2023, 8, 4, 16, 8, 18, 922, DateTimeKind.Utc).AddTicks(2162),
+                            CreatedOn = new DateTime(2023, 8, 4, 8, 24, 5, 496, DateTimeKind.Utc).AddTicks(3277),
                             IsActive = true,
                             Title = "Решение на ДК- ОС на БФС Плевен"
                         },
@@ -309,7 +311,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = 3,
                             Content = "В среща от 15-ти кръг от първенството на „Б” ОФГ-изток между отборите на ФК\"Славия\"-Новачене и ФК\"Обнова-2022\" - Обнова проведена на14.05.от 18ч. в с.Новачене и бяха взети следните решения:Наказва Явор Руменов Димитров  от отбора на ФК\"Славия\"-Новачене за получен червен картон със ССП за 1/една/ среща по чл.22 ал.1 т.1буква „з”от ДП.Наказва Галин Пламенов Георгиев от отбора на ФК\"Обнова-2022\" - Обнова за получен червен картон със ССП за 1/една/ среща по чл.22 ал.1 т.1буква „в”от ДП.",
-                            CreatedOn = new DateTime(2023, 8, 4, 16, 8, 18, 922, DateTimeKind.Utc).AddTicks(2163),
+                            CreatedOn = new DateTime(2023, 8, 4, 8, 24, 5, 496, DateTimeKind.Utc).AddTicks(3278),
                             IsActive = true,
                             Title = "Решение на ДК- ОС на БФС Плевен"
                         },
@@ -4426,12 +4428,6 @@ namespace FootballRefereeManagementSystem.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true)
-                        .HasComment("Soft delete value");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(26)
@@ -4454,126 +4450,108 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         new
                         {
                             Id = 1,
-                            IsActive = true,
                             Name = "Плевен",
                             ZoneId = 4
                         },
                         new
                         {
                             Id = 2,
-                            IsActive = true,
                             Name = "Трънчовица",
                             ZoneId = 4
                         },
                         new
                         {
                             Id = 3,
-                            IsActive = true,
                             Name = "Гулянци",
                             ZoneId = 4
                         },
                         new
                         {
                             Id = 4,
-                            IsActive = true,
                             Name = "Белене",
                             ZoneId = 4
                         },
                         new
                         {
                             Id = 5,
-                            IsActive = true,
                             Name = "Гривица",
                             ZoneId = 4
                         },
                         new
                         {
                             Id = 6,
-                            IsActive = true,
                             Name = "Брест",
                             ZoneId = 4
                         },
                         new
                         {
                             Id = 7,
-                            IsActive = true,
                             Name = "Лепица",
                             ZoneId = 4
                         },
                         new
                         {
                             Id = 8,
-                            IsActive = true,
                             Name = "Никопол",
                             ZoneId = 4
                         },
                         new
                         {
                             Id = 9,
-                            IsActive = true,
                             Name = "Тръстеник",
                             ZoneId = 4
                         },
                         new
                         {
                             Id = 10,
-                            IsActive = true,
                             Name = "Българене",
                             ZoneId = 1
                         },
                         new
                         {
                             Id = 11,
-                            IsActive = true,
                             Name = "Вълчитрън",
                             ZoneId = 1
                         },
                         new
                         {
                             Id = 12,
-                            IsActive = true,
                             Name = "Згалево",
                             ZoneId = 1
                         },
                         new
                         {
                             Id = 13,
-                            IsActive = true,
                             Name = "Изгрев",
                             ZoneId = 1
                         },
                         new
                         {
                             Id = 14,
-                            IsActive = true,
                             Name = "Обнова",
                             ZoneId = 1
                         },
                         new
                         {
                             Id = 15,
-                            IsActive = true,
                             Name = "Новачене",
                             ZoneId = 1
                         },
                         new
                         {
                             Id = 16,
-                            IsActive = true,
                             Name = "Муселиево",
                             ZoneId = 1
                         },
                         new
                         {
                             Id = 17,
-                            IsActive = true,
                             Name = "Пордим",
                             ZoneId = 1
                         },
                         new
                         {
                             Id = 18,
-                            IsActive = true,
                             Name = "Бръшляница",
                             ZoneId = 1
                         });
@@ -4587,12 +4565,6 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         .HasComment("Primary key");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true)
-                        .HasComment("Soft delete value");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -4610,25 +4582,21 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         new
                         {
                             Id = 1,
-                            IsActive = true,
                             Name = "Плевен Изток"
                         },
                         new
                         {
                             Id = 3,
-                            IsActive = true,
                             Name = "Плевен Запад"
                         },
                         new
                         {
                             Id = 2,
-                            IsActive = true,
                             Name = "Плевен Център"
                         },
                         new
                         {
                             Id = 4,
-                            IsActive = true,
                             Name = "Плевенска Област"
                         });
                 });

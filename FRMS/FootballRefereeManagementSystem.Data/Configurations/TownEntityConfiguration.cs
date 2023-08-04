@@ -17,6 +17,9 @@
 
         public void Configure(EntityTypeBuilder<Town> builder)
         {
+            builder.Property(t => t.IsActive)
+                .HasDefaultValue(true);
+
             builder.HasData(this.townSeeder.GenerateTowns());
         }
     }
