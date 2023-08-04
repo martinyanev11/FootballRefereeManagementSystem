@@ -1,0 +1,44 @@
+﻿@using FootballRefereeManagementSystem.Web.ViewModels.Zone;
+@model IEnumerable<ZoneViewModel>;
+@{
+    ViewData["Title"] = "Зони";
+}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<div class="container">
+    <h2>@ViewData["Title"]</h2>
+    <hr />
+    <div class="row-cols-12 mt-3 mb-3">
+        <a class="btn btn-success text-white" asp-area="Admin" asp-controller="Zone" asp-action="Add"><i class="bi bi-plus-square me-2"></i>Добави</a>
+    </div>
+    <br />
+    <table class="table table-responsive table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Име на зона</th>
+                <th class="text-center">Брой градове</th>
+                <th class="text-center">Управление</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int rowCounter = 1;
+                @foreach (ZoneViewModel zone in Model)
+                {
+                    <tr>
+                        <td>@rowCounter</td>
+                        <td>@zone.Name</td>
+                        <td class="text-center">@zone.TownsCount</td>
+                        <td class="text-center">
+                            <a class="btn btn-warning border-1 border-dark me-3" asp-area="Admin" asp-controller="Zone" asp-action="Edit" asp-route-id="@zone.Id"><i class="bi bi-pencil-square"> Редактирай</i></a>
+                            <a class="btn btn-danger border-1 border-dark me-3" asp-area="Admin" asp-controller="Zone" asp-action="Delete" asp-route-id="@zone.Id"><i class="bi bi-trash"> Изтрий</i></a>
+                        </td>
+                    </tr>
+
+                    rowCounter++;
+                }
+            }
+        </tbody>
+    </table>
+</div>
