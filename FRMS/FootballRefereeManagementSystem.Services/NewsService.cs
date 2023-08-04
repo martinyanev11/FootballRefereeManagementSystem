@@ -99,7 +99,7 @@ namespace FootballRefereeManagementSystem.Services
 
         public async Task EditArticleAsync(int articleId, ArticleFormViewModel model)
         {
-            Article articleToEdit = await this.GetArticleByIdAsync(articleId);
+            Article articleToEdit = await this.GetArticleAsync(articleId);
 
             articleToEdit.Title = model.Title;
             articleToEdit.Content = model.Content;
@@ -110,7 +110,7 @@ namespace FootballRefereeManagementSystem.Services
 
         public async Task<ArticleFormViewModel> GetArticleForEditByIdAsync(int id)
         {
-            Article articleToEdit = await this.GetArticleByIdAsync(id);
+            Article articleToEdit = await this.GetArticleAsync(id);
 
             return new ArticleFormViewModel()
             {
@@ -143,7 +143,7 @@ namespace FootballRefereeManagementSystem.Services
 
         public async Task DeleteArticleAsync(int id)
         {
-            Article articleToDelete = await this.GetArticleByIdAsync(id);
+            Article articleToDelete = await this.GetArticleAsync(id);
 
             articleToDelete.IsActive = false;
             await this.dbContext.SaveChangesAsync();
@@ -155,14 +155,32 @@ namespace FootballRefereeManagementSystem.Services
                 .AnyAsync(a => a.Id == id);
         }
 
+        public async Task<ArticleViewModel> GetArticleByIdAsync(int id)
+        {
+            ArticleViewModel articleModel = await this.dbContext
+                .Articles
+                .Where(a => a.IsActive && a.Id == id)
+                .Select(a => new ArticleViewModel()
+                {
+                    Id = a.Id,
+                    Title = a.Title,
+                    Content = a.Content,
+                    CreatedOn = a.CreatedOn,
+                    ImageUrl = a.ImageUrl,
+                })
+                .FirstAsync();
+
+            return articleModel;
+        }
+
         // ---------------------------------------
         // private methods
         // ---------------------------------------
 
-        private async Task<Article> GetArticleByIdAsync(int id)
+        private async Task<Article> GetArticleAsync(int id)
         {
             return await this.dbContext.Articles
                 .FirstAsync(a => a.Id == id);
-        }        
+        }
     }
 }

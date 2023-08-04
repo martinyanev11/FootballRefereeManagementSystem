@@ -59,5 +59,12 @@
         /// <param name="id">The ID of the article to check for existence.</param>
         /// <returns>A boolean value indicating whether the article with the specified ID exists or not.</returns>
         Task<bool> CheckArticleExistanceByIdAsync(int id);
+
+        /// <summary>
+        /// Retrieves an article by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the article to retrieve.</param>
+        /// <returns>The article view model.</returns>
+        Task<ArticleViewModel> GetArticleByIdAsync(int id);
     }
 }

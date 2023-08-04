@@ -86,15 +86,41 @@
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            bool entityExists = await this.newsService.CheckArticleExistanceByIdAsync(id);
-
-            if (!entityExists)
-            {
-                return View("Error404");
-            }
-
             try
             {
+                bool entityExists =
+                await this.newsService.CheckArticleExistanceByIdAsync(id);
+
+                if (!entityExists)
+                {
+                    return View("Error404");
+                }
+
+                ArticleViewModel model = await this.newsService.GetArticleByIdAsync(id);
+
+                return View(model);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+            
+            
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ConfirmedDelete(int id)
+        {
+            try
+            {
+                bool entityExists =
+                    await this.newsService.CheckArticleExistanceByIdAsync(id);
+
+                if (!entityExists)
+                {
+                    return View("Error404");
+                }
+
                 await this.newsService.DeleteArticleAsync(id);
 
                 return RedirectToAction("All", "News", new { area = "" });
