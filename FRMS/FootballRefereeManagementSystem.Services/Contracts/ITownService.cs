@@ -1,6 +1,9 @@
 ﻿namespace FootballRefereeManagementSystem.Services.Contracts
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
+
+    using Web.ViewModels.Town;
 
     public interface ITownService
     {
@@ -10,7 +13,9 @@
         /// <param name="townName">The name of the town to be added.</param>
         /// <param name="zoneId">The ID of the zone to which the town belongs.</param>
         /// <returns>A task representing the asynchronous operation.</returns>
-        Task AddNewTownAsync(string townName, int zoneId);
+        Task AddNewTownAsync(TownFormModel model);
+
+        Task<bool> CheckTownExistanceByIdAsync(int id);
 
         /// <summary>
         /// Checks if a town with the specified name exists in the database.
@@ -24,6 +29,11 @@
         /// with the given name and returns the result as a boolean value.
         /// </remarks>
         Task<bool> CheckTownExistanceByNameAsync(string townName);
+        Task DeleteTownAsync(int id);
+        Task EditTownAsync(int id, TownFormModel model);
+        Task<IEnumerable<TownViewModel>> GetAllTownsAsync(TownQueryModel queryModel);
+        Task<TownViewModel> GetTownByIdAsync(int id);
+        Task<TownFormModel> GetTownForEditByIdAsync(int id);
 
         /// <summary>
         /// Retrieves the ID of a town with the specified name from the database.

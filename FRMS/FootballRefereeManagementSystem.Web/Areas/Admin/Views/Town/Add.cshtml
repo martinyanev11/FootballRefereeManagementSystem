@@ -1,0 +1,38 @@
+﻿@using FootballRefereeManagementSystem.Web.ViewModels.Town;
+@model TownFormModel;
+@{
+    ViewData["Title"] = "Добавяне на град";
+}
+
+<div class="container">
+    <h2 class="mb-2">@ViewData["Title"]</h2>
+    <hr />
+    <form asp-area="Admin" asp-controller="Town" asp-action="Add" method="post">
+        <div class="row">
+            <div class="form-group mb-3 col-5">
+                <label asp-for="Name" class="dropdown-header">Име:</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group mb-3 col-2">
+                <label asp-for="Zone" class="dropdown-header">Зона:</label>
+                <select asp-for="Zone" class="form-control">
+                    @foreach (string zone in Model.Zones)
+                    {
+                        <option value="@zone">@zone</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Добави</button>
+        <a class="btn btn-secondary" asp-area="Admin" asp-controller="Town" asp-action="All">Отказ</a>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
