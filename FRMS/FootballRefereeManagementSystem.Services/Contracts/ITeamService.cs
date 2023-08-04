@@ -13,6 +13,7 @@
         /// <param name="id">The ID of the team to check for existence.</param>
         /// <returns>A boolean value indicating whether the team with the specified ID exists or not.</returns>
         Task<bool> CheckTeamExistanceByIdAsync(int id);
+        Task<TeamAdminQueryModel> GetAllTeamsAsync(TeamAdminQueryModel queryModel);
 
         /// <summary>
         /// Asynchronously retrieves team standings for a specified season and division.

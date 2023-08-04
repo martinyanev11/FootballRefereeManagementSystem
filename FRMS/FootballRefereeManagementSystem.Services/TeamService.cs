@@ -104,6 +104,11 @@
                 .AnyAsync(t => t.Id == id);
         }
 
+        public Task<TeamAdminQueryModel> GetAllTeamsAsync(TeamAdminQueryModel queryModel)
+        {
+            throw new NotImplementedException();
+        }
+
         // ----------------------------------
         // Helper classes
         // ----------------------------------
