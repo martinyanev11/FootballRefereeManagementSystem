@@ -8,13 +8,19 @@
     public interface ITownService
     {
         /// <summary>
-        /// Adds a new town to the database with the specified town name and zone ID.
+        /// Adds a new town to the database.
         /// </summary>
-        /// <param name="townName">The name of the town to be added.</param>
-        /// <param name="zoneId">The ID of the zone to which the town belongs.</param>
+        /// <param name="model">The town form model containing the town information.</param>
         /// <returns>A task representing the asynchronous operation.</returns>
         Task AddNewTownAsync(TownFormModel model);
 
+        /// <summary>
+        /// Checks if a town with the specified ID exists in the database.
+        /// </summary>
+        /// <param name="id">The ID of the town to check for existence.</param>
+        /// <returns>
+        /// <see langword="true"/> if a town with the specified ID exists in the database, <see langword="false"/> otherwise.
+        /// </returns>
         Task<bool> CheckTownExistanceByIdAsync(int id);
 
         /// <summary>
@@ -29,10 +35,41 @@
         /// with the given name and returns the result as a boolean value.
         /// </remarks>
         Task<bool> CheckTownExistanceByNameAsync(string townName);
+
+        /// <summary>
+        /// Deletes the town with the specified ID from the database.
+        /// </summary>
+        /// <param name="id">The ID of the town to delete.</param>
+        /// <returns>A task representing the asynchronous operation.</returns>
         Task DeleteTownAsync(int id);
+
+        /// <summary>
+        /// Edits the town with the specified ID in the database.
+        /// </summary>
+        /// <param name="id">The ID of the town to edit.</param>
+        /// <param name="model">The updated data for the town.</param>
+        /// <returns>A task representing the asynchronous operation.</returns>
         Task EditTownAsync(int id, TownFormModel model);
+
+        /// <summary>
+        /// Retrieves a collection of town view models based on the specified query parameters.
+        /// </summary>
+        /// <param name="queryModel">The query parameters for filtering and searching.</param>
+        /// <returns>A task representing the asynchronous operation. The result is a collection of town view models.</returns>
         Task<IEnumerable<TownViewModel>> GetAllTownsAsync(TownQueryModel queryModel);
+
+        /// <summary>
+        /// Retrieves a town view model by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the town to retrieve.</param>
+        /// <returns>A task representing the asynchronous operation. The result is the town view model.</returns>
         Task<TownViewModel> GetTownByIdAsync(int id);
+
+        /// <summary>
+        /// Retrieves a town form model for editing by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the town to retrieve.</param>
+        /// <returns>A task representing the asynchronous operation. The result is the town form model.</returns>
         Task<TownFormModel> GetTownForEditByIdAsync(int id);
 
         /// <summary>
