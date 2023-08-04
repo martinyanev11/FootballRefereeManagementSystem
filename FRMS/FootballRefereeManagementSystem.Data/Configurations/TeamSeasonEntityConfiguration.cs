@@ -28,11 +28,6 @@
                 .HasForeignKey(ts => ts.SeasonId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasOne(ts => ts.Manager)
-                .WithMany(m => m.TeamsSeasons)
-                .HasForeignKey(ts => ts.ManagerId)
-                .OnDelete(DeleteBehavior.Restrict);
-
             builder.HasOne(ts => ts.Division)
                 .WithMany(d => d.TeamsSeasons)
                 .HasForeignKey(ts => ts.DivisionId)

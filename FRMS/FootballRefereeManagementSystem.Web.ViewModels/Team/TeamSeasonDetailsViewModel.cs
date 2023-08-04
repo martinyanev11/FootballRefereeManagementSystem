@@ -13,10 +13,6 @@
 
         public string Division { get; set; } = null!;
 
-        public string ManagerName { get; set; } = null!;
-
-        public int ManagerAge { get; set; }
-
         public IEnumerable<PlayerDetailsViewModel> Players { get; set; } = null!;
 
         public IEnumerable<DetailsHistoryViewModel> MatchHistory { get; set; } = null!;

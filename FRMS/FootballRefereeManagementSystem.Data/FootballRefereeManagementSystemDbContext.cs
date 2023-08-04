@@ -16,7 +16,6 @@
         }
 
         public DbSet<Division> Divisions { get; set; } = null!;
-        public DbSet<Manager> Managers { get; set; } = null!;
         public DbSet<Match> Matches { get; set; } = null!;
         public DbSet<Player> Players { get; set; } = null!;
         public DbSet<Referee> Referees { get; set; } = null!;

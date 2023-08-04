@@ -55,11 +55,6 @@
         [Comment("Color of the player's shirts")]
         public Color ShirtColor { get; set; }
 
-        [Comment("The manager of the team for specific season")]
-        [ForeignKey(nameof(Manager))]
-        public int ManagerId { get; set; }
-        public Manager Manager { get; set; } = null!;
-
         [Comment("Collection of all the team's players for specific season")]
         public ICollection<PlayerTeamSeason> TeamSeasonPlayers { get; set; } = null!;
 

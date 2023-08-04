@@ -16,7 +16,6 @@
                     SeasonId = SeasonDataConstants.Season22And23Id,
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     ShirtColor = Color.White,
-                    ManagerId = 1,
                 },
                 new TeamSeason()
                 {
@@ -24,7 +23,6 @@
                     SeasonId = SeasonDataConstants.Season22And23Id,
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     ShirtColor = Color.Red,
-                    ManagerId = 2,
                 },
                 new TeamSeason()
                 {
@@ -32,7 +30,6 @@
                     SeasonId = SeasonDataConstants.Season22And23Id,
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     ShirtColor = Color.Blue,
-                    ManagerId = 3,
                 },
                 new TeamSeason()
                 {
@@ -40,7 +37,6 @@
                     SeasonId = SeasonDataConstants.Season22And23Id,
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     ShirtColor = Color.Yellow,
-                    ManagerId = 4,
                 },
                 new TeamSeason()
                 {
@@ -48,7 +44,6 @@
                     SeasonId = SeasonDataConstants.Season23And24Id,
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     ShirtColor = Color.White,
-                    ManagerId = 1,
                 },
                 new TeamSeason()
                 {
@@ -56,7 +51,6 @@
                     SeasonId = SeasonDataConstants.Season23And24Id,
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     ShirtColor = Color.Red,
-                    ManagerId = 2,
                 },
                 new TeamSeason()
                 {
@@ -64,7 +58,6 @@
                     SeasonId = SeasonDataConstants.Season23And24Id,
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     ShirtColor = Color.Blue,
-                    ManagerId = 3,
                 },
                 new TeamSeason()
                 {
@@ -72,7 +65,6 @@
                     SeasonId = SeasonDataConstants.Season23And24Id,
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     ShirtColor = Color.Yellow,
-                    ManagerId = 4,
                 },
                 new TeamSeason()
                 {
@@ -80,7 +72,6 @@
                     SeasonId = SeasonDataConstants.Season23And24Id,
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     ShirtColor = Color.Pink,
-                    ManagerId = 5,
                 },
                 new TeamSeason()
                 {
@@ -88,7 +79,6 @@
                     SeasonId = SeasonDataConstants.Season23And24Id,
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     ShirtColor = Color.Purple,
-                    ManagerId = 6,
                 },
                 new TeamSeason()
                 {
@@ -96,7 +86,6 @@
                     SeasonId = SeasonDataConstants.Season23And24Id,
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     ShirtColor = Color.Orange,
-                    ManagerId = 7,
                 },
                 new TeamSeason()
                 {
@@ -104,7 +93,6 @@
                     SeasonId = SeasonDataConstants.Season23And24Id,
                     DivisionId = DivisionDataConstants.RegionalAGroupId,
                     ShirtColor = Color.Black,
-                    ManagerId = 8,
                 },
                 new TeamSeason()
                 {
@@ -117,7 +105,6 @@
                     GoalsFor = 37,
                     GoalsAgainst = 32,
                     ShirtColor = Color.Red,
-                    ManagerId = 9,
                 },
                 new TeamSeason()
                 {
@@ -130,7 +117,6 @@
                     GoalsFor = 20,
                     GoalsAgainst = 73,
                     ShirtColor = Color.Black,
-                    ManagerId = 10,
                 },
                 new TeamSeason()
                 {
@@ -143,7 +129,6 @@
                     GoalsFor = 33,
                     GoalsAgainst = 56,
                     ShirtColor = Color.Violet,
-                    ManagerId = 11,
                 },
                 new TeamSeason()
                 {
@@ -156,7 +141,6 @@
                     GoalsFor = 48,
                     GoalsAgainst = 19,
                     ShirtColor = Color.White,
-                    ManagerId = 12,
                 },
                 new TeamSeason()
                 {
@@ -169,7 +153,6 @@
                     GoalsFor = 62,
                     GoalsAgainst = 20,
                     ShirtColor = Color.Brown,
-                    ManagerId = 13,
                 },
                 new TeamSeason()
                 {
@@ -182,7 +165,6 @@
                     GoalsFor = 26,
                     GoalsAgainst = 36,
                     ShirtColor = Color.Red,
-                    ManagerId = 14,
                 },
                 new TeamSeason()
                 {
@@ -195,7 +177,6 @@
                     GoalsFor = 28,
                     GoalsAgainst = 38,
                     ShirtColor = Color.Blue,
-                    ManagerId = 15,
                 },
                 new TeamSeason()
                 {
@@ -208,7 +189,6 @@
                     GoalsFor = 22,
                     GoalsAgainst = 37,
                     ShirtColor = Color.Yellow,
-                    ManagerId = 16,
                 },
                 new TeamSeason()
                 {
@@ -221,7 +201,6 @@
                     GoalsFor = 51,
                     GoalsAgainst = 16,
                     ShirtColor = Color.Green,
-                    ManagerId = 17,
                 },
             };
 
