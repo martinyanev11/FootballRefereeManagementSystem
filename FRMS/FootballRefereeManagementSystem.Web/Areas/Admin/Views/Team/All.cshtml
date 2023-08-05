@@ -1,7 +1,7 @@
-﻿@using FootballRefereeManagementSystem.Web.ViewModels.Town;
-@model TownQueryModel;
+﻿@using FootballRefereeManagementSystem.Web.ViewModels.Team;
+@model TeamAdminQueryModel;
 @{
-    ViewData["Title"] = "Градове";
+    ViewData["Title"] = "Отбори";
 }
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
@@ -9,7 +9,7 @@
     <h2>@ViewData["Title"]</h2>
     <hr />
     <div class="row-cols-12 mt-3 mb-3">
-        <a class="btn btn-success text-white" asp-area="Admin" asp-controller="Town" asp-action="Add"><i class="bi bi-plus-square me-2"></i>Добави</a>
+        <a class="btn btn-success text-white" asp-area="Admin" asp-controller="Team" asp-action="Add"><i class="bi bi-plus-square me-2"></i>Добави</a>
     </div>
 
     <form method="get">
@@ -44,27 +44,27 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Име на града</th>
-                <th>Име на зона</th>
-                <th class="text-center">Брой отбори</th>
-                <th class="text-center">Брой мачове</th>
+                <th>Име на отбор</th>
+                <th>Местоположение</th>
+                <th class="text-center">Брой сезони</th>
+                <th class="text-center">Брой спечелени сезони</th>
                 <th class="text-center">Управление</th>
             </tr>
         </thead>
         <tbody>
             @{
                 int rowCounter = 1;
-                @foreach (TownViewModel town in Model.Towns)
+                @foreach (TeamAdminViewModel team in Model.Teams)
                 {
                     <tr>
                         <td>@rowCounter</td>
-                        <td>@town.Name</td>
-                        <td>@town.ZoneName</td>
-                        <td class="text-center">@town.TeamsCount</td>
-                        <td class="text-center">@town.MatchesCount</td>
+                        <td>@team.TeamName</td>
+                        <td>@team.TeamLocation</td>
+                        <td class="text-center">@team.SeasonsPlayed</td>
+                        <td class="text-center">@team.SeasonsWon</td>
                         <td class="text-center">
-                            <a class="btn btn-warning border-1 border-dark me-3" asp-area="Admin" asp-controller="Town" asp-action="Edit" asp-route-id="@town.Id"><i class="bi bi-pencil-square"> Редактирай</i></a>
-                            <a class="btn btn-danger border-1 border-dark me-3" asp-area="Admin" asp-controller="Town" asp-action="Delete" asp-route-id="@town.Id"><i class="bi bi-trash"> Изтрий</i></a>
+                            <a class="btn btn-warning border-1 border-dark me-3" asp-area="Admin" asp-controller="Team" asp-action="Edit" asp-route-id="@team.Id"><i class="bi bi-pencil-square"> Редактирай</i></a>
+                            <a class="btn btn-danger border-1 border-dark me-3" asp-area="Admin" asp-controller="Team" asp-action="Delete" asp-route-id="@team.Id"><i class="bi bi-trash"> Изтрий</i></a>
                         </td>
                     </tr>
 

@@ -13,6 +13,7 @@
         public Team()
         {
             this.TeamSeasons = new HashSet<TeamSeason>();
+            this.IsActive = true;
         }
 
         [Comment("Primary key")]
@@ -31,5 +32,8 @@
 
         [Comment("Collection of seasons the team participated in")]
         public ICollection<TeamSeason> TeamSeasons { get; set; } = null!;
+
+        [Comment("Soft delete value")]
+        public bool IsActive { get; set; }
     }
 }

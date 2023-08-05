@@ -1,20 +1,20 @@
-﻿@using FootballRefereeManagementSystem.Web.ViewModels.Town;
-@model TownViewModel;
+﻿@using FootballRefereeManagementSystem.Web.ViewModels.Team;
+@model TeamAdminViewModel;
 @{
-    ViewData["Title"] = "Изтриване на град";
+    ViewData["Title"] = "Изтриване на отбор";
 }
 
 <div class="container alert-danger shadow">
     <h2 class="text-center">@ViewData["Title"]</h2>
     <hr />
     <div class="row mb-3 text-center">
-        <p class="h4"><span class="text-dark fw-bold me-3">Име:</span>@Model.Name</p>
-        <p class="h4"><span class="text-dark fw-bold me-3">Зона:</span>@Model.ZoneName</p>
-        <p class="h4"><span class="text-dark fw-bold me-3">Брой отбори:</span>@Model.TeamsCount</p>
-        <p class="h4"><span class="text-dark fw-bold me-3">Брой мачове:</span>@Model.MatchesCount</p>
+        <p class="h4"><span class="text-dark fw-bold me-3">Име:</span>@Model.TeamName</p>
+        <p class="h4"><span class="text-dark fw-bold me-3">Град:</span>@Model.TeamLocation</p>
+        <p class="h4"><span class="text-dark fw-bold me-3">Брой сезони:</span>@Model.SeasonsPlayed</p>
+        <p class="h4"><span class="text-dark fw-bold me-3">Брой спечелени сезони:</span>@Model.SeasonsWon</p>
     </div>
     <div class="row align-items-center text-center d-flex justify-content-center">
-        <a class="btn btn-danger me-3 col-2 mb-3" asp-area="Admin" asp-controller="Town" asp-action="ConfirmedDelete" asp-route-id="@Model.Id">Изтрий</a>
-        <a class="btn btn-secondary col-2 mb-3" asp-area="Admin" asp-controller="Town" asp-action="All">Отказ</a>
+        <a class="btn btn-danger me-3 col-2 mb-3" asp-area="Admin" asp-controller="Team" asp-action="ConfirmedDelete" asp-route-id="@Model.Id">Изтрий</a>
+        <a class="btn btn-secondary col-2 mb-3" asp-area="Admin" asp-controller="Team" asp-action="All">Отказ</a>
     </div>
 </div>

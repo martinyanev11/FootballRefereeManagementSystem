@@ -52,6 +52,12 @@
         Task EditTownAsync(int id, TownFormModel model);
 
         /// <summary>
+        /// Retrieves the names of all active towns from the database.
+        /// </summary>
+        /// <returns>A collection of strings containing the names of all active towns.</returns>
+        Task<IEnumerable<string>> GetAllTownNamesAsync();
+
+        /// <summary>
         /// Retrieves a collection of town view models based on the specified query parameters.
         /// </summary>
         /// <param name="queryModel">The query parameters for filtering and searching.</param>

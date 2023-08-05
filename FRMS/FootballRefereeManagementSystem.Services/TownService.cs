@@ -68,11 +68,21 @@
             await this.dbContext.SaveChangesAsync();
         }
 
+        public async Task<IEnumerable<string>> GetAllTownNamesAsync()
+        {
+            return await this.dbContext
+                .Towns
+                .Where(t => t.IsActive)
+                .Select(t => t.Name)
+                .ToArrayAsync();
+        }
+
         public async Task<IEnumerable<TownViewModel>> GetAllTownsAsync(TownQueryModel queryModel)
         {
             IQueryable<Town> townsQuery = this.dbContext
                 .Towns
                 .Where(t => t.IsActive)
+                .AsNoTracking()
                 .AsQueryable();
 
             // Filter by selected zone

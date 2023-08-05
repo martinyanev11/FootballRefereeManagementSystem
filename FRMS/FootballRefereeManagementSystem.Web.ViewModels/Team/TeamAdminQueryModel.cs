@@ -2,11 +2,13 @@
 {
     public class TeamAdminQueryModel
     {
-        public int Id { get; set; }
+        public TeamAdminQueryModel()
+        {
+            this.Teams = new HashSet<TeamAdminViewModel>();
+            this.Zones = new HashSet<string>();
+        }
 
-        public string TeamName { get; set; } = null!;
-
-        public string TeamLocation { get; set; } = null!;
+        public IEnumerable<TeamAdminViewModel> Teams { get; set; } = null!;
 
         public string? SearchString { get; set; }
 

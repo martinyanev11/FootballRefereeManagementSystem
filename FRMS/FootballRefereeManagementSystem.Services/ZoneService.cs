@@ -67,6 +67,7 @@
         {
             IEnumerable<string> zoneNames = await this.dbContext
                 .Zones
+                .Where(z => z.IsActive)
                 .AsNoTracking()
                 .Select(z => z.Name)
                 .ToArrayAsync();

@@ -101,12 +101,131 @@
         public async Task<bool> CheckTeamExistanceByIdAsync(int id)
         {
             return await this.dbContext.Teams
-                .AnyAsync(t => t.Id == id);
+                .AnyAsync(t => t.Id == id && t.IsActive);
         }
 
-        public Task<TeamAdminQueryModel> GetAllTeamsAsync(TeamAdminQueryModel queryModel)
+        public async Task<IEnumerable<TeamAdminViewModel>> GetAllTeamsAsync(TeamAdminQueryModel queryModel)
         {
-            throw new NotImplementedException();
+            IQueryable<Team> teamsQuery = this.dbContext
+                .Teams
+                .Where(t => t.IsActive)
+                .AsNoTracking()
+                .AsQueryable();
+
+            // Filter by selected zone
+            if (!string.IsNullOrWhiteSpace(queryModel.Zone))
+            {
+                teamsQuery = teamsQuery
+                    .Where(t => t.Town.Zone.Name == queryModel.Zone);
+            }
+
+            // Filter by search string
+            if (!string.IsNullOrWhiteSpace(queryModel.SearchString))
+            {
+                string wildCard = $"%{queryModel.SearchString.ToLower()}%";
+
+                teamsQuery = teamsQuery
+                    .Where(t => EF.Functions.Like(t.Name, wildCard));
+            }
+
+            IEnumerable<TeamAdminViewModel> teams = await teamsQuery
+                .Select(t => new TeamAdminViewModel()
+                {
+                    Id = t.Id,
+                    TeamName = t.Name,
+                    TeamLocation = t.Town.Name,
+                    SeasonsPlayed = t.TeamSeasons.Count,
+                    SeasonsWon = t.TeamSeasons
+                        .Where(ts => ts.Placement == 1)
+                        .Count()
+                })
+                .ToArrayAsync();
+
+            return teams;
+        }
+
+        public async Task AddNewTeamAsync(TeamFormModel model)
+        {
+            Team teamToAdd = new Team()
+            {
+                Name = model.Name,
+                TownId = model.TownId,
+            };
+
+            await this.dbContext.Teams.AddAsync(teamToAdd);
+            await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task DeleteTeamAsync(int id)
+        {
+            Team teamToDelete = await GetTeamAsync(id);
+            teamToDelete.IsActive = false;
+
+            await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task EditTeamAsync(int id, TeamFormModel model)
+        {
+            Team teamToEdit = await GetTeamAsync(id);
+
+            teamToEdit.Name = model.Name;
+            teamToEdit.TownId = model.TownId;
+
+            await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task<TeamFormModel> GetTeamForEditByIdAsync(int id)
+        {
+            return await this.dbContext
+                .Teams
+                .Where(t => t.Id == id && t.IsActive)
+                .Select(t => new TeamFormModel()
+                {
+                    Name = t.Name,
+                    TownId = t.TownId,
+                    Town = t.Town.Name
+                })
+                .FirstAsync();
+        }
+
+        public async Task<bool> IsTeamAlreadyAdded(int teamId, TeamFormModel model)
+        {
+            return await this.dbContext
+                .Teams
+                .Where(t => t.IsActive)
+                .AnyAsync(t => 
+                    t.Name == model.Name && 
+                    t.Town.Name == model.Town &&
+                    t.Id != teamId);
+        }
+
+        public async Task<bool> IsTeamAlreadyAdded(TeamFormModel model)
+        {
+            return await this.dbContext
+                .Teams
+                .Where(t => t.IsActive)
+                .AnyAsync(t =>
+                    t.Name == model.Name &&
+                    t.Town.Name == model.Town);
+        }
+
+        public async Task<TeamAdminViewModel> GetTeamInfoByIdAsync(int id)
+        {
+            return await this.dbContext
+                .Teams
+                .AsNoTracking()
+                .Where(t => t.Id == id && t.IsActive)
+                .Select(t => new TeamAdminViewModel()
+                {
+                    Id = t.Id,
+                    TeamName = t.Name,
+                    TeamLocation = t.Town.Name,
+                    SeasonsPlayed = t.TeamSeasons.Count,
+                    SeasonsWon = t.TeamSeasons
+                        .Where(ts => ts.Placement == 1)
+                        .Count()
+                })
+                .FirstAsync();
         }
 
         // ----------------------------------
@@ -158,6 +277,14 @@
             }
 
             await this.dbContext.SaveChangesAsync();
+        }
+
+        private async Task<Team> GetTeamAsync(int id)
+        {
+            return await this.dbContext
+                .Teams
+                .Where(t => t.Id == id)
+                .FirstAsync();
         }
     }
 }

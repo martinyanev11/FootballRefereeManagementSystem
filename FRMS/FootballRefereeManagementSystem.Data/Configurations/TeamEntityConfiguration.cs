@@ -17,6 +17,9 @@
 
         public void Configure(EntityTypeBuilder<Team> builder)
         {
+            builder.Property(t => t.IsActive)
+                .HasDefaultValue(true);
+
             builder.HasData(this.teamSeeder.GenerateTeams());
         }
     }
