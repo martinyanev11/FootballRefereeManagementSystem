@@ -9,6 +9,8 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
     using Microsoft.AspNetCore.Mvc.RazorPages;
 
     using Data.Models;
+    using static Common.EntityValidationConstants.Referee;
+    using FootballRefereeManagementSystem.Common.CustomValidationAttributes;
 
     public class IndexModel : PageModel
     {
@@ -36,6 +38,9 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
         {
             [Phone]
             [Display(Name = "Телефонен номер")]
+            [StringLength(ContactLength, MinimumLength = ContactLength,
+                ErrorMessage = "Телефонния номер трябва да е с дължина 10 цифри.")]
+            [PhoneNumber(ErrorMessage = "Телефонният номер трябва да започва с 0.")]
             public string PhoneNumber { get; set; }
         }
 

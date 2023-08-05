@@ -1,5 +1,6 @@
 ﻿namespace FootballRefereeManagementSystem.Web.ViewModels.Career
 {
+    using FootballRefereeManagementSystem.Common.CustomValidationAttributes;
     using System.ComponentModel.DataAnnotations;
 
     using static Common.EntityValidationConstants.Application;
@@ -32,6 +33,7 @@
         [Phone(ErrorMessage = "Въведете валиден телефонен номер")]
         [StringLength(ContactMaxLength, MinimumLength = ContactMinLength,
             ErrorMessage = "Телефонния номер трябва да е с дължина точно 10 цифри")]
+        [PhoneNumber(ErrorMessage = "Телефонният номер трябва да започва с 0.")]
         public string Contact { get; set; } = null!;
 
         public bool KnowsFootballRules { get; set; }

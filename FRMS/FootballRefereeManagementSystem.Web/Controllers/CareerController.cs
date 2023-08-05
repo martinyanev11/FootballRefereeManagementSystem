@@ -36,11 +36,6 @@
                 ModelState.AddModelError("KnowsFootballRules", "Задължителна проверка");
             }
 
-            if (!model.Contact.StartsWith("0"))
-            {
-                ModelState.AddModelError("Contact", "Телефонния номер трябва да започва с 0");
-            }
-
             try
             {
                 bool isEmailTaken = await this.careerService.CheckIfEmailIsAlreadyUsedAsync(model.Email);
