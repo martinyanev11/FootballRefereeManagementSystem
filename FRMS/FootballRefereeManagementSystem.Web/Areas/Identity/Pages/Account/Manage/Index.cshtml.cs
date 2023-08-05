@@ -40,8 +40,8 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
 
         private async Task LoadAsync(ApplicationUser user)
         {
-            var userName = await userManager.GetUserNameAsync(user);
-            var phoneNumber = await userManager.GetPhoneNumberAsync(user);
+            string userName = await userManager.GetUserNameAsync(user);
+            string phoneNumber = await userManager.GetPhoneNumberAsync(user);
 
             Username = userName;
 
@@ -53,10 +53,11 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
 
         public async Task<IActionResult> OnGetAsync()
         {
-            var user = await userManager.GetUserAsync(User);
-            if (user == null)
+            ApplicationUser user = await userManager.GetUserAsync(User);
+            if (user is null)
             {
-                return NotFound($"Потребител с ID '{userManager.GetUserId(User)}' не може да бъде намерен.");
+                return RedirectToAction("Error", StatusCode(404));
+                //return NotFound($"Потребител с ID '{userManager.GetUserId(User)}' не може да бъде намерен.");
             }
 
             await LoadAsync(user);
@@ -65,10 +66,11 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var user = await userManager.GetUserAsync(User);
-            if (user == null)
+            ApplicationUser user = await userManager.GetUserAsync(User);
+            if (user is null)
             {
-                return NotFound($"Потребител с ID '{userManager.GetUserId(User)}' не може да бъде намерен.");
+                return RedirectToAction("Error", StatusCode(404));
+                //return NotFound($"Потребител с ID '{userManager.GetUserId(User)}' не може да бъде намерен.");
             }
 
             if (!ModelState.IsValid)
@@ -77,10 +79,10 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
                 return Page();
             }
 
-            var phoneNumber = await userManager.GetPhoneNumberAsync(user);
+            string phoneNumber = await userManager.GetPhoneNumberAsync(user);
             if (Input.PhoneNumber != phoneNumber)
             {
-                var setPhoneResult = await userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
+                IdentityResult setPhoneResult = await userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
                 if (!setPhoneResult.Succeeded)
                 {
                     StatusMessage = "Грешка при запазването на телефонен номер.";

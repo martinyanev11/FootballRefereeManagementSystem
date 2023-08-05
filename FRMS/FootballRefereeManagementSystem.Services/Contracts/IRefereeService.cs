@@ -56,5 +56,6 @@
         /// <param name="model">The ApplicationFormModel containing the applicant's information.</param>
         /// <returns>An integer representing the best suited role (Role enum value).</returns>
         int DetermineBestSuitedRoleForApplication(ApplicationFormModel model);
+        Task<string> GetUserIdByRefereeId(int id);
     }
 }

@@ -1,21 +1,27 @@
 ﻿namespace FootballRefereeManagementSystem.Web.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Identity;
 
     using Services.Contracts;
     using Infrastructure.Extensions;
     using ViewModels.RefereeSquad;
     using ViewModels.Referee;
+    using Data.Models;
 
     public class RefereeController : BaseController
     {
+        private readonly UserManager<ApplicationUser> userManager;
         private readonly IRefereeService refereeService;
         private readonly IMatchService matchService;
 
-        public RefereeController(IRefereeService refereeService, IMatchService matchService)
+        public RefereeController(IRefereeService refereeService, 
+            IMatchService matchService, 
+            UserManager<ApplicationUser> userManager)
         {
             this.refereeService = refereeService;
             this.matchService = matchService;
+            this.userManager = userManager;
         }
 
         [HttpGet]
@@ -47,9 +53,14 @@
                 {
                     return View("Error404");
                 }
-            
+
                 RefereeDetailsViewModel viewModel =
-                await this.refereeService.GetRefereeDetailsByIdAsync(id);
+                    await this.refereeService.GetRefereeDetailsByIdAsync(id);
+
+                string userId = await this.refereeService.GetUserIdByRefereeId(id);
+                ApplicationUser user = await userManager.FindByIdAsync(userId);
+
+                viewModel.Contact = await userManager.GetPhoneNumberAsync(user);
 
                 return View(viewModel);
             }

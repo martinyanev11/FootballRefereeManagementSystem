@@ -18,6 +18,10 @@
     {
         private readonly FootballRefereeManagementSystemDbContext dbContext;
 
+        private const int HigherRoleAgeLimit = 18; // users younger than that this are assigned as AR.
+        private const int RoleExperienceRequirement = 2;
+        private const int HighRoleExperienceRequirement = 10;
+
         public RefereeService(FootballRefereeManagementSystemDbContext dbContext)
         {
             this.dbContext = dbContext;
@@ -26,13 +30,14 @@
         public async Task<bool> CheckRefereeExistanceByIdAsync(int id)
         {
             return await this.dbContext.Referees
-                .AnyAsync(r => r.Id == id);
+                .AnyAsync(r => r.Id == id && r.IsActive);
         }
 
         public async Task<IEnumerable<RefereeViewModel>> GetAllRefereesFilteredAsync(RefereeQueryModel queryModel)
         {
             IQueryable<Referee> refereesAsQueryable = this.dbContext
                 .Referees
+                .Where(r => r.IsActive)
                 .AsQueryable();
 
             // Filter by checkboxes
@@ -153,13 +158,12 @@
             RefereeDetailsViewModel viewModel = await this.dbContext.Referees
                 .Include(r => r.RefereeDivisions)
                 .AsNoTracking()
-                .Where(r => r.Id == id)
+                .Where(r => r.Id == id && r.IsActive)
                 .Select(r => new RefereeDetailsViewModel()
                 {
                     FullName = $"{r.FirstName} {r.LastName}",
                     Age = r.Age,
                     ImageUrl = r.ImageUrl!,
-                    Contact = r.Contact,
                     Role = r.Role.ToString(),
                     CareerStart = r.CareerStart,
                     TotalMatchesOfficiated = r.TotalMatchesOfficiated,
@@ -193,7 +197,6 @@
                 LastName = model.LastName,
                 Age = model.Age,
                 ImageUrl = model.ImageUrl,
-                Contact = model.Contact,
                 Role = (Role)Enum.Parse(typeof(Role), model.StartingRole),
                 UserId = Guid.Parse(model.UserId)
             };
@@ -204,17 +207,17 @@
 
         public int DetermineBestSuitedRoleForApplication(ApplicationFormModel model)
         {
-            if (model.Age <= 18)
+            if (model.Age <= HigherRoleAgeLimit)
             {
                 return (int)Role.AssistantReferee;
             }
             else
             {
-                if (model.ExperienceInYears <= 2)
+                if (model.ExperienceInYears <= RoleExperienceRequirement)
                 {
                     return (int)Role.AssistantReferee;
                 }
-                else if (model.ExperienceInYears <= 10)
+                else if (model.ExperienceInYears <= HighRoleExperienceRequirement)
                 {
                     return (int)Role.Referee;
                 }
@@ -223,6 +226,14 @@
                     return (int)Role.Delegate;
                 }
             }
+        }
+
+        public async Task<string> GetUserIdByRefereeId(int id)
+        {
+            return await this.dbContext.Referees
+                .Where(r => r.Id == id && r.IsActive)
+                .Select(r => r.UserId.ToString())
+                .FirstAsync();
         }
     }
 }

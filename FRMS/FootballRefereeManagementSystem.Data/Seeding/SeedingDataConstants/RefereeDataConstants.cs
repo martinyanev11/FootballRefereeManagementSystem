@@ -17,7 +17,6 @@
         public const string FirstNameValue = "ИмеСъдия";
         public const string LastNameValue = "ФламилияСъдия";
         public const int AgeValue = 30;
-        public const string ContactValue = "0898556248";
         public const string CareerStartValue = "2018/8/15";
     }
 }

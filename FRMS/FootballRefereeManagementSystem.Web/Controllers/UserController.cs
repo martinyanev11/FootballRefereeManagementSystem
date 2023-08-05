@@ -1,15 +1,18 @@
 ﻿namespace FootballRefereeManagementSystem.Web.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Identity;
 
     using ViewModels.User;
     using ViewModels.Referee;
     using ViewModels.Career;
     using Services.Contracts;
     using Infrastructure.Extensions;
+    using Data.Models;
 
     public class UserController : BaseController
     {
+        private readonly UserManager<ApplicationUser> userManager;
         private readonly IUserService userService;
         private readonly IRefereeService refereeService;
         private readonly ICareerService careerService;
@@ -18,12 +21,14 @@
         public UserController(IUserService userService, 
             IRefereeService refereeService, 
             ICareerService careerService,
-            IDivisionService divisionService)
+            IDivisionService divisionService,
+            UserManager<ApplicationUser> userManager)
         {
             this.userService = userService;
             this.refereeService = refereeService;
             this.careerService = careerService;
             this.divisionService = divisionService;
+            this.userManager = userManager;
         }
 
         public async Task<IActionResult> Index()
@@ -94,6 +99,19 @@
             }
             try
             {
+                ApplicationUser user = await userManager.GetUserAsync(User);
+
+                if (user is null)
+                {
+                    return View("Error404");
+                }
+
+                IdentityResult setPhoneResult = await userManager.SetPhoneNumberAsync(user, model.Contact);
+                if (!setPhoneResult.Succeeded)
+                {
+                    return View("Error");
+                }
+
                 await this.refereeService.CreateNewRefereeAsync(model);
 
                 int refereeId = await this.refereeService.GetRefereeIdByUserIdAsync(model.UserId);

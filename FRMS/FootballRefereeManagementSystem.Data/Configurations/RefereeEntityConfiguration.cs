@@ -20,6 +20,9 @@
             builder.Property(r => r.ImageUrl)
                 .HasDefaultValue("~/Images/Referees/referee-default-avatar.png");
 
+            builder.Property(r => r.IsActive)
+                .HasDefaultValue(true);
+
             builder.HasData(this.refereeSeeder.GenerateReferees());
         }
     }

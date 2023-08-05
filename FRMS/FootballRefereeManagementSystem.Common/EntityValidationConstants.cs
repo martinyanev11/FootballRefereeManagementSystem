@@ -27,15 +27,6 @@
             public const int AbbreviationMaxLength = 4;
         }
 
-        public static class Manager
-        {
-            public const int FirstNameMinLength = 2;
-            public const int FirstNameMaxLength = 50;
-
-            public const int LastNameMinLength = 2;
-            public const int LastNameMaxLength = 50;
-        }
-
         public static class Player
         {
             public const int FirstNameMinLength = 2;

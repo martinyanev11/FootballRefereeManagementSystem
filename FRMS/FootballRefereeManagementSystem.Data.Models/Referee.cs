@@ -19,6 +19,7 @@
             this.FirstAssistantRefereeSquads = new HashSet<RefereeSquad>();
             this.SecondAssistantRefereeSquads = new HashSet<RefereeSquad>();
             this.DelegateRefereeSquads = new HashSet<RefereeSquad>();
+            this.IsActive = true;
         }
 
         [Comment("Primary key")]
@@ -41,11 +42,6 @@
 
         [Comment("Picture of the person represented by this entity")]
         public string? ImageUrl { get; set; }
-
-        [Comment("Phone number of the person represented by this entity")]
-        [Required]
-        [MaxLength(ContactLength)]
-        public string Contact { get; set; } = null!;
 
         [Comment("Current role of the person represented by this entity within the organization")]
         [Required]
@@ -89,5 +85,8 @@
 
         [Comment("Messages in RefereeSquads by this Referee")]
         public ICollection<Message> Messages { get; set; } = null!;
+
+        [Comment("Soft delete value")]
+        public bool IsActive { get; set; }
     }
 }
