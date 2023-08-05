@@ -1,14 +1,37 @@
 ﻿namespace FootballRefereeManagementSystem.Web.Controllers
 {
+    using System.IO;
+    using System.Collections.Generic;
+
+    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+
+    using Services.Contracts;
 
     [AllowAnonymous]
     public class HomeController : BaseController
     {
-        public IActionResult Index()
+        private readonly ISeasonService seasonService;
+        private readonly IWebHostEnvironment webHostEnvironment;
+
+        public HomeController(ISeasonService seasonService, IWebHostEnvironment webHostEnvironment)
         {
-            return View();
+            this.seasonService = seasonService;
+            this.webHostEnvironment = webHostEnvironment;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            string imagesPath = Path.Combine(webHostEnvironment.WebRootPath, "Images", "Home");
+
+            IEnumerable<string> imagePaths = Directory.EnumerateFiles(imagesPath)
+                .Where(file => file.EndsWith(".jpeg") || file.EndsWith(".jpg"));
+
+            ViewData["CurrentSeason"] = 
+                await this.seasonService.GetLatestSeasonDescriptionAsync();
+
+            return View(imagePaths);
         }
 
         public IActionResult GameRulesDownload()

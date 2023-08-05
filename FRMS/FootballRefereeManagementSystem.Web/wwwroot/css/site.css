@@ -17,3 +17,9 @@ body {
     margin-bottom: 60px;
     background-color: whitesmoke
 }
+
+.carousel-inner img {
+    width: 1200px;
+    height: 600px;
+    object-fit: cover;
+}
