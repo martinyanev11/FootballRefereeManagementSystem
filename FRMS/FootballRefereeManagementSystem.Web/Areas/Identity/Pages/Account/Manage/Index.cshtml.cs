@@ -9,6 +9,7 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
     using Microsoft.AspNetCore.Mvc.RazorPages;
 
     using Data.Models;
+
     public class IndexModel : PageModel
     {
         private readonly UserManager<ApplicationUser> userManager;
@@ -57,7 +58,6 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
             if (user is null)
             {
                 return RedirectToAction("Error", StatusCode(404));
-                //return NotFound($"Потребител с ID '{userManager.GetUserId(User)}' не може да бъде намерен.");
             }
 
             await LoadAsync(user);
@@ -70,7 +70,6 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
             if (user is null)
             {
                 return RedirectToAction("Error", StatusCode(404));
-                //return NotFound($"Потребител с ID '{userManager.GetUserId(User)}' не може да бъде намерен.");
             }
 
             if (!ModelState.IsValid)

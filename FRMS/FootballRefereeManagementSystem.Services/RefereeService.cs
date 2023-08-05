@@ -166,6 +166,7 @@
                     ImageUrl = r.ImageUrl!,
                     Role = r.Role.ToString(),
                     CareerStart = r.CareerStart,
+                    Contact = r.User.PhoneNumber,
                     TotalMatchesOfficiated = r.TotalMatchesOfficiated,
                     DivisionsAndMatchesCount = r.RefereeDivisions
                         .Select(rd => 

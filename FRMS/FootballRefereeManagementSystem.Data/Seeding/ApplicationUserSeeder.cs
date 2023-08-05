@@ -21,7 +21,8 @@
                     NormalizedUserName = "REFEREE@BFS.COM",
                     Email = "referee@bfs.com",
                     NormalizedEmail = "REFEREE@BFS.COM",
-                    SecurityStamp = new Guid(ApplicationUserDataConstants.RefereeSecurityStamp).ToString("D")
+                    SecurityStamp = new Guid(ApplicationUserDataConstants.RefereeSecurityStamp).ToString("D"),
+                    PhoneNumber = ApplicationUserDataConstants.PhoneNumber
                 },
                 new ApplicationUser()
                 {
@@ -31,7 +32,8 @@
                     NormalizedUserName = "ASSITANT_REFEREE1@BFS.COM",
                     Email = "assitant_referee1@bfs.com",
                     NormalizedEmail = "ASSITANT_REFEREE1@BFS.COM",
-                    SecurityStamp = new Guid(ApplicationUserDataConstants.AssistantRefereeOneSecurityStamp).ToString("D")
+                    SecurityStamp = new Guid(ApplicationUserDataConstants.AssistantRefereeOneSecurityStamp).ToString("D"),
+                    PhoneNumber = ApplicationUserDataConstants.PhoneNumber
                 },
                 new ApplicationUser()
                 {
@@ -41,7 +43,8 @@
                     NormalizedUserName = "ASSITANT_REFEREE2@BFS.COM",
                     Email = "assitant_referee2@bfs.com",
                     NormalizedEmail = "ASSITANT_REFEREE2@BFS.COM",
-                    SecurityStamp = new Guid(ApplicationUserDataConstants.AssistantRefereeTwoSecurityStamp).ToString("D")
+                    SecurityStamp = new Guid(ApplicationUserDataConstants.AssistantRefereeTwoSecurityStamp).ToString("D"),
+                    PhoneNumber = ApplicationUserDataConstants.PhoneNumber
                 },
                 new ApplicationUser()
                 {
@@ -51,7 +54,8 @@
                     NormalizedUserName = "DELEGATE@BFS.COM",
                     Email = "delegate@bfs.com",
                     NormalizedEmail = "DELEGATE@BFS.COM",
-                    SecurityStamp = new Guid(ApplicationUserDataConstants.DelegateSecurityStamp).ToString("D")
+                    SecurityStamp = new Guid(ApplicationUserDataConstants.DelegateSecurityStamp).ToString("D"),
+                    PhoneNumber = ApplicationUserDataConstants.PhoneNumber
                 },
                 new ApplicationUser()
                 {
@@ -61,7 +65,8 @@
                     NormalizedUserName = "ADMIN@BFS.COM",
                     Email = "admin@bfs.com",
                     NormalizedEmail = "ADMIN@BFS.COM",
-                    SecurityStamp = new Guid(ApplicationUserDataConstants.AdministratorSecurityStamp).ToString("D")
+                    SecurityStamp = new Guid(ApplicationUserDataConstants.AdministratorSecurityStamp).ToString("D"),
+                    PhoneNumber = ApplicationUserDataConstants.PhoneNumber
                 },
             };
 

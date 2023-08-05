@@ -18,5 +18,6 @@
         public const string AdministratorSecurityStamp = "E2DC0205-924A-40D8-88F7-7EBF282EBA0F";
 
         public const string Password = "123456";
+        public const string PhoneNumber = "0897123456";
     }
 }
