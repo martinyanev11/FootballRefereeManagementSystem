@@ -8,9 +8,10 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
 
+    using Enums;
     using Data.Models;
     using static Common.EntityValidationConstants.Referee;
-    using FootballRefereeManagementSystem.Common.CustomValidationAttributes;
+    using Common.CustomValidationAttributes;
 
     public class IndexModel : PageModel
     {
@@ -23,13 +24,16 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.StatusMessage = new StatusMessage();
         }
 
         [Display(Name = "Имейл")]
         public string Username { get; set; }
 
-        [TempData]
-        public string StatusMessage { get; set; }
+        //[TempData]
+        //public string StatusMessage { get; set; }
+
+        public StatusMessage StatusMessage { get; set; }
 
         [BindProperty]
         public InputModel Input { get; set; }
@@ -89,13 +93,15 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
                 IdentityResult setPhoneResult = await userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
                 if (!setPhoneResult.Succeeded)
                 {
-                    StatusMessage = "Грешка при запазването на телефонен номер.";
+                    StatusMessage.Text = "Грешка при запазването на телефонен номер.";
+                    StatusMessage.Alert = Alert.danger;
                     return RedirectToPage();
                 }
             }
 
             await signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Профилът е актуализиран";
+            StatusMessage.Text = "Профилът е актуализиран";
+            StatusMessage.Alert = Alert.success;
             return RedirectToPage();
         }
     }

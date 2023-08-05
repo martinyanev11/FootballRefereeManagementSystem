@@ -11,6 +11,7 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
     using Microsoft.Extensions.Logging;
 
     using Data.Models;
+    using Enums;
 
     public class GenerateRecoveryCodesModel : PageModel
     {
@@ -23,21 +24,16 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
         {
             this.userManager = userManager;
             this.logger = logger;
+            this.StatusMessage = new StatusMessage();
         }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         [TempData]
         public string[] RecoveryCodes { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
-        [TempData]
-        public string StatusMessage { get; set; }
+        //[TempData]
+        //public string StatusMessage { get; set; }
+
+        public StatusMessage StatusMessage { get; set; }
 
         public async Task<IActionResult> OnGetAsync()
         {
@@ -75,7 +71,8 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
             RecoveryCodes = recoveryCodes.ToArray();
 
             logger.LogInformation("User with ID '{UserId}' has generated new 2FA recovery codes.", userId);
-            StatusMessage = "You have generated new recovery codes.";
+            StatusMessage.Text = "You have generated new recovery codes.";
+            StatusMessage.Alert = Alert.success;
             return RedirectToPage("./ShowRecoveryCodes");
         }
     }

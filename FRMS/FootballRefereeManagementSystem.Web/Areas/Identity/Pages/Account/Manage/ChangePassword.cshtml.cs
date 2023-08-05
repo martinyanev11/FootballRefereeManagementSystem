@@ -8,6 +8,7 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
     using Microsoft.AspNetCore.Mvc.RazorPages;
 
     using Data.Models;
+    using Enums;
 
     public class ChangePasswordModel : PageModel
     {
@@ -20,13 +21,16 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.StatusMessage = new StatusMessage();
         }
 
         [BindProperty]
         public InputModel Input { get; set; }
 
-        [TempData]
-        public string StatusMessage { get; set; }
+        //[TempData]
+        //public string StatusMessage { get; set; }
+
+        public StatusMessage StatusMessage { get; set; }
 
         public class InputModel
         {
@@ -87,7 +91,8 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
             }
 
             await signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Паролата е сменена успешно.";
+            StatusMessage.Text = "Паролата е сменена успешно.";
+            StatusMessage.Alert = Alert.success;
 
             return RedirectToPage();
         }

@@ -1,8 +1,8 @@
-﻿@model string
+﻿@model StatusMessage
 
-@if (!String.IsNullOrEmpty(Model))
+@if (!String.IsNullOrEmpty(Model.Text))
 {
-    var statusMessageClass = Model.StartsWith("Error") ? "danger" : "success";
+    var statusMessageClass = Model.Alert.ToString();
     <div class="alert alert-@statusMessageClass alert-dismissible" role="alert">
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         @Model

@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballRefereeManagementSy
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballRefereeManagementSystem.Web.Infrastructure", "FootballRefereeManagementSystem.Web.Infrastructure\FootballRefereeManagementSystem.Web.Infrastructure.csproj", "{AF4DCC0D-1E03-4B15-B18E-D4B5C43704D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballRefereeManagementSystem.Services.Models", "FootballRefereeManagementSystem.Services.Models\FootballRefereeManagementSystem.Services.Models.csproj", "{FFEA67D1-876D-4020-B2C6-CC33ED53503A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballRefereeManagementSystem.Services.Models", "FootballRefereeManagementSystem.Services.Models\FootballRefereeManagementSystem.Services.Models.csproj", "{FFEA67D1-876D-4020-B2C6-CC33ED53503A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

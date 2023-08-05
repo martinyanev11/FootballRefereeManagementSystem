@@ -12,6 +12,7 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
     using Microsoft.AspNetCore.WebUtilities;
 
     using Data.Models;
+    using Enums;
 
     public class EmailModel : PageModel
     {
@@ -27,13 +28,16 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.emailSender = emailSender;
+            this.StatusMessage = new StatusMessage();
         }
 
         [Display(Name = "Имейл адрес")]
         public string Email { get; set; }
 
-        [TempData]
-        public string StatusMessage { get; set; }
+        //[TempData]
+        //public string StatusMessage { get; set; }
+
+        public StatusMessage StatusMessage { get; set; }
 
         [BindProperty]
         public InputModel Input { get; set; }
@@ -99,11 +103,13 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
                     "Confirm your email",
                     $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-                StatusMessage = "Confirmation link to change email sent. Please check your email.";
+                StatusMessage.Text = "Confirmation link to change email sent. Please check your email.";
+                StatusMessage.Alert = Alert.success;
                 return RedirectToPage();
             }
 
-            StatusMessage = "Your email is unchanged.";
+            StatusMessage.Text = "Имейл адресът е същият.";
+            StatusMessage.Alert = Alert.info;
             return RedirectToPage();
         }
 
@@ -135,7 +141,8 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
                 "Confirm your email",
                 $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-            StatusMessage = "Verification email sent. Please check your email.";
+            StatusMessage.Text = "Verification email sent. Please check your email.";
+            StatusMessage.Alert = Alert.success;
             return RedirectToPage();
         }
     }
