@@ -30,9 +30,10 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
         [TempData]
         public string[] RecoveryCodes { get; set; }
 
-        //[TempData]
-        //public string StatusMessage { get; set; }
-
+        [TempData]
+        public string Message { get; set; }
+        [TempData]
+        public Alert AlertType { get; set; }
         public StatusMessage StatusMessage { get; set; }
 
         public async Task<IActionResult> OnGetAsync()
@@ -71,8 +72,8 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
             RecoveryCodes = recoveryCodes.ToArray();
 
             logger.LogInformation("User with ID '{UserId}' has generated new 2FA recovery codes.", userId);
-            StatusMessage.Text = "You have generated new recovery codes.";
-            StatusMessage.Alert = Alert.success;
+            Message = "You have generated new recovery codes.";
+            AlertType = Alert.success;
             return RedirectToPage("./ShowRecoveryCodes");
         }
     }

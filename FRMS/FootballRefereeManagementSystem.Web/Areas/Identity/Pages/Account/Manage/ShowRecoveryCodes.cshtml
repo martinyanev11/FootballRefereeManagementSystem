@@ -3,6 +3,9 @@
 @{
     ViewData["Title"] = "Recovery codes";
     ViewData["ActivePage"] = "TwoFactorAuthentication";
+
+    Model.StatusMessage.Text = Model.Message;
+    Model.StatusMessage.Alert = Model.AlertType;
 }
 
 <partial name="_StatusMessage" model="@Model.StatusMessage" />

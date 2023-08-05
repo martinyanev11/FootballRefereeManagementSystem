@@ -30,9 +30,10 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
         [Display(Name = "Имейл")]
         public string Username { get; set; }
 
-        //[TempData]
-        //public string StatusMessage { get; set; }
-
+        [TempData]
+        public string Message { get; set; }
+        [TempData]
+        public Alert AlertType { get; set; }
         public StatusMessage StatusMessage { get; set; }
 
         [BindProperty]
@@ -93,15 +94,22 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
                 IdentityResult setPhoneResult = await userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
                 if (!setPhoneResult.Succeeded)
                 {
-                    StatusMessage.Text = "Грешка при запазването на телефонен номер.";
-                    StatusMessage.Alert = Alert.danger;
+                    Message = "Грешка при запазването на телефонен номер.";
+                    AlertType = Alert.danger;
+                    return RedirectToPage();
+                }
+                else
+                {
+                    Message = "Профилът е актуализиран.";
+                    AlertType = Alert.success;
                     return RedirectToPage();
                 }
             }
 
             await signInManager.RefreshSignInAsync(user);
-            StatusMessage.Text = "Профилът е актуализиран";
-            StatusMessage.Alert = Alert.success;
+            Message = "Няма промени.";
+            AlertType = Alert.info;
+
             return RedirectToPage();
         }
     }

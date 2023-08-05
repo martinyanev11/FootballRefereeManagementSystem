@@ -3,6 +3,9 @@
 @{
     ViewData["Title"] = "Generate two-factor authentication (2FA) recovery codes";
     ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+
+    Model.StatusMessage.Text = Model.Message;
+    Model.StatusMessage.Alert = Model.AlertType;
 }
 
 <partial name="_StatusMessage" model="@Model.StatusMessage" />

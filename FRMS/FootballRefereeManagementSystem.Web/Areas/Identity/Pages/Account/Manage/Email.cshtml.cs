@@ -17,16 +17,13 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
     public class EmailModel : PageModel
     {
         private readonly UserManager<ApplicationUser> userManager;
-        private readonly SignInManager<ApplicationUser> signInManager;
         private readonly IEmailSender emailSender;
 
         public EmailModel(
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender)
         {
             this.userManager = userManager;
-            this.signInManager = signInManager;
             this.emailSender = emailSender;
             this.StatusMessage = new StatusMessage();
         }
@@ -34,9 +31,12 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
         [Display(Name = "Имейл адрес")]
         public string Email { get; set; }
 
-        //[TempData]
-        //public string StatusMessage { get; set; }
+        public bool IsEmailConfirmed { get; set; }
 
+        [TempData]
+        public string Message { get; set; }
+        [TempData]
+        public Alert AlertType { get; set; }
         public StatusMessage StatusMessage { get; set; }
 
         [BindProperty]
@@ -52,21 +52,23 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
 
         private async Task LoadAsync(ApplicationUser user)
         {
-            string email = await userManager.GetEmailAsync(user);
-            Email = email;
+            string email = await this.userManager.GetEmailAsync(user);
+            this.Email = email;
 
-            Input = new InputModel
+            this.Input = new InputModel
             {
                 NewEmail = email,
             };
+
+            this.IsEmailConfirmed = await this.userManager.IsEmailConfirmedAsync(user);
         }
 
         public async Task<IActionResult> OnGetAsync()
         {
-            ApplicationUser user = await userManager.GetUserAsync(User);
-            if (user == null)
+            ApplicationUser user = await this.userManager.GetUserAsync(User);
+            if (user is null)
             {
-                return NotFound($"Потребител с ID '{userManager.GetUserId(User)}' не може да бъде намерен.");
+                return NotFound($"Потребител с ID '{this.userManager.GetUserId(User)}' не може да бъде намерен.");
             }
 
             await LoadAsync(user);
@@ -75,10 +77,10 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
 
         public async Task<IActionResult> OnPostChangeEmailAsync()
         {
-            ApplicationUser user = await userManager.GetUserAsync(User);
-            if (user == null)
+            ApplicationUser user = await this.userManager.GetUserAsync(User);
+            if (user is null)
             {
-                return NotFound($"Потребител с ID '{userManager.GetUserId(User)}' не може да бъде намерен.");
+                return NotFound($"Потребител с ID '{this.userManager.GetUserId(User)}' не може да бъде намерен.");
             }
 
             if (!ModelState.IsValid)
@@ -87,38 +89,39 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
                 return Page();
             }
 
-            string email = await userManager.GetEmailAsync(user);
-            if (Input.NewEmail != email)
+            //string email = await userManager.GetEmailAsync(user);
+            if (this.Input.NewEmail != this.Email)
             {
-                string userId = await userManager.GetUserIdAsync(user);
-                string code = await userManager.GenerateChangeEmailTokenAsync(user, Input.NewEmail);
+                string userId = await this.userManager.GetUserIdAsync(user);
+                string code = await this.userManager.GenerateChangeEmailTokenAsync(user, this.Input.NewEmail);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                 string callbackUrl = Url.Page(
                     "/Account/ConfirmEmailChange",
                     pageHandler: null,
                     values: new { area = "Identity", userId = userId, email = Input.NewEmail, code = code },
                     protocol: Request.Scheme);
-                await emailSender.SendEmailAsync(
-                    Input.NewEmail,
+
+                await this.emailSender.SendEmailAsync(
+                    this.Input.NewEmail,
                     "Confirm your email",
                     $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-                StatusMessage.Text = "Confirmation link to change email sent. Please check your email.";
-                StatusMessage.Alert = Alert.success;
+                this.Message = "Изпратен е линк за потвърждение на промяната. Моля проверете вашият имейл адрес.";
+                this.AlertType = Alert.warning;
                 return RedirectToPage();
             }
 
-            StatusMessage.Text = "Имейл адресът е същият.";
-            StatusMessage.Alert = Alert.info;
+            this.Message = "Имейл адресът е същият.";
+            this.AlertType = Alert.info;
             return RedirectToPage();
         }
 
         public async Task<IActionResult> OnPostSendVerificationEmailAsync()
         {
-            ApplicationUser user = await userManager.GetUserAsync(User);
+            ApplicationUser user = await this.userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Потребител с ID '{userManager.GetUserId(User)}' не може да бъде намерен.");
+                return NotFound($"Потребител с ID '{this.userManager.GetUserId(User)}' не може да бъде намерен.");
             }
 
             if (!ModelState.IsValid)
@@ -127,22 +130,22 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
                 return Page();
             }
 
-            string userId = await userManager.GetUserIdAsync(user);
-            string email = await userManager.GetEmailAsync(user);
-            string code = await userManager.GenerateEmailConfirmationTokenAsync(user);
+            string userId = await this.userManager.GetUserIdAsync(user);
+            string email = await this.userManager.GetEmailAsync(user);
+            string code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
             code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
             string callbackUrl = Url.Page(
                 "/Account/ConfirmEmail",
                 pageHandler: null,
                 values: new { area = "Identity", userId = userId, code = code },
                 protocol: Request.Scheme);
-            await emailSender.SendEmailAsync(
+            await this.emailSender.SendEmailAsync(
                 email,
                 "Confirm your email",
                 $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-            StatusMessage.Text = "Verification email sent. Please check your email.";
-            StatusMessage.Alert = Alert.success;
+            this.Message = "Линк на потвърждение е изпратен. Моля прожевете вашият имейл.";
+            this.AlertType = Alert.success;
             return RedirectToPage();
         }
     }

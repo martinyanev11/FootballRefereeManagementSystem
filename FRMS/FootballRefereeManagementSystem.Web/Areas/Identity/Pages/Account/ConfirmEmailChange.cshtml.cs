@@ -21,45 +21,41 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account
             this.signInManager = signInManager;
         }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         [TempData]
         public string StatusMessage { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string userId, string email, string code)
         {
-            if (userId == null || email == null || code == null)
+            if (userId is null || email is null || code is null)
             {
                 return RedirectToPage("/Index");
             }
 
-            var user = await userManager.FindByIdAsync(userId);
-            if (user == null)
+            ApplicationUser user = await this.userManager.FindByIdAsync(userId);
+            if (user is null)
             {
-                return NotFound($"Unable to load user with ID '{userId}'.");
+                return NotFound($"Потебител с ID '{userId}' не може да бъде намерен.");
             }
 
             code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
-            var result = await userManager.ChangeEmailAsync(user, email, code);
+            IdentityResult result = await this.userManager.ChangeEmailAsync(user, email, code);
             if (!result.Succeeded)
             {
-                StatusMessage = "Error changing email.";
+                StatusMessage = "Възникна грешка при промяна на имейл адреса.";
                 return Page();
             }
 
             // In our UI email and user name are one and the same, so when we update the email
             // we need to update the user name.
-            var setUserNameResult = await userManager.SetUserNameAsync(user, email);
+            var setUserNameResult = await this.userManager.SetUserNameAsync(user, email);
             if (!setUserNameResult.Succeeded)
             {
-                StatusMessage = "Error changing user name.";
+                StatusMessage = "Възникна грешка при промяна на потребителското име.";
                 return Page();
             }
 
-            await signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Thank you for confirming your email change.";
+            await this.signInManager.RefreshSignInAsync(user);
+            StatusMessage = "Благодаря, че потвърдихте своят имейл адрес.";
             return Page();
         }
     }

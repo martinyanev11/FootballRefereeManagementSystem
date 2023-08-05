@@ -5,6 +5,6 @@
     var statusMessageClass = Model.Alert.ToString();
     <div class="alert alert-@statusMessageClass alert-dismissible" role="alert">
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        @Model
+        @Model.Text
     </div>
 }

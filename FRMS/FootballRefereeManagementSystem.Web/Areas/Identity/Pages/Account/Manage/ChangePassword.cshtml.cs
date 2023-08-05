@@ -27,9 +27,10 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
         [BindProperty]
         public InputModel Input { get; set; }
 
-        //[TempData]
-        //public string StatusMessage { get; set; }
-
+        [TempData]
+        public string Message { get; set; }
+        [TempData]
+        public Alert AlertType { get; set; }
         public StatusMessage StatusMessage { get; set; }
 
         public class InputModel
@@ -91,8 +92,8 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
             }
 
             await signInManager.RefreshSignInAsync(user);
-            StatusMessage.Text = "Паролата е сменена успешно.";
-            StatusMessage.Alert = Alert.success;
+            Message = "Паролата е сменена успешно.";
+            AlertType = Alert.success;
 
             return RedirectToPage();
         }

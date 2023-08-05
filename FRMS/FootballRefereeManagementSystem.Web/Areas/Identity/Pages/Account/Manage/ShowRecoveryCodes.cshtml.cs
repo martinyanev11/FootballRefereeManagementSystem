@@ -1,6 +1,7 @@
 ﻿#nullable disable
 namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manage
 {
+    using FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manage.Enums;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -14,9 +15,10 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
         [TempData]
         public string[] RecoveryCodes { get; set; }
 
-        //[TempData]
-        //public string StatusMessage { get; set; }
-
+        [TempData]
+        public string Message { get; set; }
+        [TempData]
+        public Alert AlertType { get; set; }
         public StatusMessage StatusMessage { get; set; }
 
         public IActionResult OnGet()
