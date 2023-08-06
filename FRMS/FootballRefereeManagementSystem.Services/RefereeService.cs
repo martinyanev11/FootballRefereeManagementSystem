@@ -66,7 +66,18 @@
                 refereesAsQueryable = refereesAsQueryable.
                     Where(r => checkedRoles.Contains(r.Role));
             }
-            
+
+            // Filter by search string
+            if (!string.IsNullOrWhiteSpace(queryModel.SearchString))
+            {
+                string wildCard = $"%{queryModel.SearchString.ToLower()}%";
+
+                refereesAsQueryable = refereesAsQueryable
+                    .Where(r => 
+                        EF.Functions.Like(r.FirstName!, wildCard) ||
+                        EF.Functions.Like(r.LastName!, wildCard));
+            }
+
             // Order by selected option for name sorting
             switch (queryModel.NameSortingOrder)
             {

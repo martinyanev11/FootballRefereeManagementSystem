@@ -15,6 +15,8 @@
 
         public RefereeMatchCountSortingOrder MatchCountSortingOrder { get; set; }
 
+        public string? SearchString { get; set; }
+
         public bool IsCheckedReferee { get; set; }
 
         public bool IsCheckedAssistantReferee { get; set; }
