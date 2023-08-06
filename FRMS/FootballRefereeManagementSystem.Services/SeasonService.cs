@@ -7,6 +7,7 @@
 
     using Contracts;
     using Data;
+    using Web.ViewModels.Season;
 
     public class SeasonService : ISeasonService
     {
@@ -26,6 +27,21 @@
                 .ToArrayAsync();
 
             return seasons;
+        }
+
+        public async Task<SeasonViewModel> GetCurrentSeasonInformation()
+        {
+            return await this.dbContext
+                .Seasons
+                .AsNoTracking()
+                .OrderByDescending(s => s.End.Year)
+                .Select(s => new SeasonViewModel
+                {
+                    Description = s.Description,
+                    StartDate = s.Start,
+                    EndDate = s.End
+                })
+                .FirstAsync();
         }
 
         public async Task<string> GetLatestSeasonDescriptionAsync()

@@ -1,5 +1,6 @@
 ﻿namespace FootballRefereeManagementSystem.Services.Contracts
 {
+    using FootballRefereeManagementSystem.Web.ViewModels.Season;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -10,6 +11,7 @@
         /// </summary>
         /// <returns>A collection containing the descriptions of all seasons.</returns>
         Task<IEnumerable<string>> GetAllSeasonDescriptionsAsync();
+        Task<SeasonViewModel> GetCurrentSeasonInformation();
 
         /// <summary>
         /// Asynchronously retrieves the description of the latest (current) season from the database.

@@ -17,18 +17,21 @@
         private readonly IRefereeService refereeService;
         private readonly ICareerService careerService;
         private readonly IDivisionService divisionService;
+        private readonly ISeasonService seasonService;
 
         public UserController(IUserService userService, 
             IRefereeService refereeService, 
             ICareerService careerService,
             IDivisionService divisionService,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,
+            ISeasonService seasonService)
         {
             this.userService = userService;
             this.refereeService = refereeService;
             this.careerService = careerService;
             this.divisionService = divisionService;
             this.userManager = userManager;
+            this.seasonService = seasonService;
         }
 
         public async Task<IActionResult> Index()
@@ -41,6 +44,7 @@
 
                 int userRefereeId = await this.refereeService.GetRefereeIdByUserIdAsync(userId);
                 model.RefereeDetails = await this.refereeService.GetRefereeDetailsByIdAsync(userRefereeId);
+                model.CurrrentSeasonInformation = await this.seasonService.GetCurrentSeasonInformation();
 
                 return View(model);
             }

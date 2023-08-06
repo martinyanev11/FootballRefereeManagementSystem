@@ -1,6 +1,7 @@
 ﻿namespace FootballRefereeManagementSystem.Web.ViewModels.User
 {
-    using FootballRefereeManagementSystem.Web.ViewModels.Referee;
+    using Referee;
+    using Season;
 
     public class ApplicationUserViewModel
     {
@@ -9,6 +10,8 @@
         public bool IsAvaliable { get; set; }
 
         public int CurrentlyAppointedMatchesCount { get; set; }
+
+        public SeasonViewModel CurrrentSeasonInformation { get; set; } = null!;
 
         public RefereeDetailsViewModel RefereeDetails { get; set; } = null!;
     }
