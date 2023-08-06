@@ -2,6 +2,7 @@
 @using FootballRefereeManagementSystem.Data.Models
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
@@ -9,7 +10,7 @@
         <li class="nav-item">
             <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">ПРОФИЛ</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item ms-3 me-5">
             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                 <button type="submit" class="nav-link btn btn-link">ИЗХОД</button>
             </form>
@@ -17,7 +18,7 @@
     }
     else
     {
-        <li class="nav-item">
+        <li class="nav-item me-5">
             <a class="nav-link" asp-area="Identity" asp-page="/Account/Login">ВХОД</a>
         </li>
     }

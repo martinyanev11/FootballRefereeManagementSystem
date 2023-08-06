@@ -18,7 +18,16 @@
         /// <param name="emailModel">The ApplicationEmailModel containing the candidate's information.</param>
         /// <returns>Task representing the asynchronous operation. The result indicates whether the email was sent successfully.</returns>
         Task<bool> SendDeclineEmailToCareerCandidateAsync(ApplicationEmailModel emailModel);
-        Task<bool> SendEmailConfirmation(string newEmail, string subject, string plainTextContent, string htmlContent);
+
+        /// <summary>
+        /// Asynchronously sends an email to a user for account mangement operations (e.g. password reset, email change etc...).
+        /// </summary>
+        /// <param name="email">User email that will receive the messaeg.</param>
+        /// <param name="subject">The email subject.</param>
+        /// <param name="plainTextContent">Message text content.</param>
+        /// <param name="htmlContent">Message html content.</param>
+        /// <returns><see langword="true"/> if email is successfully sent otherwise <see langword="false"/></returns>
+        Task<bool> SendEmailConfirmation(string email, string subject, string plainTextContent, string htmlContent);
 
         /// <summary>
         /// Sends an email to the contact system using the provided information.

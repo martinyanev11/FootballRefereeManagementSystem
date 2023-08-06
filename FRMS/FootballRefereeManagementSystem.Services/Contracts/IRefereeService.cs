@@ -5,6 +5,7 @@
     using Web.ViewModels.Referee;
     using Web.ViewModels.RefereeSquad;
     using Web.ViewModels.Career;
+    using FootballRefereeManagementSystem.Services.Models.Referee;
 
     public interface IRefereeService
     {
@@ -56,7 +57,20 @@
         /// <param name="model">The ApplicationFormModel containing the applicant's information.</param>
         /// <returns>An integer representing the best suited role (Role enum value).</returns>
         int DetermineBestSuitedRoleForApplication(ApplicationFormModel model);
+
+        /// <summary>
+        /// Gets the user ID associated with the referee ID.
+        /// </summary>
+        /// <param name="id">The ID of the referee.</param>
+        /// <returns>The user ID as a string.</returns>
         Task<string> GetUserIdByRefereeId(int id);
+
+        /// <summary>
+        /// Deletes a referee by setting its sensitive data properties to null and marking it as inactive.
+        /// </summary>
+        /// <param name="refereeId">The ID of the referee to delete.</param>
         Task DeleteRefereeAsync(int? refereeId);
+        Task<RefereeServiceModel> GetRefereeProfileDataByUserIdAsync(string userId);
+        Task UpdateRefereeData(RefereeServiceModel newRefereeData, string userId);
     }
 }

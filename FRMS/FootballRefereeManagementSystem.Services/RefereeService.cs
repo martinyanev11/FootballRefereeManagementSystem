@@ -13,6 +13,7 @@
     using Web.ViewModels.RefereeSquad;
     using Web.ViewModels.Career;
     using Services.Common;
+    using Services.Models.Referee;
 
     public class RefereeService : IRefereeService
     {
@@ -250,6 +251,34 @@
             refereeToDelete.ImageUrl = null;
             refereeToDelete.IsAvaliable = false;
             refereeToDelete.IsActive = false;
+
+            await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task<RefereeServiceModel> GetRefereeProfileDataByUserIdAsync(string userId)
+        {
+            return await this.dbContext
+                .Referees
+                .Where(r => r.UserId.ToString() == userId)
+                .Select(r => new RefereeServiceModel()
+                {
+                    FirstName = r.FirstName!,
+                    LastName = r.LastName!,
+                    ImageUrl = r.ImageUrl!
+                })
+                .FirstAsync();
+        }
+
+        public async Task UpdateRefereeData(RefereeServiceModel newRefereeData, string userId)
+        {
+            Referee refereeToUpdate = await this.dbContext
+                .Referees
+                .Where(r => r.UserId.ToString() == userId)
+                .FirstAsync();
+
+            refereeToUpdate.FirstName = newRefereeData.FirstName;
+            refereeToUpdate.LastName = newRefereeData.LastName;
+            refereeToUpdate.ImageUrl = newRefereeData.ImageUrl;
 
             await this.dbContext.SaveChangesAsync();
         }

@@ -10,20 +10,25 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
 
     using Enums;
     using Data.Models;
-    using static Common.EntityValidationConstants.Referee;
     using Common.CustomValidationAttributes;
+    using static Common.EntityValidationConstants.Referee;
+    using Services.Contracts;
+    using Services.Models.Referee;
 
     public class IndexModel : PageModel
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
+        private readonly IRefereeService refereeService;
 
         public IndexModel(
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager,
+            IRefereeService refereeService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.refereeService = refereeService;
             this.StatusMessage = new StatusMessage();
         }
 
@@ -47,6 +52,22 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
                 ErrorMessage = "Телефонния номер трябва да е с дължина 10 цифри.")]
             [PhoneNumber(ErrorMessage = "Телефонният номер трябва да започва с 0.")]
             public string PhoneNumber { get; set; }
+
+            [Display(Name = "Име")]
+            [Required(ErrorMessage = "Полето е задължително")]
+            [StringLength(FirstNameMaxLength, MinimumLength = FirstNameMinLength,
+            ErrorMessage = "Името трябва да е с дължина между 2 и 50 символа")]
+            public string FirstName { get; set; } = null!;
+
+            [Display(Name = "Фамилия")]
+            [Required(ErrorMessage = "Полето е задължително")]
+            [StringLength(FirstNameMaxLength, MinimumLength = FirstNameMinLength,
+                ErrorMessage = "Фамилията трябва да е с дължина между 2 и 50 символа")]
+            public string LastName { get; set; } = null!;
+
+            [Display(Name = "Линк на снимка")]
+            [StringLength(ImageUrlMaxLength, ErrorMessage = "Линка е прекалено дълъг")]
+            public string ImageUrl { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
@@ -54,11 +75,17 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
             string userName = await this.userManager.GetUserNameAsync(user);
             string phoneNumber = await this.userManager.GetPhoneNumberAsync(user);
 
+            RefereeServiceModel serviceModel = 
+                await this.refereeService.GetRefereeProfileDataByUserIdAsync(user.Id.ToString());
+
             this.Username = userName;
 
             this.Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                FirstName = serviceModel.FirstName,
+                LastName = serviceModel.LastName,
+                ImageUrl = serviceModel.ImageUrl,
             };
         }
 
@@ -89,21 +116,37 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
             }
 
             string phoneNumber = await this.userManager.GetPhoneNumberAsync(user);
-            if (this.Input.PhoneNumber != phoneNumber)
+            RefereeServiceModel serviceModel =
+                await this.refereeService.GetRefereeProfileDataByUserIdAsync(user.Id.ToString());
+
+            if (this.Input.PhoneNumber != phoneNumber ||
+                this.Input.FirstName != serviceModel.FirstName ||
+                this.Input.LastName != serviceModel.LastName ||
+                this.Input.ImageUrl != serviceModel.ImageUrl)
             {
-                IdentityResult setPhoneResult = await this.userManager.SetPhoneNumberAsync(user, this.Input.PhoneNumber);
-                if (!setPhoneResult.Succeeded)
+                if (this.Input.PhoneNumber != phoneNumber)
                 {
-                    this.Message = "Грешка при запазването на телефонен номер.";
-                    this.AlertType = Alert.danger;
-                    return RedirectToPage();
+                    IdentityResult setPhoneResult = await this.userManager.SetPhoneNumberAsync(user, this.Input.PhoneNumber);
+                    if (!setPhoneResult.Succeeded)
+                    {
+                        this.Message = "Грешка при запазването на телефонен номер.";
+                        this.AlertType = Alert.danger;
+                        return RedirectToPage();
+                    }
                 }
-                else
+
+                RefereeServiceModel newRefereeData = new RefereeServiceModel()
                 {
-                    this.Message = "Профилът е актуализиран.";
-                    this.AlertType = Alert.success;
-                    return RedirectToPage();
-                }
+                    FirstName = this.Input.FirstName,
+                    LastName = this.Input.LastName,
+                    ImageUrl = this.Input.ImageUrl,
+                };
+
+                await this.refereeService.UpdateRefereeData(newRefereeData, user.Id.ToString());
+
+                this.Message = "Профилът е актуализиран.";
+                this.AlertType = Alert.success;
+                return RedirectToPage();
             }
 
             await this.signInManager.RefreshSignInAsync(user);

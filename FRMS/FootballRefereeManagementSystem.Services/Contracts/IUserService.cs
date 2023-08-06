@@ -1,6 +1,6 @@
 ﻿namespace FootballRefereeManagementSystem.Services.Contracts
 {
-    using FootballRefereeManagementSystem.Data.Models;
+    using Data.Models;
     using Web.ViewModels.User;
 
     public interface IUserService
@@ -11,6 +11,12 @@
         /// <param name="userId">The ID of the user to change the status for.</param>
         /// <returns>A task representing the asynchronous operation.</returns>
         Task ChangeStatusAsync(string userId);
+
+        /// <summary>
+        /// Deletes sensitive user information for the specified application user.
+        /// </summary>
+        /// <param name="user">The ApplicationUser for which to delete the information.</param>
+        /// <returns>A Task representing the asynchronous operation.</returns>
         Task DeleteUserInformationAsync(ApplicationUser user);
 
         /// <summary>
