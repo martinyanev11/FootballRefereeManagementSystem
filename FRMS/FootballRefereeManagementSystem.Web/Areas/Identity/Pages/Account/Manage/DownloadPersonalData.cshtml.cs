@@ -22,18 +22,17 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
 
         public IActionResult OnGet()
         {
-            return NotFound();
+            return RedirectToAction("Error", StatusCode(404));
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            ApplicationUser user = await userManager.GetUserAsync(User);
-            if (user == null)
+            ApplicationUser user = await this.userManager.GetUserAsync(User);
+            if (user is null)
             {
-                return NotFound($"Потребител с ID '{userManager.GetUserId(User)}' не може да бъде намерен.");
+                return RedirectToAction("Error", StatusCode(404));
             }
 
-            // Only include personal data for download
             Dictionary<string, string> personalData = new Dictionary<string, string>();
             IEnumerable<PropertyInfo> personalDataProps = typeof(ApplicationUser).GetProperties()
                 .Where(prop => Attribute
@@ -43,13 +42,13 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
                 personalData.Add(pi.Name, pi.GetValue(user)?.ToString() ?? "null");
             }
 
-            IList<UserLoginInfo> logins = await userManager.GetLoginsAsync(user);
-            foreach (var l in logins)
+            IList<UserLoginInfo> logins = await this.userManager.GetLoginsAsync(user);
+            foreach (UserLoginInfo l in logins)
             {
                 personalData.Add($"{l.LoginProvider} external login provider key", l.ProviderKey);
             }
 
-            personalData.Add($"Authenticator Key", await userManager.GetAuthenticatorKeyAsync(user));
+            personalData.Add($"Authenticator Key", await this.userManager.GetAuthenticatorKeyAsync(user));
 
             Response.Headers.Add("Content-Disposition", "attachment; filename=PersonalData.json");
             return new FileContentResult(JsonSerializer.SerializeToUtf8Bytes(personalData), "application/json");

@@ -2,6 +2,9 @@
 @model ConfirmEmailChangeModel
 @{
     ViewData["Title"] = "Потвърждение на нов имейл адрес";
+
+    Model.StatusMessage.Text = Model.Message;
+    Model.StatusMessage.Alert = Model.AlertType;
 }
 
 <h1>@ViewData["Title"]</h1>

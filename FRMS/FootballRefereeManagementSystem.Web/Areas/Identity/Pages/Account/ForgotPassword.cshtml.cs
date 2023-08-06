@@ -6,43 +6,32 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account
     using System.Text.Encodings.Web;
 
     using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Identity.UI.Services;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.AspNetCore.WebUtilities;
 
-    using FootballRefereeManagementSystem.Data.Models;
+    using Data.Models;
+    using Services.Contracts;
+    using static FootballRefereeManagementSystem.Common.EmailConstants;
 
     public class ForgotPasswordModel : PageModel
     {
         private readonly UserManager<ApplicationUser> userManager;
-        private readonly IEmailSender emailSender;
+        private readonly IEmailService emailService;
 
-        public ForgotPasswordModel(UserManager<ApplicationUser> userManager, IEmailSender emailSender)
+        public ForgotPasswordModel(UserManager<ApplicationUser> userManager, IEmailService emailService)
         {
             this.userManager = userManager;
-            this.emailSender = emailSender;
+            this.emailService = emailService;
         }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public class InputModel
         {
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "Полето е задължително, за да извършите тази операция!")]
+            [EmailAddress(ErrorMessage = "Въведете валиден имейл адрес.")]
             public string Email { get; set; }
         }
 
@@ -50,16 +39,14 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account
         {
             if (ModelState.IsValid)
             {
-                var user = await userManager.FindByEmailAsync(Input.Email);
-                if (user == null || !(await userManager.IsEmailConfirmedAsync(user)))
+                ApplicationUser user = await this.userManager.FindByEmailAsync(this.Input.Email);
+                if (user is null || !(await this.userManager.IsEmailConfirmedAsync(user)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
                     return RedirectToPage("./ForgotPasswordConfirmation");
                 }
 
-                // For more information on how to enable account confirmation and password reset please
-                // visit https://go.microsoft.com/fwlink/?LinkID=532713
-                var code = await userManager.GeneratePasswordResetTokenAsync(user);
+                string code = await this.userManager.GeneratePasswordResetTokenAsync(user);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                 var callbackUrl = Url.Page(
                     "/Account/ResetPassword",
@@ -67,10 +54,17 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account
                     values: new { area = "Identity", code },
                     protocol: Request.Scheme);
 
-                await emailSender.SendEmailAsync(
-                    Input.Email,
-                    "Reset Password",
-                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                string subject = EmailForgotPassword.Subject;
+                string plainTextContent = EmailForgotPassword.PlainTextContent;
+                string htmlContent = $"{string.Format(EmailForgotPassword.HtmlContent, HtmlEncoder.Default.Encode(callbackUrl))}";
+
+                bool isMessageSend =
+                    await this.emailService.SendEmailConfirmation(this.Input.Email, subject, plainTextContent, htmlContent);
+
+                if (!isMessageSend)
+                {
+                    return RedirectToPage("/");
+                }
 
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }

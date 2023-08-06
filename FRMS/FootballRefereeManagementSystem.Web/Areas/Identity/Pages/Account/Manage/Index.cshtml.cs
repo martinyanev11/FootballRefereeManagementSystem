@@ -51,12 +51,12 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
 
         private async Task LoadAsync(ApplicationUser user)
         {
-            string userName = await userManager.GetUserNameAsync(user);
-            string phoneNumber = await userManager.GetPhoneNumberAsync(user);
+            string userName = await this.userManager.GetUserNameAsync(user);
+            string phoneNumber = await this.userManager.GetPhoneNumberAsync(user);
 
-            Username = userName;
+            this.Username = userName;
 
-            Input = new InputModel
+            this.Input = new InputModel
             {
                 PhoneNumber = phoneNumber
             };
@@ -64,19 +64,19 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
 
         public async Task<IActionResult> OnGetAsync()
         {
-            ApplicationUser user = await userManager.GetUserAsync(User);
+            ApplicationUser user = await this.userManager.GetUserAsync(User);
             if (user is null)
             {
                 return RedirectToAction("Error", StatusCode(404));
             }
 
-            await LoadAsync(user);
+            await this.LoadAsync(user);
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            ApplicationUser user = await userManager.GetUserAsync(User);
+            ApplicationUser user = await this.userManager.GetUserAsync(User);
             if (user is null)
             {
                 return RedirectToAction("Error", StatusCode(404));
@@ -88,27 +88,27 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
                 return Page();
             }
 
-            string phoneNumber = await userManager.GetPhoneNumberAsync(user);
-            if (Input.PhoneNumber != phoneNumber)
+            string phoneNumber = await this.userManager.GetPhoneNumberAsync(user);
+            if (this.Input.PhoneNumber != phoneNumber)
             {
-                IdentityResult setPhoneResult = await userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
+                IdentityResult setPhoneResult = await this.userManager.SetPhoneNumberAsync(user, this.Input.PhoneNumber);
                 if (!setPhoneResult.Succeeded)
                 {
-                    Message = "Грешка при запазването на телефонен номер.";
-                    AlertType = Alert.danger;
+                    this.Message = "Грешка при запазването на телефонен номер.";
+                    this.AlertType = Alert.danger;
                     return RedirectToPage();
                 }
                 else
                 {
-                    Message = "Профилът е актуализиран.";
-                    AlertType = Alert.success;
+                    this.Message = "Профилът е актуализиран.";
+                    this.AlertType = Alert.success;
                     return RedirectToPage();
                 }
             }
 
-            await signInManager.RefreshSignInAsync(user);
-            Message = "Няма промени.";
-            AlertType = Alert.info;
+            await this.signInManager.RefreshSignInAsync(user);
+            this.Message = "Няма промени.";
+            this.AlertType = Alert.info;
 
             return RedirectToPage();
         }

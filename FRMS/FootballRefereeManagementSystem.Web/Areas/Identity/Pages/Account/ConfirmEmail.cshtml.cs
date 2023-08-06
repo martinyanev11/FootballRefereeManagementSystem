@@ -9,17 +9,23 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.AspNetCore.WebUtilities;
 
+    using Data.Models;
+    using Enums;
+
     public class ConfirmEmailModel : PageModel
     {
-        private readonly UserManager<IdentityUser> userManager;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public ConfirmEmailModel(UserManager<IdentityUser> userManager)
+        public ConfirmEmailModel(UserManager<ApplicationUser> userManager)
         {
             this.userManager = userManager;
         }
 
         [TempData]
-        public string StatusMessage { get; set; }
+        public string Message { get; set; }
+        [TempData]
+        public Alert AlertType { get; set; }
+        public StatusMessage StatusMessage { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string userId, string code)
         {
@@ -28,15 +34,23 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account
                 return RedirectToPage("/Index");
             }
 
-            var user = await userManager.FindByIdAsync(userId);
-            if (user == null)
+            ApplicationUser user = await this.userManager.FindByIdAsync(userId);
+            if (user is null)
             {
-                return NotFound($"Unable to load user with ID '{userId}'.");
+                return RedirectToAction("Error", StatusCode(404));
             }
 
             code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
-            var result = await userManager.ConfirmEmailAsync(user, code);
-            StatusMessage = result.Succeeded ? "Thank you for confirming your email." : "Error confirming your email.";
+            IdentityResult result = await this.userManager.ConfirmEmailAsync(user, code);
+
+            if (!result.Succeeded)
+            {
+                this.Message = "Грешка при потвърждаването на имейл адреса.";
+                this.AlertType = Alert.danger;
+            }
+
+            this.Message = "Успешно потвърдихте своя имейл адрес.";
+            this.AlertType = Alert.success;
             return Page();
         }
     }

@@ -1,4 +1,4 @@
-﻿namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manage.Enums
+﻿namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Enums
 {
     public enum Alert
     {

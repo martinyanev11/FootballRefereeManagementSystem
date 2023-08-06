@@ -5,7 +5,7 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account
     using Microsoft.AspNetCore.Mvc.RazorPages;
 
     [AllowAnonymous]
-    public class ResetPasswordConfirmationModel : PageModel
+    public class ForgotPasswordConfirmation : PageModel
     {
         public void OnGet()
         {

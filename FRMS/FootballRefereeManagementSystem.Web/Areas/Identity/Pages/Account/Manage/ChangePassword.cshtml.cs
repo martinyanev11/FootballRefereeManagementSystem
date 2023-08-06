@@ -53,16 +53,10 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
 
         public async Task<IActionResult> OnGetAsync()
         {
-            ApplicationUser user = await userManager.GetUserAsync(User);
-            if (user == null)
+            ApplicationUser user = await this.userManager.GetUserAsync(User);
+            if (user is null)
             {
-                return NotFound($"Потребител с ID '{userManager.GetUserId(User)}' не може да бъде намерен.");
-            }
-
-            bool hasPassword = await userManager.HasPasswordAsync(user);
-            if (!hasPassword)
-            {
-                return RedirectToPage("./SetPassword");
+                return RedirectToAction("Error", StatusCode(404));
             }
 
             return Page();
@@ -75,25 +69,27 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
                 return Page();
             }
 
-            ApplicationUser user = await userManager.GetUserAsync(User);
-            if (user == null)
+            ApplicationUser user = await this.userManager.GetUserAsync(User);
+            if (user is null)
             {
-                return NotFound($"Потребител с ID '{userManager.GetUserId(User)}' не може да бъде намерен.");
+                return RedirectToAction("Error", StatusCode(404));
             }
 
-            IdentityResult changePasswordResult = await userManager.ChangePasswordAsync(user, Input.OldPassword, Input.NewPassword);
+            IdentityResult changePasswordResult = 
+                await userManager.ChangePasswordAsync(user, this.Input.OldPassword, this.Input.NewPassword);
+
             if (!changePasswordResult.Succeeded)
             {
-                foreach (var error in changePasswordResult.Errors)
+                foreach (IdentityError error in changePasswordResult.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
                 return Page();
             }
 
-            await signInManager.RefreshSignInAsync(user);
-            Message = "Паролата е сменена успешно.";
-            AlertType = Alert.success;
+            await this.signInManager.RefreshSignInAsync(user);
+            this.Message = "Паролата е сменена успешно.";
+            this.AlertType = Alert.success;
 
             return RedirectToPage();
         }

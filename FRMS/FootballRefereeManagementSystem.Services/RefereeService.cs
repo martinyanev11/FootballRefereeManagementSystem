@@ -162,7 +162,7 @@
                 .Select(r => new RefereeDetailsViewModel()
                 {
                     FullName = $"{r.FirstName} {r.LastName}",
-                    Age = r.Age,
+                    Age = (int)r.Age!,
                     ImageUrl = r.ImageUrl!,
                     Role = r.Role.ToString(),
                     CareerStart = r.CareerStart,
@@ -235,6 +235,23 @@
                 .Where(r => r.Id == id && r.IsActive)
                 .Select(r => r.UserId.ToString())
                 .FirstAsync();
+        }
+
+        public async Task DeleteRefereeAsync(int? refereeId)
+        {
+            Referee refereeToDelete = await this.dbContext
+                .Referees
+                .Where(r => r.Id == refereeId)
+                .FirstAsync();
+
+            refereeToDelete.FirstName = null;
+            refereeToDelete.LastName = null;
+            refereeToDelete.Age = null;
+            refereeToDelete.ImageUrl = null;
+            refereeToDelete.IsAvaliable = false;
+            refereeToDelete.IsActive = false;
+
+            await this.dbContext.SaveChangesAsync();
         }
     }
 }

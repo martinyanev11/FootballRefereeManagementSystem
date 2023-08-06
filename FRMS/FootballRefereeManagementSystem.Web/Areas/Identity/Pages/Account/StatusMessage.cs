@@ -1,4 +1,4 @@
-﻿namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manage
+﻿namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account
 {
     using Enums;
 

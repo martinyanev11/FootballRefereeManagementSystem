@@ -8,94 +8,83 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
-    using Microsoft.Extensions.Logging;
 
     using Data.Models;
+    using FootballRefereeManagementSystem.Services.Contracts;
 
     public class DeletePersonalDataModel : PageModel
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
-        private readonly ILogger<DeletePersonalDataModel> logger;
+        private readonly IUserService userService;
+        private readonly IRefereeService refereeService;
 
         public DeletePersonalDataModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            ILogger<DeletePersonalDataModel> logger)
+            IUserService userService,
+            IRefereeService refereeService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
-            this.logger = logger;
+            this.userService = userService;
+            this.refereeService = refereeService;
         }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public class InputModel
         {
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
-            [Required]
+            [Required(ErrorMessage = "Необходимо е да въведете вашата парола за извършването на тази операция!")]
             [DataType(DataType.Password)]
+            [Display(Name = "Парола")]
             public string Password { get; set; }
         }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public bool RequirePassword { get; set; }
 
         public async Task<IActionResult> OnGet()
         {
-            var user = await userManager.GetUserAsync(User);
-            if (user == null)
+            ApplicationUser user = await this.userManager.GetUserAsync(User);
+            if (user is null)
             {
-                return NotFound($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
+                return RedirectToAction("Error", StatusCode(404));
             }
 
-            RequirePassword = await userManager.HasPasswordAsync(user);
+            this.RequirePassword = await this.userManager.HasPasswordAsync(user);
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var user = await userManager.GetUserAsync(User);
-            if (user == null)
+            ApplicationUser user = await this.userManager.GetUserAsync(User);
+            if (user is null)
             {
-                return NotFound($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
+                return RedirectToAction("Error", StatusCode(404));
             }
 
-            RequirePassword = await userManager.HasPasswordAsync(user);
-            if (RequirePassword)
+            this.RequirePassword = await userManager.HasPasswordAsync(user);
+            if (this.RequirePassword)
             {
-                if (!await userManager.CheckPasswordAsync(user, Input.Password))
+                if (!await this.userManager.CheckPasswordAsync(user, this.Input.Password))
                 {
-                    ModelState.AddModelError(string.Empty, "Incorrect password.");
+                    ModelState.AddModelError(string.Empty, "Грешна парола.");
                     return Page();
                 }
             }
+            
+            await this.userService.DeleteUserInformationAsync(user);
+            IdentityResult result = await this.userManager.UpdateAsync(user);
 
-            var result = await userManager.DeleteAsync(user);
-            var userId = await userManager.GetUserIdAsync(user);
             if (!result.Succeeded)
             {
-                throw new InvalidOperationException($"Unexpected error occurred deleting user.");
+                return RedirectToAction("Error");
             }
 
-            await signInManager.SignOutAsync();
+            await this.refereeService.DeleteRefereeAsync(user.RefereeId);
 
-            logger.LogInformation("User with ID '{UserId}' deleted themselves.", userId);
+            await this.signInManager.SignOutAsync();
 
             return Redirect("~/");
         }

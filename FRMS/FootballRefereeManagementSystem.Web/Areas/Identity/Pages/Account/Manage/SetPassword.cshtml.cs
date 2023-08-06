@@ -35,27 +35,28 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
 
         public class InputModel
         {
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = "Полето е задължително")]
+            [StringLength(100, MinimumLength = 6,
+                ErrorMessage = "Паролата трябва да е с дължина поне 6 символа.")]
             [DataType(DataType.Password)]
-            [Display(Name = "New password")]
+            [Display(Name = "Нова парола")]
             public string NewPassword { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm new password")]
-            [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+            [Display(Name = "Потвърди парола")]
+            [Compare("NewPassword", ErrorMessage = "Паролите не съвпадат.")]
             public string ConfirmPassword { get; set; }
         }
 
         public async Task<IActionResult> OnGetAsync()
         {
-            var user = await userManager.GetUserAsync(User);
-            if (user == null)
+            ApplicationUser user = await this.userManager.GetUserAsync(User);
+            if (user is null)
             {
-                return NotFound($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
+                return RedirectToAction("Error", StatusCode(404));
             }
 
-            var hasPassword = await userManager.HasPasswordAsync(user);
+            bool hasPassword = await this.userManager.HasPasswordAsync(user);
 
             if (hasPassword)
             {
@@ -72,16 +73,16 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
                 return Page();
             }
 
-            var user = await userManager.GetUserAsync(User);
-            if (user == null)
+            ApplicationUser user = await this.userManager.GetUserAsync(User);
+            if (user is null)
             {
-                return NotFound($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
+                return RedirectToAction("Error", StatusCode(404));
             }
 
-            var addPasswordResult = await userManager.AddPasswordAsync(user, Input.NewPassword);
+            IdentityResult addPasswordResult = await this.userManager.AddPasswordAsync(user, this.Input.NewPassword);
             if (!addPasswordResult.Succeeded)
             {
-                foreach (var error in addPasswordResult.Errors)
+                foreach (IdentityError error in addPasswordResult.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
@@ -89,8 +90,8 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
             }
 
             await signInManager.RefreshSignInAsync(user);
-            Message = "Your password has been set.";
-            AlertType = Alert.success;
+            this.Message = "Паролата е променена успешно.";
+            this.AlertType = Alert.success;
 
             return RedirectToPage();
         }

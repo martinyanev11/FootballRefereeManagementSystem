@@ -43,18 +43,21 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account
         {
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
-                ModelState.AddModelError(string.Empty, ErrorMessage);
+                this.ModelState.AddModelError(string.Empty, ErrorMessage);
             }
 
             // Clear the existing external cookie to ensure a clean login process
-            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+            await this.HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
-                SignInResult result = await signInManager.PasswordSignInAsync(Input.Email, Input.Password, false, lockoutOnFailure: true);
+                SignInResult result = 
+                    await this.signInManager
+                    .PasswordSignInAsync(this.Input.Email, this.Input.Password, false, lockoutOnFailure: true);
+
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "User", new { area = "" });
@@ -65,7 +68,7 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Грешен имейл или парола.");
+                    this.ModelState.AddModelError(string.Empty, "Грешен имейл или парола.");
                     return Page();
                 }
             }

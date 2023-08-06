@@ -42,5 +42,13 @@
                 {1}";
             public const string HtmlContent = "";
         }
+
+        public static class EmailForgotPassword
+        {
+            public const string CareerSystemName = "Съдийска Система";
+            public const string Subject = "Забравена парола";
+            public const string PlainTextContent = "";
+            public const string HtmlContent = "За да промените своята парола натиснете <a href='{0}'>тук</a>.";
+        }
     }
 }

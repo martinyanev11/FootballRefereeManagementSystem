@@ -9,7 +9,7 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.AspNetCore.WebUtilities;
 
-    using FootballRefereeManagementSystem.Data.Models;
+    using Data.Models;
 
     public class ResetPasswordModel : PageModel
     {
@@ -20,63 +20,40 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account
             this.userManager = userManager;
         }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public class InputModel
         {
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "Полето е задължително.")]
+            [EmailAddress(ErrorMessage = "Моля въвъдете валиден имейл адрес.")]
+            [Display(Name = "Имейл")]
             public string Email { get; set; }
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = "Полето е задължително.")]
+            [StringLength(100, ErrorMessage = "{0}та трябва да е с дължина между {2} и {1} cимвола.", MinimumLength = 6)]
             [DataType(DataType.Password)]
+            [Display(Name = "Парола")]
             public string Password { get; set; }
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "Потвърди парола")]
+            [Compare("Password", ErrorMessage = "Паролите не съвпадат.")]
             public string ConfirmPassword { get; set; }
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
             [Required]
             public string Code { get; set; }
-
         }
 
         public IActionResult OnGet(string code = null)
         {
-            if (code == null)
+            if (code is null)
             {
-                return BadRequest("A code must be supplied for password reset.");
+                return RedirectToAction("Error");
             }
             else
             {
-                Input = new InputModel
+                this.Input = new InputModel
                 {
                     Code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code))
                 };
@@ -91,20 +68,22 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account
                 return Page();
             }
 
-            var user = await userManager.FindByEmailAsync(Input.Email);
-            if (user == null)
+            ApplicationUser user = await this.userManager.FindByEmailAsync(this.Input.Email);
+            if (user is null)
             {
                 // Don't reveal that the user does not exist
                 return RedirectToPage("./ResetPasswordConfirmation");
             }
 
-            var result = await userManager.ResetPasswordAsync(user, Input.Code, Input.Password);
+            IdentityResult result = 
+                await this.userManager.ResetPasswordAsync(user, this.Input.Code, this.Input.Password);
+
             if (result.Succeeded)
             {
                 return RedirectToPage("./ResetPasswordConfirmation");
             }
 
-            foreach (var error in result.Errors)
+            foreach (IdentityError error in result.Errors)
             {
                 ModelState.AddModelError(string.Empty, error.Description);
             }

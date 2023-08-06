@@ -27,18 +27,15 @@
         public int Id { get; set; }
 
         [Comment("First name of the person represented by this entity")]
-        [Required]
         [MaxLength(FirstNameMaxLength)]
-        public string FirstName { get; set; } = null!;
+        public string? FirstName { get; set; }
 
         [Comment("Last name of the person represented by this entity")]
-        [Required]
         [MaxLength(LastNameMaxLength)]
-        public string LastName { get; set; } = null!;
+        public string? LastName { get; set; } = null!;
 
         [Comment("Age of the person represented by this entity")]
-        [Required]
-        public int Age { get; set; }
+        public int? Age { get; set; }
 
         [Comment("Picture of the person represented by this entity")]
         public string? ImageUrl { get; set; }

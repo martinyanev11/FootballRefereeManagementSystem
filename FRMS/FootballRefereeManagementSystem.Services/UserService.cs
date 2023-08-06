@@ -9,14 +9,18 @@ namespace FootballRefereeManagementSystem.Services
     using Data;
     using Data.Models;
     using Web.ViewModels.User;
+    using Microsoft.AspNetCore.Identity;
 
     public class UserService : IUserService
     {
         private readonly FootballRefereeManagementSystemDbContext dbContext;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public UserService(FootballRefereeManagementSystemDbContext dbContext)
+        public UserService(FootballRefereeManagementSystemDbContext dbContext,
+            UserManager<ApplicationUser> userManager)
         {
             this.dbContext = dbContext;
+            this.userManager = userManager;
         }
 
         public async Task ChangeStatusAsync(string userId)
@@ -37,6 +41,15 @@ namespace FootballRefereeManagementSystem.Services
             }
             
             await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task DeleteUserInformationAsync(ApplicationUser user)
+        {
+            await this.userManager.SetEmailAsync(user, null);
+            await this.userManager.SetUserNameAsync(user, Guid.NewGuid().ToString());
+            await this.userManager.UpdateNormalizedUserNameAsync(user);
+            await this.userManager.RemovePasswordAsync(user);
+            await this.userManager.SetPhoneNumberAsync(user, null);
         }
 
         public async Task<ApplicationUserViewModel> GetUserInformationByIdAsync(string id)

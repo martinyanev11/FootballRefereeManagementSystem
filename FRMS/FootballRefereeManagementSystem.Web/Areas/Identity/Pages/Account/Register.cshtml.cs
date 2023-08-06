@@ -75,29 +75,29 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            string id = Request.Form["id"];
+            string id = this.Request.Form["id"];
 
-            returnUrl ??= Url.Content($"~/User/CompleteRegistration?id={id}");
+            returnUrl ??= this.Url.Content($"~/User/CompleteRegistration?id={id}");
 
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 ApplicationUser user = CreateUser();
 
-                await userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
-                await emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                IdentityResult result = await userManager.CreateAsync(user, Input.Password);
+                await this.userStore.SetUserNameAsync(user, this.Input.Email, CancellationToken.None);
+                await this.emailStore.SetEmailAsync(user, this.Input.Email, CancellationToken.None);
+                IdentityResult result = await this.userManager.CreateAsync(user, this.Input.Password);
 
                 if (result.Succeeded)
                 {
                     await this.careerService.SetIsRegisterValueToTrueAsync(id);
 
-                    await signInManager.SignInAsync(user, isPersistent: false);
+                    await this.signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnUrl);
                 }
 
                 foreach (var error in result.Errors)
                 {
-                    ModelState.AddModelError(string.Empty, error.Description);
+                    this.ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
 
@@ -120,7 +120,7 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account
 
         private IUserEmailStore<ApplicationUser> GetEmailStore()
         {
-            if (!userManager.SupportsUserEmail)
+            if (!this.userManager.SupportsUserEmail)
             {
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }

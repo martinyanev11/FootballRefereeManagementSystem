@@ -18,10 +18,10 @@
 
         public async Task<IActionResult> OnGet()
         {
-            ApplicationUser? user = await userManager.GetUserAsync(User);
-            if (user == null)
+            ApplicationUser? user = await this.userManager.GetUserAsync(User);
+            if (user is null)
             {
-                return NotFound($"Потребител с ID '{userManager.GetUserId(User)}' не може да бъде намерен.");
+                return RedirectToAction("Error", StatusCode(404));
             }
 
             return Page();

@@ -69,7 +69,7 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
             ApplicationUser user = await this.userManager.GetUserAsync(User);
             if (user is null)
             {
-                return NotFound($"Потребител с ID '{this.userManager.GetUserId(User)}' не може да бъде намерен.");
+                return RedirectToAction("Error", StatusCode(404));
             }
 
             await LoadAsync(user);
@@ -82,7 +82,7 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
 
             if (user is null)
             {
-                return NotFound($"Потребител с ID '{this.userManager.GetUserId(User)}' не може да бъде намерен.");
+                return RedirectToAction("Error", StatusCode(404));
             }
 
             if (!ModelState.IsValid)
@@ -132,7 +132,7 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
             ApplicationUser user = await this.userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Потребител с ID '{this.userManager.GetUserId(User)}' не може да бъде намерен.");
+                return RedirectToAction("Error", StatusCode(404));
             }
 
             if (!ModelState.IsValid)
