@@ -1,5 +1,32 @@
-﻿@{
+﻿@model AdminStatisticsViewModel
+@{
     ViewData["Title"] = "Администраторски панел";
 }
 
-@*TODO: Add general application statistics*@
+<div class="container mt-4">
+    <h1 class="mb-4">@ViewData["Title"]</h1>
+    <hr />
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Обща статистика за сезон</h3>
+            <p><span class="fw-bold">Описание на сезона:</span> @Model.SeasonStatistics.SeasonDescription</p>
+            <p><span class="fw-bold">Начало на сезона:</span> @Model.SeasonStatistics.SeasonStart.ToString("dd/MM/yyyy")</p>
+            <p><span class="fw-bold">Край на сезона:</span> @Model.SeasonStatistics.SeasonEnd.ToString("dd/MM/yyyy")</p>
+            <p><span class="fw-bold">Брой регистрирани отбори:</span> @Model.SeasonStatistics.RegisteredTeamsCount</p>
+            <p><span class="fw-bold">Брой регистрирани играчи:</span> @Model.SeasonStatistics.RegisteredPlayersCount</p>
+            <p><span class="fw-bold">Брой изиграни мачове:</span> @Model.SeasonStatistics.MatchesPlayed</p>
+            <p><span class="fw-bold">Брой оставащи мачове:</span> @Model.SeasonStatistics.MatchesLeft</p>
+        </div>
+
+        <div class="col-md-6">
+            <h3>Статистика за съдии</h3>
+            <p><span class="fw-bold">Общ брой съдии:</span> @Model.RefereesStatistics.RefereesTotalCount</p>
+            <p><span class="fw-bold">Брой главни съдии:</span> @Model.RefereesStatistics.MainRefereesCount</p>
+            <p><span class="fw-bold">Брой помощни съдии:</span> @Model.RefereesStatistics.AssistantRefereesCount</p>
+            <p><span class="fw-bold">Брой делегати:</span> @Model.RefereesStatistics.DelegatesCount</p>
+            <p><span class="fw-bold">Брой администрация:</span> @Model.RefereesStatistics.AdministrationCount</p>
+            <p><span class="fw-bold">Брой налични съдии:</span> @Model.RefereesStatistics.CurrentlyAvaliableReferees</p>
+            <p><span class="fw-bold">Средна възраст на съдиите:</span> @Model.RefereesStatistics.AverageRefereesAge</p>
+        </div>
+    </div>
+</div>

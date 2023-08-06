@@ -25,5 +25,6 @@
         /// <param name="seasonDescription">The season description to search for.</param>
         /// <returns>The season ID as an integer.</returns>
         Task<int> GetSeasonIdByDescriptionAsync(string seasonDescription);
+        Task<SeasonStatisticsViewModel> GetSeasonStatisticsAsync();
     }
 }

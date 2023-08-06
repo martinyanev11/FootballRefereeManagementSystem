@@ -74,5 +74,6 @@
         Task UpdateRefereeData(RefereeServiceModel newRefereeData, string userId);
         Task<RefereeEditFormModel> GetRefereeForEditByIdAsync(int id);
         Task EditRefereeByIdAsync(int id, RefereeEditFormModel model);
+        Task<RefereesStatisticsViewModel> GetRefereesStatisticsAsync();
     }
 }

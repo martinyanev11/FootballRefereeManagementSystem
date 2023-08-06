@@ -394,5 +394,38 @@
 
             await this.dbContext.SaveChangesAsync();
         }
+
+        public async Task<RefereesStatisticsViewModel> GetRefereesStatisticsAsync()
+        {
+            IQueryable<Referee> refereeQueriable = this.dbContext
+                .Referees
+                .AsNoTracking()
+                .Where(r => r.IsActive)
+                .AsQueryable();
+
+            RefereesStatisticsViewModel refStats = new RefereesStatisticsViewModel()
+            {
+                RefereesTotalCount = await refereeQueriable.CountAsync(),
+                CurrentlyAvaliableReferees = await refereeQueriable
+                    .Where(r => r.IsAvaliable)
+                    .CountAsync(),
+                MainRefereesCount = await refereeQueriable
+                    .Where(r => r.Role == Role.Referee)
+                    .CountAsync(),
+                AssistantRefereesCount = await refereeQueriable
+                    .Where(r => r.Role == Role.AssistantReferee)
+                    .CountAsync(),
+                DelegatesCount = await refereeQueriable
+                    .Where(r => r.Role == Role.Delegate)
+                    .CountAsync(),
+                AdministrationCount = await refereeQueriable
+                    .Where(r => r.Role == Role.Administration)
+                    .CountAsync(),
+                AverageRefereesAge = (int)await refereeQueriable
+                    .AverageAsync(r => r.Age)
+            };
+
+            return refStats;
+        }
     }
 }

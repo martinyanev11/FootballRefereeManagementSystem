@@ -64,5 +64,25 @@
                 .Select(s => s.Id)
                 .FirstAsync();
         }
+
+        public async Task<SeasonStatisticsViewModel> GetSeasonStatisticsAsync()
+        {
+            return await this.dbContext
+                .Seasons
+                .AsNoTracking()
+                .OrderByDescending(s => s.End.Year)
+                .Select(s => new SeasonStatisticsViewModel()
+                {
+                    SeasonDescription = s.Description,
+                    SeasonStart = s.Start,
+                    SeasonEnd = s.End,
+                    RegisteredTeamsCount = s.SeasonTeams.Count(),
+                    // TODO: Finish this query...
+                    //RegisteredPlayersCount = ,
+                    //MatchesPlayed = ,
+                    //MatchesLeft = 
+                })
+                .FirstAsync();
+        }
     }
 }

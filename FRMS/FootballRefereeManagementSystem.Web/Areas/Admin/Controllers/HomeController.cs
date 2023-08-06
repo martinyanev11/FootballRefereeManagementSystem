@@ -2,11 +2,29 @@
 {
     using Microsoft.AspNetCore.Mvc;
 
+    using Services.Contracts;
+    using ViewModels.Home;
+
     public class HomeController : BaseAdminController
     {
-        public IActionResult Dashboard()
+        private readonly IRefereeService refereeService;
+        private readonly ISeasonService seasonService;
+
+        public HomeController(IRefereeService refereeService, ISeasonService seasonService)
         {
-            return View();
+            this.refereeService = refereeService;
+            this.seasonService = seasonService;
+        }
+
+        public async Task<IActionResult> Dashboard()
+        {
+            AdminStatisticsViewModel stats = new AdminStatisticsViewModel()
+            {
+                RefereesStatistics = await this.refereeService.GetRefereesStatisticsAsync(),
+                SeasonStatistics = await this.seasonService.GetSeasonStatisticsAsync(),
+            };
+
+            return View(stats);
         }
     }
 }
