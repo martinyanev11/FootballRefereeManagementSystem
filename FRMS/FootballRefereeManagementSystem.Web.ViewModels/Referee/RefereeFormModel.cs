@@ -2,6 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using Common.CustomValidationAttributes;
     using static Common.EntityValidationConstants.Referee;
 
     public class RefereeFormModel
@@ -27,6 +28,7 @@
         [Phone(ErrorMessage = "Въведете валиден телефонен номер")]
         [StringLength(ContactLength, MinimumLength = ContactLength,
             ErrorMessage = "Телефонния номер трябва да е с дължина точно 10 цифри")]
+        [PhoneNumber(ErrorMessage = "Телефонният номер трябва да започва с 0.")]
         public string Contact { get; set; } = null!;
 
         public string StartingRole { get; set; } = null!;

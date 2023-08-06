@@ -9,6 +9,7 @@
 
     using Contracts;
     using Web.ViewModels.Career;
+    using static FootballRefereeManagementSystem.Common.EmailConstants;
 
     public class EmailService : IEmailService
     {
@@ -26,20 +27,16 @@
             SendGridClient client = new SendGridClient(apiKey);
 
             string careerSystemEmail = configuration["EmailSettings:ContactSystem:Email"];
-            string careerSystemName = "Кариерен център - БФС Плевен";
+            string careerSystemName = EmailCareerApproval.CareerSystemName;
             EmailAddress senderEmail = new EmailAddress(careerSystemEmail, careerSystemName);
 
             EmailAddress recieverEmail = new EmailAddress(emailModel.EmailAddress);
 
-            string subject = "Кандидатура за съдия";
-            string plainTextContent =
-                @$"Здравейте {emailModel.FullName},
-                С радост Ви съобщаваме, че Вашата кандидатура беше успешна, и искаме да Ви поздравим за приемането Ви на позицията асистент съдия в БФС Плевен!
-                През следния линк може да направите своя личен профил в нашата Съдийска система - https://localhost:7251/Identity/Account/Register?id={emailModel.Id}
-                С уважение,
-                {careerSystemName}";
+            string subject = EmailCareerApproval.Subject;
+            string plainTextContent = 
+                string.Format(EmailCareerApproval.PlainTextContent, emailModel.FullName, emailModel.Id, careerSystemName);
 
-            string htmlContent = "";
+            string htmlContent = EmailCareerApproval.HtmlContent;
 
             SendGridMessage? msg = MailHelper.CreateSingleEmail(senderEmail, recieverEmail, subject, plainTextContent, htmlContent);
 
@@ -61,26 +58,44 @@
             SendGridClient client = new SendGridClient(apiKey);
 
             string careerSystemEmail = configuration["EmailSettings:ContactSystem:Email"];
-            string careerSystemName = "Кариерен център - БФС Плевен";
+            string careerSystemName = EmailCareerDecline.CareerSystemName;
             EmailAddress senderEmail = new EmailAddress(careerSystemEmail, careerSystemName);
 
             EmailAddress recieverEmail = new EmailAddress(emailModel.EmailAddress);
 
-            string subject = "Кандидатура за съдия";
-            string plainTextContent =
-                @$"Здравейте {emailModel.FullName},
-                Благодарим Ви за интереса, който проявихте и за участието Ви в нашия подборен процес за позицията на футболен съдия.
+            string subject = EmailCareerDecline.Subject;
+            string plainTextContent = string.Format(EmailCareerDecline.PlainTextContent, emailModel.FullName, careerSystemName);
 
-                Бихме искали да Ви уведомим, че след дълъг и внимателен разглед, нашето ръководство взеха решение да продължат напред с друг кандидат, който най-добре отговаря на нашите настоящи нужди и изисквания.
-                С уважение,
-                {careerSystemName}";
-
-            string htmlContent = "";
+            string htmlContent = EmailCareerDecline.HtmlContent;
 
             SendGridMessage? msg = MailHelper.CreateSingleEmail(senderEmail, recieverEmail, subject, plainTextContent, htmlContent);
 
             Response? response = await client.SendEmailAsync(msg);
 
+            // Check the response status code
+            if (response.StatusCode == System.Net.HttpStatusCode.Accepted)
+            {
+                // Email sent successfully
+                return true;
+            }
+
+            // An error occurred while sending the email
+            return false;
+        }
+
+        public async Task<bool> SendEmailConfirmation(string newEmail, string subject, string plainTextContent, string htmlContent)
+        {
+            SendGridClient client = new SendGridClient(apiKey);
+
+            string contactSystemEmail = configuration["EmailSettings:ContactSystem:Email"];
+            string contactSystemName = configuration["EmailSettings:ContactSystem:Name"];
+            EmailAddress senderEmail = new EmailAddress(contactSystemEmail, contactSystemName);
+
+            EmailAddress recieverEmail = new EmailAddress(newEmail);
+
+            SendGridMessage? msg = MailHelper.CreateSingleEmail(senderEmail, recieverEmail, subject, plainTextContent, htmlContent);
+
+            Response? response = await client.SendEmailAsync(msg);
             // Check the response status code
             if (response.StatusCode == System.Net.HttpStatusCode.Accepted)
             {
@@ -128,6 +143,5 @@
             // An error occurred while sending the email
             return false;
         }
-
     }
 }

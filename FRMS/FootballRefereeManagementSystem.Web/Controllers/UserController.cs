@@ -85,14 +85,11 @@
             return View(model);
         }
 
+        // When this action is hit there is already registered user in the system
+        // We add the phone number and confirm his email before adding referee table relation
         [HttpPost]
         public async Task<IActionResult> CompleteRegistration(RefereeFormModel model)
         {
-            if (!model.Contact.StartsWith("0"))
-            {
-                ModelState.AddModelError("Contact", "Телефонния номер трябва да започва с 0");
-            }
-
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -110,6 +107,13 @@
                 if (!setPhoneResult.Succeeded)
                 {
                     return View("Error");
+                }
+
+                string code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
+                IdentityResult result = await userManager.ConfirmEmailAsync(user, code);
+                if (!result.Succeeded)
+                {
+                    return View("Erorr");
                 }
 
                 await this.refereeService.CreateNewRefereeAsync(model);

@@ -18,6 +18,7 @@
         /// <param name="emailModel">The ApplicationEmailModel containing the candidate's information.</param>
         /// <returns>Task representing the asynchronous operation. The result indicates whether the email was sent successfully.</returns>
         Task<bool> SendDeclineEmailToCareerCandidateAsync(ApplicationEmailModel emailModel);
+        Task<bool> SendEmailConfirmation(string newEmail, string subject, string plainTextContent, string htmlContent);
 
         /// <summary>
         /// Sends an email to the contact system using the provided information.

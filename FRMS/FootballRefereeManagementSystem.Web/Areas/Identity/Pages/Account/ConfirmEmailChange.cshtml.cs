@@ -55,7 +55,7 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account
             }
 
             await this.signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Благодаря, че потвърдихте своят имейл адрес.";
+            StatusMessage = "Успешно променихте своя имейл адрес.";
             return Page();
         }
     }

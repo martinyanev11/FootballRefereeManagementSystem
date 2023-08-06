@@ -6,25 +6,26 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
     using System.ComponentModel.DataAnnotations;
 
     using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Identity.UI.Services;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.AspNetCore.WebUtilities;
 
     using Data.Models;
     using Enums;
+    using Services.Contracts;
+    using static Common.EmailConstants;
 
     public class EmailModel : PageModel
     {
         private readonly UserManager<ApplicationUser> userManager;
-        private readonly IEmailSender emailSender;
+        private readonly IEmailService emailService;
 
         public EmailModel(
             UserManager<ApplicationUser> userManager,
-            IEmailSender emailSender)
+            IEmailService emailService)
         {
             this.userManager = userManager;
-            this.emailSender = emailSender;
+            this.emailService = emailService;
             this.StatusMessage = new StatusMessage();
         }
 
@@ -78,6 +79,7 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
         public async Task<IActionResult> OnPostChangeEmailAsync()
         {
             ApplicationUser user = await this.userManager.GetUserAsync(User);
+
             if (user is null)
             {
                 return NotFound($"Потребител с ID '{this.userManager.GetUserId(User)}' не може да бъде намерен.");
@@ -89,8 +91,8 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
                 return Page();
             }
 
-            //string email = await userManager.GetEmailAsync(user);
-            if (this.Input.NewEmail != this.Email)
+            string email = await userManager.GetEmailAsync(user);
+            if (this.Input.NewEmail != email)
             {
                 string userId = await this.userManager.GetUserIdAsync(user);
                 string code = await this.userManager.GenerateChangeEmailTokenAsync(user, this.Input.NewEmail);
@@ -101,10 +103,19 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
                     values: new { area = "Identity", userId = userId, email = Input.NewEmail, code = code },
                     protocol: Request.Scheme);
 
-                await this.emailSender.SendEmailAsync(
-                    this.Input.NewEmail,
-                    "Confirm your email",
-                    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                string subject = EmailChangeConstants.Subject;
+                string plainTextContent = EmailChangeConstants.PlainTextContent;
+                string htmlContent = $"{string.Format(EmailChangeConstants.HtmlContent, HtmlEncoder.Default.Encode(callbackUrl))}";
+
+                bool isMessageSend =
+                    await this.emailService.SendEmailConfirmation(this.Input.NewEmail, subject, plainTextContent, htmlContent);
+
+                if (!isMessageSend)
+                {
+                    this.Message = "Възникна грешка при изпращане на имейл за промяна!";
+                    this.AlertType = Alert.danger;
+                    return RedirectToPage();
+                }
 
                 this.Message = "Изпратен е линк за потвърждение на промяната. Моля проверете вашият имейл адрес.";
                 this.AlertType = Alert.warning;
@@ -139,10 +150,20 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
                 pageHandler: null,
                 values: new { area = "Identity", userId = userId, code = code },
                 protocol: Request.Scheme);
-            await this.emailSender.SendEmailAsync(
-                email,
-                "Confirm your email",
-                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
+            string subject = EmailConfirmationConstants.Subject;
+            string plainTextContent = EmailConfirmationConstants.PlainTextContent;
+            string htmlContent = $"{string.Format(EmailConfirmationConstants.HtmlContent, HtmlEncoder.Default.Encode(callbackUrl))}";
+
+            bool isMessageSend =
+                    await this.emailService.SendEmailConfirmation(email, subject, plainTextContent, htmlContent);
+
+            if (!isMessageSend)
+            {
+                this.Message = "Възникна грешка при изпращане на имейл за промяна!";
+                this.AlertType = Alert.danger;
+                return RedirectToPage();
+            }
 
             this.Message = "Линк на потвърждение е изпратен. Моля прожевете вашият имейл.";
             this.AlertType = Alert.success;
