@@ -1,6 +1,6 @@
 ﻿namespace FootballRefereeManagementSystem.Services.Common
 {
-    using FootballRefereeManagementSystem.Data.Models.Enums;
+    using Data.Models.Enums;
 
     internal static class Translator
     {
@@ -64,6 +64,14 @@
             }
 
             return status;
+        }
+
+        public static IEnumerable<string> GetAllRolesTranslated()
+        {
+            return Enum.GetValues(typeof(Role))
+                       .Cast<Role>()
+                       .Select(r => Translator.TranslateRoleToBulgarian(r.ToString()))
+                       .ToList();
         }
     }
 }

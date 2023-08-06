@@ -126,6 +126,15 @@
                             <a class="btn btn-sm btn-info btn-outline-dark" asp-controller="Referee" asp-action="Details" asp-route-id="@referee.Id">
                                 <i class="bi bi-info-square-fill"></i>
                             </a>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <a class="btn btn-sm btn-warning btn-outline-dark" asp-area="Admin" asp-controller="Referee" asp-action="Edit" asp-route-id="@referee.Id">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <a class="btn btn-sm btn-danger btn-outline-dark" asp-area="Admin" asp-controller="Referee" asp-action="Delete" asp-route-id="@referee.Id">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            }
                         </td>
                     </tr>
                 }

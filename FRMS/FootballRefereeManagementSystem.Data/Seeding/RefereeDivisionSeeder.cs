@@ -13,65 +13,76 @@
                 new RefereeDivision()
                 {
                     RefereeId = RefereeDataConstants.MainRefereeId,
-                    DivisionId = DivisionDataConstants.RegionalBGroupId
+                    DivisionId = DivisionDataConstants.RegionalBGroupId,
+                    IsActive = true,
                 },
                 new RefereeDivision()
                 {
                     RefereeId = RefereeDataConstants.MainRefereeId,
-                    DivisionId = DivisionDataConstants.RegionalAGroupId
+                    DivisionId = DivisionDataConstants.RegionalAGroupId,
+                    IsActive = true,
                 },
 
                 // First AR - divisions
                 new RefereeDivision()
                 {
                     RefereeId = RefereeDataConstants.AssistantRefereeOneId,
-                    DivisionId = DivisionDataConstants.RegionalBGroupId
+                    DivisionId = DivisionDataConstants.RegionalBGroupId,
+                    IsActive = true,
                 },
                 new RefereeDivision()
                 {
                     RefereeId = RefereeDataConstants.AssistantRefereeOneId,
-                    DivisionId = DivisionDataConstants.RegionalAGroupId
+                    DivisionId = DivisionDataConstants.RegionalAGroupId,
+                    IsActive = true,
                 },
 
                 // Second AR - divisions
                 new RefereeDivision()
                 {
                     RefereeId = RefereeDataConstants.AssistantRefereeTwoId,
-                    DivisionId = DivisionDataConstants.RegionalBGroupId
+                    DivisionId = DivisionDataConstants.RegionalBGroupId,
+                    IsActive = true,
                 },
                 new RefereeDivision()
                 {
                     RefereeId = RefereeDataConstants.AssistantRefereeTwoId,
-                    DivisionId = DivisionDataConstants.RegionalAGroupId
+                    DivisionId = DivisionDataConstants.RegionalAGroupId,
+                    IsActive = true,
                 },
 
                 // Delegate - divisions
                 new RefereeDivision()
                 {
                     RefereeId = RefereeDataConstants.DelegateId,
-                    DivisionId = DivisionDataConstants.RegionalBGroupId
+                    DivisionId = DivisionDataConstants.RegionalBGroupId,
+                    IsActive = true,
                 },
                 new RefereeDivision()
                 {
                     RefereeId = RefereeDataConstants.DelegateId,
-                    DivisionId = DivisionDataConstants.RegionalAGroupId
+                    DivisionId = DivisionDataConstants.RegionalAGroupId,
+                    IsActive = true,
                 },
                 new RefereeDivision()
                 {
                     RefereeId = RefereeDataConstants.DelegateId,
-                    DivisionId = DivisionDataConstants.ThirdAmateurLeagueId
+                    DivisionId = DivisionDataConstants.ThirdAmateurLeagueId,
+                    IsActive = true,
                 },
 
                 // Administration referee - divisions
                 new RefereeDivision()
                 {
                     RefereeId = RefereeDataConstants.AdministratorId,
-                    DivisionId = DivisionDataConstants.SecondProLeagueId
+                    DivisionId = DivisionDataConstants.SecondProLeagueId,
+                    IsActive = true,
                 },
                 new RefereeDivision()
                 {
                     RefereeId = RefereeDataConstants.AdministratorId,
-                    DivisionId = DivisionDataConstants.FirstProLeagueId
+                    DivisionId = DivisionDataConstants.FirstProLeagueId,
+                    IsActive = true,
                 },
             };
 

@@ -51,6 +51,7 @@
         /// <param name="model">The model containing the new properties of the division.</param>
         /// <returns>A task representing the asynchronous operation.</returns>
         Task EditDivisionAsync(int id, DivisionFormModel model);
+        Task<IDictionary<int, string>> GetAllDivisionKeyValuePairs();
 
         /// <summary>
         /// Asynchronously retrieves all division names from the database.

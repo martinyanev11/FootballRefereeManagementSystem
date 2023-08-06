@@ -72,5 +72,7 @@
         Task DeleteRefereeAsync(int? refereeId);
         Task<RefereeServiceModel> GetRefereeProfileDataByUserIdAsync(string userId);
         Task UpdateRefereeData(RefereeServiceModel newRefereeData, string userId);
+        Task<RefereeEditFormModel> GetRefereeForEditByIdAsync(int id);
+        Task EditRefereeByIdAsync(int id, RefereeEditFormModel model);
     }
 }

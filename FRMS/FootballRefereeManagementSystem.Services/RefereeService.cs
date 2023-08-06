@@ -14,6 +14,7 @@
     using Web.ViewModels.Career;
     using Services.Common;
     using Services.Models.Referee;
+    using System.Data;
 
     public class RefereeService : IRefereeService
     {
@@ -173,6 +174,7 @@
                 .Where(r => r.Id == id && r.IsActive)
                 .Select(r => new RefereeDetailsViewModel()
                 {
+                    RefereeId = r.Id,
                     FullName = $"{r.FirstName} {r.LastName}",
                     Age = (int)r.Age!,
                     ImageUrl = r.ImageUrl!,
@@ -181,6 +183,7 @@
                     Contact = r.User.PhoneNumber,
                     TotalMatchesOfficiated = r.TotalMatchesOfficiated,
                     DivisionsAndMatchesCount = r.RefereeDivisions
+                        .Where(rd => rd.IsActive)
                         .Select(rd => 
                             new Tuple<string, int>(rd.Division.Name, rd.DivisionMatchesOfficiated))
                         .ToHashSet()
@@ -263,6 +266,11 @@
             refereeToDelete.IsAvaliable = false;
             refereeToDelete.IsActive = false;
 
+            foreach (RefereeDivision refereeDivision in refereeToDelete.RefereeDivisions)
+            {
+                refereeDivision.IsActive = false;
+            }
+
             await this.dbContext.SaveChangesAsync();
         }
 
@@ -290,6 +298,99 @@
             refereeToUpdate.FirstName = newRefereeData.FirstName;
             refereeToUpdate.LastName = newRefereeData.LastName;
             refereeToUpdate.ImageUrl = newRefereeData.ImageUrl;
+
+            await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task<RefereeEditFormModel> GetRefereeForEditByIdAsync(int id)
+        {
+            RefereeEditFormModel model = await this.dbContext
+                .Referees
+                .Where(r => r.IsActive && r.Id == id)
+                .Select(r => new RefereeEditFormModel()
+                {
+                    FirstName = r.FirstName!,
+                    LastName = r.LastName!,
+                    ImageUrl = r.ImageUrl!,
+                    Role = r.Role.ToString(),
+                    CurrentDivisionIds = r.RefereeDivisions
+                        .Where(rd => rd.IsActive)
+                        .Select(rd => rd.DivisionId)
+                        .ToArray()
+                })
+                .FirstAsync();
+
+            model.Roles = Translator.GetAllRolesTranslated();
+            model.Role = Translator.TranslateRoleToBulgarian(model.Role);
+            return model;
+        }
+
+        public async Task EditRefereeByIdAsync(int id, RefereeEditFormModel model)
+        {
+            Referee refereeToEdit = await this.dbContext
+                .Referees
+                .Where(r => id == r.Id)
+                .Include(r => r.RefereeDivisions
+                    .Where(rd => rd.IsActive))
+                .FirstAsync();
+
+            refereeToEdit.FirstName = model.FirstName;
+            refereeToEdit.LastName = model.LastName;
+            refereeToEdit .ImageUrl = model.ImageUrl;
+            refereeToEdit.Role = Enum.Parse<Role>(Translator.TranslateRoleToEnglish(model.Role));
+
+            foreach (int divId in model.SelectedDivisionIds)
+            {
+                // If the referee doesn't have this division we need add it
+                if (!refereeToEdit.RefereeDivisions
+                    .Any(rd => rd.IsActive && rd.DivisionId == divId))
+                {
+
+                    // Check if this referee was officiating in this division before but is no longer active
+                    RefereeDivision? refereeDivision = await this.dbContext
+                        .RefereesDivisions
+                        .Where(rd => rd.RefereeId == id && rd.DivisionId == divId)
+                        .FirstOrDefaultAsync();
+
+                    // If RefereeDivision exists but is not active
+                    if (refereeDivision is not null)
+                    {
+                        refereeDivision.IsActive = true;
+                    }
+                    // Else we create brand new entity
+                    else
+                    {
+                        refereeDivision = new RefereeDivision()
+                        {
+                            DivisionId = divId,
+                            RefereeId = id
+                        };
+
+                        await this.dbContext.RefereesDivisions.AddAsync(refereeDivision);
+                    }
+                }
+            }
+
+            // If the count is different some divisions were removed from this referee.
+            if (refereeToEdit.RefereeDivisions.Count != model.SelectedDivisionIds.Count())
+            {
+                List<int> removedDivisionIds = refereeToEdit.RefereeDivisions
+                    .Where(rd => !model.SelectedDivisionIds.Contains(rd.DivisionId))
+                    .Select(rd => rd.DivisionId)
+                    .ToList();
+
+                // Remove the corresponding RefereeDivisions from the database.
+                foreach (int divId in removedDivisionIds)
+                {
+                    RefereeDivision? removedRefereeDivision = refereeToEdit.RefereeDivisions
+                        .FirstOrDefault(rd => rd.DivisionId == divId);
+
+                    if (removedRefereeDivision is not null)
+                    {
+                        removedRefereeDivision.IsActive = false;
+                    }
+                }
+            }
 
             await this.dbContext.SaveChangesAsync();
         }

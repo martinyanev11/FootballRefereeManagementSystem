@@ -15,5 +15,8 @@
 
         [Comment("The count of matches referee officiated in this division")]
         public int DivisionMatchesOfficiated { get; set; }
+
+        [Comment("Soft delete value")]
+        public bool IsActive { get; set; }
     }
 }

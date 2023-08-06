@@ -7,6 +7,8 @@
             this.DivisionsAndMatchesCount = new HashSet<Tuple<string, int>>();
         }
 
+        public int RefereeId { get; set; }
+
         public string FullName { get; set; } = null!;
 
         public int Age { get; set; }

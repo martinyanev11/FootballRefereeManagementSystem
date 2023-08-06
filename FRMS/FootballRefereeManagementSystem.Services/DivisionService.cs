@@ -194,6 +194,18 @@
                 .FirstAsync();
         }
 
+        public async Task<IDictionary<int, string>> GetAllDivisionKeyValuePairs()
+        {
+            Dictionary<int, string> divisions = await this.dbContext
+                .Divisions
+                .Where(d => d.IsActive)
+                .AsNoTracking()
+                .Select(d => new { d.Id, d.Name })
+                .ToDictionaryAsync(d => d.Id, d => d.Name);
+
+            return divisions;
+        }
+
         //------------------------------------------
         // private methods
         //------------------------------------------
