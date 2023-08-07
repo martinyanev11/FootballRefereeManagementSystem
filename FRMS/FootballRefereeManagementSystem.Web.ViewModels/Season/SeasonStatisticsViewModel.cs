@@ -14,6 +14,6 @@
 
         public int MatchesPlayed { get; set; }
 
-        public int MatchesLeft { get; set; }
+        public int TotalMatchesCount { get; set; }
     }
 }

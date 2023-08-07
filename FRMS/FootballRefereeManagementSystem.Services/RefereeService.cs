@@ -425,6 +425,7 @@
                     .AverageAsync(r => r.Age)
             };
 
+            refStats.Roles = Translator.GetAllRolesTranslated();
             return refStats;
         }
     }

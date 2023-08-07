@@ -2,6 +2,11 @@
 {
     public class RefereesStatisticsViewModel
     {
+        public RefereesStatisticsViewModel()
+        {
+            this.Roles = new HashSet<string>();
+        }
+
         public int RefereesTotalCount { get; set; }
 
         public int MainRefereesCount { get; set; }
@@ -15,5 +20,7 @@
         public int CurrentlyAvaliableReferees { get; set; }
 
         public int AverageRefereesAge { get; set; }
+
+        public IEnumerable<string> Roles { get; set; } = null!;
     }
 }

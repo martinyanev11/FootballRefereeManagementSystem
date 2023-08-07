@@ -1,32 +1,105 @@
 ﻿@model AdminStatisticsViewModel
 @{
     ViewData["Title"] = "Администраторски панел";
+    int avaliableRefs = Model.RefereesStatistics.CurrentlyAvaliableReferees;
+    int totalRefs = Model.RefereesStatistics.RefereesTotalCount;
+    double percentAvaliableRefs = (double)avaliableRefs / totalRefs * 100;
+    string styleValue = $"{percentAvaliableRefs}%";
 }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
 <div class="container mt-4">
     <h1 class="mb-4">@ViewData["Title"]</h1>
     <hr />
     <div class="row">
-        <div class="col-md-6">
-            <h3>Обща статистика за сезон</h3>
-            <p><span class="fw-bold">Описание на сезона:</span> @Model.SeasonStatistics.SeasonDescription</p>
-            <p><span class="fw-bold">Начало на сезона:</span> @Model.SeasonStatistics.SeasonStart.ToString("dd/MM/yyyy")</p>
-            <p><span class="fw-bold">Край на сезона:</span> @Model.SeasonStatistics.SeasonEnd.ToString("dd/MM/yyyy")</p>
-            <p><span class="fw-bold">Брой регистрирани отбори:</span> @Model.SeasonStatistics.RegisteredTeamsCount</p>
-            <p><span class="fw-bold">Брой регистрирани играчи:</span> @Model.SeasonStatistics.RegisteredPlayersCount</p>
-            <p><span class="fw-bold">Брой изиграни мачове:</span> @Model.SeasonStatistics.MatchesPlayed</p>
-            <p><span class="fw-bold">Брой оставащи мачове:</span> @Model.SeasonStatistics.MatchesLeft</p>
+        <div class="col-md-4 border-end border-5 border-secondary">
+            <ul class="list-group">
+                <li class="list-group-item bg-info h4">
+                    <span class="fw-bold">Сезон:</span> @Model.SeasonStatistics.SeasonDescription
+                </li>
+                <li class="list-group-item h6">
+                    <span class="fw-bold">Начала дата:</span> @Model.SeasonStatistics.SeasonStart.ToString("dd/MM/yyyy")
+                </li>
+                <li class="list-group-item h6">
+                    <span class="fw-bold">Крайна дата:</span> @Model.SeasonStatistics.SeasonEnd.ToString("dd/MM/yyyy")
+                </li>
+                <li class="list-group-item h6">
+                    <span class="fw-bold">Брой регистрирани отбори:</span> @Model.SeasonStatistics.RegisteredTeamsCount
+                </li>
+                <li class="list-group-item h6">
+                    <span class="fw-bold">Брой регистрирани играчи:</span> @Model.SeasonStatistics.RegisteredPlayersCount
+                </li>
+                <li class="list-group-item h6">
+                    <span class="fw-bold">Брой изиграни мачове:</span> @Model.SeasonStatistics.MatchesPlayed
+                </li>
+                <li class="list-group-item h6">
+                    <span class="fw-bold">Брой мачове за сезона:</span> @Model.SeasonStatistics.TotalMatchesCount
+                </li>
+            </ul>
         </div>
 
-        <div class="col-md-6">
-            <h3>Статистика за съдии</h3>
-            <p><span class="fw-bold">Общ брой съдии:</span> @Model.RefereesStatistics.RefereesTotalCount</p>
-            <p><span class="fw-bold">Брой главни съдии:</span> @Model.RefereesStatistics.MainRefereesCount</p>
-            <p><span class="fw-bold">Брой помощни съдии:</span> @Model.RefereesStatistics.AssistantRefereesCount</p>
-            <p><span class="fw-bold">Брой делегати:</span> @Model.RefereesStatistics.DelegatesCount</p>
-            <p><span class="fw-bold">Брой администрация:</span> @Model.RefereesStatistics.AdministrationCount</p>
-            <p><span class="fw-bold">Брой налични съдии:</span> @Model.RefereesStatistics.CurrentlyAvaliableReferees</p>
-            <p><span class="fw-bold">Средна възраст на съдиите:</span> @Model.RefereesStatistics.AverageRefereesAge</p>
+        <div class="col-md-8">
+            <h2 class="offset-3">Статистика за съдии</h2>
+            <br />
+            <div class="alert-info">
+                <div>
+                    <p class="ms-3 p-1">Брой на съдий в статус свободен</p>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: @styleValue" aria-valuenow="@percentAvaliableRefs" aria-valuemin="0" aria-valuemax="100">@avaliableRefs/@totalRefs</div>
+                </div>
+            </div>
+            <br />
+            <p><span class="fw-bold h6">Средна възраст на съдиите:</span> @Model.RefereesStatistics.AverageRefereesAge г.</p>
+            <br />
+            <div class="row">
+                <div class="col-8">
+                    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+                </div>
+                <div class="col-4 text-secondary">
+                    <ul class="list-group">
+                        <li class="list-group-item bg-info h5">
+                            <span class="fw-bold">Общ брой съдии:</span> @Model.RefereesStatistics.RefereesTotalCount
+                        </li>
+                        <li class="list-group-item h6">
+                            <span class="fw-bold">Брой главни съдии:</span> @Model.RefereesStatistics.MainRefereesCount
+                        </li>
+                        <li class="list-group-item h6">
+                            <span class="fw-bold">Брой помощни съдии:</span> @Model.RefereesStatistics.AssistantRefereesCount
+                        </li>
+                        <li class="list-group-item h6">
+                            <span class="fw-bold">Брой делегати:</span> @Model.RefereesStatistics.DelegatesCount
+                        </li>
+                        <li class="list-group-item h6">
+                            <span class="fw-bold">Брой администрация:</span> @Model.RefereesStatistics.AdministrationCount
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+    var xValues = @Html.Raw(Json.Serialize(Model.RefereesStatistics.Roles));
+    var yValues = [@Model.RefereesStatistics.MainRefereesCount, @Model.RefereesStatistics.AssistantRefereesCount, @Model.RefereesStatistics.DelegatesCount, @Model.RefereesStatistics.AdministrationCount];
+    var barColors = ["red", "green", "blue", "orange"];
+
+    new Chart("myChart", {
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            legend: { display: false },
+            title: {
+                display: true,
+                text: "Брой съдий разделени по роля"
+            }
+        }
+    });
+</script>
