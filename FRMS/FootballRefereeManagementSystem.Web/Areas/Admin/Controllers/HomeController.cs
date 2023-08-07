@@ -21,7 +21,7 @@
             AdminStatisticsViewModel stats = new AdminStatisticsViewModel()
             {
                 RefereesStatistics = await this.refereeService.GetRefereesStatisticsAsync(),
-                SeasonStatistics = await this.seasonService.GetSeasonStatisticsAsync(),
+                SeasonStatistics = await this.seasonService.GetCurrentSeasonStatisticsAsync(),
             };
 
             return View(stats);

@@ -1,5 +1,6 @@
 ﻿namespace FootballRefereeManagementSystem.Services
 {
+    using System.Linq;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -7,9 +8,9 @@
 
     using Contracts;
     using Data;
+    using Data.Models.Enums;
     using Web.ViewModels.Season;
-    using System;
-    using System.Linq;
+    using FootballRefereeManagementSystem.Data.Models;
 
     public class SeasonService : ISeasonService
     {
@@ -36,7 +37,7 @@
             return await this.dbContext
                 .Seasons
                 .AsNoTracking()
-                .OrderByDescending(s => s.End.Year)
+                .Where(s => s.Status == SeasonStatus.Current)
                 .Select(s => new SeasonViewModel
                 {
                     Description = s.Description,
@@ -46,11 +47,11 @@
                 .FirstAsync();
         }
 
-        public async Task<string> GetLatestSeasonDescriptionAsync()
+        public async Task<string> GetCurrentSeasonDescriptionAsync()
         {
             string currentSeason = await this.dbContext.Seasons
                 .AsNoTracking()
-                .OrderByDescending(s => s.End.Year)
+                .Where(s => s.Status == SeasonStatus.Current)
                 .Select(s => s.Description)
                 .FirstAsync();
 
@@ -67,13 +68,13 @@
                 .FirstAsync();
         }
 
-        public async Task<SeasonStatisticsViewModel> GetSeasonStatisticsAsync()
+        public async Task<SeasonStatisticsViewModel> GetCurrentSeasonStatisticsAsync()
         {
             SeasonStatisticsViewModel seasonStats = await this.dbContext
                 .Seasons
                 .Include(s => s.SeasonTeams)
                 .AsNoTracking()
-                .OrderByDescending(s => s.End.Year)
+                .Where(s => s.Status == SeasonStatus.Current)
                 .Select(s => new SeasonStatisticsViewModel()
                 {
                     SeasonDescription = s.Description,
@@ -96,14 +97,34 @@
             return seasonStats;
         }
 
+        public async Task<bool> CheckForSeasonInPreparation()
+        {
+            return await this.dbContext
+                .Seasons
+                .AnyAsync(s => s.Status == SeasonStatus.InPreparation);
+        }
+
+        public async Task AddNewSeasonAsync(SeasonFormModel model)
+        {
+            Season seasonToAdd = new Season()
+            {
+                Start = model.StartDate,
+                End = model.EndDate,
+                Description = $"{model.StartDate.ToString("yyyy")}/{model.EndDate.ToString("yy")}"
+            };
+
+            await this.dbContext.Seasons.AddAsync(seasonToAdd);
+            await this.dbContext.SaveChangesAsync();
+        }
+
+        // ----------------------------------
+        // private methods
         private async Task<int> GetTotalMatchesCountForSeason()
         {
-            string latestsSeasonDescription = await GetLatestSeasonDescriptionAsync();
-
             int[][] homeMatchesCount = await this.dbContext
                 .Seasons
                 .AsNoTracking()
-                .Where(s => s.Description == latestsSeasonDescription)
+                .Where(s => s.Status == SeasonStatus.Current)
                 .Select(s => s.SeasonTeams
                     .Select(ts => ts.HomeGames
                         .Count())
@@ -113,7 +134,7 @@
             int[][] awayMatchesCount = await this.dbContext
                 .Seasons
                 .AsNoTracking()
-                .Where(s => s.Description == latestsSeasonDescription)
+                .Where(s => s.Status == SeasonStatus.Current)
                 .Select(s => s.SeasonTeams
                     .Select(ts => ts.AwayGames
                         .Count())
@@ -128,12 +149,10 @@
 
         private async Task<int> GetSeasonTotalMatchesPlayedCount()
         {
-            string latestsSeasonDescription = await GetLatestSeasonDescriptionAsync();
-
             int[][] homeMatchesPlayedArray = await this.dbContext
                 .Seasons
                 .AsNoTracking()
-                .Where(s => s.Description == latestsSeasonDescription)
+                .Where(s => s.Status == SeasonStatus.Current)
                 .Select(s => s.SeasonTeams
                     .Select(ts => ts.HomeGames
                         .Where(m => m.HasFinished == true)
@@ -144,7 +163,7 @@
             int[][] awayMatchesPlayedArray = await this.dbContext
                 .Seasons
                 .AsNoTracking()
-                .Where(s => s.Description == latestsSeasonDescription)
+                .Where(s => s.Status == SeasonStatus.Current)
                 .Select(s => s.SeasonTeams
                     .Select(ts => ts.AwayGames
                         .Where(m => m.HasFinished == true)
@@ -161,13 +180,12 @@
         private async Task<int> GetTotalRegisteredPlayersCountForCurrentSeason()
         {
             // Getting the number of players per registered team for the season
-            // Result is jagged array where we have different teams for rows and their respective players count for colums
-            string latestsSeasonDescription = await GetLatestSeasonDescriptionAsync();
-
+            // Result is jagged array where we have different TeamSeasons (team playing in a season) for rows
+            // and their respective players count for colums
             int[][] teamsPlayersCountArray = await this.dbContext
                 .Seasons
                 .AsNoTracking()
-                .Where(s => s.Description == latestsSeasonDescription)
+                .Where(s => s.Status == SeasonStatus.Current)
                 .Select(s => s.SeasonTeams
                     .Select(ts => ts.TeamSeasonPlayers.Count)
                     .ToArray())

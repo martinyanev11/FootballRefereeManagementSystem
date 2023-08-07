@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/FootballRefereeManagementSystem.Web.styles.css" asp-append-version="true" />
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-danger">
@@ -30,38 +31,22 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        @if (User.Identity?.IsAuthenticated ?? false)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="News" asp-action="All">НОВИНИ</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Referee" asp-action="All">СЪДИЙ</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Season" asp-action="All">СЕЗОН</a>
-                            </li>
-                            <li class="nav-item me-3">
-                                <a class="nav-link" asp-area="" asp-controller="Referee" asp-action="Schedule">СЕДМИЧЕН НАРЯД</a>
-                            </li>
-
-                            @if (User.IsInRole("Admin"))
-                            {
-                                <li class="vr me-3 text-white"></li>
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-area="Admin" asp-controller="Home" asp-action="Dashboard">АДМИНИСТРАТОРСКИ ПАНЕЛ</a>
-                                </li>
-                            }
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Career" asp-action="Apply">КАРИЕРА</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Contact" asp-action="Contact">КОНТАКТИ</a>
-                            </li>
-                        }
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="News" asp-action="All">НОВИНИ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Referee" asp-action="All">СЪДИЙ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Season" asp-action="All">СЕЗОН</a>
+                        </li>
+                        <li class="nav-item me-3">
+                            <a class="nav-link" asp-area="" asp-controller="Referee" asp-action="Schedule">СЕДМИЧЕН НАРЯД</a>
+                        </li>
+                        <li class="vr me-3 text-white"></li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Admin" asp-controller="Home" asp-action="Dashboard">АДМИНИСТРАТОРСКИ ПАНЕЛ</a>
+                        </li>
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -70,10 +55,11 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-white border-bottom border-danger box-shadow mb-3 alert-danger">
             <div class="navbar-nav flex-grow-1">
                 <a class="nav-link offset-1 btn btn-sm btn-success text-white me-3" asp-area="Admin" asp-controller="Career" asp-action="All">КАНДИДАТУРИ</a>
+                <div class="vr me-3 text-danger"></div>
                 <a class="nav-link btn btn-sm btn-success text-white me-3" asp-area="Admin" asp-controller="Division" asp-action="All">ДИВИЗИИ</a>
                 <a class="nav-link btn btn-sm btn-success text-white me-3" asp-area="Admin" asp-controller="Town" asp-action="All">ГРАДОВЕ</a>
                 <a class="nav-link btn btn-sm btn-success text-white me-3" asp-area="Admin" asp-controller="Zone" asp-action="All">ЗОНИ</a>
-                <a class="nav-link btn btn-sm btn-success text-white me-3" asp-area="Admin" asp-controller="Team" asp-action="All">ОТБОРИ</a>
+                <a class="nav-link btn btn-sm btn-success text-white me-3" asp-area="Admin" asp-controller="Team" asp-action="All">ОТБОРИ</a>               
             </div>
         </nav>
     </header>

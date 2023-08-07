@@ -1,11 +1,18 @@
-﻿@model AdminStatisticsViewModel
+﻿@using FootballRefereeManagementSystem.Services.Contracts;
+@model AdminStatisticsViewModel
+@inject ISeasonService SeasonService;
 @{
     ViewData["Title"] = "Администраторски панел";
+    bool isCurrentSeasonOver = Model.SeasonStatistics.SeasonEnd.CompareTo(DateTime.UtcNow) == -1; // Value needs to be set to 1 after development
+
     int avaliableRefs = Model.RefereesStatistics.CurrentlyAvaliableReferees;
     int totalRefs = Model.RefereesStatistics.RefereesTotalCount;
     double percentAvaliableRefs = (double)avaliableRefs / totalRefs * 100;
     string styleValue = $"{percentAvaliableRefs}%";
+
+    bool alreadyHaveSeasonInPreparation = await this.SeasonService.CheckForSeasonInPreparation();
 }
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
 <div class="container mt-4">
@@ -13,7 +20,9 @@
     <hr />
     <div class="row">
         <div class="col-md-4 border-end border-5 border-secondary">
-            <ul class="list-group">
+            <a class="nav-link btn btn-lg @(alreadyHaveSeasonInPreparation ? "btn-primary" : "btn-success") text-white @(isCurrentSeasonOver ? "disabled" : string.Empty)" asp-area="Admin" asp-controller="Season" asp-action="Add">@(alreadyHaveSeasonInPreparation ? "УПРАВЛЕНИЕ НА НОВ СЕЗОН" : "ЗАПОЧНИ НОВ СЕЗОН")</a>
+            <div class="alert-warning @(isCurrentSeasonOver ? string.Empty : "visually-hidden")">Подготовката на новия сезон може да започне след приключване на сегашния!</div>
+            <ul class="list-group mt-3">
                 <li class="list-group-item bg-info h4">
                     <span class="fw-bold">Сезон:</span> @Model.SeasonStatistics.SeasonDescription
                 </li>

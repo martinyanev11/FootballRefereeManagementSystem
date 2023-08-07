@@ -39,7 +39,7 @@
                 if (string.IsNullOrEmpty(returneQueryModel.SeasonFilter))
                 {
                     queryModel.SeasonFilter =
-                        await this.seasonService.GetLatestSeasonDescriptionAsync();
+                        await this.seasonService.GetCurrentSeasonDescriptionAsync();
                 }
                 else
                 {

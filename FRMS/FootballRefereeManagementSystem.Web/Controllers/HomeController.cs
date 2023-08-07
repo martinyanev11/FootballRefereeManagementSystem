@@ -29,7 +29,7 @@
                 .Where(file => file.EndsWith(".jpeg") || file.EndsWith(".jpg"));
 
             ViewData["CurrentSeason"] = 
-                await this.seasonService.GetLatestSeasonDescriptionAsync();
+                await this.seasonService.GetCurrentSeasonDescriptionAsync();
 
             return View(imagePaths);
         }
