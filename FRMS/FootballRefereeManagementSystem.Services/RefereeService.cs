@@ -1,5 +1,6 @@
 ﻿namespace FootballRefereeManagementSystem.Services
 {
+    using System.Data;
     using System.Collections.Generic;
 
     using Microsoft.EntityFrameworkCore;
@@ -14,7 +15,6 @@
     using Web.ViewModels.Career;
     using Services.Common;
     using Services.Models.Referee;
-    using System.Data;
 
     public class RefereeService : IRefereeService
     {
@@ -427,6 +427,41 @@
 
             refStats.Roles = Translator.GetAllRolesTranslated();
             return refStats;
+        }
+
+        public async Task<IEnumerable<RefereeListModel>> GetAllAvaliableInDivisionRefereesOfRoleType(int divisionId, string roleType)
+        {
+            return await this.dbContext
+                .Referees
+                .Where(r =>
+                    r.IsAvaliable && 
+                    r.IsActive &&
+                    r.RefereeDivisions
+                        .Any(rd => rd.DivisionId == divisionId) &&
+                    r.Role == Enum.Parse<Role>(roleType))
+                .Select(r => new RefereeListModel()
+                {
+                    Id = r.Id,
+                    FullName = $"{r.FirstName} {r.LastName}",
+                })
+                .ToArrayAsync();
+        }
+
+        public async Task<Guid> CreateRefereeSquad(int id, RefereeSquadFormModel model)
+        {
+            RefereeSquad newSquad = new RefereeSquad()
+            {
+                MainRefereeId = model.MainRefereeId,
+                FirstAssistantRefereeId = model.AssistantRefereeOneId,
+                SecondAssistantRefereeId = model.AssistantRefereeTwoId,
+                DelegateId = model.DelegateId,
+                MatchId = id
+            };
+
+            await this.dbContext.RefereesSquads.AddAsync(newSquad);
+            await this.dbContext.SaveChangesAsync();
+
+            return newSquad.Id;
         }
     }
 }

@@ -1,0 +1,74 @@
+﻿@using FootballRefereeManagementSystem.Web.ViewModels.RefereeSquad;
+@model RefereeSquadFormModel;
+@{
+    ViewData["Title"] = "Нова съдийска бригада";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+    <hr />
+    <form method="post" asp-area="Admin" asp-controller="Referee" asp-action="CreateSquad">
+        <div class="row visually-hidden">
+            <input asp-for="DivisionId" class="form-control" />
+        </div>
+
+        <div class="row">
+            <div class="form-group mb-3 col-3">
+                <label asp-for="MainRefereeId" class="dropdown-header">Главен съдия:</label>
+                <span asp-validation-for="MainRefereeId" class="text-danger"></span>
+                <select asp-for="MainRefereeId" class="dropdown-menu-start form-control">
+                    @foreach (RefereeListModel referee in Model.MainRefereesList)
+                    {
+                        <option class="dropdown-item" value="@referee.Id">@referee.FullName</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group mb-3 col-3">
+                <label asp-for="AssistantRefereeOneId" class="dropdown-header">Първи помощник съдия:</label>
+                <span asp-validation-for="AssistantRefereeOneId" class="text-danger"></span>
+                <select asp-for="AssistantRefereeOneId" class="dropdown-menu-start form-control">
+                    @foreach (RefereeListModel referee in Model.AssistantRefereesList)
+                    {
+                        <option class="dropdown-item" value="@referee.Id">@referee.FullName</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group mb-3 col-3">
+                <label asp-for="AssistantRefereeTwoId" class="dropdown-header">Втори помощник съдия:</label>
+                <span asp-validation-for="AssistantRefereeTwoId" class="text-danger"></span>
+                <select asp-for="AssistantRefereeTwoId" class="dropdown-menu-start form-control">
+                    @foreach (RefereeListModel referee in Model.AssistantRefereesList)
+                    {
+                        <option class="dropdown-item" value="@referee.Id">@referee.FullName</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group mb-3 col-3">
+                <label asp-for="DelegateId" class="dropdown-header">Делегат:</label>
+                <span asp-validation-for="DelegateId" class="text-danger"></span>
+                <select asp-for="DelegateId" class="dropdown-menu-start form-control">
+                    @foreach (RefereeListModel referee in Model.DelegatesList)
+                    {
+                        <option class="dropdown-item" value="@referee.Id">@referee.FullName</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Създай бригада</button>
+        <a class="btn btn-secondary" asp-area="Admin" asp-controller="Referee" asp-action="Schedule">Отказ</a>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

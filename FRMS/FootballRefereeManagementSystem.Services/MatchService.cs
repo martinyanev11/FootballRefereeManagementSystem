@@ -73,6 +73,15 @@
                 .ToArrayAsync();
         }
 
+        public async Task<int> GetDivisionIdByMatchIdAsync(int id)
+        {
+            return await this.dbContext
+                .Matches
+                .Where(m => m.Id == id)
+                .Select(m => m.DivisionId)
+                .FirstAsync();
+        }
+
         public async Task<IEnumerable<MatchTableViewModel>> GetFilteredBySeasonAndDivisionMatchesAsync
             (string seasonFilter, string divisionFilter)
         {
@@ -239,6 +248,18 @@
                 .ToArrayAsync();
 
             return matches;
+        }
+
+        public async Task LinkMatchToRefereeSquadAsync(int matchId, Guid newRefSquadId)
+        {
+            Match matchToLink = await this.dbContext
+                .Matches
+                .Where(m => m.Id == matchId)
+                .FirstAsync();
+
+            matchToLink.RefereeSquadId = newRefSquadId;
+
+            await this.dbContext.SaveChangesAsync();
         }
 
         // --------------------------------------------

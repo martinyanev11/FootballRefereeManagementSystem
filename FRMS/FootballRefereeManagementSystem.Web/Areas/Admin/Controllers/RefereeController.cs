@@ -3,10 +3,12 @@
     using FootballRefereeManagementSystem.Data.Models;
     using FootballRefereeManagementSystem.Web.ViewModels.Match;
     using FootballRefereeManagementSystem.Web.ViewModels.Referee;
+    using FootballRefereeManagementSystem.Web.ViewModels.RefereeSquad;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
     using Services.Contracts;
+    using static FootballRefereeManagementSystem.Common.EntityValidationConstants;
 
     public class RefereeController : BaseAdminController
     {
@@ -162,9 +164,57 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> CreateSquad()
+        public async Task<IActionResult> CreateSquad(int id)
         {
-            return View();
+            try
+            {
+                int divisionId = await this.matchService.GetDivisionIdByMatchIdAsync(id);
+
+                RefereeSquadFormModel model = new RefereeSquadFormModel()
+                {
+                    DivisionId = divisionId,
+                    MainRefereesList = await this.refereeService.GetAllAvaliableInDivisionRefereesOfRoleType(divisionId, "Referee"),
+                    AssistantRefereesList = await this.refereeService.GetAllAvaliableInDivisionRefereesOfRoleType(divisionId, "AssistantReferee"),
+                    DelegatesList = await this.refereeService.GetAllAvaliableInDivisionRefereesOfRoleType(divisionId, "Delegate"),
+                };
+
+                return View(model);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+            
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateSquad(int id, RefereeSquadFormModel model)
+        {
+            try
+            {
+                if (model.AssistantRefereeOneId == model.AssistantRefereeTwoId)
+                {
+                    ModelState.AddModelError("AssistantRefereeOneId", "Асистент съдийте трябва да са различни.");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    model.MainRefereesList = await this.refereeService.GetAllAvaliableInDivisionRefereesOfRoleType(model.DivisionId, "Referee");
+                    model.AssistantRefereesList = await this.refereeService.GetAllAvaliableInDivisionRefereesOfRoleType(model.DivisionId, "AssistantReferee");
+                    model.DelegatesList = await this.refereeService.GetAllAvaliableInDivisionRefereesOfRoleType(model.DivisionId, "Delegate");
+                    return View(model);
+                }
+
+                Guid newRefSquadId = await this.refereeService.CreateRefereeSquad(id, model);
+
+                await this.matchService.LinkMatchToRefereeSquadAsync(id, newRefSquadId);
+
+                return RedirectToAction("Schedule", "Referee");
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
     }
 }

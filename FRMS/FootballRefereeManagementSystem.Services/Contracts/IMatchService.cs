@@ -1,5 +1,6 @@
 ﻿namespace FootballRefereeManagementSystem.Services.Contracts
 {
+    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -11,6 +12,7 @@
         Task<bool> CheckMatchExistanceById(int id);
         Task EditMatchAsync(int id, MatchEditViewModel model);
         Task<IEnumerable<MatchRefereeSquadSummaryViewModel>> GetAllMatchesForSeasonAsync(int seasonId);
+        Task<int> GetDivisionIdByMatchIdAsync(int id);
 
         /// <summary>
         /// Asynchronously retrieves matches data based on the provided season and division.
@@ -43,5 +45,6 @@
         /// <returns>A collection of models containing details of the matches.</returns>
         Task<IEnumerable<DetailsHistoryViewModel>> GetMatchHistoryForSeasonByTeamIdAsync(int id, int seasonId);
         Task<IEnumerable<MatchRefereeSquadSummaryViewModel>> GetWeeklyMatchesAsync(MatchQueryModel model);
+        Task LinkMatchToRefereeSquadAsync(int matchId, Guid newRefSquadId);
     }
 }
