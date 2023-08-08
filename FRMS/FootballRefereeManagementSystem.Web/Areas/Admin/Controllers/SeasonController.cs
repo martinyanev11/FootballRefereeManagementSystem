@@ -8,10 +8,13 @@
     public class SeasonController : BaseAdminController
     {
         private readonly ISeasonService seasonService;
+        private readonly ITeamService teamService;
 
-        public SeasonController(ISeasonService seasonService)
+        public SeasonController(ISeasonService seasonService, ITeamService teamService)
         {
             this.seasonService = seasonService;
+            this.teamService = teamService;
+            
         }
 
         [HttpGet]
@@ -70,6 +73,8 @@
             SeasonPreparationModel model = 
                 await this.seasonService.GetSeasonInPreparationAsync();
 
+            int seasonId = await this.seasonService.GetPreparationSeasonIdAsync();
+            model.RegisteredTeams = await this.teamService.GetAllRegisteredForNewSeasonTeams(seasonId);
             return View(model);
         }
 

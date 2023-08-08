@@ -11,6 +11,7 @@
     using Web.ViewModels.Team;
     using Data.Models.Enums;
     using Common;
+    using Web.ViewModels.Player;
 
     public class TeamService : ITeamService
     {
@@ -230,7 +231,7 @@
                 .FirstAsync();
         }
 
-        public async Task<IEnumerable<TeamListModel>> GetAllTeamsForRegistrationAsync(int seasonId)
+        public async Task<IEnumerable<TeamRegisteredListModel>> GetAllTeamsForRegistrationAsync(int seasonId)
         {
             return await this.dbContext
                 .Teams
@@ -241,9 +242,9 @@
                         .Any(ts => 
                             ts.TeamId == t.Id &&
                             ts.SeasonId == seasonId) == false)
-                .Select(t => new TeamListModel()
+                .Select(t => new TeamRegisteredListModel()
                 {
-                    Id = t.Id,
+                    TeamId = t.Id,
                     TeamName = t.Name,
                     TeamLocation = t.Town.Name,
                 })
@@ -278,6 +279,62 @@
                 .AnyAsync(ts => ts.TeamId == teamId && ts.SeasonId == seasonId);
         }
 
+        public async Task<IEnumerable<TeamRegisteredListModel>> GetAllRegisteredForNewSeasonTeams(int seasonId)
+        {
+            return await this.dbContext
+                .Teams
+                .Where(t => t.IsActive && t.TeamSeasons
+                        .Any(ts =>
+                            ts.TeamId == t.Id &&
+                            ts.SeasonId == seasonId))
+                .Select(t => new TeamRegisteredListModel()
+                {
+                    TeamId = t.Id,
+                    TeamName = t.Name,
+                    TeamLocation = t.Town.Name,
+                    DivisionName = t.TeamSeasons
+                        .Where(ts => ts.TeamId == t.Id &&
+                            ts.SeasonId == seasonId)
+                        .Select(ts => ts.Division.Name)
+                        .First(),
+                    RegisteredPlayersCount = t.TeamSeasons
+                        .Where(ts => ts.TeamId == t.Id &&
+                            ts.SeasonId == seasonId)
+                        .Select(ts => ts.TeamSeasonPlayers.Count)
+                        .First()
+                })
+                .ToArrayAsync();
+        }
+
+        public async Task<TeamSeasonEditModel> GetTeamSeasonForEdintById(int teamId, int seasonId)
+        {
+            return await this.dbContext
+                .TeamsSeasons
+                .Where(ts => ts.TeamId == teamId && ts.SeasonId == seasonId)
+                .Select(ts => new TeamSeasonEditModel()
+                {
+                    TeamId = ts.TeamId,
+                    TeamName = ts.Team.Name,
+                    SeasonId = ts.SeasonId,
+                    DivisionId = ts.DivisionId,
+                    ShirtColor = Translator.TranslateColorToBulgarian(ts.ShirtColor.ToString()),
+                })
+                .FirstAsync();
+        }
+
+        public async Task EditTeamSeasonAsync(TeamSeasonEditModel model)
+        {
+            TeamSeason teamSeasonToEdit = await this.dbContext
+                .TeamsSeasons
+                .Where(ts => ts.TeamId == model.TeamId && ts.SeasonId == model.SeasonId)
+                .FirstAsync();
+
+            teamSeasonToEdit.DivisionId = model.DivisionId;
+            teamSeasonToEdit.ShirtColor = Enum.Parse<Color>(Translator.TranslateColorToEnglish(model.ShirtColor));
+
+            await this.dbContext.SaveChangesAsync();
+        }
+
         // ----------------------------------
         // Helper classes
         // ----------------------------------
@@ -302,6 +359,15 @@
             }
 
             await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task<string> GetTeamNameByIdAsync(int teamId)
+        {
+            return await this.dbContext
+                .Teams
+                .Where(t => t.Id == teamId)
+                .Select(t => t.Name)
+                .FirstAsync();
         }
 
         /// <summary>

@@ -1,0 +1,57 @@
+﻿@using FootballRefereeManagementSystem.Web.ViewModels.Player;
+@model PlayerTeamSeasonFormModel;
+@{
+    ViewData["Title"] = "Регистрация на играч";
+
+    string teamInfo = $"{Model.TeamName} ({Model.Teamlocation})";
+}
+
+<div class="container">
+    <h2>@ViewData["Title"]</h2>
+    <hr class="col-4" />
+    <div class="row">
+        <div class="col-3">
+            <p class="h5 alert-warning">Играчът не съществува в системата?</p>
+        </div>
+        <div class="col-2">
+            <a class="btn btn-success" asp-area="Admin" asp-controller="Player" asp-action="Add">Добави нов</a>
+        </div>
+    </div>
+    <hr class="col-4" />
+    <h5>Регистрирай играч за новия сезон</h5>
+    <form method="post" asp-area="Admin" asp-controller="Player" asp-action="Register">
+        <div class="row visually-hidden">
+            <input asp-for="TeamId" class="form-control" />
+        </div>
+        <div class="row visually-hidden">
+            <input asp-for="SeasonId" class="form-control" />
+        </div>
+
+        <div class="row">
+            <div class="form-group mb-3 col-3">
+                <label asp-for="@teamInfo" class="dropdown-header">Отбор:</label>
+                <input asp-for="@teamInfo" class="form-control" disabled />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group mb-3 col-5">
+                <label asp-for="PlayerId" class="dropdown-header">Избор на отбор:</label>
+                <span asp-validation-for="PlayerId" class="text-danger"></span>
+                <select asp-for="PlayerId" class="dropdown-menu-start form-control">
+                    @foreach (PlayerDetailsViewModel player in Model.Players)
+                    {
+                        <option class="dropdown-item" value="@player.Id">@player.FullName, @player.Age г. @(player.Position is null ? string.Empty : $"- {@player.Position}")</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Регистрирай</button>
+        <a class="btn btn-secondary" asp-area="Admin" asp-controller="Season" asp-action="SeasonPreparation">Отказ</a>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

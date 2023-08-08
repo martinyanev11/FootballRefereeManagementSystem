@@ -1,34 +1,26 @@
 ﻿@using FootballRefereeManagementSystem.Web.ViewModels.Division;
 @using FootballRefereeManagementSystem.Web.ViewModels.Team;
-@model TeamSeasonRegisterModel;
+@model TeamSeasonEditModel;
 @{
-    ViewData["Title"] = "Регистрация на отбор";
+    ViewData["Title"] = "Редакция на регистриран отбор";
 }
 
 <div class="container">
     <h2>@ViewData["Title"]</h2>
-    <hr class="col-4"/>
-    <div class="row">
-        <div class="col-3">
-            <p class="h5 alert-warning">Отбора не съществува в системата?</p>
-        </div>
-        <div class="col-2">
-            <a class="btn btn-success" asp-area="Admin" asp-controller="Team" asp-action="Add">Създай нов</a>
-        </div>
-    </div>
-    <hr class="col-4"/>
-    <h5>Регистрирай отбор за новия сезон</h5>
-    <form method="post" asp-area="Admin" asp-controller="Team" asp-action="RegisterForSeason">
-        <div class="row">
+    <hr class="col-4" />
+    <h5>Редактиране на отбор за новия сезон</h5>
+    <form method="post" asp-area="Admin" asp-controller="Team" asp-action="EditTeamSeason">
+        <div class="row visually-hidden">
             <div class="form-group mb-3 col-3">
                 <label asp-for="TeamId" class="dropdown-header">Избор на отбор:</label>
-                <span asp-validation-for="TeamId" class="text-danger"></span>
-                <select asp-for="TeamId" class="dropdown-menu-start form-control">
-                    @foreach (TeamRegisteredListModel team in Model.Teams)
-                    {
-                        <option class="dropdown-item" value="@team.TeamId">@team.TeamName (@team.TeamLocation)</option>
-                    }
-                </select>
+                <input asp-for="TeamId" class="form-control" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group mb-3 col-3">
+                <label asp-for="TeamName" class="dropdown-header">Отбор:</label>
+                <input asp-for="TeamName" class="form-control" disabled />
             </div>
         </div>
 
@@ -57,7 +49,7 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-success">Регистрирай</button>
+        <button type="submit" class="btn btn-warning">Редактирай</button>
         <a class="btn btn-secondary" asp-area="Admin" asp-controller="Season" asp-action="SeasonPreparation">Отказ</a>
     </form>
 </div>

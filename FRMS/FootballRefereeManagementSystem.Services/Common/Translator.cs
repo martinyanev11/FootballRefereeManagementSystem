@@ -119,5 +119,27 @@
             color = colorTranslations[color];
             return color;
         }
+
+        public static string TranslateColorToBulgarian(string color)
+        {
+            Dictionary<string, string> colorTranslations = new Dictionary<string, string>
+            {
+                {"Red", "Червен"},
+                {"Orange", "Оранжев"},
+                {"Yellow", "Жълт"},
+                {"Green", "Зелен"},
+                {"Blue", "Син"},
+                {"Violet", "Виолетов"},
+                {"Purple", "Лилав"},
+                {"Pink", "Розов"},
+                {"Brown", "Кафяв"},
+                {"Gray", "Сив"},
+                {"Black", "Черен"},
+                {"White", "Бял"}
+            };
+
+            color = colorTranslations[color];
+            return color;
+        }
     }
 }

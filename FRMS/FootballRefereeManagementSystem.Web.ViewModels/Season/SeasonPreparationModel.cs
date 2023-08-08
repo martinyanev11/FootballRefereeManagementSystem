@@ -8,16 +8,13 @@
     {
         public SeasonPreparationModel()
         {
-            this.RegisteredTeams = new HashSet<TeamDetailsViewModel>();
-            this.RegisteredPlayers = new HashSet<PlayerDetailsViewModel>();
+            this.RegisteredTeams = new HashSet<TeamRegisteredListModel>();
             this.SeasonMatches = new HashSet<MatchRefereeSquadSummaryViewModel>();
         }
 
         public string Description { get; set; } = null!;
 
-        public IEnumerable<TeamDetailsViewModel> RegisteredTeams { get; set; } = null!;
-
-        public IEnumerable<PlayerDetailsViewModel> RegisteredPlayers { get; set; } = null!;
+        public IEnumerable<TeamRegisteredListModel> RegisteredTeams { get; set; } = null!;
 
         public IEnumerable<MatchRefereeSquadSummaryViewModel> SeasonMatches { get; set; } = null!;
     }

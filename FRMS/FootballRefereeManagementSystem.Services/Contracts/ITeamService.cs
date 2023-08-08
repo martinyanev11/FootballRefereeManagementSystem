@@ -36,6 +36,8 @@
         /// <param name="model">The model containing the updated team data.</param>
         /// <returns>A task representing the asynchronous operation.</returns>
         Task EditTeamAsync(int id, TeamFormModel model);
+        Task EditTeamSeasonAsync(TeamSeasonEditModel model);
+        Task<IEnumerable<TeamRegisteredListModel>> GetAllRegisteredForNewSeasonTeams(int seasonId);
         IEnumerable<string> GetAllShirtColors();
 
         /// <summary>
@@ -44,7 +46,7 @@
         /// <param name="queryModel">The query model containing filters and search criteria.</param>
         /// <returns>A task representing the asynchronous operation that returns the collection of team view models.</returns>
         Task<IEnumerable<TeamAdminViewModel>> GetAllTeamsAsync(TeamAdminQueryModel queryModel);
-        Task<IEnumerable<TeamListModel>> GetAllTeamsForRegistrationAsync(int seasonId);
+        Task<IEnumerable<TeamRegisteredListModel>> GetAllTeamsForRegistrationAsync(int seasonId);
 
         /// <summary>
         /// Asynchronously retrieves team standings for a specified season and division.
@@ -74,6 +76,8 @@
         /// <param name="id">The ID of the team to retrieve information for.</param>
         /// <returns>A task representing the asynchronous operation that returns the team information.</returns>
         Task<TeamAdminViewModel> GetTeamInfoByIdAsync(int id);
+        Task<string> GetTeamNameByIdAsync(int teamId);
+        Task<TeamSeasonEditModel> GetTeamSeasonForEdintById(int teamId, int seasonId);
 
         /// <summary>
         /// Asynchronously retrieves detailed information about a team's season based on the provided team ID.

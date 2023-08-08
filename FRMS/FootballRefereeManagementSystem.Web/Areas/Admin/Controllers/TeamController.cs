@@ -203,7 +203,6 @@
             {
                 return View("Error");
             }
-
         }
 
         [HttpPost]
@@ -262,6 +261,66 @@
             catch (Exception)
             {
                 return View("Error");
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditTeamSeason(int teamId)
+        {
+            try
+            {
+                int seasonId = await this.seasonService.GetPreparationSeasonIdAsync();
+
+                TeamSeasonEditModel model = await this.teamService.GetTeamSeasonForEdintById(teamId, seasonId);
+
+                model.Divisions = await this.divisionService.GetAllDivisionsForRegistrationAsync();
+                model.ShirtColors = this.teamService.GetAllShirtColors();
+
+                return View(model);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditTeamSeason(TeamSeasonEditModel model)
+        {
+            try
+            {
+                bool teamExists =
+                    await this.teamService.CheckTeamExistanceByIdAsync(model.TeamId);
+
+                if (!teamExists)
+                {
+                    ModelState.AddModelError("TeamId", "Отборът не съществува!");
+                }
+
+                bool divisionExists =
+                    await this.divisionService.CheckDivisionExistanceByIdAsync(model.DivisionId);
+
+                if (!divisionExists)
+                {
+                    ModelState.AddModelError("DivisionId", "Дивизията не съществува!");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    model.Divisions = await this.divisionService.GetAllDivisionsForRegistrationAsync();
+                    model.ShirtColors = this.teamService.GetAllShirtColors();
+                    return View(model);
+                }
+
+                model.SeasonId = await this.seasonService.GetPreparationSeasonIdAsync();
+                await this.teamService.EditTeamSeasonAsync(model);
+
+                return RedirectToAction("SeasonPreparation", "Season");
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }
