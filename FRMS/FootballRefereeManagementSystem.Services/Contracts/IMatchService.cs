@@ -42,5 +42,6 @@
         /// <param name="seasonId">The ID of the season to filter the matches.</param>
         /// <returns>A collection of models containing details of the matches.</returns>
         Task<IEnumerable<DetailsHistoryViewModel>> GetMatchHistoryForSeasonByTeamIdAsync(int id, int seasonId);
+        Task<IEnumerable<MatchRefereeSquadSummaryViewModel>> GetWeeklyMatchesAsync(MatchQueryModel model);
     }
 }

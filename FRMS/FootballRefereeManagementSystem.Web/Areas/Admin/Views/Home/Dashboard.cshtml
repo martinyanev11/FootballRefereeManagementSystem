@@ -3,7 +3,7 @@
 @inject ISeasonService SeasonService;
 @{
     ViewData["Title"] = "Администраторски панел";
-    bool isCurrentSeasonOver = Model.SeasonStatistics.SeasonEnd.CompareTo(DateTime.UtcNow) == -1; // Value needs to be set to 1 after development
+    bool isCurrentSeasonOver = Model.SeasonStatistics.SeasonEnd.CompareTo(DateTime.UtcNow) == 1; // Value needs to be set to 1 after development
 
     int avaliableRefs = Model.RefereesStatistics.CurrentlyAvaliableReferees;
     int totalRefs = Model.RefereesStatistics.RefereesTotalCount;

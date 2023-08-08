@@ -33,5 +33,6 @@
         bool StatusValidation(string status);
         Task<SeasonPreparationModel> GetSeasonInPreparationAsync();
         Task<int> GetPreparationSeasonIdAsync();
+        Task BeginNewSeasonAsync();
     }
 }

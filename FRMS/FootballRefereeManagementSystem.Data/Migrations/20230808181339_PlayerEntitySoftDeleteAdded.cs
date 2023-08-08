@@ -688,20 +688,6 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                 keyValue: 88,
                 column: "IsActive",
                 value: true);
-
-            migrationBuilder.UpdateData(
-                table: "Seasons",
-                keyColumn: "Id",
-                keyValue: 1,
-                column: "Status",
-                value: 1);
-
-            migrationBuilder.UpdateData(
-                table: "Seasons",
-                keyColumn: "Id",
-                keyValue: 2,
-                column: "Status",
-                value: 2);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -765,20 +751,6 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                 keyValue: new Guid("ea01fe26-36c8-4daa-b1c8-8b9209e82478"),
                 columns: new[] { "ConcurrencyStamp", "PasswordHash" },
                 values: new object[] { "8382d0f2-2137-45e8-8403-0b57d3aac520", "AQAAAAEAACcQAAAAEPVc9PdjxIw3ir8OA3/R6AVntPVgqdhdYy3SqJh1UIVYKVJjqTMufQzHruzp35V62Q==" });
-
-            migrationBuilder.UpdateData(
-                table: "Seasons",
-                keyColumn: "Id",
-                keyValue: 1,
-                column: "Status",
-                value: 0);
-
-            migrationBuilder.UpdateData(
-                table: "Seasons",
-                keyColumn: "Id",
-                keyValue: 2,
-                column: "Status",
-                value: 1);
         }
     }
 }

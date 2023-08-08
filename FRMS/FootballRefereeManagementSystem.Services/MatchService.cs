@@ -189,6 +189,56 @@
             return matches;
         }
 
+        public async Task<IEnumerable<MatchRefereeSquadSummaryViewModel>> GetWeeklyMatchesAsync(MatchQueryModel queryModel)
+        {
+            // TODO: remove the comments for real application use.
+            // For testing purposes I put the todaysDate as of 1 week away from 1st matches on 2023-09-17 17:00:00.0000000
+            //DateTime todaysDate = DateTime.UtcNow;
+            DateTime todaysDate = new DateTime(2023, 9, 11);
+            
+            IQueryable<Match> matchQuery = this.dbContext
+                .Matches
+                .Where(m => 
+                    m.HasFinished == false && 
+                    m.RefereeSquad == null &&
+                    m.FixtureTime >= todaysDate &&
+                    m.FixtureTime <= todaysDate.AddDays(7))
+                .AsNoTracking()
+                .AsQueryable();
+
+            // Filter by selected division
+            if (!string.IsNullOrWhiteSpace(queryModel.DivisionFilter))
+            {
+                matchQuery = matchQuery
+                    .Where(m => m.Division.Name == queryModel.DivisionFilter);
+            }
+
+            // Filter by search string
+            if (!string.IsNullOrWhiteSpace(queryModel.SearchString))
+            {
+                string wildCard = $"%{queryModel.SearchString.ToLower()}%";
+
+                matchQuery = matchQuery
+                    .Where(m => 
+                        EF.Functions.Like(m.HomeTeam.Team.Name, wildCard) ||
+                        EF.Functions.Like(m.AwayTeam.Team.Name, wildCard));
+            }
+
+            IEnumerable<MatchRefereeSquadSummaryViewModel> matches = await matchQuery
+                .Select(m => new MatchRefereeSquadSummaryViewModel()
+                {
+                    MatchId = m.Id,
+                    HomeTeamName = m.HomeTeam.Team.Name,
+                    HomeTeamTown = m.HomeTeam.Team.Town.Name,
+                    AwayTeamName = m.AwayTeam.Team.Name,
+                    AwayTeamTown = m.AwayTeam.Team.Town.Name,
+                    FixtureTime = m.FixtureTime,
+                })
+                .ToArrayAsync();
+
+            return matches;
+        }
+
         // --------------------------------------------
         // private methods
         // ---------------------------------------------

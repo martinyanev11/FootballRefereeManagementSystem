@@ -1,6 +1,7 @@
 ﻿namespace FootballRefereeManagementSystem.Web.Areas.Admin.Controllers
 {
     using FootballRefereeManagementSystem.Data.Models;
+    using FootballRefereeManagementSystem.Web.ViewModels.Match;
     using FootballRefereeManagementSystem.Web.ViewModels.Referee;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -13,17 +14,20 @@
         private readonly IUserService userService;
         private readonly IRefereeService refereeService;
         private readonly IDivisionService divisionService;
+        private readonly IMatchService matchService;
 
         public RefereeController(
             UserManager<ApplicationUser> userManager,
             IRefereeService refereeService,
             IDivisionService divisionService,
-            IUserService userService)
+            IUserService userService,
+            IMatchService matchService)
         {
             this.userManager = userManager;
             this.refereeService = refereeService;
             this.divisionService = divisionService;
             this.userService = userService;
+            this.matchService = matchService;
         }
 
         [HttpGet]
@@ -146,6 +150,15 @@
             {
                 return View("Error");
             }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Schedule([FromQuery] MatchQueryModel model)
+        {
+            model.DivisionOptions = await this.divisionService.GetAllDivisionNamesAsync();
+            model.WeeklyMatches = await this.matchService.GetWeeklyMatchesAsync(model);
+
+            return View(model);
         }
     }
 }

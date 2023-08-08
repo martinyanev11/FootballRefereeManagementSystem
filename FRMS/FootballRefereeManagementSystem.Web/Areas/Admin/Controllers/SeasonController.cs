@@ -81,6 +81,22 @@
         }
 
         [HttpGet]
+        public async Task<IActionResult> BeginNewSeason()
+        {
+            bool preperationSeasonExists =
+                await this.seasonService.CheckForSeasonInPreparation();
+
+            if (!preperationSeasonExists)
+            {
+                return View("Error404");
+            }
+
+            await this.seasonService.BeginNewSeasonAsync();
+
+            return RedirectToAction("Dashboard", "Home");
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Edit(string status)
         {
             try

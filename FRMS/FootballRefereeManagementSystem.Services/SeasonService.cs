@@ -182,6 +182,24 @@
                 .FirstAsync();
         }
 
+        public async Task BeginNewSeasonAsync()
+        {
+            Season currentSeason = await this.dbContext
+                .Seasons
+                .Where(s => s.Status == SeasonStatus.Current)
+                .FirstAsync();
+
+            Season inPreparationSeason = await this.dbContext
+                .Seasons
+                .Where(s => s.Status == SeasonStatus.InPreparation)
+                .FirstAsync();
+
+            currentSeason.Status = SeasonStatus.Ended;
+            inPreparationSeason.Status = SeasonStatus.Current;
+
+            await this.dbContext.SaveChangesAsync();
+        }
+
         // ----------------------------------
         // private methods
         private async Task<int> GetTotalMatchesCountForSeason()
