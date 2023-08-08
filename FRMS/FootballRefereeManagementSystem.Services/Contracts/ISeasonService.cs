@@ -28,5 +28,9 @@
         Task<SeasonStatisticsViewModel> GetCurrentSeasonStatisticsAsync();
         Task<bool> CheckForSeasonInPreparation();
         Task AddNewSeasonAsync(SeasonFormModel model);
+        Task<SeasonFormModel> GetSeasonForEditAsync(string status);
+        Task EditSeasonAsync(SeasonFormModel model);
+        bool StatusValidation(string status);
+        Task<SeasonPreparationModel> GetSeasonInPreparationAsync();
     }
 }

@@ -9,5 +9,7 @@
 
         [Required]
         public DateTime EndDate { get; set; }
+
+        public string Status { get; set; } = null!;
     }
 }

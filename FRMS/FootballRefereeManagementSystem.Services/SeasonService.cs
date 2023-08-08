@@ -8,9 +8,9 @@
 
     using Contracts;
     using Data;
+    using Data.Models;
     using Data.Models.Enums;
     using Web.ViewModels.Season;
-    using FootballRefereeManagementSystem.Data.Models;
 
     public class SeasonService : ISeasonService
     {
@@ -115,6 +115,61 @@
 
             await this.dbContext.Seasons.AddAsync(seasonToAdd);
             await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task<SeasonFormModel> GetSeasonForEditAsync(string status)
+        {
+            SeasonFormModel currentSeason = await this.dbContext
+                .Seasons
+                .Where(s => s.Status == Enum.Parse<SeasonStatus>(status))
+                .Select(s => new SeasonFormModel()
+                {
+                    StartDate = s.Start,
+                    EndDate = s.End,
+                    Status = s.Status.ToString()
+                })
+                .FirstAsync();
+
+            return currentSeason;
+        }
+
+        public async Task EditSeasonAsync(SeasonFormModel model)
+        {
+            Season seasonToEdit = await this.dbContext
+                .Seasons
+                .Where(s => s.Status == Enum.Parse<SeasonStatus>(model.Status))
+                .FirstAsync();
+
+            seasonToEdit.Start = model.StartDate;
+            seasonToEdit.End = model.EndDate;
+            seasonToEdit.Description = $"{model.StartDate.ToString("yyyy")}/{model.EndDate.ToString("yy")}";
+
+            await this.dbContext.SaveChangesAsync();
+        }
+
+        public bool StatusValidation(string status)
+        {
+            bool isParsed = Enum.TryParse<SeasonStatus>(status, out SeasonStatus parsedResult);
+
+            return isParsed;
+        }
+
+        public async Task<SeasonPreparationModel> GetSeasonInPreparationAsync()
+        {
+            SeasonPreparationModel seasonInPreparation = await this.dbContext
+                .Seasons
+                .AsNoTracking()
+                .Where(s => s.Status == SeasonStatus.InPreparation)
+                .Select(s => new SeasonPreparationModel()
+                {
+                    StartDate = s.Start,
+                    EndDate = s.End,
+                    Description = s.Description,
+                    Status = s.Status.ToString()
+                })
+                .FirstAsync();
+
+            return seasonInPreparation;
         }
 
         // ----------------------------------

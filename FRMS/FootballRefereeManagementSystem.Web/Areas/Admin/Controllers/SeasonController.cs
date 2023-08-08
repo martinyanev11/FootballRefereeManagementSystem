@@ -57,9 +57,73 @@
         }
 
         [HttpGet]
-        public IActionResult SeasonPreparation()
+        public async Task<IActionResult> SeasonPreparation()
         {
-            return View();
+            bool preperationSeasonExists =
+                await this.seasonService.CheckForSeasonInPreparation();
+
+            if (!preperationSeasonExists)
+            {
+                return View("Error404");
+            }
+
+            SeasonPreparationModel model = 
+                await this.seasonService.GetSeasonInPreparationAsync();
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(string status)
+        {
+            try
+            {
+                bool isValidStatus = this.seasonService.StatusValidation(status);
+
+                if (!isValidStatus)
+                {
+                    return View("Error");
+                }
+
+                SeasonFormModel model =
+                    await this.seasonService.GetSeasonForEditAsync(status);
+
+                return View(model);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(SeasonFormModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            try
+            {
+                bool isValidStatus = this.seasonService.StatusValidation(model.Status);
+
+                if (!isValidStatus)
+                {
+                    return View("Error");
+                }
+
+                await this.seasonService.EditSeasonAsync(model);
+
+                string returnController = model.Status == "Current" ? "Home" : "Season";
+                string returnAction = model.Status == "Current" ? "Dashboard" : "SeasonPreparation";
+
+                return RedirectToAction(returnAction, returnController);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
     }
 }

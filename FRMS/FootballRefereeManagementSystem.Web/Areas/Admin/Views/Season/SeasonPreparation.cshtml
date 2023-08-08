@@ -1,9 +1,25 @@
-﻿@{
-    ViewData["Title"] = "Подготовка за новия сезон";
+﻿@using FootballRefereeManagementSystem.Web.ViewModels.Season;
+@model SeasonPreparationModel;
+@{
+    ViewData["Title"] = "Подготовка на нов сезон";
 }
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 <div class="container">
-    <h1 class="text-center">@ViewData["Title"]</h1>
+    <h1 class="text-center">@ViewData["Title"] @Model.Description</h1>
+    <div class="row">
+        <div class="text-center h5 text-secondary">
+            Начало: @Model.StartDate.ToString("dd.MM.yyyy")
+        </div>
+        <div class="text-center h5 text-secondary">
+            Край: @Model.EndDate.ToString("dd.MM.yyyy")
+        </div>
+        <div class="text-center">
+            <a class="btn btn-sm btn-warning btn-outline-dark me-3" asp-area="Admin" asp-controller="Season" asp-action="Edit" asp-route-status="InPreparation">
+                <i class="bi bi-pencil-square"> Редакция на датите</i>
+            </a>
+        </div>
+    </div>
     <hr />
     <div class="row text-center">
         <div class="col-4">
