@@ -172,6 +172,16 @@
             return seasonInPreparation;
         }
 
+        public async Task<int> GetPreparationSeasonIdAsync()
+        {
+            return await this.dbContext
+                .Seasons
+                .AsNoTracking()
+                .Where(s => s.Status == SeasonStatus.InPreparation)
+                .Select(s => s.Id)
+                .FirstAsync();
+        }
+
         // ----------------------------------
         // private methods
         private async Task<int> GetTotalMatchesCountForSeason()

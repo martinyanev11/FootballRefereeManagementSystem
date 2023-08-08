@@ -32,5 +32,6 @@
         Task EditSeasonAsync(SeasonFormModel model);
         bool StatusValidation(string status);
         Task<SeasonPreparationModel> GetSeasonInPreparationAsync();
+        Task<int> GetPreparationSeasonIdAsync();
     }
 }

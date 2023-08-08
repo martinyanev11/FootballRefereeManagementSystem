@@ -64,6 +64,7 @@
         /// </summary>
         /// <returns>A collection of <see cref="DivisionAllViewModel"/> representing the active divisions.</returns>
         Task<IEnumerable<DivisionAllViewModel>> GetAllDivisionsAsync();
+        Task<IEnumerable<DivisionViewModel>> GetAllDivisionsForRegistrationAsync();
 
         /// <summary>
         /// Retrieves a specific division's details by its ID.

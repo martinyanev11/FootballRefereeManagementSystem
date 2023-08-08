@@ -206,6 +206,19 @@
             return divisions;
         }
 
+        public async Task<IEnumerable<DivisionViewModel>> GetAllDivisionsForRegistrationAsync()
+        {
+            return await this.dbContext
+                .Divisions
+                .Where(d => d.IsActive)
+                .Select(d => new DivisionViewModel()
+                {
+                    Id = d.Id,
+                    Name = d.Name,
+                })
+                .ToArrayAsync();
+        }
+
         //------------------------------------------
         // private methods
         //------------------------------------------

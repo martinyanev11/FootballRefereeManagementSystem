@@ -13,6 +13,7 @@
         /// <param name="model">The <see cref="TeamFormModel"/> containing the data for the new team.</param>
         /// <returns>A task representing the asynchronous operation.</returns>
         Task AddNewTeamAsync(TeamFormModel model);
+        Task<bool> CheckIfTeamIsAlreadyRegistered(int teamId, int seasonId);
 
         /// <summary>
         /// Asynchronously checks the existence of a team based on the provided team ID.
@@ -35,6 +36,7 @@
         /// <param name="model">The model containing the updated team data.</param>
         /// <returns>A task representing the asynchronous operation.</returns>
         Task EditTeamAsync(int id, TeamFormModel model);
+        IEnumerable<string> GetAllShirtColors();
 
         /// <summary>
         /// Retrieves a collection of team view models with additional administrative information based on the provided query model.
@@ -42,6 +44,7 @@
         /// <param name="queryModel">The query model containing filters and search criteria.</param>
         /// <returns>A task representing the asynchronous operation that returns the collection of team view models.</returns>
         Task<IEnumerable<TeamAdminViewModel>> GetAllTeamsAsync(TeamAdminQueryModel queryModel);
+        Task<IEnumerable<TeamListModel>> GetAllTeamsForRegistrationAsync(int seasonId);
 
         /// <summary>
         /// Asynchronously retrieves team standings for a specified season and division.
@@ -97,5 +100,6 @@
         /// <see langword="true"/> if a team with the provided name and town exists in the database (excluding the team with ID), <see langword="false"/> otherwise.
         /// </returns>
         Task<bool> IsTeamAlreadyAdded(int teamId, TeamFormModel model);
+        Task RegisterNewTeamSeasonAsync(TeamSeasonRegisterModel model);
     }
 }

@@ -1,0 +1,67 @@
+﻿@using FootballRefereeManagementSystem.Web.ViewModels.Division;
+@using FootballRefereeManagementSystem.Web.ViewModels.Team;
+@model TeamSeasonRegisterModel;
+@{
+    ViewData["Title"] = "Регистрация на отбор";
+}
+
+<div class="container">
+    <h2>@ViewData["Title"]</h2>
+    <hr class="col-4"/>
+    <div class="row">
+        <div class="col-3">
+            <p class="h5 alert-warning">Отбора не съществува в системата?</p>
+        </div>
+        <div class="col-2">
+            <a class="btn btn-success" asp-area="Admin" asp-controller="Team" asp-action="Add">Създай нов</a>
+        </div>
+    </div>
+    <hr class="col-4"/>
+    <h5>Регистрирай отбор за новия сезон</h5>
+    <form method="post" asp-area="Admin" asp-controller="Team" asp-action="RegisterForSeason">
+        <div class="row">
+            <div class="form-group mb-3 col-3">
+                <label asp-for="TeamId" class="dropdown-header">Избор на отбор:</label>
+                <span asp-validation-for="TeamId" class="text-danger"></span>
+                <select asp-for="TeamId" class="dropdown-menu-start form-control">
+                    @foreach (TeamListModel team in Model.Teams)
+                    {
+                        <option class="dropdown-item" value="@team.Id">@team.TeamName (@team.TeamLocation)</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group mb-3 col-3">
+                <label asp-for="DivisionId" class="dropdown-header">За дивизия:</label>
+                <span asp-validation-for="DivisionId" class="text-danger"></span>
+                <select asp-for="DivisionId" class="dropdown-menu-start form-control">
+                    @foreach (DivisionViewModel division in Model.Divisions)
+                    {
+                        <option class="dropdown-item" value="@division.Id">@division.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group mb-3 col-3">
+                <label asp-for="ShirtColor" class="dropdown-header">Цвят на екипите:</label>
+                <select asp-for="ShirtColor" class="dropdown-menu-start form-control">
+                    @foreach (string shirt in Model.ShirtColors)
+                    {
+                        <option class="dropdown-item" value="@shirt">@shirt</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Регистрирай</button>
+        <a class="btn btn-secondary" asp-area="Admin" asp-controller="Season" asp-action="SeasonPreparation">Отказ</a>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

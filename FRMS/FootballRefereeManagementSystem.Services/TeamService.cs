@@ -9,6 +9,8 @@
     using Data;
     using Data.Models;
     using Web.ViewModels.Team;
+    using Data.Models.Enums;
+    using Common;
 
     public class TeamService : ITeamService
     {
@@ -226,6 +228,54 @@
                         .Count()
                 })
                 .FirstAsync();
+        }
+
+        public async Task<IEnumerable<TeamListModel>> GetAllTeamsForRegistrationAsync(int seasonId)
+        {
+            return await this.dbContext
+                .Teams
+                .AsNoTracking()
+                .Where(t => 
+                    t.IsActive && 
+                    t.TeamSeasons
+                        .Any(ts => 
+                            ts.TeamId == t.Id &&
+                            ts.SeasonId == seasonId) == false)
+                .Select(t => new TeamListModel()
+                {
+                    Id = t.Id,
+                    TeamName = t.Name,
+                    TeamLocation = t.Town.Name,
+                })
+                .ToArrayAsync();
+        }
+
+        public IEnumerable<string> GetAllShirtColors()
+        {
+            IEnumerable<string> allShirtColors = Enum.GetNames<Color>();
+            allShirtColors = Translator.TranslateAllColorsToBulgarian(allShirtColors);
+            return allShirtColors;
+        }
+
+        public async Task RegisterNewTeamSeasonAsync(TeamSeasonRegisterModel model)
+        {
+            TeamSeason teamSeasonToAdd = new TeamSeason()
+            {
+                TeamId = model.TeamId,
+                SeasonId = model.SeasonId,
+                DivisionId = model.DivisionId,
+                ShirtColor = Enum.Parse<Color>(Translator.TranslateColorToEnglish(model.ShirtColor)),
+            };
+
+            await this.dbContext.TeamsSeasons.AddAsync(teamSeasonToAdd);
+            await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task<bool> CheckIfTeamIsAlreadyRegistered(int teamId, int seasonId)
+        {
+            return await this.dbContext
+                .TeamsSeasons
+                .AnyAsync(ts => ts.TeamId == teamId && ts.SeasonId == seasonId);
         }
 
         // ----------------------------------
