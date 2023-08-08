@@ -35,6 +35,9 @@
             public const int LastNameMinLength = 2;
             public const int LastNameMaxLength = 50;
 
+            public const int AgeMinValue = 15;
+            public const int AgeMaxValue = 50;
+
             public const int PositionMinLength = 2;
             public const int PositionMaxLength = 20;
         }

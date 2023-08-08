@@ -7,7 +7,14 @@
 
     public interface IPlayerService
     {
+        Task AddNewPlayerAsync(PlayerFormModel model);
+        Task<bool> CheckPlayerExistanceByIdAsync(int id);
+        Task DeletePlayerAsync(int id);
+        Task EditPlayerAsync(int id, PlayerFormModel model);
+        Task<IEnumerable<PlayerDetailsViewModel>> GetAllPlayersAsync(PlayerQueryModel queryModel);
         Task<IEnumerable<PlayerDetailsViewModel>> GetAllSeasonUnregisteredPlayers(int seasonId);
+        Task<PlayerDetailsViewModel> GetPlayerByIdAsync(int id);
+        Task<PlayerFormModel> GetPlayerForEditByIdAsync(int id);
 
         /// <summary>
         /// Asynchronously retrieves the details of players belonging to a specific team during a given season.

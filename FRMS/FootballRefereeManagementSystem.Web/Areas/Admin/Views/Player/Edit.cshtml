@@ -1,0 +1,50 @@
+﻿@using FootballRefereeManagementSystem.Web.ViewModels.Player;
+@model PlayerFormModel;
+@{
+    ViewData["Title"] = "Редактиране на играч";
+}
+
+<div class="container">
+    <h2 class="mb-2">@ViewData["Title"]</h2>
+    <hr />
+    <form asp-area="Admin" asp-controller="Player" asp-action="Edit" method="post">
+        <div class="row">
+            <div class="form-group mb-3 col-5">
+                <label asp-for="FirstName" class="dropdown-header">Име:</label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group mb-3 col-5">
+                <label asp-for="LastName" class="dropdown-header">Фамилия:</label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group mb-3 col-5">
+                <label asp-for="Age" class="dropdown-header">Години:</label>
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group mb-3 col-5">
+                <label asp-for="Position" class="dropdown-header">Позиция:</label>
+                <input asp-for="Position" class="form-control" />
+                <span asp-validation-for="Position" class="text-danger"></span>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-warning">Редактирай</button>
+        <a class="btn btn-secondary" asp-area="Admin" asp-controller="Player" asp-action="All">Отказ</a>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

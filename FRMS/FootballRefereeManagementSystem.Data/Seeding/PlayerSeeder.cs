@@ -19,7 +19,7 @@
                     FirstName = PlayerDataConstants.FirstNameConstantValue,
                     LastName = PlayerDataConstants.LastNameConstantValue,
                     Age = PlayerDataConstants.AgeConstantValue,
-
+                    IsActive = true,
                     //// Dynamic seeding
                     //FirstName = GenerateRandomFirstName(),
                     //LastName = GenerateRandomLastName(),

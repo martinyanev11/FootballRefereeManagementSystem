@@ -1,0 +1,61 @@
+﻿@using FootballRefereeManagementSystem.Web.ViewModels.Player;
+@model PlayerQueryModel;
+@{
+    ViewData["Title"] = "Играчи";
+}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+<div class="container">
+    <h2>@ViewData["Title"]</h2>
+    <hr />
+    <div class="row-cols-12 mt-3 mb-3">
+        <a class="btn btn-success text-white" asp-area="Admin" asp-controller="Player" asp-action="Add"><i class="bi bi-plus-square me-2"></i>Добави</a>
+    </div>
+
+    <form method="get">
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label class="ms-2 text-secondary" asp-for="SearchString">Търсене по име:</label>
+                <input asp-for="SearchString" class="form-control" placeholder="...">
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group mt-4">
+                    <button type="submit" class="btn btn-info text-white border border-secondary"><i class="bi bi-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <br />
+    <table class="table table-responsive table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Имена</th>
+                <th>Години</th>
+                <th>Позиция</th>
+                <th>Управление</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int rowCounter = 1;
+                @foreach (PlayerDetailsViewModel player in Model.Players)
+                {
+                    <tr>
+                        <td>@rowCounter</td>
+                        <td>@player.FullName</td>
+                        <td>@player.Age</td>
+                        <td>@(player.Position is null ? "-" : player.Position)</td>
+                        <td>
+                            <a class="btn btn-warning border-1 border-dark me-3" asp-area="Admin" asp-controller="Player" asp-action="Edit" asp-route-id="@player.Id"><i class="bi bi-pencil-square"> Редактирай</i></a>
+                            <a class="btn btn-danger border-1 border-dark me-3" asp-area="Admin" asp-controller="Player" asp-action="Delete" asp-route-id="@player.Id"><i class="bi bi-trash"> Изтрий</i></a>
+                        </td>
+                    </tr>
+
+                    rowCounter++;
+                }
+            }
+        </tbody>
+    </table>
+</div>

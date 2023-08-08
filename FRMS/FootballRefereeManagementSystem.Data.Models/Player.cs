@@ -38,5 +38,8 @@
         // A player can play in one team during one season
         [Comment("In which team he plays during a certain season")]
         public ICollection<PlayerTeamSeason> PlayerTeamsSeasons { get; set; } = null!;
+
+        [Comment("Soft delete value")]
+        public bool IsActive { get; set; }
     }
 }
