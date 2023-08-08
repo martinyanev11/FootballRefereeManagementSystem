@@ -121,7 +121,13 @@
 
                 await this.matchService.EditMatchAsync(id, model);
 
-                return RedirectToAction("SeasonPreparation", "Season");
+                bool preperationSeasonExists =
+                    await this.seasonService.CheckForSeasonInPreparation();
+
+                string returnController = preperationSeasonExists ? "Season" : "Referee";
+                string returnAction = preperationSeasonExists ? "SeasonPreparation" : "Schedule";
+
+                return RedirectToAction(returnAction, returnController);
             }
             catch (Exception)
             {

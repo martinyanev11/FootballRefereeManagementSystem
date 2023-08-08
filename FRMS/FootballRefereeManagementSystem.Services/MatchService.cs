@@ -221,7 +221,9 @@
                 matchQuery = matchQuery
                     .Where(m => 
                         EF.Functions.Like(m.HomeTeam.Team.Name, wildCard) ||
-                        EF.Functions.Like(m.AwayTeam.Team.Name, wildCard));
+                        EF.Functions.Like(m.AwayTeam.Team.Name, wildCard) ||
+                        EF.Functions.Like(m.HomeTeam.Team.Town.Name, wildCard) ||
+                        EF.Functions.Like(m.AwayTeam.Team.Town.Name, wildCard));
             }
 
             IEnumerable<MatchRefereeSquadSummaryViewModel> matches = await matchQuery

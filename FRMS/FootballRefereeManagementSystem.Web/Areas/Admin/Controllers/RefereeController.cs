@@ -160,5 +160,11 @@
 
             return View(model);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> CreateSquad()
+        {
+            return View();
+        }
     }
 }

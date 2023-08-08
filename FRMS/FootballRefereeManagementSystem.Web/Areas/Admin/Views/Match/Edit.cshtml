@@ -1,11 +1,18 @@
-﻿@using FootballRefereeManagementSystem.Web.ViewModels.Match;
+﻿@using FootballRefereeManagementSystem.Services.Contracts;
+@using FootballRefereeManagementSystem.Web.ViewModels.Match;
 @using FootballRefereeManagementSystem.Web.ViewModels.Town;
 @model MatchEditViewModel;
+@inject ISeasonService SeasonService;
 @{
     ViewData["Title"] = "Редактиране на мач";
 
     DateTime todaysDate = DateTime.UtcNow;
     DateTime nextYear = todaysDate.AddYears(1);
+
+    bool preperationSeasonExists = await this.SeasonService.CheckForSeasonInPreparation();
+
+    string returnController = preperationSeasonExists ? "Season" : "Referee";
+    string returnAction = preperationSeasonExists ? "SeasonPreparation" : "Schedule";
 }
 
 <div class="container">
@@ -73,7 +80,7 @@
             </div>
         </div>
         <button type="submit" class="btn btn-warning">Редактирай</button>
-        <a class="btn btn-secondary" asp-area="Admin" asp-controller="Season" asp-action="SeasonPreparation">Отказ</a>
+        <a class="btn btn-secondary" asp-area="Admin" asp-controller="@returnController" asp-action="@returnAction">Отказ</a>
     </form>
 </div>
 
