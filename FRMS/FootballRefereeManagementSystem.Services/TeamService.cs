@@ -11,7 +11,6 @@
     using Web.ViewModels.Team;
     using Data.Models.Enums;
     using Common;
-    using Web.ViewModels.Player;
 
     public class TeamService : ITeamService
     {
@@ -301,7 +300,12 @@
                         .Where(ts => ts.TeamId == t.Id &&
                             ts.SeasonId == seasonId)
                         .Select(ts => ts.TeamSeasonPlayers.Count)
-                        .First()
+                        .First(),
+                    MatchesCount = t.TeamSeasons
+                        .Where(ts => ts.TeamId == t.Id &&
+                                ts.SeasonId == seasonId)
+                            .Select(ts => ts.HomeGames.Count + ts.AwayGames.Count)
+                            .First(),
                 })
                 .ToArrayAsync();
         }
@@ -333,6 +337,38 @@
             teamSeasonToEdit.ShirtColor = Enum.Parse<Color>(Translator.TranslateColorToEnglish(model.ShirtColor));
 
             await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<TeamListModel>> GetRegisteredForSeasonTeams(int seasonId)
+        {
+            return await this.dbContext
+                .TeamsSeasons
+                .Where(ts => ts.SeasonId == seasonId)
+                .Select(ts => new TeamListModel()
+                {
+                    Id = ts.Team.Id,
+                    TeamName = ts.Team.Name,
+                    TeamLocation = ts.Team.Town.Name,
+                })
+                .ToArrayAsync();
+        }
+
+        public async Task<int> GetTeamSeasonDivision(int homeTeamId, int seasonId)
+        {
+            return await this.dbContext
+                .TeamsSeasons
+                .Where(ts => ts.TeamId == homeTeamId && ts.SeasonId == seasonId)
+                .Select(ts => ts.DivisionId)
+                .FirstAsync();
+        }
+
+        public async Task<int> GetHomeTownIdByTeamIdAsync(int homeTeamId)
+        {
+            return await this.dbContext
+                .Teams
+                .Where(t => t.Id == homeTeamId)
+                .Select(t => t.TownId)
+                .FirstAsync();
         }
 
         // ----------------------------------

@@ -9,12 +9,13 @@
     {
         private readonly ISeasonService seasonService;
         private readonly ITeamService teamService;
+        private readonly IMatchService matchService;
 
-        public SeasonController(ISeasonService seasonService, ITeamService teamService)
+        public SeasonController(ISeasonService seasonService, ITeamService teamService, IMatchService matchService)
         {
             this.seasonService = seasonService;
             this.teamService = teamService;
-            
+            this.matchService = matchService;
         }
 
         [HttpGet]
@@ -75,6 +76,7 @@
 
             int seasonId = await this.seasonService.GetPreparationSeasonIdAsync();
             model.RegisteredTeams = await this.teamService.GetAllRegisteredForNewSeasonTeams(seasonId);
+            model.SeasonMatches = await this.matchService.GetAllMatchesForSeasonAsync(seasonId);
             return View(model);
         }
 

@@ -55,6 +55,8 @@
         /// <param name="divisionName">The division name to filter the team standings.</param>
         /// <returns>An IEnumerable of TeamStandingsViewModel containing details of the filtered team standings.</returns>
         Task<IEnumerable<TeamStandingsViewModel>> GetFilteredBySeasonAndDivisionTeamsStandingsAsync(string seasonDescription, string divisionName);
+        Task<int> GetHomeTownIdByTeamIdAsync(int homeTeamId);
+        Task<IEnumerable<TeamListModel>> GetRegisteredForSeasonTeams(int seasonId);
 
         /// <summary>
         /// Asynchronously retrieves detailed information about a team based on the provided team ID.
@@ -77,6 +79,7 @@
         /// <returns>A task representing the asynchronous operation that returns the team information.</returns>
         Task<TeamAdminViewModel> GetTeamInfoByIdAsync(int id);
         Task<string> GetTeamNameByIdAsync(int teamId);
+        Task<int> GetTeamSeasonDivision(int homeTeamId, int seasonId);
         Task<TeamSeasonEditModel> GetTeamSeasonForEdintById(int teamId, int seasonId);
 
         /// <summary>

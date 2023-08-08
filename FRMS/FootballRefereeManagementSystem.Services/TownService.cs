@@ -151,5 +151,18 @@
                 .Select(t => t.Id)
                 .FirstAsync();
         }
+
+        public async Task<IEnumerable<TownListModel>> GetTownsForListAsync()
+        {
+            return await this.dbContext
+                .Towns
+                .Where(t => t.IsActive)
+                .Select(t => new TownListModel()
+                {
+                    Id = t.Id,
+                    Name = t.Name,
+                })
+                .ToArrayAsync();
+        }
     }
 }

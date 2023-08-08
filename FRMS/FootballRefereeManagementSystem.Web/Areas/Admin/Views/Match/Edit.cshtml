@@ -1,0 +1,82 @@
+﻿@using FootballRefereeManagementSystem.Web.ViewModels.Match;
+@using FootballRefereeManagementSystem.Web.ViewModels.Town;
+@model MatchEditViewModel;
+@{
+    ViewData["Title"] = "Редактиране на мач";
+
+    DateTime todaysDate = DateTime.UtcNow;
+    DateTime nextYear = todaysDate.AddYears(1);
+}
+
+<div class="container">
+    <h2>@ViewData["Title"]</h2>
+    <hr class="col-4" />
+    <form method="post" asp-area="Admin" asp-controller="Match" asp-action="Edit">
+        <div class="row">
+            <div class="form-group mb-3 col-3">
+                <label asp-for="HomeTeamName" class="dropdown-header">Домакин:</label>
+                <input asp-for="HomeTeamName" class="form-control" disabled />
+            </div>
+
+            <div class="form-group mb-3 col-1">
+                <label asp-for="HomeTeamScore" class="dropdown-header">Резултат на домакин:</label>
+                <input asp-for="HomeTeamScore" class="form-control" />
+                <span asp-validation-for="HomeTeamScore" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group mb-3 col-3">
+                <label asp-for="AwayTeamName" class="dropdown-header">Гост:</label>
+                <input asp-for="AwayTeamName" class="form-control" disabled />
+            </div>
+
+            <div class="form-group mb-3 col-1">
+                <label asp-for="AwayTeamScore" class="dropdown-header">Резултат на гост:</label>
+                <input asp-for="AwayTeamScore" class="form-control" />
+                <span asp-validation-for="AwayTeamScore" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group mb-3 col-3">
+                <label asp-for="DivisionName" class="dropdown-header">Дивизия:</label>
+                <input asp-for="DivisionName" class="form-control" disabled />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group mb-3 col-3">
+                <label asp-for="MatchLocation" class="dropdown-header">Място на срещата:</label>
+                <input asp-for="MatchLocation" class="form-control" disabled />
+            </div>
+
+            <div class="form-group mb-3 col-3">
+                <label asp-for="TownId" class="dropdown-header">Промяна на мястото на срещата:</label>
+                <span asp-validation-for="TownId" class="text-danger"></span>
+                <select asp-for="TownId" class="dropdown-menu-start form-control">
+                    @foreach (TownListModel town in Model.Towns)
+                    {
+                        <option class="dropdown-item" value="@town.Id">@town.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group mb-3 col-3">
+                <div class="mb-3">
+                    <label asp-for="FixtureTime" class="form-label h5">Край</label>
+                    <input asp-for="FixtureTime" type="datetime-local" class="form-control" aria-required="true" min="@todaysDate.ToString("yyyy-MM-ddTHH:mm")" max="@nextYear.ToString("yyyy-MM-ddTHH:mm")" />
+                    <span asp-validation-for="FixtureTime" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-warning">Редактирай</button>
+        <a class="btn btn-secondary" asp-area="Admin" asp-controller="Season" asp-action="SeasonPreparation">Отказ</a>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

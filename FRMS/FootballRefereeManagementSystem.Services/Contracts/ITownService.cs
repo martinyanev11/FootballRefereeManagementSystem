@@ -91,5 +91,6 @@
         /// it returns the default value for the ID type (0 for int).
         /// </remarks>
         Task<int> GetTownIdByNameAsync(string townName);
+        Task<IEnumerable<TownListModel>> GetTownsForListAsync();
     }
 }

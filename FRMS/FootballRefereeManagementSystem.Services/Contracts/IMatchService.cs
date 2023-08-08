@@ -7,6 +7,11 @@
 
     public interface IMatchService
     {
+        Task AddNewMatchAsync(MatchFormModel model);
+        Task<bool> CheckMatchExistanceById(int id);
+        Task EditMatchAsync(int id, MatchEditViewModel model);
+        Task<IEnumerable<MatchRefereeSquadSummaryViewModel>> GetAllMatchesForSeasonAsync(int seasonId);
+
         /// <summary>
         /// Asynchronously retrieves matches data based on the provided season and division.
         /// </summary>
@@ -21,6 +26,7 @@
         /// <param name="id">The ID of the match to retrieve details for.</param>
         /// <returns>A model containing detailed information about the match.</returns>
         Task<MatchDetailsViewModel> GetMatchDetailsByIdAsync(int id);
+        Task<MatchEditViewModel> GetMatchForEditByIdAsync(int id);
 
         /// <summary>
         /// Asynchronously retrieves a view model for a match associated with the provided referee squad ID.

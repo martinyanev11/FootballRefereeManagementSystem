@@ -7,6 +7,7 @@
     using Contracts;
     using Data;
     using Web.ViewModels.Match;
+    using FootballRefereeManagementSystem.Data.Models;
 
     public class MatchService : IMatchService
     {
@@ -15,6 +16,61 @@
         public MatchService(FootballRefereeManagementSystemDbContext dbContext)
         {
             this.dbContext = dbContext;
+        }
+
+        public async Task AddNewMatchAsync(MatchFormModel model)
+        {
+            Match matchToAdd = new Match()
+            {
+                DivisionId = model.DivisionId,
+                TownId = model.TownId,
+                FixtureTime = model.FixtureTime,
+                HomeTeamId = model.HomeTeamId,
+                AwayTeamId = model.AwayTeamId,
+                SeasonId = model.SeasonId,
+            };
+
+            await this.dbContext.Matches.AddAsync(matchToAdd);
+            await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task<bool> CheckMatchExistanceById(int id)
+        {
+            return await this.dbContext
+                .Matches
+                .AnyAsync(m => m.Id == id);
+        }
+
+        public async Task EditMatchAsync(int id, MatchEditViewModel model)
+        {
+            Match matchToEdit = await this.dbContext
+                .Matches
+                .Where(m => m.Id == id)
+                .FirstAsync();
+
+            matchToEdit.TownId = model.TownId;
+            matchToEdit.FixtureTime = model.FixtureTime;
+            matchToEdit.HomeTeamScore = model.HomeTeamScore;
+            matchToEdit.AwayTeamScore = model.AwayTeamScore;
+
+            await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<MatchRefereeSquadSummaryViewModel>> GetAllMatchesForSeasonAsync(int seasonId)
+        {
+            return await this.dbContext
+                .Matches
+                .Where(m => m.SeasonId == seasonId)
+                .Select(m => new MatchRefereeSquadSummaryViewModel()
+                {
+                    MatchId = m.Id,
+                    HomeTeamName = m.HomeTeam.Team.Name,
+                    HomeTeamTown = m.HomeTeam.Team.Town.Name,
+                    AwayTeamName = m.HomeTeam.Team.Name,
+                    AwayTeamTown = m.AwayTeam.Team.Town.Name,
+                    FixtureTime = m.FixtureTime,
+                })
+                .ToArrayAsync();
         }
 
         public async Task<IEnumerable<MatchTableViewModel>> GetFilteredBySeasonAndDivisionMatchesAsync
@@ -72,6 +128,25 @@
                 await this.GetOtherMatchesBetweenTwoTeams(id, match.HomeTeamId, match.AwayTeamId);
 
             return match;
+        }
+
+        public async Task<MatchEditViewModel> GetMatchForEditByIdAsync(int id)
+        {
+            return await this.dbContext
+                .Matches
+                .Where(m => m.Id == id)
+                .Select(m => new MatchEditViewModel()
+                {
+                    HomeTeamName = m.HomeTeam.Team.Name,
+                    HomeTeamScore = m.HomeTeamScore,
+                    AwayTeamName = m.AwayTeam.Team.Name,
+                    AwayTeamScore = m.AwayTeamScore,
+                    DivisionName = m.Division.Name,
+                    FixtureTime = m.FixtureTime,
+                    TownId = m.TownId,
+                    MatchLocation = m.Town.Name,
+                })
+                .FirstAsync();
         }
 
         public async Task<MatchRefereeSquadSummaryViewModel> GetMatchForRefereeSquadByIdAsync(string refereeSquadId)

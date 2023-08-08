@@ -13,5 +13,7 @@
         public string DivisionName { get; set; } = null!;
 
         public int RegisteredPlayersCount { get; set; }
+
+        public int MatchesCount { get; set; }
     }
 }
