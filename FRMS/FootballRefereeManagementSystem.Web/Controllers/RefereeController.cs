@@ -8,6 +8,7 @@
     using ViewModels.RefereeSquad;
     using ViewModels.Referee;
     using Data.Models;
+    using ViewModels.Match;
 
     public class RefereeController : BaseController
     {
@@ -110,6 +111,11 @@
                     RefereeSquad = await this.refereeService.GetRefereeSquadForMatchCenterAsync(id),
                     MatchInformation = await this.matchService.GetMatchDetailsByIdAsync(matchId),
                     Messages = await this.messageService.GetAllMessagesAsync(id),
+                    MatchResult = new MatchFinishModel()
+                    {
+                        MatchId = matchId,
+                        RefereeSquadId = id,
+                    },
                 };
 
                 return View(model);

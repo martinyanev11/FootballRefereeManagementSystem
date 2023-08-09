@@ -9,6 +9,7 @@
         {
             this.Messages = new HashSet<MessageViewModel>();
             this.NewMessage = new MessageFormModel();
+            this.MatchResult = new MatchFinishModel();
         }
 
         public RefereeSquadMatchCenterModel RefereeSquad { get; set; } = null!;
@@ -18,5 +19,7 @@
         public IEnumerable<MessageViewModel> Messages { get; set; } = null!;
 
         public MessageFormModel NewMessage { get; set; } = null!;
+
+        public MatchFinishModel MatchResult { get; set; } = null!;
     }
 }

@@ -11,6 +11,7 @@
         Task AddNewMatchAsync(MatchFormModel model);
         Task<bool> CheckMatchExistanceById(int id);
         Task EditMatchAsync(int id, MatchEditViewModel model);
+        Task FinishMatchAsync(MatchFinishModel model);
         Task<IEnumerable<MatchRefereeSquadSummaryViewModel>> GetAllMatchesForSeasonAsync(int seasonId);
         Task<int> GetDivisionIdByMatchIdAsync(int id);
 

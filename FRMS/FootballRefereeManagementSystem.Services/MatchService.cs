@@ -56,6 +56,47 @@
             await this.dbContext.SaveChangesAsync();
         }
 
+        public async Task FinishMatchAsync(MatchFinishModel model)
+        {
+            Match matchToFinish = await this.dbContext
+                .Matches
+                .Include(m => m.HomeTeam)
+                .Include(m => m.AwayTeam)
+                .Where(m => m.Id == model.MatchId)
+                .FirstAsync();
+
+            // Add final match result
+            matchToFinish.HomeTeamScore = model.HomeTeamScore;
+            matchToFinish.AwayTeamScore = model.AwayTeamScore;
+            matchToFinish.HasFinished = true;
+
+            // Add the goals statistics for both teams
+            matchToFinish.HomeTeam.GoalsFor += model.HomeTeamScore;
+            matchToFinish.HomeTeam.GoalsAgainst += model.AwayTeamScore;
+
+            matchToFinish.AwayTeam.GoalsFor += model.AwayTeamScore;
+            matchToFinish.AwayTeam.GoalsAgainst += model.HomeTeamScore;
+
+            // Determine winner
+            if (model.HomeTeamScore > model.AwayTeamScore)
+            {
+                matchToFinish.HomeTeam.Wins += 1;
+                matchToFinish.AwayTeam.Losses += 1;
+            }
+            else if (model.HomeTeamScore < model.AwayTeamScore)
+            {
+                matchToFinish.HomeTeam.Losses += 1;
+                matchToFinish.AwayTeam.Wins += 1;
+            }
+            else
+            {
+                matchToFinish.HomeTeam.Draws += 1;
+                matchToFinish.AwayTeam.Draws += 1;
+            }
+
+            await this.dbContext.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<MatchRefereeSquadSummaryViewModel>> GetAllMatchesForSeasonAsync
             (int seasonId)
         {

@@ -1,0 +1,17 @@
+﻿@using FootballRefereeManagementSystem.Web.ViewModels.Match;
+@model MatchFinishModel;
+
+<form method="post" asp-controller="Match" asp-action="FinishMatch" asp-route-id="@Model.RefereeSquadId">
+    <div class="row">
+        <div class="form-group col-6">
+            <input asp-for="HomeTeamScore" class="form-control" min="0" />
+        </div>
+        <div class="form-group col-6">
+            <input asp-for="AwayTeamScore" class="form-control" min="0" />
+        </div>
+        <input asp-for="MatchId" class="form-control visually-hidden" min="0" />
+    </div>
+    <div class="row mt-4">
+        <button class="btn btn-sm btn-success text-white btn-outline-dark" type="submit">Приключи мач</button>
+    </div>
+</form>

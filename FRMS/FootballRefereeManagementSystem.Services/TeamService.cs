@@ -15,6 +15,7 @@
     public class TeamService : ITeamService
     {
         private const int StandingsPlacementStart = 1;
+        private const int PointsForWin = 3;
         private readonly FootballRefereeManagementSystemDbContext dbContext;
 
         public TeamService(FootballRefereeManagementSystemDbContext dbContext)
@@ -391,7 +392,7 @@
 
             foreach (TeamSeason team in teams)
             {
-                team.Points = team.Wins * 3 + team.Draws;
+                team.Points = team.Wins * PointsForWin + team.Draws;
             }
 
             await this.dbContext.SaveChangesAsync();

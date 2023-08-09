@@ -35,5 +35,37 @@
             }
 
         }
+
+        [HttpPost]
+        public async Task<IActionResult> FinishMatch(string id, MatchFinishModel model)
+        {
+            try
+            {
+                bool matchExists = await this.matchService.CheckMatchExistanceById(model.MatchId);
+
+                if (!matchExists)
+                {
+                    return View("Error404");
+                }
+
+                if (model.HomeTeamScore < 0 || model.AwayTeamScore < 0)
+                {
+                    ModelState.AddModelError(string.Empty, "Резултатът не може да бъде отрицателно число");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    return RedirectToAction("MatchCenter", "Referee", new { id = id });
+                }
+
+                await this.matchService.FinishMatchAsync(model);
+
+                return RedirectToAction("Schedule", "Referee");
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+        }
     }
 }
