@@ -34,9 +34,7 @@
                             @{
                                 int userRefereeId = (int)ViewData["UserRefereeId"]!;
 
-                                if (Model.Any(rs => rs.RefereeIds
-                                    .Any(id => id == userRefereeId)) ||
-                                    User.IsInRole("Admin"))
+                                if (squad.RefereeIds.Any(id => id == userRefereeId) || User.IsInRole("Admin"))
                                 {
                                     <a class="btn btn-primary btn-sm" asp-controller="Referee" asp-action="MatchCenter" asp-route-id="@squad.RefereeSquadId">
                                         Към мача <i class="bi bi-box-arrow-up-right"></i>

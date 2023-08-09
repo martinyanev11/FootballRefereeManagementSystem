@@ -511,5 +511,26 @@
 
             await this.dbContext.SaveChangesAsync();
         }
+
+        public async Task UpdateCurrentlyAppointedMatchesCount(int refereeId)
+        {
+            Referee refereeToUpdate = await this.dbContext
+                .Referees
+                .Where(r => r.Id ==  refereeId)
+                .FirstAsync();
+
+            int crrentlyAppointedMatchesCount = await this.dbContext
+                .RefereesSquads
+                .Where(rs => rs.Match.HasFinished == false &&
+                    rs.MainRefereeId == refereeId ||
+                    rs.FirstAssistantRefereeId == refereeId ||
+                    rs.SecondAssistantRefereeId == refereeId ||
+                    rs.DelegateId == refereeId)
+                .CountAsync();
+
+            refereeToUpdate.CurrentlyAppointedMatchesCount = crrentlyAppointedMatchesCount;
+
+            await this.dbContext.SaveChangesAsync();
+        }
     }
 }

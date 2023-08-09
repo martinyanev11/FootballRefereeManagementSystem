@@ -39,10 +39,12 @@
             try
             {
                 string userId = User.GetId();
+                int userRefereeId = await this.refereeService.GetRefereeIdByUserIdAsync(userId);
+                await this.refereeService.UpdateCurrentlyAppointedMatchesCount(userRefereeId);
+
                 ApplicationUserViewModel model = 
                     await this.userService.GetUserInformationByIdAsync(userId);
 
-                int userRefereeId = await this.refereeService.GetRefereeIdByUserIdAsync(userId);
                 model.RefereeDetails = await this.refereeService.GetRefereeDetailsByIdAsync(userRefereeId);
                 model.CurrrentSeasonInformation = await this.seasonService.GetCurrentSeasonInformation();
 

@@ -62,8 +62,6 @@ namespace FootballRefereeManagementSystem.Services
 
         public async Task<ApplicationUserViewModel> GetUserInformationByIdAsync(string id)
         {
-            await UpdateCurrentlyAppointedMatchesCountForUserAsync(id);
-
             ApplicationUserViewModel model = await dbContext.Users
                 .Where(u => u.Id.ToString() == id)
                 .Select(u => new ApplicationUserViewModel()
@@ -99,40 +97,6 @@ namespace FootballRefereeManagementSystem.Services
             ApplicationUser user = await userManager.FindByIdAsync(userId);
 
             await this.userManager.RemoveFromRoleAsync(user, AdminRoleName);
-        }
-
-        // --------------------------------------
-        // private methods
-        // --------------------------------------
-
-        private async Task UpdateCurrentlyAppointedMatchesCountForUserAsync(string userId)
-        {
-            ApplicationUser appUser = await this.dbContext
-                .Users
-                .Include(u => u.Referee)
-                .Where(u => u.Id.ToString() == userId)
-                .FirstAsync();
-
-            // Update count for matches which are active
-            int currentMatches = 0;
-            currentMatches += appUser!.Referee!.MainRefereeSquads
-                .Where(rs => rs.Match.HasFinished == false)
-                .Count();
-
-            currentMatches += appUser!.Referee!.FirstAssistantRefereeSquads
-                .Where(rs => rs.Match.HasFinished == false)
-                .Count();
-
-            currentMatches += appUser!.Referee!.SecondAssistantRefereeSquads
-                .Where(rs => rs.Match.HasFinished == false)
-                .Count();
-
-            currentMatches += appUser!.Referee!.DelegateRefereeSquads
-                .Where(rs => rs.Match.HasFinished == false)
-                .Count();
-
-            appUser.Referee.CurrentlyAppointedMatchesCount = currentMatches;
-            await this.dbContext.SaveChangesAsync();
         }
     }
 }
