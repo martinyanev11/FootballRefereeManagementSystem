@@ -33,10 +33,22 @@
                             <p class="card-text"><i class="bi bi-calendar2-event"></i> @squad.Match.FixtureTime.ToString("dd-MMM-yyyy HH:mm")</p>
                             @{
                                 int userRefereeId = (int)ViewData["UserRefereeId"]!;
-                            }
-                            @if (Model.Any(rs => rs.RefereeIds.Any(id => id == userRefereeId)))
-                            {
-                                <a class="btn btn-primary btn-sm" asp-controller="Referee" asp-action="MatchCenter" asp-route-id="@squad.RefereeSquadId">Към мача <i class="bi bi-box-arrow-up-right"></i></a>
+
+                                if (Model.Any(rs => rs.RefereeIds
+                                    .Any(id => id == userRefereeId)) ||
+                                    User.IsInRole("Admin"))
+                                {
+                                    <a class="btn btn-primary btn-sm" asp-controller="Referee" asp-action="MatchCenter" asp-route-id="@squad.RefereeSquadId">
+                                        Към мача <i class="bi bi-box-arrow-up-right"></i>
+                                    </a>
+
+                                    if (User.IsInRole("Admin"))
+                                    {
+                                        <a class="btn btn-warning btn-sm" asp-area="Admin" asp-controller="Referee" asp-action="EditSquad" asp-route-id="@squad.RefereeSquadId">
+                                            Промени <i class="bi bi-pencil-square"></i>
+                                        </a>
+                                    }
+                                }
                             }
                         </div>
                     </div>

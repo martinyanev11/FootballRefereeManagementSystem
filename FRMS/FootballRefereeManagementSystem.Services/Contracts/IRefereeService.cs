@@ -77,5 +77,8 @@
         Task<RefereesStatisticsViewModel> GetRefereesStatisticsAsync();
         Task<IEnumerable<RefereeListModel>> GetAllAvaliableInDivisionRefereesOfRoleType(int divisionId, string roleType);
         Task<Guid> CreateRefereeSquad(int id, RefereeSquadFormModel model);
+        Task<bool> CheckRefereeSquadExistanceByIdAsync(string id);
+        Task<RefereeSquadEditModel> GetRefereeSquadForEditByIdAsync(string id);
+        Task EditRefereeSquadAsync(string id, RefereeSquadEditModel model);
     }
 }

@@ -216,5 +216,52 @@
                 return View("Error");
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> EditSquad(string id)
+        {
+            try
+            {
+                bool squadExists = await this.refereeService.CheckRefereeSquadExistanceByIdAsync(id);
+                if (!squadExists)
+                {
+                    return View("Error404");
+                }
+
+                RefereeSquadEditModel model = await this.refereeService.GetRefereeSquadForEditByIdAsync(id);
+
+                return View(model);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditSquad(string id, RefereeSquadEditModel model)
+        {
+            try
+            {
+                if (model.AssistantRefereeOneId == model.AssistantRefereeTwoId)
+                {
+                    ModelState.AddModelError("AssistantRefereeOneId", "Асистент съдийте трябва да са различни.");
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    model = await this.refereeService.GetRefereeSquadForEditByIdAsync(id);
+                    return View(model);
+                }
+
+                await this.refereeService.EditRefereeSquadAsync(id, model);
+
+                return RedirectToAction("Schedule", "Referee", new { area = "" });
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
+        }
     }
 }

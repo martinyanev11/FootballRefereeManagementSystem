@@ -6,8 +6,8 @@
 
     using Contracts;
     using Data;
+    using Data.Models;
     using Web.ViewModels.Match;
-    using FootballRefereeManagementSystem.Data.Models;
 
     public class MatchService : IMatchService
     {
@@ -56,7 +56,8 @@
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<MatchRefereeSquadSummaryViewModel>> GetAllMatchesForSeasonAsync(int seasonId)
+        public async Task<IEnumerable<MatchRefereeSquadSummaryViewModel>> GetAllMatchesForSeasonAsync
+            (int seasonId)
         {
             return await this.dbContext
                 .Matches
@@ -158,7 +159,8 @@
                 .FirstAsync();
         }
 
-        public async Task<MatchRefereeSquadSummaryViewModel> GetMatchForRefereeSquadByIdAsync(string refereeSquadId)
+        public async Task<MatchRefereeSquadSummaryViewModel> GetMatchForRefereeSquadByIdAsync
+            (string refereeSquadId)
         {
             MatchRefereeSquadSummaryViewModel matchSummary = await this.dbContext
                 .Matches
@@ -178,7 +180,8 @@
             return matchSummary;
         }
 
-        public async Task<IEnumerable<DetailsHistoryViewModel>> GetMatchHistoryForSeasonByTeamIdAsync(int id, int seasonId)
+        public async Task<IEnumerable<DetailsHistoryViewModel>> GetMatchHistoryForSeasonByTeamIdAsync
+            (int id, int seasonId)
         {
             IEnumerable<DetailsHistoryViewModel> matches = await this.dbContext
                 .Matches
@@ -198,7 +201,8 @@
             return matches;
         }
 
-        public async Task<IEnumerable<MatchRefereeSquadSummaryViewModel>> GetWeeklyMatchesAsync(MatchQueryModel queryModel)
+        public async Task<IEnumerable<MatchRefereeSquadSummaryViewModel>> GetWeeklyMatchesAsync
+            (MatchQueryModel queryModel)
         {
             // TODO: remove the comments for real application use.
             // For testing purposes I put the todaysDate as of 1 week away from 1st matches on 2023-09-17 17:00:00.0000000
@@ -273,7 +277,8 @@
         /// <param name="homeTeamId">The ID of the home team.</param>
         /// <param name="awayTeamId">The ID of the away team.</param>
         /// <returns>A collection of models containing details of the other matches.</returns>
-        private async Task<IEnumerable<DetailsHistoryViewModel>> GetOtherMatchesBetweenTwoTeams(int matchId, int homeTeamId, int awayTeamId)
+        private async Task<IEnumerable<DetailsHistoryViewModel>> GetOtherMatchesBetweenTwoTeams
+            (int matchId, int homeTeamId, int awayTeamId)
         {
             return await this.dbContext
                 .Matches

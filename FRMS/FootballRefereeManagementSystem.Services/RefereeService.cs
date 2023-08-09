@@ -463,5 +463,52 @@
 
             return newSquad.Id;
         }
+
+        public async Task<bool> CheckRefereeSquadExistanceByIdAsync(string id)
+        {
+            return await this.dbContext.RefereesSquads
+                .AnyAsync(rs => rs.Id.ToString() == id);
+        }
+
+        public async Task<RefereeSquadEditModel> GetRefereeSquadForEditByIdAsync(string id)
+        {
+            RefereeSquadEditModel refereeSquad = await this.dbContext
+                .RefereesSquads
+                .Where(rs => rs.Id.ToString() == id)
+                .Select(rs => new RefereeSquadEditModel()
+                {
+                    MainRefereeId = rs.MainRefereeId,
+                    MainRefereeName = $"{rs.MainReferee.FirstName} {rs.MainReferee.LastName}",
+                    AssistantRefereeOneId = rs.FirstAssistantRefereeId,
+                    AssistantRefereeOneName = $"{rs.FirstAssistantReferee.FirstName} {rs.FirstAssistantReferee.LastName}",
+                    AssistantRefereeTwoId = rs.SecondAssistantRefereeId,
+                    AssistantRefereeTwoName = $"{rs.SecondAssistantReferee.FirstName} {rs.SecondAssistantReferee.LastName}",
+                    DelegateId = rs.DelegateId,
+                    DelegateName = $"{rs.Delegate.FirstName} {rs.Delegate.LastName}",
+                    DivisionId = rs.Match.DivisionId
+                })
+            .FirstAsync();
+
+            refereeSquad.MainRefereesList = await GetAllAvaliableInDivisionRefereesOfRoleType(refereeSquad.DivisionId, Role.Referee.ToString());
+            refereeSquad.AssistantRefereesList = await GetAllAvaliableInDivisionRefereesOfRoleType(refereeSquad.DivisionId, Role.AssistantReferee.ToString());
+            refereeSquad.DelegatesList = await GetAllAvaliableInDivisionRefereesOfRoleType(refereeSquad.DivisionId, Role.Delegate.ToString());
+
+            return refereeSquad;
+        }
+
+        public async Task EditRefereeSquadAsync(string id, RefereeSquadEditModel model)
+        {
+            RefereeSquad refereeSquadToEdit = await this.dbContext
+                .RefereesSquads
+                .Where(rs => rs.Id.ToString() == id)
+                .FirstAsync();
+
+            refereeSquadToEdit.MainRefereeId = model.MainRefereeId;
+            refereeSquadToEdit.FirstAssistantRefereeId = model.AssistantRefereeOneId;
+            refereeSquadToEdit.SecondAssistantRefereeId = model.AssistantRefereeTwoId;
+            refereeSquadToEdit.DelegateId = model.DelegateId;
+
+            await this.dbContext.SaveChangesAsync();
+        }
     }
 }
