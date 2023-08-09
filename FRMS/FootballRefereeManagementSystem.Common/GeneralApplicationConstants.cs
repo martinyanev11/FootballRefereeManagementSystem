@@ -8,5 +8,6 @@
         public const string AreaName = "Admin";
         public const string AdminRoleName = "Admin";
         public const string DevelopmentAdminEmail = "admin@bfs.com";
+        public const string AdminRoleTranslated = "Администрация";
     }
 }

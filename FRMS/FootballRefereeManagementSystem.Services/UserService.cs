@@ -5,11 +5,12 @@ namespace FootballRefereeManagementSystem.Services
     using System.Threading.Tasks;
 
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.AspNetCore.Identity;
 
     using Data;
     using Data.Models;
     using Web.ViewModels.User;
-    using Microsoft.AspNetCore.Identity;
+    using static FootballRefereeManagementSystem.Common.GeneralApplicationConstants;
 
     public class UserService : IUserService
     {
@@ -21,6 +22,13 @@ namespace FootballRefereeManagementSystem.Services
         {
             this.dbContext = dbContext;
             this.userManager = userManager;
+        }
+
+        public async Task AddUserToAdminRoleAsync(string userId)
+        {
+            ApplicationUser user = await userManager.FindByIdAsync(userId);
+
+            await this.userManager.AddToRoleAsync(user, AdminRoleName);
         }
 
         public async Task ChangeStatusAsync(string userId)
@@ -69,6 +77,13 @@ namespace FootballRefereeManagementSystem.Services
             return model;
         }
 
+        public async Task<bool> IsUserAdminAsync(string userId)
+        {
+            ApplicationUser user = await userManager.FindByIdAsync(userId);
+
+            return await this.userManager.IsInRoleAsync(user, AdminRoleName);
+        }
+
         public async Task LinkUserToRefereeAsync(string userId, int refereeId)
         {
             ApplicationUser user = await this.dbContext.Users
@@ -77,6 +92,13 @@ namespace FootballRefereeManagementSystem.Services
 
             user.RefereeId = refereeId;
             await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task RemoveUserFromAdminRoleAsync(string userId)
+        {
+            ApplicationUser user = await userManager.FindByIdAsync(userId);
+
+            await this.userManager.RemoveFromRoleAsync(user, AdminRoleName);
         }
 
         // --------------------------------------

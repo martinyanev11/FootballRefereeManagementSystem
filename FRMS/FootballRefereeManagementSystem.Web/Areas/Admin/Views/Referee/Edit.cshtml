@@ -1,8 +1,9 @@
-﻿@using FootballRefereeManagementSystem.Web.ViewModels.Referee;
+﻿@using FootballRefereeManagementSystem.Web.Infrastructure.Extensions;
+@using FootballRefereeManagementSystem.Web.ViewModels.Referee;
 @model RefereeEditFormModel;
-
 @{
     ViewData["Title"] = "Редактиране на съдия";
+    bool userEditsHimself = Model.UserId!.ToLower() == User.GetId().ToLower();
 }
 
 <div class="container">
@@ -38,13 +39,27 @@
             </div>
 
             <div class="form-group mb-3 col-2">
-                <label asp-for="Role" class="dropdown-header">Промяна на роля:</label>
-                <select asp-for="Role" class="dropdown-menu-start form-control">
+                <label asp-for="Role" class="dropdown-header @(userEditsHimself ? "visually-hidden" : string.Empty)">Промяна на роля:</label>
+                <select asp-for="Role" class="dropdown-menu-start form-control @(userEditsHimself ? "visually-hidden" : string.Empty)">
                     @foreach (string role in Model.Roles)
                     {
                         <option class="dropdown-item" value="@role">@role</option>
                     }
                 </select>
+            </div>
+
+            <div class="form-group mb-3 col-2">
+                <input asp-for="Role" class="form-control visually-hidden @(userEditsHimself ? string.Empty : "disabled")" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="alert-danger col-5" id="adminAlert" style="display:none;">
+                <p class="h6">ВНИМАНИЕ: Промяната на роля ще ДОБАВИ администраторски права към този профил!</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="alert-danger col-5" id="adminRemoveAlert" style="display:none;">
+                <p class="h6">ВНИМАНИЕ: Промяната на роля ще ПРЕМАХНЕ администраторските права към този профил!</p>
             </div>
         </div>
 
@@ -71,4 +86,6 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/admin-add-warning.js"></script>
+    <script src="~/js//admin-remove-warning.js"></script>
 }

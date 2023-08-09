@@ -244,7 +244,7 @@
             }
         }
 
-        public async Task<string> GetUserIdByRefereeId(int id)
+        public async Task<string> GetUserIdByRefereeIdAsync(int id)
         {
             return await this.dbContext.Referees
                 .Where(r => r.Id == id && r.IsActive)
@@ -309,6 +309,7 @@
                 .Where(r => r.IsActive && r.Id == id)
                 .Select(r => new RefereeEditFormModel()
                 {
+                    UserId = r.UserId.ToString(),
                     FirstName = r.FirstName!,
                     LastName = r.LastName!,
                     ImageUrl = r.ImageUrl!,

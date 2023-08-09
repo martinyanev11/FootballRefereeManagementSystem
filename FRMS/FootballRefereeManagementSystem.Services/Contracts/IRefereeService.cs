@@ -63,7 +63,7 @@
         /// </summary>
         /// <param name="id">The ID of the referee.</param>
         /// <returns>The user ID as a string.</returns>
-        Task<string> GetUserIdByRefereeId(int id);
+        Task<string> GetUserIdByRefereeIdAsync(int id);
 
         /// <summary>
         /// Deletes a referee by setting its sensitive data properties to null and marking it as inactive.

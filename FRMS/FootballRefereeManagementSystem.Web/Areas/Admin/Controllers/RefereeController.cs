@@ -1,14 +1,16 @@
 ﻿namespace FootballRefereeManagementSystem.Web.Areas.Admin.Controllers
 {
-    using FootballRefereeManagementSystem.Data.Models;
-    using FootballRefereeManagementSystem.Web.ViewModels.Match;
-    using FootballRefereeManagementSystem.Web.ViewModels.Referee;
-    using FootballRefereeManagementSystem.Web.ViewModels.RefereeSquad;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
+    using Common;
+    using Data.Models;
+    using ViewModels.Match;
+    using ViewModels.Referee;
+    using ViewModels.RefereeSquad;
     using Services.Contracts;
-    using static FootballRefereeManagementSystem.Common.EntityValidationConstants;
+    using static Common.EntityValidationConstants;
+    using FootballRefereeManagementSystem.Web.Infrastructure.Extensions;
 
     public class RefereeController : BaseAdminController
     {
@@ -63,12 +65,6 @@
         {
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    model.Divisions = await this.divisionService.GetAllDivisionKeyValuePairs();
-                    return View(model);
-                }
-
                 bool refereeExists =
                     await this.refereeService.CheckRefereeExistanceByIdAsync(id);
 
@@ -77,7 +73,34 @@
                     return View("Error404");
                 }
 
+                if (!ModelState.IsValid)
+                {
+                    model.Divisions = await this.divisionService.GetAllDivisionKeyValuePairs();
+                    return View(model);
+                }
+
                 await this.refereeService.EditRefereeByIdAsync(id, model);
+
+                string userToChangeId = await this.refereeService.GetUserIdByRefereeIdAsync(id);
+                bool isAdmin = await this.userService.IsUserAdminAsync(userToChangeId);
+
+                if (model.Role == GeneralApplicationConstants.AdminRoleTranslated)
+                {
+                    // If admin role is selected and user is not admin -> add role
+                    if (!isAdmin)
+                    {
+                        await this.userService.AddUserToAdminRoleAsync(userToChangeId);
+                    }
+                }
+                else
+                {
+                    // If selected role is something other than admin
+                    // Check if user is admin and his rights need to be removed                    
+                    if (isAdmin)
+                    {
+                        await this.userService.RemoveUserFromAdminRoleAsync(userToChangeId);
+                    }
+                }
 
                 return RedirectToAction("All", "Referee", new { area = "" });
             }
@@ -103,7 +126,7 @@
                 RefereeDetailsViewModel viewModel =
                     await this.refereeService.GetRefereeDetailsByIdAsync(id);
 
-                string userId = await this.refereeService.GetUserIdByRefereeId(id);
+                string userId = await this.refereeService.GetUserIdByRefereeIdAsync(id);
                 ApplicationUser user = await userManager.FindByIdAsync(userId);
 
                 viewModel.Contact = await userManager.GetPhoneNumberAsync(user);
@@ -129,7 +152,7 @@
                     return View("Error404");
                 }
 
-                string userId = await this.refereeService.GetUserIdByRefereeId(id);
+                string userId = await this.refereeService.GetUserIdByRefereeIdAsync(id);
                 ApplicationUser? user = await this.userManager.FindByIdAsync(userId);
                 if (user is null)
                 {

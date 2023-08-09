@@ -57,7 +57,7 @@
                 RefereeDetailsViewModel viewModel =
                     await this.refereeService.GetRefereeDetailsByIdAsync(id);
 
-                string userId = await this.refereeService.GetUserIdByRefereeId(id);
+                string userId = await this.refereeService.GetUserIdByRefereeIdAsync(id);
                 ApplicationUser user = await userManager.FindByIdAsync(userId);
 
                 viewModel.Contact = await userManager.GetPhoneNumberAsync(user);

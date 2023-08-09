@@ -35,5 +35,7 @@
         public IEnumerable<int> SelectedDivisionIds { get; set; } = null!;
 
         public IDictionary<int, string> Divisions { get; set; } = null!;
+
+        public string? UserId { get; set; }
     }
 }

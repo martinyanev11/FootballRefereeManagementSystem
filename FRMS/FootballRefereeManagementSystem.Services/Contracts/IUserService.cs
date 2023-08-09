@@ -5,6 +5,8 @@
 
     public interface IUserService
     {
+        Task AddUserToAdminRoleAsync(string userId);
+
         /// <summary>
         /// Changes the status of a user's referee availability based on the provided user ID.
         /// </summary>
@@ -25,6 +27,7 @@
         /// <param name="userId">The ID of the application user to retrieve information for.</param>
         /// <returns>A task representing the asynchronous operation that returns an instance of <see cref="ApplicationUserViewModel"/> containing the user information.</returns>
         Task<ApplicationUserViewModel> GetUserInformationByIdAsync(string userId);
+        Task<bool> IsUserAdminAsync(string userId);
 
         /// <summary>
         /// Links a user to a referee in the database.
@@ -38,5 +41,6 @@
         /// and saves the changes to the database.
         /// </remarks>
         Task LinkUserToRefereeAsync(string userId, int refereeId);
+        Task RemoveUserFromAdminRoleAsync(string userId);
     }
 }
