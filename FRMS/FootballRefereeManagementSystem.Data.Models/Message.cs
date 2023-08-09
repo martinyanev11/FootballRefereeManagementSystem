@@ -14,15 +14,17 @@
         {
             this.Id = Guid.NewGuid();
             this.CreatedOn = DateTime.UtcNow;
+            this.IsActive = true;
         }
 
         [Comment("Primary key")]
         [Key]
         public Guid Id { get; set; }
 
-        [Comment("Referee who created the message")]
-        public int AuthorId { get; set; }
-        public Referee Author { get; set; } = null!;
+        [Comment("User who created the message")]
+        [ForeignKey(nameof(User))]
+        public Guid UserId { get; set; }
+        public ApplicationUser User { get; set; } = null!;
 
         [Comment("Time and date of creation")]
         public DateTime CreatedOn { get; set; }
@@ -36,5 +38,8 @@
         [ForeignKey(nameof(RefereeSquad))]
         public Guid RefereeSquadId { get; set; }
         public RefereeSquad RefereeSquad { get; set; } = null!;
+
+        [Comment("Soft delete value")]
+        public bool IsActive { get; set; }
     }
 }

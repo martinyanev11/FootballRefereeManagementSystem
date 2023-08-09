@@ -14,14 +14,17 @@
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IRefereeService refereeService;
         private readonly IMatchService matchService;
+        private readonly IMessageService messageService;
 
         public RefereeController(IRefereeService refereeService, 
             IMatchService matchService, 
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager,
+            IMessageService messageService)
         {
             this.refereeService = refereeService;
             this.matchService = matchService;
             this.userManager = userManager;
+            this.messageService = messageService;
         }
 
         [HttpGet]
@@ -87,6 +90,34 @@
             }
 
             return View(squadViewModels);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> MatchCenter(string id)
+        {
+            try
+            {
+                bool squadExists = await this.refereeService.CheckRefereeSquadExistanceByIdAsync(id);
+                if (!squadExists)
+                {
+                    return View("Error404");
+                }
+
+                int matchId = await this.matchService.GetMatchIdByRefereeSquadIdAsync(id);
+
+                MatchCenterViewModel model = new MatchCenterViewModel()
+                {
+                    RefereeSquad = await this.refereeService.GetRefereeSquadForMatchCenterAsync(id),
+                    MatchInformation = await this.matchService.GetMatchDetailsByIdAsync(matchId),
+                    Messages = await this.messageService.GetAllMessagesAsync(id),
+                };
+
+                return View(model);
+            }
+            catch (Exception)
+            {
+                return View("Error");
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ using FootballRefereeManagementSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FootballRefereeManagementSystem.Data.Migrations
 {
     [DbContext(typeof(FootballRefereeManagementSystemDbContext))]
-    partial class FootballRefereeManagementSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230809134503_MessageEntityChanges")]
+    partial class MessageEntityChanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -164,13 +166,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = new Guid("ea01fe26-36c8-4daa-b1c8-8b9209e82478"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "69cf2ce8-a33d-4455-941c-65c3184615fe",
+                            ConcurrencyStamp = "4f8b617c-2f56-4f63-af23-c496f6a0f32f",
                             Email = "referee@bfs.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "REFEREE@BFS.COM",
                             NormalizedUserName = "REFEREE@BFS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGfDHJiRrEfDT7QglrqOTxT5OC5luPfx9VDSIz312EvUWNcXEGcLqzgaCgj3SnJGbw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEID6P/6qdB/ctJyCqnSEphPBrg8s6mKkxC27IXtSwLgUEbcfycHPQrn9TOFqSt2dYw==",
                             PhoneNumber = "0897123456",
                             PhoneNumberConfirmed = false,
                             RefereeId = 1,
@@ -182,13 +184,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = new Guid("1e48bbc8-cbf0-494c-89e0-6bcccc36cc6a"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3899e519-88a0-4cbf-993e-9dffd3e1f8a3",
+                            ConcurrencyStamp = "1028bab1-21de-4645-87b8-dd89e5b251ec",
                             Email = "assitant_referee1@bfs.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ASSITANT_REFEREE1@BFS.COM",
                             NormalizedUserName = "ASSITANT_REFEREE1@BFS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEObwVPiIqJC2opIOUuUUaFfJIcBKFD7sCSiikArAMnREmfyxWu7UKzviCaB8UdwJwA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPKISbKXQYbnIVLU+5LIvb8AwcYfWDVZQwAbbPCJ8D8WGN9Fg8c8+qzGpiR3gQ/xRQ==",
                             PhoneNumber = "0897123456",
                             PhoneNumberConfirmed = false,
                             RefereeId = 2,
@@ -200,13 +202,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = new Guid("065a8654-fc52-43b4-8d3d-7e90a87e2bd9"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b2941b6d-9e2a-4983-a52b-cbf5e6987d4d",
+                            ConcurrencyStamp = "bada5b28-71ff-4aba-875c-8443fe7c8ef4",
                             Email = "assitant_referee2@bfs.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ASSITANT_REFEREE2@BFS.COM",
                             NormalizedUserName = "ASSITANT_REFEREE2@BFS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDmlvKUB360yC2q38GYwd0+DVEGNvAGR5ojhBWopd9VZ9zLxRIBdGAnFhaTeVpkxzw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMQDB/aalLZEm1VTba6ZxmN3U1J317/a5vMYRMxZf6qcT5BmVyhk1cGJGKr2NEOlYA==",
                             PhoneNumber = "0897123456",
                             PhoneNumberConfirmed = false,
                             RefereeId = 3,
@@ -218,13 +220,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = new Guid("35e56d1c-a7c2-445d-9eb5-0cdaecb0ebb1"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "945b8757-0ea0-4a15-8b52-d801b019b495",
+                            ConcurrencyStamp = "bba562a1-4e2f-47ee-a3ff-c8fbbfce409d",
                             Email = "delegate@bfs.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "DELEGATE@BFS.COM",
                             NormalizedUserName = "DELEGATE@BFS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEK4Es45HBx6xh9HVP6Mvw4lr7lizf8VvcMTSWkuIqzHkGl1cVehroLqA/3VeMS79/g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMjefz+bmxQcc8ffSSSCL6zNZsSbTcc97OpFkf1FvJh60ijqmMyMD/WVyHs7JHdxdw==",
                             PhoneNumber = "0897123456",
                             PhoneNumberConfirmed = false,
                             RefereeId = 4,
@@ -236,13 +238,13 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = new Guid("d9f18631-5bdb-4b41-86f4-8d6dbe71efb6"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5dc0f90c-eda7-4fff-80dc-6931b1174852",
+                            ConcurrencyStamp = "5150cb0d-23fa-4658-b961-e3828d7919e0",
                             Email = "admin@bfs.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@BFS.COM",
                             NormalizedUserName = "ADMIN@BFS.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEN59L55RvJjo6L+clLvejACU1M0/Hlz7sZYEHaMkN5puiap85h5lBGoyVyWH7mPz8A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPl3QwqMWrF2NT9mkYb1d9TjrTzP0f11VMcDKVY5iwZFdGfMFCZY7lSiRvupZG1s2A==",
                             PhoneNumber = "0897123456",
                             PhoneNumberConfirmed = false,
                             RefereeId = 5,
@@ -298,7 +300,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = 1,
                             Content = "На 08.06.2023г в ОС на БФС-Плевен се проведе заседание на СТК при ОС на БФС Плевен и бяха взети следните решения:\r\n\r\nНа 04.06.2023г. в среща от 18 кръг на първенството на „Б”ОФГ-изток между отборите на ФК\"Обнова-2022\" – Обнова и ФК\"Чавдар-1920\" – Бръшляница, проведена в с.Обнова от 18ч. В 80мин. на срещата при резултат 1:0 в полза на ФК\"Обнова-2022\" е отсъден 11-метров наказателен удар в полза на ФК\"Обнова-2022\".Следва бурен протест от състезателите на ФК\"Чавдар-1920\" – Бръшляница.Нанесени са удари на гл.съдия в главата и тялото от състезатели на ФК\"Чавдар-1920\" – Бръшляница.поради създалата се обстановка при която е застрашено здравето и сигурността на длъжностните лица и няма условия футболната среща да продължи, същата е прекратена.\r\n\r\nНа основание чл.24 ал.9 от наредбата на БФС,се присъжда служебна  загуба при резултат 4:0 в полза на ФК\"Обнова-2022\".\r\n\r\nНеизрядната страна няма право да обжалва наказанието по тази алинея.",
-                            CreatedOn = new DateTime(2023, 8, 9, 16, 9, 15, 388, DateTimeKind.Utc).AddTicks(5376),
+                            CreatedOn = new DateTime(2023, 8, 9, 13, 45, 2, 407, DateTimeKind.Utc).AddTicks(5019),
                             IsActive = true,
                             Title = "Заседание на СТК при ОС на БФС Плевен"
                         },
@@ -306,7 +308,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = 2,
                             Content = "В среща от 17-ти кръг от първенството на „Б” ОФГ-запад между отборите на ФК\"Мизия-1924\" – Кнежа и ФК”Спартак-1924”-Койнаре проведена на 28.05. от 18ч. в гр.Кнежа и бяха взети следните решения:За навлизане на публиката на гостите от ФК”Спартак-1924”-Койнаре на терена по  време на срещата :Наказва ФК”Спартак-1924”-Койнаре с предупреждение, лишаване от домакинство и глоба в размер на 150/сто и петдесет/лева  по чл.37 ал.1 буква „в” от ДП.",
-                            CreatedOn = new DateTime(2023, 8, 9, 16, 9, 15, 388, DateTimeKind.Utc).AddTicks(5382),
+                            CreatedOn = new DateTime(2023, 8, 9, 13, 45, 2, 407, DateTimeKind.Utc).AddTicks(5026),
                             IsActive = true,
                             Title = "Решение на ДК- ОС на БФС Плевен"
                         },
@@ -314,7 +316,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         {
                             Id = 3,
                             Content = "В среща от 15-ти кръг от първенството на „Б” ОФГ-изток между отборите на ФК\"Славия\"-Новачене и ФК\"Обнова-2022\" - Обнова проведена на14.05.от 18ч. в с.Новачене и бяха взети следните решения:Наказва Явор Руменов Димитров  от отбора на ФК\"Славия\"-Новачене за получен червен картон със ССП за 1/една/ среща по чл.22 ал.1 т.1буква „з”от ДП.Наказва Галин Пламенов Георгиев от отбора на ФК\"Обнова-2022\" - Обнова за получен червен картон със ССП за 1/една/ среща по чл.22 ал.1 т.1буква „в”от ДП.",
-                            CreatedOn = new DateTime(2023, 8, 9, 16, 9, 15, 388, DateTimeKind.Utc).AddTicks(5383),
+                            CreatedOn = new DateTime(2023, 8, 9, 13, 45, 2, 407, DateTimeKind.Utc).AddTicks(5027),
                             IsActive = true,
                             Title = "Решение на ДК- ОС на БФС Плевен"
                         },
@@ -2185,6 +2187,10 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasComment("Primary key");
 
+                    b.Property<int>("AuthorId")
+                        .HasColumnType("int")
+                        .HasComment("Referee who created the message");
+
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasMaxLength(300)
@@ -2196,9 +2202,7 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         .HasComment("Time and date of creation");
 
                     b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
-                        .HasDefaultValue(true)
                         .HasComment("Soft delete value");
 
                     b.Property<Guid>("RefereeSquadId")
@@ -2210,6 +2214,8 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         .HasComment("User who created the message");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
 
                     b.HasIndex("RefereeSquadId");
 
@@ -4787,6 +4793,12 @@ namespace FootballRefereeManagementSystem.Data.Migrations
 
             modelBuilder.Entity("FootballRefereeManagementSystem.Data.Models.Message", b =>
                 {
+                    b.HasOne("FootballRefereeManagementSystem.Data.Models.Referee", "Author")
+                        .WithMany("Messages")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("FootballRefereeManagementSystem.Data.Models.RefereeSquad", "RefereeSquad")
                         .WithMany("Messages")
                         .HasForeignKey("RefereeSquadId")
@@ -4798,6 +4810,8 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Author");
 
                     b.Navigation("RefereeSquad");
 
@@ -5031,6 +5045,8 @@ namespace FootballRefereeManagementSystem.Data.Migrations
                     b.Navigation("FirstAssistantRefereeSquads");
 
                     b.Navigation("MainRefereeSquads");
+
+                    b.Navigation("Messages");
 
                     b.Navigation("RefereeDivisions");
 

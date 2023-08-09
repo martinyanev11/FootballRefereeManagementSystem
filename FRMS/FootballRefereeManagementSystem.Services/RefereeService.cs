@@ -519,7 +519,7 @@
                 .Where(r => r.Id ==  refereeId)
                 .FirstAsync();
 
-            int crrentlyAppointedMatchesCount = await this.dbContext
+            int currentlyAppointedMatchesCount = await this.dbContext
                 .RefereesSquads
                 .Where(rs => rs.Match.HasFinished == false &&
                     rs.MainRefereeId == refereeId ||
@@ -528,9 +528,29 @@
                     rs.DelegateId == refereeId)
                 .CountAsync();
 
-            refereeToUpdate.CurrentlyAppointedMatchesCount = crrentlyAppointedMatchesCount;
+            refereeToUpdate.CurrentlyAppointedMatchesCount = currentlyAppointedMatchesCount;
 
             await this.dbContext.SaveChangesAsync();
+        }
+
+        public async Task<RefereeSquadMatchCenterModel> GetRefereeSquadForMatchCenterAsync(string id)
+        {
+            return await this.dbContext
+                .RefereesSquads
+                .Where(rs => rs.Id.ToString() == id)
+                .Select(rs => new RefereeSquadMatchCenterModel()
+                {
+                    Id = rs.Id.ToString(),
+                    MainRefereeName = $"{rs.MainReferee.FirstName} {rs.MainReferee.LastName}",
+                    MainRefereeContact = rs.MainReferee.User.PhoneNumber,
+                    FirstARName = $"{rs.FirstAssistantReferee.FirstName} {rs.FirstAssistantReferee.LastName}",
+                    FirstARContact = rs.FirstAssistantReferee.User.PhoneNumber,
+                    SecondARName = $"{rs.SecondAssistantReferee.FirstName} {rs.SecondAssistantReferee.LastName}",
+                    SecondARContact = rs.SecondAssistantReferee.User.PhoneNumber,
+                    DelegateName = $"{rs.Delegate.FirstName} {rs.Delegate.LastName}",
+                    DelegateContact = rs.Delegate.User.PhoneNumber,
+                })
+                .FirstAsync();
         }
     }
 }

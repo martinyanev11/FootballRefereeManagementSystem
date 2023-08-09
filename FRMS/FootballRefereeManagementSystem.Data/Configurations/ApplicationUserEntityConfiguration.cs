@@ -17,6 +17,11 @@
 
         public void Configure(EntityTypeBuilder<ApplicationUser> builder)
         {
+            builder.HasMany(au => au.Messages)
+                .WithOne(m => m.User)
+                .HasForeignKey(m => m.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
             builder.HasData(this.userSeeder.GenerateApplicationUsers());
         }
     }

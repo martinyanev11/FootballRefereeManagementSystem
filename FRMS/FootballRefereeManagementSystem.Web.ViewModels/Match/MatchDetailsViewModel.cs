@@ -35,8 +35,6 @@
 
         public bool HasFinished { get; set; }
 
-        public int SeasonRound { get; set; }
-
         public int HomeTeamCurrentPosition { get; set; }
 
         public int AwayTeamCurrentPosition { get; set; }

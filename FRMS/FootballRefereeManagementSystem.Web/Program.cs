@@ -53,6 +53,7 @@ namespace FootballRefereeManagementSystem.Web
             builder.Services.AddScoped<IPlayerService, PlayerService>();
             builder.Services.AddScoped<ITownService, TownService>();
             builder.Services.AddScoped<IZoneService, ZoneService>();
+            builder.Services.AddScoped<IMessageService, MessageService>();
 
             WebApplication app = builder.Build();
 

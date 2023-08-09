@@ -201,6 +201,15 @@
             return matches;
         }
 
+        public async Task<int> GetMatchIdByRefereeSquadIdAsync(string id)
+        {
+            return await this.dbContext
+                .Matches
+                .Where(m => m.RefereeSquadId.ToString() == id)
+                .Select(m => m.Id)
+                .FirstAsync();
+        }
+
         public async Task<IEnumerable<MatchRefereeSquadSummaryViewModel>> GetWeeklyMatchesAsync
             (MatchQueryModel queryModel)
         {

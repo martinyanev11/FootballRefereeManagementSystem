@@ -1,0 +1,19 @@
+﻿@using FootballRefereeManagementSystem.Web.ViewModels.Message;
+@model MessageFormModel;
+
+<form method="post" asp-controller="Message" asp-action="Send" asp-route-id="@Model.RefereeSquadId">
+    <div class="row">
+        <div class="input-group">
+            <input asp-for="Content" type="text" class="form-control" placeholder="Въведете съобщение..." aria-label="Въведете съобщение...">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+
+        </div>
+    </div>
+    <row class="row">
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </row>
+</form>

@@ -1,0 +1,185 @@
+﻿@using FootballRefereeManagementSystem.Web.Infrastructure.Extensions;
+@using FootballRefereeManagementSystem.Web.ViewModels.RefereeSquad;
+@model MatchCenterViewModel;
+@{
+    ViewData["Title"] = "Мач център";
+    Model.NewMessage.RefereeSquadId = Model.RefereeSquad.Id;
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+    <hr />
+    <div class="row">
+        <div class="col-5">
+            <ul class="list-group text-center">
+                <li class="list-group alert-primary h5">Главен съдия</li>
+                <li class="list-group-item mb-3">
+                    <span class="fw-bold me-3">@Model.RefereeSquad.MainRefereeName</span>
+                    <span class="vr me-3"></span>
+                    <i class="fa-solid fa-phone me-3"></i>@Model.RefereeSquad.MainRefereeContact
+                </li>
+
+                <li class="list-group alert-primary h5">Първи асистент</li>
+                <li class="list-group-item mb-3">
+                    <span class="fw-bold me-3">@Model.RefereeSquad.FirstARName</span>
+                    <span class="vr me-3"></span>
+                    <i class="fa-solid fa-phone me-3"></i>@Model.RefereeSquad.FirstARContact
+                </li>
+
+                <li class="list-group alert-primary h5">Втори асистент</li>
+                <li class="list-group-item mb-3">
+                    <span class="fw-bold me-3">@Model.RefereeSquad.SecondARName</span>
+                    <span class="vr me-3"></span>
+                    <i class="fa-solid fa-phone me-3"></i>@Model.RefereeSquad.SecondARContact
+                </li>
+
+                <li class="list-group alert-primary h5">Делегат</li>
+                <li class="list-group-item mb-3">
+                    <span class="fw-bold me-3">@Model.RefereeSquad.DelegateName</span>
+                    <span class="vr me-3"></span>
+                    <i class="fa-solid fa-phone me-3"></i>@Model.RefereeSquad.DelegateContact
+                </li>
+            </ul>
+        </div>
+        <div class="col-7">
+            <div class="card mb-3">
+                <div class="card-header bg-primary text-light">Съобщения</div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        @foreach (var message in Model.Messages)
+                        {
+                            <li class="list-group-item">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <small class="fst-italic text-secondary">@message.CreatedOn.ToString("dd-MM-yyyy HH:mm")</small>
+                                        <br>
+                                        <span class="fw-bold">@message.AuthorName</span> : @message.Content
+                                    </div>
+                                    @if (message.UserId.ToLower() == User.GetId().ToLower())
+                                    {
+                                        <div class="dropdown">
+                                            <button class="btn btn-outline-light text-dark dropdown" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa-solid fa-ellipsis"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a asp-controller="Message" asp-action="Remove" asp-route-id="@message.Id" class="dropdown-item alert-danger">
+                                                    <i class="fa-regular fa-trash-can fa-xs"> Изтрий</i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <partial name="_ChatPartial" , model="@Model.NewMessage" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="row bg-secondary text-center text-light">
+                <div class="offset-3 col-2">
+                    <a class="text-decoration-none text-light" asp-controller="Team" asp-action="Details" asp-route-id="@Model.MatchInformation.HomeTeamId">
+                        <div class="mb-2 mt-4"><i class="fa-solid fa-shirt fa-2xl" style="color: @Model.MatchInformation.HomeTeamShirtColor"></i></div>
+                        <div class="h2">@Model.MatchInformation.HomeTeamName</div>
+                        <div class="h6">@Model.MatchInformation.HomeTeamTownName.ToUpper()</div>
+                    </a>
+                </div>
+                @{
+                    if (Model.MatchInformation.HasFinished)
+                    {
+                        <div class="col-2">
+                            <div class="h4 mt-5">@Model.MatchInformation.HomeTeamScore : @Model.MatchInformation.AwayTeamScore</div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-2">
+                            <div class="h4 mt-5">VS</div>
+                        </div>
+                    }
+                }
+                <div class="col-2">
+                    <a class="text-decoration-none text-light" asp-controller="Team" asp-action="Details" asp-route-id="@Model.MatchInformation.AwayTeamId">
+                        <div class="mb-2 mt-4"><i class="fa-solid fa-shirt fa-2xl" style="color: @Model.MatchInformation.AwayTeamShirtColor"></i></div>
+                        <div class="h2">@Model.MatchInformation.AwayTeamName</div>
+                        <div class="h6">@Model.MatchInformation.AwayTeamTownName.ToUpper()</div>
+                    </a>
+                </div>
+                <hr class="offset-2 col-8 text-white" />
+                <div class="row text-center">
+                    <p class="offset-3 col-2 fst-italic h4 me-3">
+                        <span class="badge badge-pill badge-primary border border-light bg-primary">
+                            <i class="fa-solid fa-medal fa-sm me-1"></i>@Model.MatchInformation.HomeTeamCurrentPosition
+                        </span>
+                    </p>
+                    <p class="offset-2 col-2 fst-italic h4">
+                        <span class="badge badge-light border border-light bg-primary">
+                            <i class="fa-solid fa-medal fa-sm me-1"></i>@Model.MatchInformation.AwayTeamCurrentPosition
+                        </span>
+                    </p>
+                </div>
+            </div>
+
+            <br />
+            <div class="row mt-4 mb-4 text-center">
+                <div class="offset-2 col-2 mb-3">
+                    <i class="fa-regular fa-calendar-days fa-xl me-1"></i>@Model.MatchInformation.FixtureTime.ToLongDateString()
+                </div>
+                <div class="col-1">
+                    <i class="fa-regular fa-clock fa-xl me-1"></i>@Model.MatchInformation.FixtureTime.ToShortTimeString()
+                </div>
+                <div class="col-2">
+                    <i class="fa-solid fa-location-dot fa-xl me-1"></i>@Model.MatchInformation.MatchLocation
+                </div>
+                <div class="col-3">
+                    <i class="fa-solid fa-trophy fa-xl me-1"></i>@Model.MatchInformation.Division
+                </div>
+            </div>
+            <hr class="bg-dark" />
+            <div class="row text-dark">
+                <h4 class="h4 mb-4 text-center">Резултати от предишни мачове между двата отбора:</h4>
+            </div>
+
+            @if (Model.MatchInformation.MatchHistoryBetweenThem.Any())
+            {
+                <div class="row mb-3">
+                    @foreach (var match in Model.MatchInformation.MatchHistoryBetweenThem)
+                    {
+                        <div class="offset-1 col-2 border border-1 border-secondary">
+                            <div class="row text-center">
+                                <div class="col-5 me-2 text-start">@match.HomeTeamName</div>
+                                <div class="col-1 opacity-75 bg-primary text-white">@match.HomeTeamGoals</div>
+                                <div class="col-5">@match.FixtureTime.ToString("dd-MM")</div>
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-5 me-2 text-start">@match.AwayTeamName</div>
+                                <div class="col-1 opacity-75 bg-primary text-white">@match.AwayTeamGoals</div>
+                                <div class="col-5">@match.FixtureTime.ToString("yyyy") г.</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="row text-center">
+                    <div class="offset-4 col-4 h5 alert-danger">
+                        Тези два отбора се срещат за първи път!
+                    </div>
+                </div>
+            }
+            <br />
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

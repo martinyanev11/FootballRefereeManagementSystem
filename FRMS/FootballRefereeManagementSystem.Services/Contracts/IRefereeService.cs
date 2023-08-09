@@ -81,5 +81,6 @@
         Task<RefereeSquadEditModel> GetRefereeSquadForEditByIdAsync(string id);
         Task EditRefereeSquadAsync(string id, RefereeSquadEditModel model);
         Task UpdateCurrentlyAppointedMatchesCount(int refereeId);
+        Task<RefereeSquadMatchCenterModel> GetRefereeSquadForMatchCenterAsync(string id);
     }
 }
