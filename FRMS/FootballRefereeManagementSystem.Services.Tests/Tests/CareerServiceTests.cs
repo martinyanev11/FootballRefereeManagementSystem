@@ -13,9 +13,9 @@
         private ICareerService careerService;
 
         [SetUp]
-        public new void InitializeDatabaseForTests()
+        public async new Task InitializeDatabaseForTests()
         {
-            base.InitializeDatabaseForTests();
+            await base.InitializeDatabaseForTests();
 
             this.careerService = new CareerService(dbContext);
         }

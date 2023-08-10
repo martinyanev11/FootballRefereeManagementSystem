@@ -1,16 +1,15 @@
 ﻿namespace FootballRefereeManagementSystem.Services
 {
-    using System.Collections.Generic;
+    using System;
     using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     using Microsoft.EntityFrameworkCore;
 
     using Contracts;
     using Data;
     using Data.Models;
-    using Web.ViewModels.Career;
     using Web.ViewModels.Division;
-    using System;
 
     public class DivisionService : IDivisionService
     {
@@ -25,7 +24,8 @@
             this.dbContext = dbContext;
         }
 
-        public async Task AddDivisionAndDivisionsWithLessDifficultyToRefereeByIdAsync(int refereeId, string divisionName)
+        public async Task AddDivisionAndDivisionsWithLessDifficultyToRefereeByIdAsync
+            (int refereeId, string divisionName)
         {
             Division division = await this.GetDivisionByNameAsync(divisionName);
 
@@ -76,7 +76,8 @@
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task<int> DetermineBestSuitedDivisionForApplicationAsync(int candidateAge, int candidateExperienceInYears)
+        public async Task<int> DetermineBestSuitedDivisionForApplicationAsync
+            (int candidateAge, int candidateExperienceInYears)
         {
             if (candidateAge <= HigherDivisionsAgeLimit)
             {

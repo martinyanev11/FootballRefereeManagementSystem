@@ -1,7 +1,7 @@
 ﻿namespace FootballRefereeManagementSystem.Services.Contracts
 {
-    using System.Collections.Generic;
     using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     using Web.ViewModels.Division;
 
@@ -51,6 +51,8 @@
         /// <param name="model">The model containing the new properties of the division.</param>
         /// <returns>A task representing the asynchronous operation.</returns>
         Task EditDivisionAsync(int id, DivisionFormModel model);
+
+
         Task<IDictionary<int, string>> GetAllDivisionKeyValuePairs();
 
         /// <summary>
@@ -64,6 +66,8 @@
         /// </summary>
         /// <returns>A collection of <see cref="DivisionAllViewModel"/> representing the active divisions.</returns>
         Task<IEnumerable<DivisionAllViewModel>> GetAllDivisionsAsync();
+
+
         Task<IEnumerable<DivisionViewModel>> GetAllDivisionsForRegistrationAsync();
 
         /// <summary>
