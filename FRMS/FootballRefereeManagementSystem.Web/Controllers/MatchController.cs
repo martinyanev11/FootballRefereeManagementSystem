@@ -8,10 +8,12 @@
     public class MatchController : BaseController
     {
         private readonly IMatchService matchService;
+        private readonly IRefereeService refereeService;
 
-        public MatchController(IMatchService matchService)
+        public MatchController(IMatchService matchService, IRefereeService refereeService)
         {
             this.matchService = matchService;
+            this.refereeService = refereeService;
         }
 
         [HttpGet]
@@ -59,6 +61,11 @@
                 }
 
                 await this.matchService.FinishMatchAsync(model);
+
+                int matchDivisionId = await this.matchService.GetDivisionIdByMatchIdAsync(model.MatchId);
+                int[] refereeIds = await this.refereeService.GetAllRefereeIdsFromRefereeSquad(id);
+
+                await this.refereeService.IncrementRefereeDivisionMatchCountStats(matchDivisionId, refereeIds);
 
                 return RedirectToAction("Schedule", "Referee");
             }

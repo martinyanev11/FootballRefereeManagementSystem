@@ -23,6 +23,7 @@
 
         public async Task<IActionResult> Index()
         {
+            // Carousel rotation images load
             string imagesPath = Path.Combine(webHostEnvironment.WebRootPath, "Images", "Home");
 
             IEnumerable<string> imagePaths = Directory.EnumerateFiles(imagesPath)
@@ -32,21 +33,6 @@
                 await this.seasonService.GetCurrentSeasonDescriptionAsync();
 
             return View(imagePaths);
-        }
-
-        public IActionResult GameRulesDownload()
-        {
-            string fileName = "Footbal-Rules-2021-22.pdf";
-            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Downloads", fileName);
-
-            if (!System.IO.File.Exists(filePath))
-            {
-                return View("Error");
-            }
-
-            byte[] fileBytes = System.IO.File.ReadAllBytes(filePath);
-
-            return File(fileBytes, "application/pdf", fileName);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

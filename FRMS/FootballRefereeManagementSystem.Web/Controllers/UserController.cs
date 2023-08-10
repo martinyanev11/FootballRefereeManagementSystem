@@ -3,12 +3,12 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Identity;
 
+    using Services.Contracts;
+    using Data.Models;
     using ViewModels.User;
     using ViewModels.Referee;
     using ViewModels.Career;
-    using Services.Contracts;
     using Infrastructure.Extensions;
-    using Data.Models;
 
     public class UserController : BaseController
     {

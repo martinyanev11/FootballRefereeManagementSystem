@@ -4,11 +4,11 @@
     using Microsoft.AspNetCore.Identity;
 
     using Services.Contracts;
-    using Infrastructure.Extensions;
+    using Data.Models;
     using ViewModels.RefereeSquad;
     using ViewModels.Referee;
-    using Data.Models;
     using ViewModels.Match;
+    using Infrastructure.Extensions;
 
     public class RefereeController : BaseController
     {

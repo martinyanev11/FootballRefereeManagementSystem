@@ -552,5 +552,37 @@
                 })
                 .FirstAsync();
         }
+
+        public async Task<int[]> GetAllRefereeIdsFromRefereeSquad(string id)
+        {
+            return await this.dbContext
+                .RefereesSquads
+                .Where(rs => rs.Id.ToString().ToLower() == id.ToLower())
+                .Select(rs => new int[]
+                {
+                    rs.MainRefereeId,
+                    rs.FirstAssistantRefereeId,
+                    rs.SecondAssistantRefereeId,
+                    rs.DelegateId
+                })
+                .FirstAsync();
+        }
+
+        public async Task IncrementRefereeDivisionMatchCountStats(int matchDivisionId, int[] refereeIds)
+        {
+            foreach (int refId in refereeIds)
+            {
+                RefereeDivision refereeToUpdate = await this.dbContext
+                    .RefereesDivisions
+                    .Where(rd => rd.IsActive &&
+                        rd.RefereeId == refId && 
+                        rd.DivisionId == matchDivisionId)
+                    .FirstAsync();
+
+                refereeToUpdate.DivisionMatchesOfficiated++;
+            }
+
+            await this.dbContext.SaveChangesAsync();
+        }
     }
 }
