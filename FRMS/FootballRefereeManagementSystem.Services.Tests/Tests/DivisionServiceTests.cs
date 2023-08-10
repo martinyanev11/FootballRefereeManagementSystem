@@ -193,5 +193,31 @@
             // Assert
             Assert.That(difference, Is.EqualTo(3));
         }
+
+        [Test]
+        public async Task GetNameOfMostOfficiatedDivisionForRefereeByIdAsync_ShouldReturnCorrectName()
+        {
+            // Arrange
+            int refereeId = 1;
+            int divisionId = 5;
+
+            RefereeDivision rd = await this.dbContext
+                .RefereesDivisions
+                .Where(rd => 
+                    rd.RefereeId == refereeId && 
+                    rd.DivisionId == divisionId)
+                .FirstAsync();
+            rd.DivisionMatchesOfficiated += 10; // The referee had officiated in 10 matches in this division.
+
+            await this.dbContext.SaveChangesAsync();
+
+            // Act
+            string divisionName = await this.divisionService
+                .GetNameOfMostOfficiatedDivisionForRefereeByIdAsync(refereeId);
+            string expectedName = "„Б“ областнa футболнa групa";
+
+            // Assert
+            Assert.That(divisionName, Is.EqualTo(expectedName));
+        }
     }
 }
