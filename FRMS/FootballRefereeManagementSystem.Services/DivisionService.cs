@@ -29,21 +29,33 @@
         {
             Division division = await this.GetDivisionByNameAsync(divisionName);
 
-            IEnumerable<Division> divisionsToAdd = await this.dbContext
+            IEnumerable<int> divisionsToAdd = await this.dbContext
                 .Divisions
-                .Where(d => d.Difficulty <= division.Difficulty && d.IsActive)
-                .Select(d => d)
+                .Where(d => d.Difficulty <= division.Difficulty)
+                .Select(d => d.Id)
                 .ToArrayAsync();
 
-            foreach (Division div in divisionsToAdd)
+            foreach (int divisionId in divisionsToAdd)
             {
-                RefereeDivision refereeDivision = new RefereeDivision()
-                {
-                    RefereeId = refereeId,
-                    DivisionId = div.Id
-                };
+                bool alreadyAdded = await this.CheckRefereeDivisionExistanceByIdAsync(refereeId, divisionId);
 
-                await this.dbContext.RefereesDivisions.AddAsync(refereeDivision);
+                if (!alreadyAdded)
+                {
+                    RefereeDivision refereeDivision = new RefereeDivision()
+                    {
+                        RefereeId = refereeId,
+                        DivisionId = divisionId,
+                    };
+
+                    await this.dbContext.RefereesDivisions.AddAsync(refereeDivision);
+                }
+
+                bool isActive = await this.CheckIfRefereeDivisionIsActiveByIdAsync(refereeId, divisionId);
+
+                if (!isActive)
+                {
+                    await this.ActivateRefereeDivisionByIdAsync(refereeId, divisionId);
+                }
             }
             
             await this.dbContext.SaveChangesAsync();
@@ -79,10 +91,11 @@
         public async Task<int> DetermineBestSuitedDivisionForApplicationAsync
             (int candidateAge, int candidateExperienceInYears)
         {
-            if (candidateAge <= HigherDivisionsAgeLimit)
+            if (candidateAge < HigherDivisionsAgeLimit)
             {
                 // Gets the easiest division for underaged
                 return await this.dbContext.Divisions
+                    .Where(d => d.IsActive)
                     .OrderBy(d => d.Difficulty)
                     .Select(d => d.Id)
                     .FirstAsync();
@@ -93,6 +106,7 @@
                 {
                     // Gets the easiest division for inexperienced candidate
                     return await this.dbContext.Divisions
+                        .Where(d => d.IsActive)
                         .OrderBy(d => d.Difficulty)
                         .Select(d => d.Id)
                         .FirstAsync();
@@ -111,6 +125,7 @@
                 {
                     // Gets the hardest division for experienced candidate
                     return await this.dbContext.Divisions
+                        .Where(d => d.IsActive)
                         .OrderByDescending(d => d.Difficulty)
                         .Select(d => d.Id)
                         .FirstAsync();
@@ -275,6 +290,38 @@
             }
 
             return (int)averageDifficulty;
+        }
+
+        private async Task<bool> CheckRefereeDivisionExistanceByIdAsync(int refereId, int divisionId)
+        {
+            return await this.dbContext
+                .RefereesDivisions
+                .AnyAsync(rd => rd.RefereeId == refereId &&
+                    rd.DivisionId == divisionId);
+        }
+
+        private async Task<bool> CheckIfRefereeDivisionIsActiveByIdAsync(int refereId, int divisionId)
+        {
+            return await this.dbContext
+                .RefereesDivisions
+                .AnyAsync(rd =>
+                    rd.RefereeId == refereId &&
+                    rd.DivisionId == divisionId &&
+                    rd.IsActive);
+        }
+
+        private async Task ActivateRefereeDivisionByIdAsync(int refereId, int divisionId)
+        {
+            RefereeDivision? rd = await this.dbContext
+                .RefereesDivisions
+                .Where(rd => rd.RefereeId == refereId &&
+                    rd.DivisionId == divisionId)
+                .FirstOrDefaultAsync();
+
+            if (rd is not null)
+            {
+                rd.IsActive = true;
+            }
         }
     }
 }
