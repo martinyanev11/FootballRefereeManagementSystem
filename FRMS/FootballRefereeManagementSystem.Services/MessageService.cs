@@ -32,18 +32,18 @@
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task<bool> CheckMessageExistance(string id)
+        public async Task<bool> CheckMessageExistance(string messageId)
         {
             return await this.dbContext
                 .Messages
-                .AnyAsync(m => m.Id.ToString() == id && m.IsActive);
+                .AnyAsync(m => m.Id.ToString() == messageId && m.IsActive);
         }
 
-        public async Task<IEnumerable<MessageViewModel>> GetAllMessagesAsync(string id)
+        public async Task<IEnumerable<MessageViewModel>> GetAllMessagesForRefereeSquadAsync(string refereeSquadId)
         {
             return await this.dbContext
                 .Messages
-                .Where(m => m.RefereeSquadId.ToString() == id && m.IsActive)
+                .Where(m => m.RefereeSquadId.ToString() == refereeSquadId && m.IsActive)
                 .OrderByDescending(m => m.CreatedOn)
                 .Select(m => new MessageViewModel()
                 {
@@ -56,20 +56,20 @@
                 .ToArrayAsync();
         }
 
-        public async Task<string> GetRefereeSquadIdAsync(string id)
+        public async Task<string> GetRefereeSquadIdAsync(string messageId)
         {
             return await this.dbContext
                 .Messages
-                .Where(m => m.Id.ToString() == id)
+                .Where(m => m.Id.ToString() == messageId)
                 .Select(m => m.RefereeSquadId.ToString())
                 .FirstAsync();
         }
 
-        public async Task RemoveMessageAsync(string id)
+        public async Task RemoveMessageAsync(string messageId)
         {
             Message messageToDelete = await this.dbContext
                 .Messages
-                .Where(m => m.Id.ToString() == id)
+                .Where(m => m.Id.ToString() == messageId)
                 .FirstAsync();
 
             messageToDelete.IsActive = false;

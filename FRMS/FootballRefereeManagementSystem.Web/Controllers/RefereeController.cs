@@ -110,7 +110,7 @@
                 {
                     RefereeSquad = await this.refereeService.GetRefereeSquadForMatchCenterAsync(id),
                     MatchInformation = await this.matchService.GetMatchDetailsByIdAsync(matchId),
-                    Messages = await this.messageService.GetAllMessagesAsync(id),
+                    Messages = await this.messageService.GetAllMessagesForRefereeSquadAsync(id),
                     MatchResult = new MatchFinishModel()
                     {
                         MatchId = matchId,
