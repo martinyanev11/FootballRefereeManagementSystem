@@ -26,7 +26,7 @@
         protected ICollection<Zone> zones;
 
         [SetUp]
-        public void Setup()
+        public void InitializeDatabaseForTests()
         {
             var options = new DbContextOptionsBuilder<FootballRefereeManagementSystemDbContext>()
                 .UseInMemoryDatabase("FRMSDataBase" + Guid.NewGuid())
