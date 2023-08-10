@@ -5,9 +5,9 @@
     using SeedingDataConstants;
     //using static DataGenerator.RandomDataGenerator;
 
-    internal class RefereeSeeder
+    public static class RefereeSeeder
     {
-        internal ICollection<Referee> GenerateReferees()
+        public static ICollection<Referee> GenerateReferees()
         {
             ICollection<Referee> referees = new HashSet<Referee>()
             {

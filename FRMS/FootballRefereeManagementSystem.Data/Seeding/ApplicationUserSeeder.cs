@@ -7,9 +7,9 @@
     using Models;
     using SeedingDataConstants;
 
-    internal class ApplicationUserSeeder
+    public static class ApplicationUserSeeder
     {
-        internal ICollection<ApplicationUser> GenerateApplicationUsers()
+        public static ICollection<ApplicationUser> GenerateApplicationUsers()
         {
             ICollection<ApplicationUser> users = new HashSet<ApplicationUser>()
             {

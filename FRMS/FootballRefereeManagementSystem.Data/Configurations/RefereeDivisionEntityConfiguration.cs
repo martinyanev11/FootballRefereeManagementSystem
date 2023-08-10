@@ -8,13 +8,6 @@
 
     internal class RefereeDivisionEntityConfiguration : IEntityTypeConfiguration<RefereeDivision>
     {
-        private readonly RefereeDivisionSeeder seeder;
-
-        public RefereeDivisionEntityConfiguration()
-        {
-            this.seeder = new RefereeDivisionSeeder();
-        }
-
         public void Configure(EntityTypeBuilder<RefereeDivision> builder)
         {
             builder.HasKey(rd => new { rd.RefereeId, rd.DivisionId });
@@ -32,7 +25,7 @@
             builder.Property(rd => rd.IsActive)
                 .HasDefaultValue(true);
 
-            builder.HasData(this.seeder.GenerateRefereeDivisions());
+            builder.HasData(RefereeDivisionSeeder.GenerateRefereeDivisions());
         }
     }
 }

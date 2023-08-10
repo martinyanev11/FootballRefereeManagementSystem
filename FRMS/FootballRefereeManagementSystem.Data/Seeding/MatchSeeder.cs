@@ -3,9 +3,9 @@
     using Models;
     using SeedingDataConstants;
 
-    internal class MatchSeeder
+    public static class MatchSeeder
     {
-        internal ICollection<Match> GenerateMatches()
+        public static ICollection<Match> GenerateMatches()
         {
             // Hard coded seed "A regional group" matches for season 2023/24
             ICollection<Match> matches = new HashSet<Match>()

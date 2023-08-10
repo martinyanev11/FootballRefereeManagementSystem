@@ -8,19 +8,12 @@
 
     internal class PlayerEntityConfiguration : IEntityTypeConfiguration<Player>
     {
-        private readonly PlayerSeeder playerSeeder;
-
-        public PlayerEntityConfiguration()
-        {
-            this.playerSeeder = new PlayerSeeder();
-        }
-
         public void Configure(EntityTypeBuilder<Player> builder)
         {
             builder.Property(p => p.IsActive)
                 .HasDefaultValue(true);
 
-            builder.HasData(this.playerSeeder.GeneratePlayers(88));
+            builder.HasData(PlayerSeeder.GeneratePlayers(88));
         }
     }
 }

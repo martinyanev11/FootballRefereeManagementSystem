@@ -3,9 +3,9 @@
     using Models;
     using SeedingDataConstants;
 
-    internal class PlayerTeamSeasonSeeder
+    public static class PlayerTeamSeasonSeeder
     {
-        internal ICollection<PlayerTeamSeason> GeneratePlayersTeamsSeasons(int ptsToGenerate)
+        public static ICollection<PlayerTeamSeason> GeneratePlayersTeamsSeasons(int ptsToGenerate)
         {
             // Seeding 11 players per team for "A regional group" teams for season 2023/24.
             ICollection<PlayerTeamSeason> ptsCollection = new HashSet<PlayerTeamSeason>();

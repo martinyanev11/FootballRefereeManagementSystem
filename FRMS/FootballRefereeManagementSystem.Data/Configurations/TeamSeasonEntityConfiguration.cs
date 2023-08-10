@@ -8,12 +8,6 @@
 
     internal class TeamSeasonEntityConfiguration : IEntityTypeConfiguration<TeamSeason>
     {
-        private readonly TeamSeasonSeeder seeder;
-
-        public TeamSeasonEntityConfiguration()
-        {
-            this.seeder = new TeamSeasonSeeder();
-        }
         public void Configure(EntityTypeBuilder<TeamSeason> builder)
         {
             builder.HasKey(ts => new { ts.TeamId, ts.SeasonId });
@@ -33,7 +27,7 @@
                 .HasForeignKey(ts => ts.DivisionId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasData(this.seeder.GenerateTeamsSeasons());
+            builder.HasData(TeamSeasonSeeder.GenerateTeamsSeasons());
         }
     }
 }

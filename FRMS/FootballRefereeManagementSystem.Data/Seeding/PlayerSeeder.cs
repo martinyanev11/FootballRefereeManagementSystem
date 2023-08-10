@@ -4,9 +4,9 @@
     //using static DataGenerator.RandomDataGenerator;
     using SeedingDataConstants;
 
-    internal class PlayerSeeder
+    public static class PlayerSeeder
     {
-        internal ICollection<Player> GeneratePlayers(int count)
+        public static ICollection<Player> GeneratePlayers(int count)
         {
             ICollection<Player> players = new HashSet<Player>();
 

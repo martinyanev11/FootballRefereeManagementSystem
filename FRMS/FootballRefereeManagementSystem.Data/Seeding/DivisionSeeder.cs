@@ -3,9 +3,9 @@
     using Models;
     using static SeedingDataConstants.DivisionDataConstants;
 
-    internal class DivisionSeeder
+    public static class DivisionSeeder
     {
-        internal ICollection<Division> GenerateDivisions()
+        public static ICollection<Division> GenerateDivisions()
         {
             ICollection<Division> divisions = new HashSet<Division>()
             {

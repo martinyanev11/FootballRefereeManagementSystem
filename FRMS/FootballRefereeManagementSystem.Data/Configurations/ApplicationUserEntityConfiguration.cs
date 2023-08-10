@@ -8,13 +8,6 @@
 
     internal class ApplicationUserEntityConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {
-        private readonly ApplicationUserSeeder userSeeder;
-
-        public ApplicationUserEntityConfiguration()
-        {
-            this.userSeeder = new ApplicationUserSeeder();
-        }
-
         public void Configure(EntityTypeBuilder<ApplicationUser> builder)
         {
             builder.HasMany(au => au.Messages)
@@ -22,7 +15,7 @@
                 .HasForeignKey(m => m.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasData(this.userSeeder.GenerateApplicationUsers());
+            builder.HasData(ApplicationUserSeeder.GenerateApplicationUsers());
         }
     }
 }

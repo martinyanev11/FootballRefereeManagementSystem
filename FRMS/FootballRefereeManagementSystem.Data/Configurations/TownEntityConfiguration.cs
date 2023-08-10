@@ -8,19 +8,12 @@
 
     internal class TownEntityConfiguration : IEntityTypeConfiguration<Town>
     {
-        private readonly TownSeeder townSeeder;
-
-        public TownEntityConfiguration()
-        {
-            this.townSeeder = new TownSeeder();
-        }
-
         public void Configure(EntityTypeBuilder<Town> builder)
         {
             builder.Property(t => t.IsActive)
                 .HasDefaultValue(true);
 
-            builder.HasData(this.townSeeder.GenerateTowns());
+            builder.HasData(TownSeeder.GenerateTowns());
         }
     }
 }

@@ -4,9 +4,9 @@
     using Models.Enums;
     using SeedingDataConstants;
 
-    internal class TeamSeasonSeeder
+    public static class TeamSeasonSeeder
     {
-        internal ICollection<TeamSeason> GenerateTeamsSeasons()
+        public static ICollection<TeamSeason> GenerateTeamsSeasons()
         {
             ICollection<TeamSeason> teamsSeasons = new HashSet<TeamSeason>()
             {

@@ -8,13 +8,6 @@
 
     internal class RefereeSquadEntityConfiguration : IEntityTypeConfiguration<RefereeSquad>
     {
-        private readonly RefereeSquadSeeder seeder;
-
-        public RefereeSquadEntityConfiguration()
-        {
-            this.seeder = new RefereeSquadSeeder();
-        }
-
         public void Configure(EntityTypeBuilder<RefereeSquad> builder)
         {
             builder.HasOne(rs => rs.MainReferee)
@@ -41,7 +34,7 @@
                 .WithOne(msg => msg.RefereeSquad)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasData(this.seeder.GenerateRefereeSquads());
+            builder.HasData(RefereeSquadSeeder.GenerateRefereeSquads());
         }
     }
 }

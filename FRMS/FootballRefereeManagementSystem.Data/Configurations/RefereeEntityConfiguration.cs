@@ -8,13 +8,6 @@
 
     internal class RefereeEntityConfiguration : IEntityTypeConfiguration<Referee>
     {
-        private readonly RefereeSeeder refereeSeeder;
-
-        public RefereeEntityConfiguration()
-        {
-            this.refereeSeeder = new RefereeSeeder();
-        }
-
         public void Configure(EntityTypeBuilder<Referee> builder)
         {
             builder.Property(r => r.ImageUrl)
@@ -23,7 +16,7 @@
             builder.Property(r => r.IsActive)
                 .HasDefaultValue(true);
 
-            builder.HasData(this.refereeSeeder.GenerateReferees());
+            builder.HasData(RefereeSeeder.GenerateReferees());
         }
     }
 }

@@ -3,9 +3,9 @@
     using Models;
     using static SeedingDataConstants.ZoneDataConstants;
 
-    internal class ZoneSeeder
+    public static class ZoneSeeder
     {
-        internal ICollection<Zone> GenerateZones()
+        public static ICollection<Zone> GenerateZones()
         {
             ICollection<Zone> zones = new HashSet<Zone>()
             {

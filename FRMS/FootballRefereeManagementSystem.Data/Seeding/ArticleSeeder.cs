@@ -2,9 +2,9 @@
 {
     using Models;
 
-    internal class ArticleSeeder
+    public static class ArticleSeeder
     {
-        internal ICollection<Article> GenerateArticles()
+        public static ICollection<Article> GenerateArticles()
         {
             ICollection<Article> articles = new HashSet<Article>()
             {

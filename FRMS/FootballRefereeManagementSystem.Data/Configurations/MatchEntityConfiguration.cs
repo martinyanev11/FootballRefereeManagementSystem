@@ -8,13 +8,6 @@
 
     internal class MatchEntityConfiguration : IEntityTypeConfiguration<Match>
     {
-        private readonly MatchSeeder matchSeeder;
-
-        public MatchEntityConfiguration()
-        {
-            this.matchSeeder = new MatchSeeder();
-        }
-
         public void Configure(EntityTypeBuilder<Match> builder)
         {
             builder.HasOne(m => m.HomeTeam)
@@ -30,7 +23,7 @@
             builder.Property(m => m.HasFinished)
                 .HasDefaultValue(false);
 
-            builder.HasData(this.matchSeeder.GenerateMatches());
+            builder.HasData(MatchSeeder.GenerateMatches());
         }
     }
 }

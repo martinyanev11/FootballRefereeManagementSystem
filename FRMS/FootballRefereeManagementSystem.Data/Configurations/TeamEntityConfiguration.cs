@@ -8,19 +8,12 @@
 
     internal class TeamEntityConfiguration : IEntityTypeConfiguration<Team>
     {
-        private readonly TeamSeeder teamSeeder;
-
-        public TeamEntityConfiguration()
-        {
-            this.teamSeeder = new TeamSeeder();
-        }
-
         public void Configure(EntityTypeBuilder<Team> builder)
         {
             builder.Property(t => t.IsActive)
                 .HasDefaultValue(true);
 
-            builder.HasData(this.teamSeeder.GenerateTeams());
+            builder.HasData(TeamSeeder.GenerateTeams());
         }
     }
 }

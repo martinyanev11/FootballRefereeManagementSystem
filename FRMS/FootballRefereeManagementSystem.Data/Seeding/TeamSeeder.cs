@@ -3,9 +3,9 @@
     using Models;
     using SeedingDataConstants;
 
-    internal class TeamSeeder
+    public static class TeamSeeder
     {
-        internal ICollection<Team> GenerateTeams()
+        public static ICollection<Team> GenerateTeams()
         {
             ICollection<Team> teams = new HashSet<Team>()
             {

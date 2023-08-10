@@ -3,9 +3,9 @@
     using Models;
     using SeedingDataConstants;
 
-    internal class RefereeSquadSeeder
+    public static class RefereeSquadSeeder
     {
-        internal ICollection<RefereeSquad> GenerateRefereeSquads()
+        public static ICollection<RefereeSquad> GenerateRefereeSquads()
         {
             ICollection<RefereeSquad> refereeSquads = new HashSet<RefereeSquad>()
             {

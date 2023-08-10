@@ -8,19 +8,12 @@
 
     internal class ArticleEntityConfiguration : IEntityTypeConfiguration<Article>
     {
-        private readonly ArticleSeeder seeder;
-
-        public ArticleEntityConfiguration()
-        {
-            this.seeder = new ArticleSeeder();
-        }
-
         public void Configure(EntityTypeBuilder<Article> builder)
         {
             builder.Property(a => a.IsActive)
                 .HasDefaultValue(true);
 
-            builder.HasData(seeder.GenerateArticles());
+            builder.HasData(ArticleSeeder.GenerateArticles());
         }
     }
 }

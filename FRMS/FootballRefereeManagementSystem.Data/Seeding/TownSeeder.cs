@@ -3,9 +3,9 @@
     using Models;
     using SeedingDataConstants;
 
-    internal class TownSeeder
+    public static class TownSeeder
     {
-        internal ICollection<Town> GenerateTowns()
+        public static ICollection<Town> GenerateTowns()
         {
             ICollection<Town> towns = new HashSet<Town>()
             {

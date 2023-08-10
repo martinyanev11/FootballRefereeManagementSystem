@@ -25,6 +25,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballRefereeManagementSy
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballRefereeManagementSystem.Services.Models", "FootballRefereeManagementSystem.Services.Models\FootballRefereeManagementSystem.Services.Models.csproj", "{FFEA67D1-876D-4020-B2C6-CC33ED53503A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{881869AE-D4BD-4B5C-92C9-D51B5DE0F3F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FootballRefereeManagementSystem.Services.Tests", "FootballRefereeManagementSystem.Services.Tests\FootballRefereeManagementSystem.Services.Tests.csproj", "{A263A6ED-1AE6-46F3-A4A5-8D0E9BE6EE5E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +67,10 @@ Global
 		{FFEA67D1-876D-4020-B2C6-CC33ED53503A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFEA67D1-876D-4020-B2C6-CC33ED53503A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFEA67D1-876D-4020-B2C6-CC33ED53503A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A263A6ED-1AE6-46F3-A4A5-8D0E9BE6EE5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A263A6ED-1AE6-46F3-A4A5-8D0E9BE6EE5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A263A6ED-1AE6-46F3-A4A5-8D0E9BE6EE5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A263A6ED-1AE6-46F3-A4A5-8D0E9BE6EE5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,6 +83,7 @@ Global
 		{D1D35283-EE98-45B0-89F2-ED3ABB0D8E92} = {02FE29F2-3013-40B9-8B87-6A5AA7E74410}
 		{AF4DCC0D-1E03-4B15-B18E-D4B5C43704D7} = {DE9C9D3F-86A6-4159-9A43-645E09701061}
 		{FFEA67D1-876D-4020-B2C6-CC33ED53503A} = {02FE29F2-3013-40B9-8B87-6A5AA7E74410}
+		{A263A6ED-1AE6-46F3-A4A5-8D0E9BE6EE5E} = {881869AE-D4BD-4B5C-92C9-D51B5DE0F3F5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FD41E1E4-9A85-469C-A006-E810A2AAA5D7}

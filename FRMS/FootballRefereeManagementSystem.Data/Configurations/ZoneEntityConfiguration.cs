@@ -8,19 +8,12 @@
 
     internal class ZoneEntityConfiguration : IEntityTypeConfiguration<Zone>
     {
-        private readonly ZoneSeeder zoneSeeder;
-
-        public ZoneEntityConfiguration()
-        {
-            this.zoneSeeder = new ZoneSeeder();
-        }
-
         public void Configure(EntityTypeBuilder<Zone> builder)
         {
             builder.Property(z => z.IsActive)
                 .HasDefaultValue(true);
 
-            builder.HasData(this.zoneSeeder.GenerateZones());
+            builder.HasData(ZoneSeeder.GenerateZones());
         }
     }
 }
