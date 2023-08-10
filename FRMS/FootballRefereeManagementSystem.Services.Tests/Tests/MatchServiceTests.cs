@@ -50,26 +50,26 @@
         }
 
         [Test]
-        public async Task CheckMatchExistanceById_ValidId_ShouldReturnTrue()
+        public async Task CheckMatchExistanceByIdAsync_ValidId_ShouldReturnTrue()
         {
             // Arrange
             int matchId = 1;
 
             // Act
-            bool exists = await this.matchService.CheckMatchExistanceById(matchId);
+            bool exists = await this.matchService.CheckMatchExistanceByIdAsync(matchId);
 
             // Assert
             Assert.IsTrue(exists);
         }
 
         [Test]
-        public async Task CheckMatchExistanceById_InalidId_ShouldReturnFalse()
+        public async Task CheckMatchExistanceByIdAsync_InalidId_ShouldReturnFalse()
         {
             // Arrange
             int matchId = 100000;
 
             // Act
-            bool exists = await this.matchService.CheckMatchExistanceById(matchId);
+            bool exists = await this.matchService.CheckMatchExistanceByIdAsync(matchId);
 
             // Assert
             Assert.IsFalse(exists);

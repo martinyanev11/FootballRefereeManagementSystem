@@ -34,18 +34,18 @@
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task<bool> CheckMatchExistanceById(int id)
+        public async Task<bool> CheckMatchExistanceByIdAsync(int matchId)
         {
             return await this.dbContext
                 .Matches
-                .AnyAsync(m => m.Id == id);
+                .AnyAsync(m => m.Id == matchId);
         }
 
-        public async Task EditMatchAsync(int id, MatchEditViewModel model)
+        public async Task EditMatchAsync(int matchId, MatchEditViewModel model)
         {
             Match matchToEdit = await this.dbContext
                 .Matches
-                .Where(m => m.Id == id)
+                .Where(m => m.Id == matchId)
                 .FirstAsync();
 
             matchToEdit.TownId = model.TownId;
@@ -115,23 +115,23 @@
                 .ToArrayAsync();
         }
 
-        public async Task<int> GetDivisionIdByMatchIdAsync(int id)
+        public async Task<int> GetDivisionIdByMatchIdAsync(int matchId)
         {
             return await this.dbContext
                 .Matches
-                .Where(m => m.Id == id)
+                .Where(m => m.Id == matchId)
                 .Select(m => m.DivisionId)
                 .FirstAsync();
         }
 
         public async Task<IEnumerable<MatchTableViewModel>> GetFilteredBySeasonAndDivisionMatchesAsync
-            (string seasonFilter, string divisionFilter)
+            (string seasonDescription, string divisionName)
         {
             IEnumerable<MatchTableViewModel> matches =  await this.dbContext
                 .Matches
                 .AsNoTracking()
-                .Where(m => m.HomeTeam.Season.Description == seasonFilter
-                    && m.Division.Name == divisionFilter)
+                .Where(m => m.HomeTeam.Season.Description == seasonDescription
+                    && m.Division.Name == divisionName)
                 .Select(m => new MatchTableViewModel()
                 {
                     MatchId = m.Id,
@@ -148,12 +148,12 @@
             return matches;
         }
 
-        public async Task<MatchDetailsViewModel> GetMatchDetailsByIdAsync(int id)
+        public async Task<MatchDetailsViewModel> GetMatchDetailsByIdAsync(int matchId)
         {
             MatchDetailsViewModel match = await this.dbContext
                 .Matches
                 .AsNoTracking()
-                .Where(m => m.Id == id)
+                .Where(m => m.Id == matchId)
                 .Select(m => new MatchDetailsViewModel()
                 {
                     Division = m.Division.Name,
@@ -176,16 +176,16 @@
                 .FirstAsync();
 
             match.MatchHistoryBetweenThem = 
-                await this.GetOtherMatchesBetweenTwoTeams(id, match.HomeTeamId, match.AwayTeamId);
+                await this.GetOtherMatchesBetweenTwoTeams(matchId, match.HomeTeamId, match.AwayTeamId);
 
             return match;
         }
 
-        public async Task<MatchEditViewModel> GetMatchForEditByIdAsync(int id)
+        public async Task<MatchEditViewModel> GetMatchForEditByIdAsync(int matchId)
         {
             return await this.dbContext
                 .Matches
-                .Where(m => m.Id == id)
+                .Where(m => m.Id == matchId)
                 .Select(m => new MatchEditViewModel()
                 {
                     HomeTeamName = m.HomeTeam.Team.Name,
@@ -222,12 +222,12 @@
         }
 
         public async Task<IEnumerable<DetailsHistoryViewModel>> GetMatchHistoryForSeasonByTeamIdAsync
-            (int id, int seasonId)
+            (int teamId, int seasonId)
         {
             IEnumerable<DetailsHistoryViewModel> matches = await this.dbContext
                 .Matches
                 .AsNoTracking()
-                .Where(m => (m.HomeTeamId == id || m.AwayTeamId == id) &&
+                .Where(m => (m.HomeTeamId == teamId || m.AwayTeamId == teamId) &&
                     m.HasFinished == true && m.SeasonId == seasonId)
                 .Select(m => new DetailsHistoryViewModel()
                 {
@@ -242,11 +242,11 @@
             return matches;
         }
 
-        public async Task<int> GetMatchIdByRefereeSquadIdAsync(string id)
+        public async Task<int> GetMatchIdByRefereeSquadIdAsync(string refereeSquadId)
         {
             return await this.dbContext
                 .Matches
-                .Where(m => m.RefereeSquadId.ToString() == id)
+                .Where(m => m.RefereeSquadId.ToString() == refereeSquadId)
                 .Select(m => m.Id)
                 .FirstAsync();
         }

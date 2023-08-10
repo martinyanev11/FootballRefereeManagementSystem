@@ -82,7 +82,7 @@
         {
             try
             {
-                bool matchExists = await this.matchService.CheckMatchExistanceById(id);
+                bool matchExists = await this.matchService.CheckMatchExistanceByIdAsync(id);
 
                 if (!matchExists)
                 {
@@ -106,7 +106,7 @@
         {
             try
             {
-                bool matchExists = await this.matchService.CheckMatchExistanceById(id);
+                bool matchExists = await this.matchService.CheckMatchExistanceByIdAsync(id);
 
                 if (!matchExists)
                 {

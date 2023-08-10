@@ -43,7 +43,7 @@
         {
             try
             {
-                bool matchExists = await this.matchService.CheckMatchExistanceById(model.MatchId);
+                bool matchExists = await this.matchService.CheckMatchExistanceByIdAsync(model.MatchId);
 
                 if (!matchExists)
                 {
