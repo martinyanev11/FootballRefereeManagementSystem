@@ -32,7 +32,7 @@
             return seasons;
         }
 
-        public async Task<SeasonViewModel> GetCurrentSeasonInformation()
+        public async Task<SeasonViewModel> GetCurrentSeasonInformationAsync()
         {
             return await this.dbContext
                 .Seasons

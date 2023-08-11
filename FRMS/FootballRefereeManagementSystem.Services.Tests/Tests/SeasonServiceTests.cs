@@ -35,10 +35,37 @@
             string expectedDescription = "2023/24";
 
             // Act
-            SeasonViewModel model = await this.seasonService.GetCurrentSeasonInformation();
+            SeasonViewModel model = await this.seasonService.GetCurrentSeasonInformationAsync();
 
             // Assert
             Assert.That(model.Description, Is.EqualTo(expectedDescription)); 
+        }
+
+        [Test]
+        public async Task GetCurrentSeasonDescriptionAsync_ShouldReturnCorrectDescription()
+        {
+            // Arrange
+            string expectedDescription = "2023/24";
+
+            // Act
+            string result = await this.seasonService.GetCurrentSeasonDescriptionAsync();
+
+            // Assert
+            Assert.That(result, Is.EqualTo(expectedDescription));
+        }
+
+        [Test]
+        public async Task GetSeasonIdByDescriptionAsync_ShouldReturnCorrectId()
+        {
+            // Arrange
+            int expected = 1;
+            string inputDescription = "2022/23";
+
+            // Act
+            int result = await this.seasonService.GetSeasonIdByDescriptionAsync(inputDescription);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(expected));
         }
     }
 }

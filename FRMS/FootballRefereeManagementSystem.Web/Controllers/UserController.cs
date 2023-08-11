@@ -46,7 +46,7 @@
                     await this.userService.GetUserInformationByIdAsync(userId);
 
                 model.RefereeDetails = await this.refereeService.GetRefereeDetailsByIdAsync(userRefereeId);
-                model.CurrrentSeasonInformation = await this.seasonService.GetCurrentSeasonInformation();
+                model.CurrrentSeasonInformation = await this.seasonService.GetCurrentSeasonInformationAsync();
 
                 return View(model);
             }

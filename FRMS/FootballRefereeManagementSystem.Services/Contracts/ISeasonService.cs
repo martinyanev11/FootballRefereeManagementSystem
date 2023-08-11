@@ -11,7 +11,7 @@
         /// </summary>
         /// <returns>A collection containing the descriptions of all seasons.</returns>
         Task<IEnumerable<string>> GetAllSeasonDescriptionsAsync();
-        Task<SeasonViewModel> GetCurrentSeasonInformation();
+        Task<SeasonViewModel> GetCurrentSeasonInformationAsync();
 
         /// <summary>
         /// Asynchronously retrieves the description of the latest (current) season from the database.
