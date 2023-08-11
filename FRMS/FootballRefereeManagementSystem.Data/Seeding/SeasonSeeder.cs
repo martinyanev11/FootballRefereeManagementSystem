@@ -16,7 +16,7 @@
                     Description = "2022/23",
                     Start = DateTime.Parse(SeasonDataConstants.S22And23Start),
                     End = DateTime.Parse(SeasonDataConstants.S22And23End),
-                    Status = SeasonStatus.Current,
+                    Status = SeasonStatus.Ended,
                 },
                 new Season()
                 {
@@ -24,7 +24,7 @@
                     Description = "2023/24",
                     Start = DateTime.Parse(SeasonDataConstants.S23And24Start),
                     End = DateTime.Parse(SeasonDataConstants.S23And24End),
-                    Status = SeasonStatus.InPreparation,
+                    Status = SeasonStatus.Current,
                 },
             };
 

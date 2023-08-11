@@ -223,7 +223,7 @@
 
         public int DetermineBestSuitedRoleForApplication(ApplicationFormModel model)
         {
-            if (model.Age <= HigherRoleAgeLimit)
+            if (model.Age < HigherRoleAgeLimit)
             {
                 return (int)Role.AssistantReferee;
             }
@@ -430,7 +430,8 @@
             return refStats;
         }
 
-        public async Task<IEnumerable<RefereeListModel>> GetAllAvaliableInDivisionRefereesOfRoleType(int divisionId, string roleType)
+        public async Task<IEnumerable<RefereeListModel>> GetAllAvaliableInDivisionRefereesOfRoleType
+            (int divisionId, string roleType)
         {
             return await this.dbContext
                 .Referees

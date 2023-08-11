@@ -2,7 +2,7 @@
 {
     using Data.Models.Enums;
 
-    internal static class Translator
+    public static class Translator
     {
         public static string TranslateRoleToBulgarian(string role)
         {

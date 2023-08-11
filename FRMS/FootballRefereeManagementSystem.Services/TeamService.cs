@@ -111,6 +111,7 @@
         {
             IQueryable<Team> teamsQuery = this.dbContext
                 .Teams
+                .Include(t => t.TeamSeasons)
                 .Where(t => t.IsActive)
                 .AsNoTracking()
                 .AsQueryable();
@@ -139,7 +140,7 @@
                     TeamLocation = t.Town.Name,
                     SeasonsPlayed = t.TeamSeasons.Count,
                     SeasonsWon = t.TeamSeasons
-                        .Where(ts => ts.Placement == 1)
+                        .Where(ts => ts.Placement == 1 && ts.Season.Status == SeasonStatus.Ended)
                         .Count()
                 })
                 .ToArrayAsync();
