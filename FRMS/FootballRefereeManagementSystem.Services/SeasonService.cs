@@ -110,7 +110,8 @@
             {
                 Start = model.StartDate,
                 End = model.EndDate,
-                Description = $"{model.StartDate.ToString("yyyy")}/{model.EndDate.ToString("yy")}"
+                Description = $"{model.StartDate.ToString("yyyy")}/{model.EndDate.ToString("yy")}",
+                Status = SeasonStatus.InPreparation,
             };
 
             await this.dbContext.Seasons.AddAsync(seasonToAdd);
@@ -232,7 +233,7 @@
 
         private async Task<int> GetSeasonTotalMatchesPlayedCount()
         {
-            int[][] homeMatchesPlayedArray = await this.dbContext
+            int[][] matchesPlayedArray = await this.dbContext
                 .Seasons
                 .AsNoTracking()
                 .Where(s => s.Status == SeasonStatus.Current)
@@ -243,21 +244,9 @@
                     .ToArray())
                 .ToArrayAsync();
 
-            int[][] awayMatchesPlayedArray = await this.dbContext
-                .Seasons
-                .AsNoTracking()
-                .Where(s => s.Status == SeasonStatus.Current)
-                .Select(s => s.SeasonTeams
-                    .Select(ts => ts.AwayGames
-                        .Where(m => m.HasFinished == true)
-                        .Count())
-                    .ToArray())
-                .ToArrayAsync();
+            int matchesCount = CaculateJaggedArraySum(matchesPlayedArray);
 
-            int homeGamesSum = CaculateJaggedArraySum(homeMatchesPlayedArray);
-            int awayGamesSum = CaculateJaggedArraySum(awayMatchesPlayedArray);
-
-            return homeGamesSum + awayGamesSum;
+            return matchesCount;
         }
 
         private async Task<int> GetTotalRegisteredPlayersCountForCurrentSeason()
