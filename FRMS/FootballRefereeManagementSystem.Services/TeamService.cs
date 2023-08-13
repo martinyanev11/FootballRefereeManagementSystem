@@ -232,7 +232,8 @@
                 .FirstAsync();
         }
 
-        public async Task<IEnumerable<TeamRegisteredListModel>> GetAllTeamsForRegistrationAsync(int seasonId)
+        public async Task<IEnumerable<TeamRegisteredListModel>> GetAllTeamsForRegistrationAsync
+            (int seasonId)
         {
             return await this.dbContext
                 .Teams
@@ -277,10 +278,13 @@
         {
             return await this.dbContext
                 .TeamsSeasons
-                .AnyAsync(ts => ts.TeamId == teamId && ts.SeasonId == seasonId);
+                .AnyAsync(ts => 
+                    ts.TeamId == teamId && 
+                    ts.SeasonId == seasonId);
         }
 
-        public async Task<IEnumerable<TeamRegisteredListModel>> GetAllRegisteredForNewSeasonTeams(int seasonId)
+        public async Task<IEnumerable<TeamRegisteredListModel>> GetAllRegisteredForNewSeasonTeams
+            (int seasonId)
         {
             return await this.dbContext
                 .Teams
@@ -373,6 +377,15 @@
                 .FirstAsync();
         }
 
+        public async Task<string> GetTeamNameByIdAsync(int teamId)
+        {
+            return await this.dbContext
+                .Teams
+                .Where(t => t.Id == teamId)
+                .Select(t => t.Name)
+                .FirstAsync();
+        }
+
         // ----------------------------------
         // Helper classes
         // ----------------------------------
@@ -397,15 +410,6 @@
             }
 
             await this.dbContext.SaveChangesAsync();
-        }
-
-        public async Task<string> GetTeamNameByIdAsync(int teamId)
-        {
-            return await this.dbContext
-                .Teams
-                .Where(t => t.Id == teamId)
-                .Select(t => t.Name)
-                .FirstAsync();
         }
 
         /// <summary>

@@ -40,7 +40,7 @@
             {
                 string userId = User.GetId();
                 int userRefereeId = await this.refereeService.GetRefereeIdByUserIdAsync(userId);
-                await this.refereeService.UpdateCurrentlyAppointedMatchesCount(userRefereeId);
+                await this.refereeService.UpdateCurrentlyAppointedMatchesCountAsync(userRefereeId);
 
                 ApplicationUserViewModel model = 
                     await this.userService.GetUserInformationByIdAsync(userId);

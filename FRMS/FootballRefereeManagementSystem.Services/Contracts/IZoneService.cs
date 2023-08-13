@@ -1,8 +1,9 @@
 ﻿namespace FootballRefereeManagementSystem.Services.Contracts
 {
-    using FootballRefereeManagementSystem.Web.ViewModels.Zone;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+
+    using Web.ViewModels.Zone;
 
     public interface IZoneService
     {

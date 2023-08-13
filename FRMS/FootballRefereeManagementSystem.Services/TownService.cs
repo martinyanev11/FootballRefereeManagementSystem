@@ -1,13 +1,13 @@
 ﻿namespace FootballRefereeManagementSystem.Services
 {
     using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     using Microsoft.EntityFrameworkCore;
     
     using Contracts;
     using Data;
     using Data.Models;
-    using System.Collections.Generic;
     using Web.ViewModels.Town;
 
     public class TownService : ITownService

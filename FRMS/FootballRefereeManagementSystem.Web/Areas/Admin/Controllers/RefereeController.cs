@@ -196,9 +196,9 @@
                 RefereeSquadFormModel model = new RefereeSquadFormModel()
                 {
                     DivisionId = divisionId,
-                    MainRefereesList = await this.refereeService.GetAllAvaliableInDivisionRefereesOfRoleType(divisionId, "Referee"),
-                    AssistantRefereesList = await this.refereeService.GetAllAvaliableInDivisionRefereesOfRoleType(divisionId, "AssistantReferee"),
-                    DelegatesList = await this.refereeService.GetAllAvaliableInDivisionRefereesOfRoleType(divisionId, "Delegate"),
+                    MainRefereesList = await this.refereeService.GetAllAvaliableInDivisionRefereesOfRoleTypeAsync(divisionId, "Referee"),
+                    AssistantRefereesList = await this.refereeService.GetAllAvaliableInDivisionRefereesOfRoleTypeAsync(divisionId, "AssistantReferee"),
+                    DelegatesList = await this.refereeService.GetAllAvaliableInDivisionRefereesOfRoleTypeAsync(divisionId, "Delegate"),
                 };
 
                 return View(model);
@@ -222,13 +222,13 @@
 
                 if (!ModelState.IsValid)
                 {
-                    model.MainRefereesList = await this.refereeService.GetAllAvaliableInDivisionRefereesOfRoleType(model.DivisionId, "Referee");
-                    model.AssistantRefereesList = await this.refereeService.GetAllAvaliableInDivisionRefereesOfRoleType(model.DivisionId, "AssistantReferee");
-                    model.DelegatesList = await this.refereeService.GetAllAvaliableInDivisionRefereesOfRoleType(model.DivisionId, "Delegate");
+                    model.MainRefereesList = await this.refereeService.GetAllAvaliableInDivisionRefereesOfRoleTypeAsync(model.DivisionId, "Referee");
+                    model.AssistantRefereesList = await this.refereeService.GetAllAvaliableInDivisionRefereesOfRoleTypeAsync(model.DivisionId, "AssistantReferee");
+                    model.DelegatesList = await this.refereeService.GetAllAvaliableInDivisionRefereesOfRoleTypeAsync(model.DivisionId, "Delegate");
                     return View(model);
                 }
 
-                Guid newRefSquadId = await this.refereeService.CreateRefereeSquad(id, model);
+                Guid newRefSquadId = await this.refereeService.CreateRefereeSquadAsync(id, model);
 
                 await this.matchService.LinkMatchToRefereeSquadAsync(id, newRefSquadId);
 

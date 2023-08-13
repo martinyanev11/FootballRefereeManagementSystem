@@ -244,10 +244,11 @@
             }
         }
 
-        public async Task<string> GetUserIdByRefereeIdAsync(int id)
+        public async Task<string> GetUserIdByRefereeIdAsync(int refereeId)
         {
-            return await this.dbContext.Referees
-                .Where(r => r.Id == id && r.IsActive)
+            return await this.dbContext
+                .Referees
+                .Where(r => r.Id == refereeId && r.IsActive)
                 .Select(r => r.UserId.ToString())
                 .FirstAsync();
         }
@@ -288,7 +289,7 @@
                 .FirstAsync();
         }
 
-        public async Task UpdateRefereeData(RefereeServiceModel newRefereeData, string userId)
+        public async Task UpdateRefereeDataAsync(RefereeServiceModel newRefereeData, string userId)
         {
             Referee refereeToUpdate = await this.dbContext
                 .Referees
@@ -430,7 +431,7 @@
             return refStats;
         }
 
-        public async Task<IEnumerable<RefereeListModel>> GetAllAvaliableInDivisionRefereesOfRoleType
+        public async Task<IEnumerable<RefereeListModel>> GetAllAvaliableInDivisionRefereesOfRoleTypeAsync
             (int divisionId, string roleType)
         {
             return await this.dbContext
@@ -449,7 +450,7 @@
                 .ToArrayAsync();
         }
 
-        public async Task<Guid> CreateRefereeSquad(int id, RefereeSquadFormModel model)
+        public async Task<Guid> CreateRefereeSquadAsync(int id, RefereeSquadFormModel model)
         {
             RefereeSquad newSquad = new RefereeSquad()
             {
@@ -472,11 +473,11 @@
                 .AnyAsync(rs => rs.Id.ToString() == id);
         }
 
-        public async Task<RefereeSquadEditModel> GetRefereeSquadForEditByIdAsync(string id)
+        public async Task<RefereeSquadEditModel> GetRefereeSquadForEditByIdAsync(string refereeSquadId)
         {
             RefereeSquadEditModel refereeSquad = await this.dbContext
                 .RefereesSquads
-                .Where(rs => rs.Id.ToString() == id)
+                .Where(rs => rs.Id.ToString() == refereeSquadId)
                 .Select(rs => new RefereeSquadEditModel()
                 {
                     MainRefereeId = rs.MainRefereeId,
@@ -491,18 +492,18 @@
                 })
             .FirstAsync();
 
-            refereeSquad.MainRefereesList = await GetAllAvaliableInDivisionRefereesOfRoleType(refereeSquad.DivisionId, Role.Referee.ToString());
-            refereeSquad.AssistantRefereesList = await GetAllAvaliableInDivisionRefereesOfRoleType(refereeSquad.DivisionId, Role.AssistantReferee.ToString());
-            refereeSquad.DelegatesList = await GetAllAvaliableInDivisionRefereesOfRoleType(refereeSquad.DivisionId, Role.Delegate.ToString());
+            refereeSquad.MainRefereesList = await GetAllAvaliableInDivisionRefereesOfRoleTypeAsync(refereeSquad.DivisionId, Role.Referee.ToString());
+            refereeSquad.AssistantRefereesList = await GetAllAvaliableInDivisionRefereesOfRoleTypeAsync(refereeSquad.DivisionId, Role.AssistantReferee.ToString());
+            refereeSquad.DelegatesList = await GetAllAvaliableInDivisionRefereesOfRoleTypeAsync(refereeSquad.DivisionId, Role.Delegate.ToString());
 
             return refereeSquad;
         }
 
-        public async Task EditRefereeSquadAsync(string id, RefereeSquadEditModel model)
+        public async Task EditRefereeSquadAsync(string refereeSquadId, RefereeSquadEditModel model)
         {
             RefereeSquad refereeSquadToEdit = await this.dbContext
                 .RefereesSquads
-                .Where(rs => rs.Id.ToString() == id)
+                .Where(rs => rs.Id.ToString() == refereeSquadId)
                 .FirstAsync();
 
             refereeSquadToEdit.MainRefereeId = model.MainRefereeId;
@@ -513,7 +514,7 @@
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task UpdateCurrentlyAppointedMatchesCount(int refereeId)
+        public async Task UpdateCurrentlyAppointedMatchesCountAsync(int refereeId)
         {
             Referee refereeToUpdate = await this.dbContext
                 .Referees
@@ -554,7 +555,7 @@
                 .FirstAsync();
         }
 
-        public async Task<int[]> GetAllRefereeIdsFromRefereeSquad(string id)
+        public async Task<int[]> GetAllRefereeIdsFromRefereeSquadAsync(string id)
         {
             return await this.dbContext
                 .RefereesSquads
@@ -569,7 +570,7 @@
                 .FirstAsync();
         }
 
-        public async Task IncrementRefereeDivisionMatchCountStats(int matchDivisionId, int[] refereeIds)
+        public async Task IncrementRefereeDivisionMatchCountStatsAsync(int matchDivisionId, int[] refereeIds)
         {
             foreach (int refId in refereeIds)
             {

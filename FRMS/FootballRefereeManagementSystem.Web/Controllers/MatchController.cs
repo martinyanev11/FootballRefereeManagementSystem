@@ -63,9 +63,9 @@
                 await this.matchService.FinishMatchAsync(model);
 
                 int matchDivisionId = await this.matchService.GetDivisionIdByMatchIdAsync(model.MatchId);
-                int[] refereeIds = await this.refereeService.GetAllRefereeIdsFromRefereeSquad(id);
+                int[] refereeIds = await this.refereeService.GetAllRefereeIdsFromRefereeSquadAsync(id);
 
-                await this.refereeService.IncrementRefereeDivisionMatchCountStats(matchDivisionId, refereeIds);
+                await this.refereeService.IncrementRefereeDivisionMatchCountStatsAsync(matchDivisionId, refereeIds);
 
                 return RedirectToAction("Schedule", "Referee");
             }

@@ -9,7 +9,7 @@
     DateTime todaysDate = DateTime.UtcNow;
     DateTime nextYear = todaysDate.AddYears(1);
 
-    bool preperationSeasonExists = await this.SeasonService.CheckForSeasonInPreparation();
+    bool preperationSeasonExists = await this.SeasonService.CheckForSeasonInPreparationStatusAsync();
 
     string returnController = preperationSeasonExists ? "Season" : "Referee";
     string returnAction = preperationSeasonExists ? "SeasonPreparation" : "Schedule";

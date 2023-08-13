@@ -67,7 +67,8 @@
             await this.dbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<PlayerDetailsViewModel>> GetAllPlayersAsync(PlayerQueryModel queryModel)
+        public async Task<IEnumerable<PlayerDetailsViewModel>> GetAllPlayersAsync
+            (PlayerQueryModel queryModel)
         {
             IQueryable<Player> playersQuery = this.dbContext
                 .Players
@@ -99,7 +100,8 @@
             return players;
         }
 
-        public async Task<IEnumerable<PlayerDetailsViewModel>> GetAllSeasonUnregisteredPlayers(int seasonId)
+        public async Task<IEnumerable<PlayerDetailsViewModel>> GetAllSeasonUnregisteredPlayers
+            (int seasonId)
         {
             return await this.dbContext
                 .PlayersTeamsSeasons
@@ -144,7 +146,8 @@
                 .FirstAsync();
         }
 
-        public async Task<IEnumerable<PlayerDetailsViewModel>> GetTeamPlayersForSeasonAsync(int teamId, int seasonId)
+        public async Task<IEnumerable<PlayerDetailsViewModel>> GetTeamPlayersForSeasonAsync
+            (int teamId, int seasonId)
         {
             IEnumerable<PlayerDetailsViewModel> players = await this.dbContext
                 .PlayersTeamsSeasons

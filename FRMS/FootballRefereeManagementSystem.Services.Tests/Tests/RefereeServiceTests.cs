@@ -186,7 +186,7 @@
             int refereeId = 1;
 
             // Act
-            await this.refereeService.UpdateCurrentlyAppointedMatchesCount(refereeId);
+            await this.refereeService.UpdateCurrentlyAppointedMatchesCountAsync(refereeId);
             Referee referee = await this.dbContext
                 .Referees
                 .Where(r => r.Id == refereeId)

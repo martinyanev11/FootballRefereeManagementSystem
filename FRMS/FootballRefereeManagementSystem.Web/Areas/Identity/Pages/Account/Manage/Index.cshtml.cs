@@ -142,7 +142,7 @@ namespace FootballRefereeManagementSystem.Web.Areas.Identity.Pages.Account.Manag
                     ImageUrl = this.Input.ImageUrl,
                 };
 
-                await this.refereeService.UpdateRefereeData(newRefereeData, user.Id.ToString());
+                await this.refereeService.UpdateRefereeDataAsync(newRefereeData, user.Id.ToString());
 
                 this.Message = "Профилът е актуализиран.";
                 this.AlertType = Alert.success;

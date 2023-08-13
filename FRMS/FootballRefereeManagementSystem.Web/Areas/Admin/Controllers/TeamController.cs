@@ -211,7 +211,7 @@
             try
             {
                 bool preperationSeasonExists =
-                    await this.seasonService.CheckForSeasonInPreparation();
+                    await this.seasonService.CheckForSeasonInPreparationStatusAsync();
 
                 if (!preperationSeasonExists)
                 {

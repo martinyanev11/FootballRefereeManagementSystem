@@ -22,7 +22,7 @@
         public async Task<IActionResult> Add()
         {
             bool alreadyHaveSeasonInPreparation = 
-                await this.seasonService.CheckForSeasonInPreparation();
+                await this.seasonService.CheckForSeasonInPreparationStatusAsync();
 
             if (alreadyHaveSeasonInPreparation)
             {
@@ -64,7 +64,7 @@
         public async Task<IActionResult> SeasonPreparation()
         {
             bool preperationSeasonExists =
-                await this.seasonService.CheckForSeasonInPreparation();
+                await this.seasonService.CheckForSeasonInPreparationStatusAsync();
 
             if (!preperationSeasonExists)
             {
@@ -84,7 +84,7 @@
         public async Task<IActionResult> BeginNewSeason()
         {
             bool preperationSeasonExists =
-                await this.seasonService.CheckForSeasonInPreparation();
+                await this.seasonService.CheckForSeasonInPreparationStatusAsync();
 
             if (!preperationSeasonExists)
             {

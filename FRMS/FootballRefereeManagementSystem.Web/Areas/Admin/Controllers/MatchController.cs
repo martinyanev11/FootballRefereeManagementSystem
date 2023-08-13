@@ -122,7 +122,7 @@
                 await this.matchService.EditMatchAsync(id, model);
 
                 bool preperationSeasonExists =
-                    await this.seasonService.CheckForSeasonInPreparation();
+                    await this.seasonService.CheckForSeasonInPreparationStatusAsync();
 
                 string returnController = preperationSeasonExists ? "Season" : "Referee";
                 string returnAction = preperationSeasonExists ? "SeasonPreparation" : "Schedule";

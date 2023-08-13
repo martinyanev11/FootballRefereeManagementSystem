@@ -27,6 +27,12 @@
         /// <param name="userId">The ID of the application user to retrieve information for.</param>
         /// <returns>A task representing the asynchronous operation that returns an instance of <see cref="ApplicationUserViewModel"/> containing the user information.</returns>
         Task<ApplicationUserViewModel> GetUserInformationByIdAsync(string userId);
+
+        /// <summary>
+        /// Checks if a user is assigned the admin role.
+        /// </summary>
+        /// <param name="userId">The ID of the user to check.</param>
+        /// <returns><see langword="true"/> if the user is an admin, otherwise <see langword="false"/>.</returns>
         Task<bool> IsUserAdminAsync(string userId);
 
         /// <summary>
@@ -41,6 +47,12 @@
         /// and saves the changes to the database.
         /// </remarks>
         Task LinkUserToRefereeAsync(string userId, int refereeId);
+
+        /// <summary>
+        /// Removes a user from the admin role.
+        /// </summary>
+        /// <param name="userId">The ID of the user to remove from the admin role.</param>
+        /// <returns>A task representing the asynchronous operation.</returns>
         Task RemoveUserFromAdminRoleAsync(string userId);
     }
 }

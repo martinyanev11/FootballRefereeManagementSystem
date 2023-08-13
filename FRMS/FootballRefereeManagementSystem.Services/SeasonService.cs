@@ -89,7 +89,7 @@
                 await GetTotalRegisteredPlayersCountForCurrentSeason();
 
             seasonStats.MatchesPlayed =
-                await GetSeasonTotalMatchesPlayedCount();
+                await GetSeasonTotalFinishedMatchesCount();
 
             seasonStats.TotalMatchesCount =
                 await GetTotalMatchesCountForSeason();
@@ -97,7 +97,7 @@
             return seasonStats;
         }
 
-        public async Task<bool> CheckForSeasonInPreparation()
+        public async Task<bool> CheckForSeasonInPreparationStatusAsync()
         {
             return await this.dbContext
                 .Seasons
@@ -120,7 +120,7 @@
 
         public async Task<SeasonFormModel> GetSeasonForEditAsync(string status)
         {
-            SeasonFormModel currentSeason = await this.dbContext
+            SeasonFormModel season = await this.dbContext
                 .Seasons
                 .Where(s => s.Status == Enum.Parse<SeasonStatus>(status))
                 .Select(s => new SeasonFormModel()
@@ -131,7 +131,7 @@
                 })
                 .FirstAsync();
 
-            return currentSeason;
+            return season;
         }
 
         public async Task EditSeasonAsync(SeasonFormModel model)
@@ -203,9 +203,11 @@
 
         // ----------------------------------
         // private methods
+        // ----------------------------------
+
         private async Task<int> GetTotalMatchesCountForSeason()
         {
-            int[][] homeMatchesCount = await this.dbContext
+            int[] totalMatchesCountArray = await this.dbContext
                 .Seasons
                 .AsNoTracking()
                 .Where(s => s.Status == SeasonStatus.Current)
@@ -213,27 +215,17 @@
                     .Select(ts => ts.HomeGames
                         .Count())
                     .ToArray())
-                .ToArrayAsync();
+                .FirstAsync();
 
-            int[][] awayMatchesCount = await this.dbContext
-                .Seasons
-                .AsNoTracking()
-                .Where(s => s.Status == SeasonStatus.Current)
-                .Select(s => s.SeasonTeams
-                    .Select(ts => ts.AwayGames
-                        .Count())
-                    .ToArray())
-                .ToArrayAsync();
 
-            int homeGamesSum = CaculateJaggedArraySum(homeMatchesCount);
-            int awayGamesSum = CaculateJaggedArraySum(awayMatchesCount);
+            int gamesSum = totalMatchesCountArray.Sum();
 
-            return homeGamesSum + awayGamesSum;
+            return gamesSum;
         }
 
-        private async Task<int> GetSeasonTotalMatchesPlayedCount()
+        private async Task<int> GetSeasonTotalFinishedMatchesCount()
         {
-            int[][] matchesPlayedArray = await this.dbContext
+            int[] matchesPlayedArray = await this.dbContext
                 .Seasons
                 .AsNoTracking()
                 .Where(s => s.Status == SeasonStatus.Current)
@@ -242,45 +234,27 @@
                         .Where(m => m.HasFinished == true)
                         .Count())
                     .ToArray())
-                .ToArrayAsync();
+                .FirstAsync();
 
-            int matchesCount = CaculateJaggedArraySum(matchesPlayedArray);
+            int matchesCount = matchesPlayedArray.Sum();
 
             return matchesCount;
         }
 
         private async Task<int> GetTotalRegisteredPlayersCountForCurrentSeason()
         {
-            // Getting the number of players per registered team for the season
-            // Result is jagged array where we have different TeamSeasons (team playing in a season) for rows
-            // and their respective players count for colums
-            int[][] teamsPlayersCountArray = await this.dbContext
+            int[] playersCountFromEachTeamArray = await this.dbContext
                 .Seasons
                 .AsNoTracking()
                 .Where(s => s.Status == SeasonStatus.Current)
                 .Select(s => s.SeasonTeams
                     .Select(ts => ts.TeamSeasonPlayers.Count)
                     .ToArray())
-                .ToArrayAsync();
+                .FirstAsync();
 
-            int totalPlayersCount = CaculateJaggedArraySum(teamsPlayersCountArray);
+            int totalPlayersCount = playersCountFromEachTeamArray.Sum();
 
             return totalPlayersCount;
-        }
-
-        private static int CaculateJaggedArraySum(int[][] array)
-        {
-            int sum = 0;
-
-            for (int i = 0; i < array.Length; i++)
-            {
-                for (int j = 0; j < array[i].Length; j++)
-                {
-                    sum += array[i][j];
-                }
-            }
-
-            return sum;
         }
     }
 }
